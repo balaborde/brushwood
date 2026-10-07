@@ -3,12 +3,12 @@ import BrushwoodCore
 
 /// The tools in the Tools window, in Paint.NET's order.
 enum ToolKind: Int, CaseIterable {
-    case moveSelectedPixels
-    case moveSelection
     case rectangleSelect
     case lassoSelect
     case ellipseSelect
     case magicWand
+    case moveSelectedPixels
+    case moveSelection
     case zoom
     case pan
     case paintBucket

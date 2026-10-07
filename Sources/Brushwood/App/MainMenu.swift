@@ -96,6 +96,8 @@ enum MainMenu {
         add(m, L("Paste"), #selector(W.paste(_:)), "v", icon: "cmd.paste")
         add(m, L("Paste Into New Layer"), #selector(W.pasteIntoNewLayer(_:)), "v", [.command, .shift])
         add(m, L("Paste Into New Image"), #selector(W.pasteIntoNewImage(_:)), "v", [.command, .option])
+        add(m, L("Copy Selection"), #selector(W.copySelection(_:)), "c", [.command, .option, .shift])
+        add(m, L("Paste Selection (Replace)"), #selector(W.pasteSelection(_:)), "v", [.command, .option, .shift])
         m.addItem(.separator())
         add(m, L("Select All"), #selector(W.selectAll(_:)), "a", icon: "cmd.selectAll")
         add(m, L("Deselect"), #selector(W.deselect(_:)), "d", icon: "cmd.deselect")
@@ -182,6 +184,13 @@ enum MainMenu {
         add(m, L("Move Layer Down"), #selector(W.moveLayerDown(_:)), String(UnicodeScalar(NSDownArrowFunctionKey)!),
             [.command, .option], icon: "layer.down")
         m.addItem(.separator())
+        let pgUp = String(UnicodeScalar(NSPageUpFunctionKey)!), pgDn = String(UnicodeScalar(NSPageDownFunctionKey)!)
+        add(m, L("Go to Layer Above"), #selector(W.selectLayerAbove(_:)), pgUp, [.option])
+        add(m, L("Go to Layer Below"), #selector(W.selectLayerBelow(_:)), pgDn, [.option])
+        add(m, L("Go to Top Layer"), #selector(W.selectTopLayer(_:)), pgUp, [.option, .command])
+        add(m, L("Go to Bottom Layer"), #selector(W.selectBottomLayer(_:)), pgDn, [.option, .command])
+        add(m, L("Toggle Layer Visibility"), #selector(W.toggleActiveLayerVisibility(_:)), ",", [.control, .command])
+        m.addItem(.separator())
         add(m, L("Layer Properties…"), #selector(W.layerProperties(_:)), String(UnicodeScalar(NSF4FunctionKey)!), [],
             icon: "layer.properties")
         return m
@@ -191,6 +200,7 @@ enum MainMenu {
         let m = NSMenu(title: L("Adjustments"))
         let keys: [String: (String, NSEvent.ModifierFlags)] = [
             "Auto-Level": ("l", [.command, .shift]), "Black and White": ("g", [.command, .shift]),
+            "Brightness / Contrast": ("t", [.command, .shift]), "Invert Alpha": ("i", [.command, .option]),
             "Curves": ("m", [.command, .shift]), "Hue / Saturation": ("u", [.command, .shift]),
             "Invert Colors": ("i", [.command, .shift]), "Levels": ("l", [.command]), "Posterize": ("p", [.command, .shift]),
             "Sepia": ("e", [.command, .shift]),
@@ -246,6 +256,9 @@ enum MainMenu {
     private static func helpMenu(_ d: AppDelegate) -> NSMenu {
         let m = NSMenu(title: L("Help"))
         add(m, L("Brushwood Help"), #selector(AppDelegate.showHelp(_:)), "?", icon: "cmd.help", target: d)
+        let f1 = add(m, L("Brushwood Help"), #selector(AppDelegate.showHelp(_:)), String(UnicodeScalar(NSF1FunctionKey)!), [], target: d)
+        f1.isHidden = true
+        f1.allowsKeyEquivalentWhenHidden = true
         add(m, L("Keyboard Shortcuts"), #selector(AppDelegate.showShortcuts(_:)), target: d)
         return m
     }

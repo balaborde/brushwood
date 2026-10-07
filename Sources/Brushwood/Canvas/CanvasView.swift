@@ -613,6 +613,7 @@ final class CanvasView: NSView {
         if tool?.keyDown(e) == true { return }
         let mods = e.modifierFlags.intersection([.command, .control, .option])
         if mods.isEmpty, let ch = e.charactersIgnoringModifiers?.lowercased().first {
+            let shift = e.modifierFlags.contains(.shift)
             switch ch {
             case " ":
                 if !spaceDown {
@@ -630,12 +631,12 @@ final class CanvasView: NSView {
                 env.tools.brushWidth = min(2000, env.tools.brushWidth + (e.modifierFlags.contains(.shift) ? 10 : 1))
                 return
             default:
-                if host?.selectTool(byShortcut: ch) == true { return }
+                if host?.selectTool(byShortcut: ch, backwards: shift) == true { return }
             }
         }
         switch e.keyCode {
         case 53: tool?.cancel(); return
-        case 36, 76: tool?.commit(); return
+        case 36, 76: host?.commitOrDeselect(); return
         default: break
         }
         super.keyDown(with: e)

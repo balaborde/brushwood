@@ -372,3 +372,94 @@ public final class CurvesAdjustment: Effect {
         }
     }
 }
+
+// MARK: - Paint.NET 5 adjustments
+
+public final class ExposureAdjustment: Effect {
+    public override var name: String { "Exposure" }
+    public override var parameters: [EffectParameter] {
+        [.double(id: "ev", label: "Exposure", range: -5...5, defaultValue: 0, decimals: 2)]
+    }
+
+    public override func makeRenderer(src: Surface, values: EffectValues, env: EffectEnvironment) -> EffectRenderer {
+        // Scale linear light by 2^EV (sRGB transfer curve both ways).
+        let gain = pow(2, values.double("ev"))
+        let table: [UInt8] = (0..<256).map { v in
+            let c = Double(v) / 255
+            let lin = c <= 0.04045 ? c / 12.92 : pow((c + 0.055) / 1.055, 2.4)
+            let out = min(1, lin * gain)
+            let s = out <= 0.0031308 ? out * 12.92 : 1.055 * pow(out, 1 / 2.4) - 0.055
+            return clampToByte(s * 255)
+        }
+        return PixelOpRenderer(src: src) { c in ColorBgra(b: table[Int(c.b)], g: table[Int(c.g)], r: table[Int(c.r)], a: c.a) }
+    }
+}
+
+public final class HighlightsShadowsAdjustment: Effect {
+    public override var name: String { "Highlights / Shadows" }
+    public override var parameters: [EffectParameter] {
+        [
+            .integer(id: "shadows", label: "Shadows", range: -100...100, defaultValue: 0),
+            .integer(id: "highlights", label: "Highlights", range: -100...100, defaultValue: 0),
+            .integer(id: "radius", label: "Radius", range: 0...100, defaultValue: 20),
+        ]
+    }
+
+    public override func makeRenderer(src: Surface, values: EffectValues, env: EffectEnvironment) -> EffectRenderer {
+        let shadows = Double(values.int("shadows")) / 100, highlights = Double(values.int("highlights")) / 100
+        let radius = values.int("radius")
+        return ClosureRenderer(wholeRegion: true) { dst, rect in
+            // A blurred luminance map decides which areas count as shadows or highlights (keeps local contrast).
+            let blurred = Surface(width: src.width, height: src.height)
+            EffectHelpers.gaussianBlur(src: src, dst: blurred, rect: rect, radius: radius)
+            EffectHelpers.parallelRows(rect) { y in
+                let s = src.row(y), b = blurred.row(y), d = dst.row(y)
+                for x in rect.left..<rect.right {
+                    let c = s[x]
+                    let l = b[x].intensity
+                    let ws = (1 - l) * (1 - l), wh = l * l
+                    // Positive shadows lighten dark areas; positive highlights darken bright areas.
+                    let lift = shadows * ws * 0.6, cut = highlights * wh * 0.6
+                    func adj(_ v: UInt8) -> UInt8 {
+                        var f = Double(v) / 255
+                        f = lift >= 0 ? f + (1 - f) * lift : f * (1 + lift)
+                        f = cut >= 0 ? f * (1 - cut) : f + (1 - f) * -cut
+                        return clampToByte(f * 255)
+                    }
+                    d[x] = ColorBgra(b: adj(c.b), g: adj(c.g), r: adj(c.r), a: c.a)
+                }
+            }
+        }
+    }
+}
+
+public final class InvertAlphaAdjustment: Effect {
+    public override var name: String { "Invert Alpha" }
+    public override func makeRenderer(src: Surface, values: EffectValues, env: EffectEnvironment) -> EffectRenderer {
+        PixelOpRenderer(src: src) { c in c.withAlpha(255 - c.a) }
+    }
+}
+
+public final class TemperatureTintAdjustment: Effect {
+    public override var name: String { "Temperature and Tint" }
+    public override var parameters: [EffectParameter] {
+        [
+            .integer(id: "temperature", label: "Temperature", range: -100...100, defaultValue: 0),
+            .integer(id: "tint", label: "Tint", range: -100...100, defaultValue: 0),
+        ]
+    }
+
+    public override func makeRenderer(src: Surface, values: EffectValues, env: EffectEnvironment) -> EffectRenderer {
+        // Channel gains in linear light: warm = more red / less blue; tint = magenta (+) vs green (−).
+        let t = Double(values.int("temperature")) / 100, n = Double(values.int("tint")) / 100
+        let gr = 1 + 0.25 * t + 0.1 * n, gg = 1 - 0.2 * n, gb = 1 - 0.25 * t + 0.1 * n
+        func table(_ gain: Double) -> [UInt8] {
+            (0..<256).map { v in
+                let lin = pow(Double(v) / 255, 2.2) * gain
+                return clampToByte(pow(min(1, lin), 1 / 2.2) * 255)
+            }
+        }
+        let rt = table(gr), gt = table(gg), bt = table(gb)
+        return PixelOpRenderer(src: src) { c in ColorBgra(b: bt[Int(c.b)], g: gt[Int(c.g)], r: rt[Int(c.r)], a: c.a) }
+    }
+}

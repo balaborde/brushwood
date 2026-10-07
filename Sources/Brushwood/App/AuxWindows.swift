@@ -207,7 +207,8 @@ final class HelpWindow: NSWindow {
             row("X", L("Swap primary and secondary colors"))
             row("[ ]", L("Decrease / increase brush width (Shift: ×10)"))
             row(L("Space"), L("Hold to pan"))
-            row("⏎ / ⎋", L("Finish / cancel the current edit"))
+            row("⇧ + " + L("letter"), L("Cycle tools sharing a letter in reverse (⇧S = Magic Wand)"))
+            row("⏎ / ⎋", L("Finish / cancel the current edit (⏎ again deselects)"))
             out.append(NSAttributedString(string: "\n"))
             h(L("Commands"))
             let cmds: [(String, String)] = [
@@ -215,13 +216,18 @@ final class HelpWindow: NSWindow {
                 ("⌘Z", L("Undo")), ("⇧⌘Z / ⌘Y", L("Redo")), ("⌘X ⌘C ⌘V", L("Cut, Copy, Paste")), ("⇧⌘C", L("Copy Merged")),
                 ("⇧⌘V", L("Paste Into New Layer")), ("⌥⌘V", L("Paste Into New Image")), ("⌘A / ⌘D", L("Select All / Deselect")),
                 ("⌘I", L("Invert Selection")), ("⌫", L("Erase Selection")), ("⇧⌫", L("Fill Selection")),
+                ("⌥⇧⌘C / ⌥⇧⌘V", L("Copy / paste the selection outline")),
                 ("⇧⌘X", L("Crop to Selection")), ("⌘R", L("Resize")), ("⇧⌘R", L("Canvas Size")),
                 ("⌃⌘H / ⌘G / ⌘J", L("Rotate 90° CW / 90° CCW / 180°")), ("⇧⌘F", L("Flatten")),
                 ("⇧⌘N", L("Add New Layer")), ("⇧⌘⌫", L("Delete Layer")), ("⇧⌘D", L("Duplicate Layer")),
-                ("⌃⌘M", L("Merge Layer Down")), ("F4", L("Layer Properties")), ("⌘+ / ⌘-", L("Zoom In / Out")),
+                ("⌃⌘M", L("Merge Layer Down")), ("F4", L("Layer Properties")),
+                ("⌥PgUp / ⌥PgDn", L("Go to the layer above / below")), ("⌃⌘,", L("Toggle Layer Visibility")),
+                ("⇧⌘L ⇧⌘G ⇧⌘T ⇧⌘M", L("Auto-Level, Black and White, Brightness / Contrast, Curves")),
+                ("⇧⌘U ⌥⌘I ⇧⌘I ⌘L", L("Hue / Saturation, Invert Alpha, Invert Colors, Levels")),
+                ("⇧⌘P ⇧⌘E", L("Posterize, Sepia")), ("⌘+ / ⌘-", L("Zoom In / Out")),
                 ("⌘B", L("Zoom to Window")), ("⌘0", L("Actual Size")), ("⌘'", L("Pixel Grid")), ("⌥⌘R", L("Rulers")),
                 ("⌘F", L("Repeat last effect")), ("F5–F8", L("Tools, History, Layers, Colors windows")),
-                ("⌃⇥", L("Next image")),
+                ("⌃⇥", L("Next image")), ("F1", L("Help")),
             ]
             for (k, v) in cmds { row(k, v) }
         }

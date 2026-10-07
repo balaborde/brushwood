@@ -307,7 +307,8 @@ struct EffectTests {
     }
 
     func allEffects() -> [Effect] {
-        [AutoLevelAdjustment(), BlackAndWhiteAdjustment(), BrightnessContrastAdjustment(),
+        [AutoLevelAdjustment(), BlackAndWhiteAdjustment(), BrightnessContrastAdjustment(), ExposureAdjustment(),
+         HighlightsShadowsAdjustment(), InvertAlphaAdjustment(), TemperatureTintAdjustment(),
          CurvesAdjustment(), HueSaturationAdjustment(), InvertColorsAdjustment(), LevelsAdjustment(),
          PosterizeAdjustment(), SepiaAdjustment(), InkSketchEffect(), OilPaintingEffect(),
          PencilSketchEffect(), BokehEffect(), FragmentEffect(), GaussianBlurEffect(), MotionBlurEffect(),

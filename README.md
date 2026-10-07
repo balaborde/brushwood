@@ -46,8 +46,8 @@ pixel-exact against Paint.NET renders), plus Hard Light, Soft Light, Color, Lumi
 **Image** — Crop to Selection, Resize (Best Quality, Supersampling, Bicubic, Bilinear, Lanczos 3, Nearest Neighbor; by
 percentage or absolute size, print size), Canvas Size with anchor, Flip, Rotate 90°/180°, Flatten.
 
-**Adjustments** — Auto-Level, Black and White, Brightness/Contrast, Curves (luminosity or per-channel RGB), Hue/Saturation,
-Invert Colors, Levels, Posterize, Sepia.
+**Adjustments** — Auto-Level, Black and White, Brightness/Contrast, Curves (luminosity or per-channel RGB), Exposure,
+Highlights/Shadows, Hue/Saturation, Invert Alpha, Invert Colors, Levels, Posterize, Sepia, Temperature and Tint.
 
 **Effects** (all with live preview; ⌘F repeats the last one) — the same menu as Paint.NET 5
 - Artistic: Ink Sketch, Oil Painting, Pencil Sketch
@@ -103,6 +103,7 @@ Paint.NET's shortcuts with Ctrl mapped to ⌘. Where macOS reserves a key, Brush
 | Merge Layer Down | Ctrl+M | ⌃⌘M (⌘M minimizes) |
 | Layer Rotate/Zoom | Ctrl+Shift+Z | ⌥⌘Z (⇧⌘Z is Redo) |
 | Redo | Ctrl+Y | ⇧⌘Z or ⌘Y |
+| Toggle Layer Visibility | Ctrl+, | ⌃⌘, (⌘, opens Settings) |
 | Erase / Fill Selection | Delete / Backspace | ⌫ / ⇧⌫ |
 
 The complete list is under **Help › Keyboard Shortcuts**.

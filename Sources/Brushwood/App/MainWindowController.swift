@@ -355,16 +355,27 @@ final class MainWindowController: NSWindowController, NSWindowDelegate, NSMenuIt
     }
 
     /// Paint.NET shortcut behaviour: pressing a letter again cycles through tools sharing it.
+    /// Shift cycles in the opposite direction (Shift+S goes straight to the Magic Wand).
     @discardableResult
-    func selectTool(byShortcut ch: Character) -> Bool {
+    func selectTool(byShortcut ch: Character, backwards: Bool = false) -> Bool {
         let matches = ToolKind.allCases.filter { $0.shortcutKey == ch }
         guard !matches.isEmpty else { return false }
+        let n = matches.count
         if let i = matches.firstIndex(of: env.activeTool) {
-            selectTool(matches[(i + 1) % matches.count])
+            selectTool(matches[(i + (backwards ? n - 1 : 1)) % n])
         } else {
-            selectTool(matches[0])
+            selectTool(backwards ? matches[n - 1] : matches[0])
         }
         return true
+    }
+
+    /// Return finishes the current edit; with nothing pending it deselects (Paint.NET behaviour).
+    func commitOrDeselect() {
+        if tool?.hasPendingEdits == true {
+            tool?.commit()
+        } else {
+            active?.deselect()
+        }
     }
 
     private func toolDidChange() {
@@ -609,6 +620,10 @@ final class MainWindowController: NSWindowController, NSWindowDelegate, NSMenuIt
         case #selector(cropToSelection(_:)), #selector(deselect(_:)), #selector(invertSelection(_:)),
              #selector(zoomToSelection(_:)):
             return hasSel
+        case #selector(copySelection(_:)):
+            return hasSel
+        case #selector(pasteSelection(_:)):
+            return hasDoc && MainWindowController.copiedSelection != nil
         case #selector(paste(_:)), #selector(pasteIntoNewLayer(_:)):
             return hasDoc && Clipboard.hasImage
         case #selector(deleteLayer(_:)):
@@ -830,6 +845,20 @@ final class MainWindowController: NSWindowController, NSWindowDelegate, NSMenuIt
         active?.invertSelection()
     }
 
+    /// Edit > Copy Selection: remembers the selection outline (not the pixels).
+    static var copiedSelection: Selection?
+
+    @objc func copySelection(_ sender: Any?) {
+        commitPendingTool()
+        if let s = active?.document.selection { MainWindowController.copiedSelection = s }
+    }
+
+    @objc func pasteSelection(_ sender: Any?) {
+        guard let ws = active, let s = MainWindowController.copiedSelection else { return }
+        commitPendingTool()
+        ws.changeSelection(to: s, name: L("Paste Selection"), icon: "cmd.paste")
+    }
+
     @objc func eraseSelection(_ sender: Any?) {
         commitPendingTool()
         active?.eraseSelection()
@@ -983,6 +1012,28 @@ final class MainWindowController: NSWindowController, NSWindowDelegate, NSMenuIt
     @objc func layerRotateZoom(_ sender: Any?) {
         guard active != nil else { return }
         runEffect(factory: { RotateZoomLayerEffect() }, historyIcon: "layer.rotateZoom")
+    }
+
+    @objc func selectLayerAbove(_ sender: Any?) {
+        guard let doc = active?.document else { return }
+        setActiveLayer(min(doc.layers.count - 1, doc.activeLayerIndex + 1))
+    }
+
+    @objc func selectLayerBelow(_ sender: Any?) {
+        guard let doc = active?.document else { return }
+        setActiveLayer(max(0, doc.activeLayerIndex - 1))
+    }
+
+    @objc func selectTopLayer(_ sender: Any?) {
+        guard let doc = active?.document else { return }
+        setActiveLayer(doc.layers.count - 1)
+    }
+
+    @objc func selectBottomLayer(_ sender: Any?) { setActiveLayer(0) }
+
+    @objc func toggleActiveLayerVisibility(_ sender: Any?) {
+        guard let doc = active?.document else { return }
+        toggleLayerVisibility(doc.activeLayerIndex)
     }
 
     func setActiveLayer(_ i: Int) {

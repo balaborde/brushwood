@@ -36,6 +36,7 @@
 "Artistic" = "Artistique";
 "Auto" = "Auto";
 "Auto-Level" = "Niveaux automatiques";
+"Auto-Level, Black and White, Brightness / Contrast, Curves" = "Niveaux automatiques, Noir et blanc, Luminosité / Contraste, Courbes";
 "Auto-detect" = "Détection automatique";
 "Background" = "Arrière-plan";
 "Backward Diagonal" = "Diagonale arrière";
@@ -111,7 +112,9 @@
 "Contrast" = "Contraste";
 "Copy" = "Copier";
 "Copy (⌘C)" = "Copier (⌘C)";
+"Copy / paste the selection outline" = "Copier / coller le contour de la sélection";
 "Copy Merged" = "Copier avec fusion";
+"Copy Selection" = "Copier la sélection";
 "Could not open \"%@\"" = "Impossible d'ouvrir « %@ »";
 "Could not save \"%@\"" = "Impossible d'enregistrer « %@ »";
 "Coverage" = "Couverture";
@@ -125,6 +128,7 @@
 "Cut" = "Couper";
 "Cut (⌘X)" = "Couper (⌘X)";
 "Cut, Copy, Paste" = "Couper, Copier, Coller";
+"Cycle tools sharing a letter in reverse (⇧S = Magic Wand)" = "Parcourir à rebours les outils partageant une lettre (⇧S = Baguette magique)";
 "Cylinder" = "Cylindre";
 "Dark Horizontal" = "Horizontal foncé";
 "Dark Vertical" = "Vertical foncé";
@@ -194,7 +198,7 @@
 "Fill style" = "Style de remplissage";
 "Fill:" = "Remplissage :";
 "Filled Arrow" = "Flèche pleine";
-"Finish / cancel the current edit" = "Valider / annuler la modification en cours";
+"Finish / cancel the current edit (⏎ again deselects)" = "Valider / annuler la modification en cours (⏎ de nouveau désélectionne)";
 "Fixed Ratio" = "Proportions fixes";
 "Fixed Size" = "Taille fixe";
 "Flat" = "Plat";
@@ -218,6 +222,11 @@
 "General" = "Général";
 "Global" = "Global";
 "Glow" = "Lueur";
+"Go to Bottom Layer" = "Aller au calque du bas";
+"Go to Layer Above" = "Aller au calque supérieur";
+"Go to Layer Below" = "Aller au calque inférieur";
+"Go to Top Layer" = "Aller au calque du haut";
+"Go to the layer above / below" = "Aller au calque supérieur / inférieur";
 "Gradient" = "Dégradé";
 "Gradient:" = "Dégradé :";
 "Green" = "Vert";
@@ -233,6 +242,8 @@
 "Hide Brushwood" = "Masquer Brushwood";
 "Hide Others" = "Masquer les autres";
 "Highlight boost" = "Renforcement des hautes lumières";
+"Highlights" = "Tons clairs";
+"Highlights / Shadows" = "Tons clairs / Tons foncés";
 "Hint: For best results, first use the selection tools to select each eye." = "Astuce : pour un meilleur résultat, sélectionnez d'abord chaque œil avec les outils de sélection.";
 "History" = "Historique";
 "History (F6)" = "Historique (F6)";
@@ -241,6 +252,7 @@
 "Horizontal Brick" = "Briques horizontales";
 "Hue" = "Teinte";
 "Hue / Saturation" = "Teinte / Saturation";
+"Hue / Saturation, Invert Alpha, Invert Colors, Levels" = "Teinte / Saturation, Inverser l'alpha, Inverser les couleurs, Niveaux";
 "If you don't save, your changes will be lost." = "Si vous n'enregistrez pas, vos modifications seront perdues.";
 "Image" = "Image";
 "Image larger than canvas" = "Image plus grande que le canevas";
@@ -254,6 +266,7 @@
 "Intensity" = "Intensité";
 "Intersect" = "Intersection";
 "Invert (xor)" = "Inverser (xor)";
+"Invert Alpha" = "Inverser l'alpha";
 "Invert Colors" = "Inverser les couleurs";
 "Invert Selection" = "Inverser la sélection";
 "Italic" = "Italique";
@@ -366,6 +379,8 @@
 "Paste (⌘V)" = "Coller (⌘V)";
 "Paste Into New Image" = "Coller dans une nouvelle image";
 "Paste Into New Layer" = "Coller dans un nouveau calque";
+"Paste Selection" = "Coller la sélection";
+"Paste Selection (Replace)" = "Coller la sélection (remplacer)";
 "Pencil" = "Crayon";
 "Pencil Sketch" = "Esquisse au crayon";
 "Pencil tip size" = "Taille de la mine";
@@ -383,6 +398,7 @@
 "Polar Inversion" = "Inversion polaire";
 "Polygons" = "Polygones";
 "Posterize" = "Postériser";
+"Posterize, Sepia" = "Postériser, Sépia";
 "Preserve transparency" = "Conserver la transparence";
 "Previous Image" = "Image précédente";
 "Primary" = "Principale";
@@ -483,6 +499,7 @@
 "Settings (⌘,)" = "Réglages (⌘,)";
 "Settings…" = "Réglages…";
 "Shadow only" = "Ombre seule";
+"Shadows" = "Tons foncés";
 "Shape:" = "Forme :";
 "Shapes" = "Formes";
 "Shapes, lines, gradients, text and paint bucket fills stay editable after you draw them: drag their handles or change options in the tool bar. Press Return or switch tools to finish, Escape or ⌘Z to cancel." = "Les formes, lignes, dégradés, textes et remplissages restent modifiables après leur tracé : déplacez leurs poignées ou changez les options dans la barre d'outils. Appuyez sur Entrée ou changez d'outil pour valider, Échap ou ⌘Z pour annuler.";
@@ -523,6 +540,8 @@
 "Switch to Pencil tool" = "Passer au crayon";
 "Switch to previous tool" = "Revenir à l'outil précédent";
 "Symbols" = "Symboles";
+"Temperature" = "Température";
+"Temperature and Tint" = "Température et teinte";
 "Tension" = "Tension";
 "Text" = "Texte";
 "The image being pasted is larger than the canvas size. What would you like to do?" = "L'image collée est plus grande que le canevas. Que voulez-vous faire ?";
@@ -535,6 +554,8 @@
 "Tile Reflection" = "Réflexion en mosaïque";
 "Tile Size" = "Taille des carreaux";
 "Tiling" = "Mosaïque";
+"Tint" = "Teinte (vert/magenta)";
+"Toggle Layer Visibility" = "Afficher/masquer le calque";
 "Tolerance" = "Tolérance";
 "Tolerance:" = "Tolérance :";
 "Tool:" = "Outil :";
@@ -586,6 +607,7 @@
 "cm" = "cm";
 "in" = "po";
 "inches" = "pouces";
+"letter" = "lettre";
 "pixels" = "pixels";
 "pixels/inch" = "pixels/pouce";
 "px" = "px";

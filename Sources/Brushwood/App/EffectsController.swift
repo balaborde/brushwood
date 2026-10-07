@@ -5,8 +5,9 @@ import BrushwoodCore
 enum EffectsCatalog {
     static let adjustments: [() -> Effect] = [
         { AutoLevelAdjustment() }, { BlackAndWhiteAdjustment() }, { BrightnessContrastAdjustment() }, { CurvesAdjustment() },
-        { HueSaturationAdjustment() }, { InvertColorsAdjustment() }, { LevelsAdjustment() }, { PosterizeAdjustment() },
-        { SepiaAdjustment() },
+        { ExposureAdjustment() }, { HighlightsShadowsAdjustment() }, { HueSaturationAdjustment() }, { InvertAlphaAdjustment() },
+        { InvertColorsAdjustment() }, { LevelsAdjustment() }, { PosterizeAdjustment() }, { SepiaAdjustment() },
+        { TemperatureTintAdjustment() },
     ]
 
     static let effects: [(EffectCategory, [() -> Effect])] = [
