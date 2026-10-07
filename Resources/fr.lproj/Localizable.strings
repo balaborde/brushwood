@@ -35,6 +35,7 @@
 "Antialiasing" = "Lissage";
 "Antialiasing disabled" = "Lissage désactivé";
 "Antialiasing enabled" = "Lissage activé";
+"Appearance" = "Apparence";
 "Arrow" = "Flèche";
 "Arrows" = "Flèches";
 "Artistic" = "Artistique";
@@ -135,6 +136,7 @@
 "Cut, Copy, Paste" = "Couper, Copier, Coller";
 "Cycle tools sharing a letter in reverse (⇧S = Magic Wand)" = "Parcourir à rebours les outils partageant une lettre (⇧S = Baguette magique)";
 "Cylinder" = "Cylindre";
+"Dark" = "Sombre";
 "Dark Horizontal" = "Horizontal foncé";
 "Dark Vertical" = "Vertical foncé";
 "Darken" = "Obscurcir";
@@ -305,6 +307,7 @@
 "Left-click a swatch to set the primary color, right-click for the secondary color. Shift-click stores the current color." = "Clic gauche sur une case pour la couleur principale, clic droit pour la secondaire. Maj+clic mémorise la couleur courante.";
 "Less «" = "Moins «";
 "Levels" = "Niveaux";
+"Light" = "Clair";
 "Light Horizontal" = "Horizontal clair";
 "Light Vertical" = "Vertical clair";
 "Lighten" = "Éclaircir";
@@ -589,6 +592,7 @@
 "Units" = "Unités";
 "Untitled" = "Sans titre";
 "Up Arrow" = "Flèche vers le haut";
+"Use System Setting" = "Utiliser le réglage du système";
 "Value" = "Valeur";
 "Vertical" = "Vertical";
 "View" = "Affichage";

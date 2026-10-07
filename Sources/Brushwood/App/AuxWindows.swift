@@ -103,6 +103,16 @@ final class SettingsWindow: NSWindow {
             l.font = .systemFont(ofSize: NSFont.systemFontSize, weight: .semibold)
             return l
         }
+        stack.addArrangedSubview(header(L("Appearance")))
+        let appearance = NSPopUpButton(frame: .zero, pullsDown: false)
+        appearance.addItems(withTitles: [L("Use System Setting"), L("Light"), L("Dark")])
+        appearance.selectItem(at: UserDefaults.standard.integer(forKey: "appearance"))
+        appearance.onAction { _ in
+            UserDefaults.standard.set(appearance.indexOfSelectedItem, forKey: "appearance")
+            AppearanceSetting.apply()
+        }
+        stack.addArrangedSubview(appearance)
+
         stack.addArrangedSubview(header(L("Selection")))
         let aa = NSButton(checkboxWithTitle: L("Antialias selection edges when clipping"), target: nil, action: nil)
         aa.state = env.tools.selectionClippingAntialiased ? .on : .off
@@ -133,6 +143,17 @@ final class SettingsWindow: NSWindow {
         note.preferredMaxLayoutWidth = 400
         stack.addArrangedSubview(note)
         contentView = stack
+    }
+}
+
+/// Light / dark / system appearance chosen in Settings.
+enum AppearanceSetting {
+    static func apply() {
+        switch UserDefaults.standard.integer(forKey: "appearance") {
+        case 1: NSApp.appearance = NSAppearance(named: .aqua)
+        case 2: NSApp.appearance = NSAppearance(named: .darkAqua)
+        default: NSApp.appearance = nil
+        }
     }
 }
 
