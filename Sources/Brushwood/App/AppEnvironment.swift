@@ -289,6 +289,8 @@ final class ToolSettings {
     var hardness: Double = 75 { didSet { changed() } }
     var antialiasing = true { didSet { changed() } }
     var blendMode: BlendMode = .normal { didSet { changed() } }
+    /// Paint.NET's "Overwrite" mode: replace pixels (including alpha) instead of blending.
+    var overwrite = false { didSet { changed() } }
     var fillStyle: FillStyle = .solid { didSet { changed() } }
     var shapeDrawType: ShapeDrawType = .outline { didSet { changed() } }
     var shapeType: ShapeKind = .rectangle { didSet { changed() } }

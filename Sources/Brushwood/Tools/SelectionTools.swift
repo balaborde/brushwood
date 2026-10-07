@@ -110,7 +110,8 @@ final class ShapeSelectTool: SelectionToolBase {
     }
 
     override func mouseDown(_ e: ToolEvent) {
-        if pending, !rect.isEmpty, e.button == .left {
+        // Modifier keys always start a new (combined) selection instead of grabbing a handle.
+        if pending, !rect.isEmpty, e.button == .left, !e.command, !e.option {
             for (i, h) in handlePoints(rect).enumerated() where canvas.hitHandle(e.viewPoint, h) {
                 activeHandle = i
                 handleStartRect = rect

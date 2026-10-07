@@ -408,8 +408,16 @@ final class SaveFormatAccessory {
 // MARK: - Clipboard & recent files
 
 enum Clipboard {
+    /// Tests use a private pasteboard so they never touch the user's clipboard.
+    static var pasteboard: NSPasteboard {
+        if let name = ProcessInfo.processInfo.environment["BRUSHWOOD_PASTEBOARD"] {
+            return NSPasteboard(name: NSPasteboard.Name(name))
+        }
+        return .general
+    }
+
     static func write(_ s: Surface) {
-        let pb = NSPasteboard.general
+        let pb = pasteboard
         pb.clearContents()
         if let png = ImageCodec.pngData(s) { pb.setData(png, forType: .png) }
         if let cg = s.makeCGImage() {
@@ -419,13 +427,13 @@ enum Clipboard {
     }
 
     static var hasImage: Bool {
-        NSPasteboard.general.canReadItem(withDataConformingToTypes: [NSPasteboard.PasteboardType.png.rawValue,
+        pasteboard.canReadItem(withDataConformingToTypes: [NSPasteboard.PasteboardType.png.rawValue,
                                                                      NSPasteboard.PasteboardType.tiff.rawValue,
                                                                      "public.jpeg", "public.image"])
     }
 
     static func read() -> Surface? {
-        let pb = NSPasteboard.general
+        let pb = pasteboard
         for t in [NSPasteboard.PasteboardType.png, .tiff, NSPasteboard.PasteboardType("public.jpeg")] {
             if let data = pb.data(forType: t), let s = ImageCodec.surface(fromImageData: data) { return s }
         }

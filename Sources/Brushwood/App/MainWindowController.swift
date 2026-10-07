@@ -25,7 +25,7 @@ final class MainWindowController: NSWindowController, NSWindowDelegate, NSMenuIt
     var env: AppEnvironment { .shared }
 
     init() {
-        let window = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 1280, height: 820),
+        let window = DropWindow(contentRect: NSRect(x: 0, y: 0, width: 1280, height: 820),
                               styleMask: [.titled, .closable, .miniaturizable, .resizable], backing: .buffered, defer: false)
         window.minSize = NSSize(width: 760, height: 480)
         window.title = "Brushwood"
@@ -35,6 +35,7 @@ final class MainWindowController: NSWindowController, NSWindowDelegate, NSMenuIt
         super.init(window: window)
         window.delegate = self
         buildLayout()
+        window.registerForDraggedTypes([.fileURL])
         for p in [toolsPanel, colorsPanel, layersPanel, historyPanel] as [FloatingPanel] {
             p.host = self
             NotificationCenter.default.addObserver(forName: NSWindow.willCloseNotification, object: p, queue: .main) {
@@ -578,6 +579,9 @@ final class MainWindowController: NSWindowController, NSWindowDelegate, NSMenuIt
         case #selector(redo(_:)):
             item.title = doc?.history.redoName.map { LF("Redo %@", $0) } ?? L("Redo")
             return doc?.history.canRedo ?? false
+        case #selector(eraseSelection(_:)), #selector(fillSelection(_:)):
+            // Let Delete reach the text tool while typing.
+            return hasDoc && !(tool is TextTool && tool?.hasPendingEdits == true)
         case #selector(cropToSelection(_:)), #selector(deselect(_:)), #selector(invertSelection(_:)),
              #selector(zoomToSelection(_:)):
             return hasSel
@@ -1010,4 +1014,29 @@ final class MainWindowController: NSWindowController, NSWindowDelegate, NSMenuIt
 
     @objc func swapColors(_ sender: Any?) { env.swapColors() }
     @objc func resetColors(_ sender: Any?) { env.resetColors() }
+}
+
+/// Main window accepting dropped image files (opened as new images, like Paint.NET).
+final class DropWindow: NSWindow {
+    private var droppedURLs: [URL] = []
+
+    private func urls(_ info: NSDraggingInfo) -> [URL] {
+        let urls = info.draggingPasteboard.readObjects(forClasses: [NSURL.self], options: [.urlReadingFileURLsOnly: true]) as? [URL] ?? []
+        return urls.filter { FileType.forExtension($0.pathExtension)?.canRead == true }
+    }
+
+    @objc func draggingEntered(_ sender: NSDraggingInfo) -> NSDragOperation {
+        urls(sender).isEmpty ? [] : .copy
+    }
+
+    @objc func draggingUpdated(_ sender: NSDraggingInfo) -> NSDragOperation {
+        urls(sender).isEmpty ? [] : .copy
+    }
+
+    @objc func performDragOperation(_ sender: NSDraggingInfo) -> Bool {
+        let list = urls(sender)
+        guard !list.isEmpty, let c = windowController as? MainWindowController else { return false }
+        c.open(urls: list)
+        return true
+    }
 }

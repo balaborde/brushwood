@@ -349,6 +349,7 @@ FR = {
 'Output black': 'Noir en sortie',
 'Output white': 'Blanc en sortie',
 'Overlay': 'Incrustation',
+'Overwrite': 'Écraser',
 'Paint Bucket': 'Pot de peinture',
 'Paintbrush': 'Pinceau',
 'Palette': 'Palette',

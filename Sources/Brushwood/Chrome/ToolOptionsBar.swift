@@ -260,8 +260,18 @@ final class ToolOptionsBar: NSView {
 
     private func blendMode() {
         add(toolbarLabel(L("Blending:")))
-        add(popup(BlendMode.allCases.map { (L($0.displayName), nil) }, get: { self.s.blendMode.rawValue },
-                  set: { self.s.blendMode = BlendMode(rawValue: $0) ?? .normal }, tooltip: L("Blend mode")))
+        // Last entry is Paint.NET's "Overwrite" (alpha blending off).
+        let overwriteTag = BlendMode.allCases.count
+        add(popup(BlendMode.allCases.map { (L($0.displayName), nil) } + [(L("Overwrite"), nil)],
+                  get: { self.s.overwrite ? overwriteTag : self.s.blendMode.rawValue },
+                  set: {
+                      if $0 == overwriteTag {
+                          self.s.overwrite = true
+                      } else {
+                          self.s.overwrite = false
+                          self.s.blendMode = BlendMode(rawValue: $0) ?? .normal
+                      }
+                  }, tooltip: L("Blend mode")))
     }
 
     private func brushWidth() {

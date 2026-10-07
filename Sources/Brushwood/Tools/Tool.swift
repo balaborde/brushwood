@@ -127,10 +127,25 @@ enum ToolCursors {
 
 enum Compositor {
     /// dst[x] = blend(src[x], color, coverage × clip) over `rect`. `src` may be the same surface as `dst`.
+    /// Set while a tool renders with Paint.NET's "Overwrite" option.
+    static var overwrite: Bool { AppEnvironment.shared.tools.overwrite }
+
     static func apply(color: ColorBgra, mask: MaskSurface, rect: IntRect, src: Surface, dst: Surface, mode: BlendMode,
                       clip: MaskSurface?) {
         let r = rect.intersection(dst.bounds)
         if r.isEmpty { return }
+        if overwrite {
+            for y in r.top..<r.bottom {
+                let m = mask.row(y), s = src.row(y), d = dst.row(y)
+                let c = clip?.row(y)
+                for x in r.left..<r.right {
+                    var cov = Int(m[x])
+                    if let c { cov = mul255(cov, Int(c[x])) }
+                    d[x] = cov == 0 ? s[x] : Blender.lerpTo(s[x], color, coverage: cov)
+                }
+            }
+            return
+        }
         for y in r.top..<r.bottom {
             let m = mask.row(y), s = src.row(y), d = dst.row(y)
             let c = clip?.row(y)
@@ -145,6 +160,7 @@ enum Compositor {
     /// Pattern fill (hatch): foreground/background chosen per pixel.
     static func apply(style: FillStyle, foreground: ColorBgra, background: ColorBgra, mask: MaskSurface, rect: IntRect,
                       src: Surface, dst: Surface, mode: BlendMode, clip: MaskSurface?) {
+        let overwrite = Self.overwrite
         if style == .solid {
             apply(color: foreground, mask: mask, rect: rect, src: src, dst: dst, mode: mode, clip: clip)
             return
@@ -160,7 +176,7 @@ enum Compositor {
                 if let c { cov = mul255(cov, Int(c[x])) }
                 if cov == 0 { d[x] = s[x]; continue }
                 let col = FillStyle.isForeground(pat, x: x, y: y) ? foreground : background
-                d[x] = Blender.blend(mode, s[x], col, opacity: cov)
+                d[x] = overwrite ? Blender.lerpTo(s[x], col, coverage: cov) : Blender.blend(mode, s[x], col, opacity: cov)
             }
         }
     }
