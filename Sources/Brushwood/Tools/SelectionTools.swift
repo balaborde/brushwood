@@ -56,6 +56,35 @@ struct TransformGesture {
     }
 }
 
+/// Move / scale / rotate of a rectangle that already carries a transform: handles follow the rotated frame,
+/// and scaling happens along the frame's own axes (as in Paint.NET's move tools).
+struct FrameGesture {
+    let kind: TransformGesture.Kind
+    let start: CGPoint
+    /// The frame in local (untransformed) coordinates.
+    let base: CGRect
+    /// Local → image transform at the start of the gesture.
+    let startTransform: CGAffineTransform
+
+    func transform(to p: CGPoint, shift: Bool) -> CGAffineTransform {
+        switch kind {
+        case .move, .rotate:
+            let c = base.center.applying(startTransform)
+            let g = TransformGesture(kind: kind, start: start, bounds: CGRect(x: c.x, y: c.y, width: 0, height: 0))
+            return startTransform.concatenating(g.transform(to: p, shift: shift))
+        case .scale:
+            let inv = startTransform.inverted()
+            let local = TransformGesture(kind: kind, start: start.applying(inv), bounds: base).transform(to: p.applying(inv), shift: shift)
+            return local.concatenating(startTransform)
+        }
+    }
+}
+
+/// Handle positions of a transformed frame.
+func frameHandles(_ base: CGRect, _ t: CGAffineTransform) -> [CGPoint] {
+    handlePoints(base).map { $0.applying(t) }
+}
+
 /// Common behaviour of selection-creating tools: the result stays pending (editable) until committed.
 class SelectionToolBase: Tool {
     var baseSelection: Selection?
@@ -318,55 +347,82 @@ final class MagicWandTool: SelectionToolBase {
 
 /// Moves, scales or rotates the selection outline only.
 final class MoveSelectionTool: Tool {
-    private var base: Selection?
-    private var gesture: TransformGesture?
+    private var frameBase: Selection?
+    private var frameRect = CGRect.zero
+    private var frameTransform = CGAffineTransform.identity
+    private var lastResult: Selection?
+    private var before: Selection?
+    private var gesture: FrameGesture?
 
-    override var hidesSelectionOutline: Bool { false }
+    /// Restarts the frame when the selection was changed by something else (undo, other tools...).
+    private func syncFrame() {
+        guard let sel = doc.selection else {
+            frameBase = nil
+            return
+        }
+        if sel !== lastResult {
+            frameBase = sel
+            frameRect = sel.bounds
+            frameTransform = .identity
+            lastResult = sel
+        }
+    }
 
-    private func hitKind(_ e: ToolEvent, bounds: CGRect) -> TransformGesture.Kind {
+    private var handles: [CGPoint] {
+        syncFrame()
+        return frameBase == nil ? [] : frameHandles(frameRect, frameTransform)
+    }
+
+    private func hitKind(_ e: ToolEvent) -> TransformGesture.Kind {
         if e.button == .right { return .rotate }
-        for (i, h) in handlePoints(bounds).enumerated() where canvas.hitHandle(e.viewPoint, h) { return .scale(i) }
+        for (i, h) in handles.enumerated() where canvas.hitHandle(e.viewPoint, h) { return .scale(i) }
         return .move
     }
 
     override func mouseDown(_ e: ToolEvent) {
-        guard let sel = doc.selection else { return }
-        base = sel
-        gesture = TransformGesture(kind: hitKind(e, bounds: sel.bounds), start: e.point, bounds: sel.bounds)
+        syncFrame()
+        guard frameBase != nil else { return }
+        before = doc.selection
+        gesture = FrameGesture(kind: hitKind(e), start: e.point, base: frameRect, startTransform: frameTransform)
     }
 
     override func mouseDragged(_ e: ToolEvent) {
-        guard let base, let gesture else { return }
-        doc.setSelection(base.transformed(gesture.transform(to: e.point, shift: e.shift)))
+        guard let base = frameBase, let gesture else { return }
+        frameTransform = gesture.transform(to: e.point, shift: e.shift)
+        let result = base.transformed(frameTransform)
+        lastResult = result
+        doc.setSelection(result)
         canvas.needsDisplay = true
     }
 
     override func mouseUp(_ e: ToolEvent) {
-        guard let base, gesture != nil else { return }
-        if doc.selection !== base {
-            doc.history.push(SelectionHistoryItem(name: kind.name, icon: kind.icon, before: base, after: doc.selection))
-        }
-        self.base = nil
+        guard gesture != nil else { return }
         gesture = nil
+        if doc.selection !== before {
+            doc.history.push(SelectionHistoryItem(name: kind.name, icon: kind.icon, before: before, after: doc.selection))
+        }
     }
 
     override func keyDown(_ e: NSEvent) -> Bool {
-        guard let sel = doc.selection, let d = arrowDelta(e) else { return false }
-        let after = sel.transformed(CGAffineTransform(translationX: d.x, y: d.y))
-        doc.setSelection(after)
-        doc.history.push(SelectionHistoryItem(name: kind.name, icon: kind.icon, before: sel, after: after))
+        syncFrame()
+        guard let base = frameBase, let d = arrowDelta(e) else { return false }
+        let prev = doc.selection
+        frameTransform = frameTransform.concatenating(CGAffineTransform(translationX: d.x, y: d.y))
+        let result = base.transformed(frameTransform)
+        lastResult = result
+        doc.setSelection(result)
+        doc.history.push(SelectionHistoryItem(name: kind.name, icon: kind.icon, before: prev, after: result))
         return true
     }
 
     override func drawOverlay(_ ctx: CGContext) {
-        guard let sel = doc.selection else { return }
-        for h in handlePoints(sel.bounds) { canvas.drawHandle(ctx, at: h) }
+        for h in handles { canvas.drawHandle(ctx, at: h) }
     }
 
     override func cursor(atView p: CGPoint) -> NSCursor {
         guard let sel = doc.selection else { return .arrow }
-        if handlePoints(sel.bounds).contains(where: { canvas.hitHandle(p, $0) }) { return ToolCursors.resizeDiagonal }
-        return sel.contains(canvas.toImage(p)) ? .openHand : .arrow
+        if handles.contains(where: { canvas.hitHandle(p, $0) }) { return ToolCursors.resizeDiagonal }
+        return sel.contains(canvas.toImage(p)) ? .openHand : ToolCursors.rotate
     }
 }
 

@@ -294,6 +294,7 @@ final class ToolSettings {
     var fillStyle: FillStyle = .solid { didSet { changed() } }
     var shapeDrawType: ShapeDrawType = .outline { didSet { changed() } }
     var shapeType: ShapeKind = .rectangle { didSet { changed() } }
+    var cornerRadius: CGFloat = 20 { didSet { changed() } }
     var tolerance: Double = 0.5 { didSet { changed() } }
     var floodMode: FloodMode = .contiguous { didSet { changed() } }
     var floodSampling: SamplingSource = .layer { didSet { changed() } }

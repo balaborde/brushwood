@@ -258,6 +258,17 @@ final class MainWindowController: NSWindowController, NSWindowDelegate, NSMenuIt
         }
     }
 
+    /// Closes every image except `keep`, one at a time (each may ask to save).
+    func closeOthers(than keep: DocumentWorkspace) {
+        guard let next = workspaces.first(where: { $0 !== keep }) else {
+            activate(keep)
+            return
+        }
+        close(next) { [weak self] ok in
+            if ok { self?.closeOthers(than: keep) }
+        }
+    }
+
     var hasDirtyDocuments: Bool { workspaces.contains { $0.document.isDirty } }
 
     private func documentDidChange() {

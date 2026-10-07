@@ -87,6 +87,7 @@
 "Clone Stamp" = "Tampon de duplication";
 "Clone source set at %d, %d" = "Source de duplication définie en %d, %d";
 "Close" = "Fermer";
+"Close Others" = "Fermer les autres";
 "Cloud" = "Nuage";
 "Clouds" = "Nuages";
 "Coarseness" = "Grossièreté";
@@ -379,6 +380,7 @@
 "Radial" = "Radial";
 "Radial Blur" = "Flou radial";
 "Radius" = "Rayon";
+"Radius:" = "Rayon :";
 "Random Noise" = "Bruit aléatoire";
 "Random positions and colors" = "Positions et couleurs aléatoires";
 "Recolor" = "Recolorer";
@@ -467,6 +469,7 @@
 "Sharpen" = "Netteté";
 "Shingle" = "Bardeaux";
 "Show All" = "Tout afficher";
+"Show in Finder" = "Afficher dans le Finder";
 "Show points" = "Afficher les points";
 "Single Pixel" = "Pixel unique";
 "Size" = "Taille";

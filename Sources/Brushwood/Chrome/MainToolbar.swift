@@ -154,6 +154,7 @@ final class ImageTabsView: NSView {
         stack.arrangedSubviews.forEach { $0.removeFromSuperview() }
         for ws in workspaces {
             let tab = ImageTab(workspace: ws, active: ws === active)
+            tab.host = host
             tab.onSelect = { [weak self] in self?.host?.activate(ws) }
             tab.onClose = { [weak self] in self?.host?.close(ws) }
             stack.addArrangedSubview(tab)
@@ -172,6 +173,7 @@ final class FlippedView: NSView {
 final class ImageTab: NSView {
     let workspace: DocumentWorkspace
     let isActive: Bool
+    weak var host: MainWindowController?
     var onSelect: (() -> Void)?
     var onClose: (() -> Void)?
     private var hovering = false
@@ -253,4 +255,21 @@ final class ImageTab: NSView {
     }
 
     override func otherMouseDown(with event: NSEvent) { onClose?() }
+
+    override func menu(for event: NSEvent) -> NSMenu? {
+        guard let host else { return nil }
+        let m = NSMenu()
+        let ws = workspace
+        m.addItem(withTitle: L("Save"), action: nil, keyEquivalent: "").onAction { _ in host.save(ws, saveAs: false) }
+        m.addItem(withTitle: L("Save As…"), action: nil, keyEquivalent: "").onAction { _ in host.save(ws, saveAs: true) }
+        if let url = ws.fileURL {
+            m.addItem(withTitle: L("Show in Finder"), action: nil, keyEquivalent: "").onAction { _ in
+                NSWorkspace.shared.activateFileViewerSelecting([url])
+            }
+        }
+        m.addItem(.separator())
+        m.addItem(withTitle: L("Close"), action: nil, keyEquivalent: "").onAction { _ in host.close(ws) }
+        m.addItem(withTitle: L("Close Others"), action: nil, keyEquivalent: "").onAction { _ in host.closeOthers(than: ws) }
+        return m
+    }
 }

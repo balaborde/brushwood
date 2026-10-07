@@ -1,7 +1,7 @@
 import AppKit
 import BrushwoodCore
 
-final class LayersPanel: FloatingPanel, NSTableViewDataSource, NSTableViewDelegate {
+final class LayersPanel: FloatingPanel, NSTableViewDataSource, NSTableViewDelegate, NSMenuDelegate {
     private let table = NSTableView()
     private var workspace: DocumentWorkspace?
     private var observers: [NSObjectProtocol] = []
@@ -27,6 +27,18 @@ final class LayersPanel: FloatingPanel, NSTableViewDataSource, NSTableViewDelega
         table.doubleAction = #selector(doubleClicked)
         table.target = self
         table.registerForDraggedTypes([LayersPanel.dragType])
+        let menu = NSMenu()
+        let items: [(String, Selector)] = [
+            (L("Add New Layer"), #selector(MainWindowController.addLayer(_:))),
+            (L("Duplicate Layer"), #selector(MainWindowController.duplicateLayer(_:))),
+            (L("Delete Layer"), #selector(MainWindowController.deleteLayer(_:))),
+            (L("Merge Layer Down"), #selector(MainWindowController.mergeLayerDown(_:))),
+            (L("Flatten"), #selector(MainWindowController.flatten(_:))),
+            (L("Layer Properties…"), #selector(MainWindowController.layerProperties(_:))),
+        ]
+        for (title, sel) in items { menu.addItem(withTitle: title, action: sel, keyEquivalent: "") }
+        menu.delegate = self
+        table.menu = menu
         table.draggingDestinationFeedbackStyle = .gap
         let scroll = NSScrollView()
         scroll.documentView = table
@@ -189,6 +201,12 @@ final class LayersPanel: FloatingPanel, NSTableViewDataSource, NSTableViewDelega
         let li = layerIndex(forRow: table.selectedRow)
         host?.setActiveLayer(li)
         _ = doc
+    }
+
+    func menuNeedsUpdate(_ menu: NSMenu) {
+        // Right-clicking a row makes it the active layer first.
+        if table.clickedRow >= 0 { host?.setActiveLayer(layerIndex(forRow: table.clickedRow)) }
+        for item in menu.items { item.target = host }
     }
 
     @objc private func doubleClicked() {

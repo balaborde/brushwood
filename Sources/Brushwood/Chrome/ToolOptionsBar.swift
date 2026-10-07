@@ -149,6 +149,13 @@ final class ToolOptionsBar: NSView {
         case .shapes:
             shapePicker()
             shapeDrawType()
+            if s.shapeType == .roundedRectangle || s.shapeType == .calloutRoundedRectangle {
+                add(toolbarLabel(L("Radius:")))
+                let c = NumericSliderControl(range: 0...200, value: Double(s.cornerRadius), showReset: false, sliderWidth: 80)
+                c.onChange = { [weak self] v in self?.s.cornerRadius = CGFloat(v) }
+                refreshers.append { [weak self] in c.setValue(Double(self?.s.cornerRadius ?? 20), notify: false) }
+                add(c)
+            }
             add(ToolbarSeparator())
             brushWidth()
             dashStyle()
@@ -462,7 +469,10 @@ final class ToolOptionsBar: NSView {
         }
         p.onAction { [weak self] _ in
             guard self?.updating == false, let k = ShapeKind(rawValue: p.selectedTag()) else { return }
+            let hadRadius = [.roundedRectangle, .calloutRoundedRectangle].contains(self?.s.shapeType)
             self?.s.shapeType = k
+            // Show or hide the radius control.
+            if hadRadius != [.roundedRectangle, .calloutRoundedRectangle].contains(k) { self?.rebuild() }
         }
         refreshers.append { [weak self] in p.selectItem(withTag: self?.s.shapeType.rawValue ?? 0) }
         add(p)

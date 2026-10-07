@@ -95,11 +95,11 @@ enum ShapeKind: Int, CaseIterable {
     }
 
     /// Shape outline inside `r` (image space, y down).
-    func path(in r: CGRect) -> CGPath {
+    func path(in r: CGRect, cornerRadius: CGFloat = 20) -> CGPath {
         switch self {
         case .rectangle: return CGPath(rect: r, transform: nil)
         case .roundedRectangle:
-            let rad = min(20, min(r.width, r.height) / 2)
+            let rad = min(max(0, cornerRadius), min(r.width, r.height) / 2)
             return CGPath(roundedRect: r, cornerWidth: rad, cornerHeight: rad, transform: nil)
         case .ellipse: return CGPath(ellipseIn: r, transform: nil)
         case .triangle: return polygon([(0.5, 0), (1, 1), (0, 1)], r)
@@ -138,7 +138,7 @@ enum ShapeKind: Int, CaseIterable {
             switch self {
             case .calloutRectangle: p.addRect(body)
             case .calloutRoundedRectangle:
-                let rad = min(16, min(body.width, body.height) / 2)
+                let rad = min(max(0, cornerRadius), min(body.width, body.height) / 2)
                 p.addRoundedRect(in: body, cornerWidth: rad, cornerHeight: rad)
             default: p.addEllipse(in: body)
             }
@@ -297,7 +297,7 @@ final class ShapesTool: Tool {
 
     private func render() {
         guard let renderer, rect.width >= 1 || rect.height >= 1 else { return }
-        let path = settings.shapeType.path(in: rect)
+        let path = settings.shapeType.path(in: rect, cornerRadius: settings.cornerRadius)
         let c1 = color(for: button), c2 = otherColor(for: button)
         let width = settings.brushWidth
         let dash = settings.dashStyle.pattern(width: width)

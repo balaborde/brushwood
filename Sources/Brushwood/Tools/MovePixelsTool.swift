@@ -10,8 +10,7 @@ final class MoveSelectedPixelsTool: Tool {
     private var baseSelection: Selection?
     private var selectionBefore: Selection?
     private var transform = CGAffineTransform.identity
-    private var gesture: TransformGesture?
-    private var gestureStartTransform = CGAffineTransform.identity
+    private var gesture: FrameGesture?
     private var holeRect = IntRect.zero
     private var holeMask: MaskSurface?
     private var leaveCopy = false
@@ -133,11 +132,21 @@ final class MoveSelectedPixelsTool: Tool {
         canvas.needsDisplay = true
     }
 
+    /// The floating pixels' rectangle before the transform (local frame).
+    private var floatingBaseRect: CGRect {
+        guard let floating else { return .zero }
+        return CGRect(x: floatingOrigin.x, y: floatingOrigin.y, width: CGFloat(floating.width), height: CGFloat(floating.height))
+    }
+
+    /// Handles follow the transformed frame while moving; otherwise they sit on the selection bounds.
+    private var handles: [CGPoint] {
+        if session != nil, floating != nil { return frameHandles(floatingBaseRect, transform) }
+        return doc.selection.map { handlePoints($0.bounds) } ?? []
+    }
+
     private func gestureKind(_ e: ToolEvent) -> TransformGesture.Kind {
         if e.button == .right { return .rotate }
-        if let sel = doc.selection {
-            for (i, h) in handlePoints(sel.bounds).enumerated() where canvas.hitHandle(e.viewPoint, h) { return .scale(i) }
-        }
+        for (i, h) in handles.enumerated() where canvas.hitHandle(e.viewPoint, h) { return .scale(i) }
         return .move
     }
 
@@ -152,14 +161,12 @@ final class MoveSelectedPixelsTool: Tool {
             session = nil
             return
         }
-        let bounds = doc.selection?.bounds ?? currentFloatingRect
-        gesture = TransformGesture(kind: kindForGesture, start: e.point, bounds: bounds)
-        gestureStartTransform = transform
+        gesture = FrameGesture(kind: kindForGesture, start: e.point, base: floatingBaseRect, startTransform: transform)
     }
 
     override func mouseDragged(_ e: ToolEvent) {
         guard let gesture else { return }
-        transform = gestureStartTransform.concatenating(gesture.transform(to: e.point, shift: e.shift))
+        transform = gesture.transform(to: e.point, shift: e.shift)
         render()
     }
 
@@ -199,13 +206,12 @@ final class MoveSelectedPixelsTool: Tool {
     }
 
     override func drawOverlay(_ ctx: CGContext) {
-        guard let sel = doc.selection else { return }
-        for h in handlePoints(sel.bounds) { canvas.drawHandle(ctx, at: h) }
+        for h in handles { canvas.drawHandle(ctx, at: h) }
     }
 
     override func cursor(atView p: CGPoint) -> NSCursor {
         guard let sel = doc.selection else { return .openHand }
-        if handlePoints(sel.bounds).contains(where: { canvas.hitHandle(p, $0) }) { return ToolCursors.resizeDiagonal }
+        if handles.contains(where: { canvas.hitHandle(p, $0) }) { return ToolCursors.resizeDiagonal }
         return sel.contains(canvas.toImage(p)) ? .openHand : ToolCursors.rotate
     }
 }
