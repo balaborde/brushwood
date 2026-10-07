@@ -54,6 +54,7 @@ final class PanelBackgroundView: NSView {
 
     override func draw(_ dirtyRect: NSRect) {
         NSColor.windowBackgroundColor.setFill()
-        dirtyRect.fill()
+        // Since macOS 14 views don't clip to their bounds and dirtyRect can extend past them.
+        dirtyRect.intersection(bounds).fill()
     }
 }

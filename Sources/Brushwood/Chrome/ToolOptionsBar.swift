@@ -16,6 +16,7 @@ final class ToolOptionsBar: NSView {
 
     override init(frame: NSRect) {
         super.init(frame: frame)
+        if #available(macOS 14.0, *) { clipsToBounds = true }
         stack.orientation = .horizontal
         stack.spacing = 6
         stack.alignment = .centerY
@@ -72,7 +73,8 @@ final class ToolOptionsBar: NSView {
 
     override func draw(_ dirtyRect: NSRect) {
         NSColor.windowBackgroundColor.setFill()
-        dirtyRect.fill()
+        // Since macOS 14 views don't clip to their bounds and dirtyRect can extend past them.
+        dirtyRect.intersection(bounds).fill()
         NSColor.separatorColor.setFill()
         NSRect(x: 0, y: 0, width: bounds.width, height: 1).fill()
     }

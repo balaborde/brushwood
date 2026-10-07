@@ -55,6 +55,7 @@ final class CanvasView: NSView {
 
     override init(frame: NSRect) {
         super.init(frame: frame)
+        if #available(macOS 14.0, *) { clipsToBounds = true }
         wantsLayer = true
         layerContentsRedrawPolicy = .onSetNeedsDisplay
         let nc = NotificationCenter.default
@@ -270,7 +271,8 @@ final class CanvasView: NSView {
     override func draw(_ dirtyRect: NSRect) {
         guard let ctx = NSGraphicsContext.current?.cgContext else { return }
         Theme.canvasBackground.setFill()
-        dirtyRect.fill()
+        // Since macOS 14 views don't clip to their bounds and dirtyRect can extend past them.
+        dirtyRect.intersection(bounds).fill()
         guard let renderer, workspace != nil else { return }
         let imgRect = imageRectInView
 

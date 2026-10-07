@@ -276,24 +276,13 @@ enum DebugSnapshot {
         }
     }
 
-    /// Renders a window's content view hierarchy into a bitmap (each view drawn with cacheDisplay).
+    /// Renders a window's whole content view in one pass, so overlapping views composite as they do on screen.
+    /// (Rendering views one by one would hide drawing that spills over neighbours.)
     static func render(_ window: NSWindow, overlaySubviews: Bool = true) -> NSBitmapImageRep? {
         guard let content = window.contentView else { return nil }
         content.layoutSubtreeIfNeeded()
         guard let rep = content.bitmapImageRepForCachingDisplay(in: content.bounds) else { return nil }
         content.cacheDisplay(in: content.bounds, to: rep)
-        if !overlaySubviews { return rep }
-        // Caching the whole tree skips some layer-backed subviews; draw each top-level subview on top.
-        NSGraphicsContext.saveGraphicsState()
-        NSGraphicsContext.current = NSGraphicsContext(bitmapImageRep: rep)
-        for sub in content.subviews where !sub.isHidden {
-            guard let r = sub.bitmapImageRepForCachingDisplay(in: sub.bounds) else { continue }
-            sub.cacheDisplay(in: sub.bounds, to: r)
-            var f = sub.frame
-            if content.isFlipped { f.origin.y = content.bounds.height - f.maxY }
-            r.draw(in: f)
-        }
-        NSGraphicsContext.restoreGraphicsState()
         return rep
     }
 

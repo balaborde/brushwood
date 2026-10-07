@@ -16,6 +16,7 @@ final class MainToolbar: NSView {
     init(host: MainWindowController) {
         self.host = host
         super.init(frame: .zero)
+        if #available(macOS 14.0, *) { clipsToBounds = true }
         leftStack.orientation = .horizontal
         leftStack.spacing = 1
         leftStack.edgeInsets = NSEdgeInsets(top: 0, left: 6, bottom: 0, right: 6)
@@ -92,7 +93,8 @@ final class MainToolbar: NSView {
 
     override func draw(_ dirtyRect: NSRect) {
         NSColor.windowBackgroundColor.setFill()
-        dirtyRect.fill()
+        // Since macOS 14 views don't clip to their bounds and dirtyRect can extend past them.
+        dirtyRect.intersection(bounds).fill()
     }
 
     /// Enables/disables buttons using the same validation as the menus.

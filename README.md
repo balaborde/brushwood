@@ -140,6 +140,8 @@ swift run -c release selftest          # engine tests (blend modes, selections, 
 swift run -c release selftest <dir>    # also checks .pdn decoding and blend modes against Paint.NET reference renders
                                        # (FlattenBlendTest.pdn + Flatten*Test.png from the pypdn project)
 scripts/ui-smoke-test.sh               # drives the app through scripted scenarios and checks the resulting pixels
+scripts/screen-check.sh                # opens a test image and checks what is really on screen
+                                       # (needs Screen Recording permission for the terminal)
 ```
 
 The UI tests use a private pasteboard, so they never touch your clipboard.
