@@ -641,9 +641,11 @@ final class MainWindowController: NSWindowController, NSWindowDelegate, NSMenuIt
         case #selector(mergeLayerDown(_:)):
             return (doc?.activeLayerIndex ?? 0) > 0
         case #selector(moveLayerDown(_:)), #selector(moveLayerToBottom(_:)), #selector(selectLayerBelow(_:)),
+             #selector(moveLayerDownOrBottom(_:)),
              #selector(selectBottomLayer(_:)):
             return (doc?.activeLayerIndex ?? 0) > 0
-        case #selector(moveLayerUp(_:)), #selector(moveLayerToTop(_:)), #selector(selectLayerAbove(_:)), #selector(selectTopLayer(_:)):
+        case #selector(moveLayerUp(_:)), #selector(moveLayerToTop(_:)), #selector(selectLayerAbove(_:)), #selector(selectTopLayer(_:)),
+             #selector(moveLayerUpOrTop(_:)):
             guard let doc else { return false }
             return doc.activeLayerIndex < doc.layers.count - 1
         case #selector(flatten(_:)):
@@ -983,6 +985,14 @@ final class MainWindowController: NSWindowController, NSWindowDelegate, NSMenuIt
     func moveLayer(from: Int, to: Int) {
         commitPendingTool()
         active?.moveLayer(from: from, to: to)
+    }
+
+    @objc func moveLayerUpOrTop(_ sender: Any?) {
+        if NSApp.currentEvent?.modifierFlags.contains(.command) == true { moveLayerToTop(sender) } else { moveLayerUp(sender) }
+    }
+
+    @objc func moveLayerDownOrBottom(_ sender: Any?) {
+        if NSApp.currentEvent?.modifierFlags.contains(.command) == true { moveLayerToBottom(sender) } else { moveLayerDown(sender) }
     }
 
     @objc func rotateLayer180(_ sender: Any?) {

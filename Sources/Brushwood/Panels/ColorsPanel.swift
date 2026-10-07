@@ -77,12 +77,19 @@ final class ColorsPanel: FloatingPanel {
         content.addSubview(moreButton)
 
         wheel.frame = NSRect(x: 112, y: 8, width: 150, height: 150)
-        wheel.onChange = { [weak self] h, s in
+        wheel.onChange = { [weak self] h, s, inactive in
             guard let self else { return }
             var hsv = self.lastHSV
             hsv.hue = h
             hsv.saturation = s
             if hsv.value == 0 { hsv.value = 100 }
+            if inactive {
+                // Right-click loads the color into the inactive slot.
+                let target = !self.editingSecondary
+                let c = hsv.toColor(alpha: (target ? self.env.secondaryColor : self.env.primaryColor).a)
+                if target { self.env.secondaryColor = c } else { self.env.primaryColor = c }
+                return
+            }
             self.lastHSV = hsv
             self.currentColor = hsv.toColor(alpha: self.currentColor.a)
         }
@@ -99,9 +106,11 @@ final class ColorsPanel: FloatingPanel {
         valueSlider.toolTip = L("Value")
         content.addSubview(valueSlider)
 
-        paletteView.frame = NSRect(x: 272, y: 8, width: 8 * 17 + 1, height: 12 * 13 + 1)
-        paletteView.onPick = { [weak self] color, secondary in
-            if secondary { self?.env.secondaryColor = color } else { self?.env.primaryColor = color }
+        layoutPalette()
+        paletteView.onPick = { [weak self] color, inactive in
+            guard let self else { return }
+            let secondary = inactive ? !self.editingSecondary : self.editingSecondary
+            if secondary { self.env.secondaryColor = color } else { self.env.primaryColor = color }
         }
         paletteView.onStore = { [weak self] index in
             guard let self else { return }
@@ -190,6 +199,20 @@ final class ColorsPanel: FloatingPanel {
 
     func debugToggleExpanded() { toggleExpanded() }
 
+    /// Compact mode shows the first 32 palette colors; the expanded window shows all 96 (Paint.NET behaviour).
+    private func layoutPalette() {
+        if isExpanded {
+            paletteView.rowHeight = 13
+            paletteView.visibleCount = 96
+        } else {
+            paletteView.rowHeight = 39
+            paletteView.visibleCount = 32
+        }
+        let rows = CGFloat(paletteView.visibleCount / paletteView.columns)
+        paletteView.frame = NSRect(x: 272, y: 8, width: 8 * 17 + 1, height: rows * paletteView.rowHeight + 1)
+        paletteView.needsDisplay = true
+    }
+
     private func toggleExpanded() {
         isExpanded.toggle()
         expanded.isHidden = !isExpanded
@@ -199,6 +222,7 @@ final class ColorsPanel: FloatingPanel {
         let newContent = NSRect(x: contentRect.minX, y: contentRect.minY, width: newWidth, height: contentRect.height)
         f = frameRect(forContentRect: newContent)
         setFrame(f, display: true, animate: false)
+        layoutPalette()
         sync()
     }
 
@@ -382,8 +406,10 @@ final class ColorWheelView: NSView {
     var hue: Double = 0 { didSet { needsDisplay = true } }
     var saturation: Double = 0 { didSet { needsDisplay = true } }
     var value: Double = 100
-    var onChange: ((Double, Double) -> Void)?
+    /// (hue, saturation, toInactiveSlot)
+    var onChange: ((Double, Double, Bool) -> Void)?
     private var wheelImage: NSImage?
+    private var dragStart: (hue: Double, sat: Double)?
     private var cachedSize: CGSize = .zero
 
     override var isFlipped: Bool { true }
@@ -447,17 +473,35 @@ final class ColorWheelView: NSView {
         o2.stroke()
     }
 
-    private func pick(_ e: NSEvent) {
+    /// ⌘ keeps the saturation (same circle), ⌥ keeps the hue (same spoke), ⇧ snaps the hue to 15° spokes.
+    private func pick(_ e: NSEvent, inactive: Bool) {
         let p = convert(e.locationInWindow, from: nil)
         let dx = Double(p.x - center.x), dy = Double(center.y - p.y)
         var h = atan2(dy, dx) * 180 / .pi
         if h < 0 { h += 360 }
-        let s = min(100, sqrt(dx * dx + dy * dy) / Double(radius) * 100)
-        onChange?(h, s)
+        var s = min(100, sqrt(dx * dx + dy * dy) / Double(radius) * 100)
+        let f = e.modifierFlags
+        if let start = dragStart {
+            if f.contains(.command) { s = start.sat }
+            if f.contains(.option) { h = start.hue }
+        }
+        if f.contains(.shift) { h = ((h / 15).rounded() * 15).truncatingRemainder(dividingBy: 360) }
+        onChange?(h, s, inactive)
     }
 
-    override func mouseDown(with e: NSEvent) { pick(e) }
-    override func mouseDragged(with e: NSEvent) { pick(e) }
+    override func mouseDown(with e: NSEvent) {
+        dragStart = (hue, saturation)
+        pick(e, inactive: e.modifierFlags.contains(.control))
+    }
+
+    override func mouseDragged(with e: NSEvent) { pick(e, inactive: e.modifierFlags.contains(.control)) }
+
+    override func rightMouseDown(with e: NSEvent) {
+        dragStart = (hue, saturation)
+        pick(e, inactive: true)
+    }
+
+    override func rightMouseDragged(with e: NSEvent) { pick(e, inactive: true) }
     override func viewDidChangeBackingProperties() { wheelImage = nil }
 }
 
@@ -502,11 +546,13 @@ final class ColorComponentSlider: NSView {
 
 /// 96-swatch palette grid (8 × 12).
 final class PaletteView: NSView {
+    /// (color, toInactiveSlot)
     var onPick: ((ColorBgra, Bool) -> Void)?
     var onStore: ((Int) -> Void)?
     let columns = 8
     let cell: CGFloat = 17
-    let rowHeight: CGFloat = 13
+    var rowHeight: CGFloat = 13
+    var visibleCount = 96
 
     override var isFlipped: Bool { true }
 
@@ -515,7 +561,7 @@ final class PaletteView: NSView {
     }
 
     override func draw(_ dirtyRect: NSRect) {
-        for (i, c) in AppEnvironment.shared.palette.enumerated() {
+        for (i, c) in AppEnvironment.shared.palette.prefix(visibleCount).enumerated() {
             let r = rect(i)
             if c.a < 255 { Checkerboard.draw(in: r, cell: 3) }
             c.nsColor.setFill()
@@ -528,7 +574,7 @@ final class PaletteView: NSView {
     private func index(at e: NSEvent) -> Int? {
         let p = convert(e.locationInWindow, from: nil)
         let i = Int(p.y / rowHeight) * columns + Int(p.x / cell)
-        return (i >= 0 && i < AppEnvironment.shared.palette.count && p.x >= 0 && p.y >= 0) ? i : nil
+        return (i >= 0 && i < min(visibleCount, AppEnvironment.shared.palette.count) && p.x >= 0 && p.y >= 0) ? i : nil
     }
 
     override func mouseDown(with e: NSEvent) {

@@ -58,6 +58,10 @@ final class LayersPanel: FloatingPanel, NSTableViewDataSource, NSTableViewDelega
             ("layer.properties", L("Layer Properties"), #selector(MainWindowController.layerProperties(_:))),
         ]
         for (icon, tip, sel) in specs {
+            var sel = sel
+            // ⌘-click on Move Up / Move Down sends the layer to the top / bottom.
+            if sel == #selector(MainWindowController.moveLayerUp(_:)) { sel = #selector(MainWindowController.moveLayerUpOrTop(_:)) }
+            if sel == #selector(MainWindowController.moveLayerDown(_:)) { sel = #selector(MainWindowController.moveLayerDownOrBottom(_:)) }
             let b = ToolbarButton(icon: icon, tooltip: tip, target: nil, action: sel)
             buttons.append((b, sel))
             bar.addArrangedSubview(b)

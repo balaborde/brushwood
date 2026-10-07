@@ -20,6 +20,8 @@ final class HistoryPanel: FloatingPanel, NSTableViewDataSource, NSTableViewDeleg
         table.rowHeight = 20
         table.dataSource = self
         table.delegate = self
+        table.target = self
+        table.action = #selector(rowClicked)
         table.style = .plain
         table.allowsEmptySelection = false
         // Letters must reach the canvas as tool shortcuts, not type-select rows.
@@ -38,7 +40,8 @@ final class HistoryPanel: FloatingPanel, NSTableViewDataSource, NSTableViewDeleg
         redoButton.onAction { [weak self] _ in self?.host?.redo(nil) }
         forwardButton = ToolbarButton(icon: "sym.forward.end.fill", tooltip: L("Fast-forward to the end"), target: nil, action: nil)
         forwardButton.onAction { [weak self] _ in self?.host?.historyStep(to: Int.max) }
-        let bar = NSStackView(views: [rewindButton, undoButton, redoButton, forwardButton])
+        // Paint.NET 5 has just Undo and Redo here.
+        let bar = NSStackView(views: [undoButton, redoButton])
         bar.spacing = 2
         bar.edgeInsets = NSEdgeInsets(top: 2, left: 4, bottom: 2, right: 4)
 
@@ -115,8 +118,33 @@ final class HistoryPanel: FloatingPanel, NSTableViewDataSource, NSTableViewDeleg
         return cell
     }
 
+    private var toggledFrom: Int?
+    /// Set when the click already moved the selection (a plain jump, not a toggle).
+    private var clickChangedSelection = false
+
+    /// Clicking the current entry again toggles between it and the previous step (quick before/after comparison).
+    @objc private func rowClicked() {
+        guard let h = document?.history, table.clickedRow >= 0 else { return }
+        if clickChangedSelection {
+            clickChangedSelection = false
+            toggledFrom = nil
+            return
+        }
+        let row = table.clickedRow
+        if row == h.currentIndex, row > 0, toggledFrom == nil {
+            toggledFrom = row
+            host?.historyStep(to: row - 1)
+        } else if let from = toggledFrom, row == from - 1 || row == from {
+            toggledFrom = nil
+            host?.historyStep(to: from)
+        } else {
+            toggledFrom = nil
+        }
+    }
+
     func tableViewSelectionDidChange(_ notification: Notification) {
         guard !reloading, table.selectedRow >= 0 else { return }
+        clickChangedSelection = true
         host?.historyStep(to: table.selectedRow)
     }
 }
