@@ -38,8 +38,13 @@ owner. No Paint.NET code, icons or other assets are used — every icon is drawn
 Selections combine like Paint.NET: ⌘ = union, ⌥ = exclude, right-click = xor, ⌥+right-click = intersect, or pick the mode in
 the tool bar. Every tool can use any of the layer blend modes, or **Overwrite**.
 
-**Layers** — add, delete, duplicate, merge down, move up/down (or drag in the Layers window), import from file, flip,
-Rotate/Zoom, properties (name, visibility, opacity, blend mode). Blend modes: Normal, Multiply, Additive, Color Burn,
+**Edit** — undo/redo (or click any step in the History window; click the current step again to compare before/after),
+cut, copy, copy merged, paste, paste into new layer / new image, copy and paste the selection outline, erase, fill and
+invert selection.
+
+**Layers** — add, delete, duplicate, merge down, toggle visibility, import from file (grows the canvas if needed), flip,
+rotate 180°, Rotate/Zoom, go to / move to top, above, below and bottom (or drag in the Layers window), properties (name,
+visibility, opacity, blend mode). Blend modes: Normal, Multiply, Additive, Color Burn,
 Color Dodge, Reflect, Glow, Overlay, Difference, Negation, Lighten, Darken, Screen, Xor (Paint.NET's set, verified
 pixel-exact against Paint.NET renders), plus Hard Light, Soft Light, Color, Luminosity, Hue and Saturation.
 
@@ -153,7 +158,9 @@ Strings are written in English in the source (`L("…")`). To add or update a la
   Sketch Blur, Crystalize or Turbulence, and the Object effects) are reimplementations of the documented behaviour, not
   exact ports, so their output can differ from Paint.NET's.
 - Selection handles of Move Selected Pixels follow the axis-aligned bounds (Paint.NET rotates them with the content).
-- No plugin system, no tablet pressure, and no Windows-specific features such as scanner/camera acquisition.
+- Not implemented: plugins, tablet pressure, Image › Color Profile, and File › Acquire (scanner/camera).
+- Menus live in the macOS menu bar rather than inside the window, and a few shortcuts differ where macOS reserves the key
+  (see the table above).
 
 ## License
 
