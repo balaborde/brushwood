@@ -4,6 +4,7 @@ import BrushwoodCore
 /// The second toolbar row: tool chooser plus the options of the active tool (Paint.NET's tool bar).
 final class ToolOptionsBar: NSView {
     private let stack = NSStackView()
+    private let scroll = NSScrollView()
     private let toolPopup = NSPopUpButton(frame: .zero, pullsDown: false)
     weak var host: MainWindowController?
     private var observers: [NSObjectProtocol] = []
@@ -19,16 +20,34 @@ final class ToolOptionsBar: NSView {
         stack.spacing = 6
         stack.alignment = .centerY
         stack.edgeInsets = NSEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+        // Options scroll horizontally if the window is too narrow to show them all.
+        scroll.drawsBackground = false
+        scroll.hasHorizontalScroller = false
+        scroll.hasVerticalScroller = false
+        scroll.horizontalScrollElasticity = .allowed
+        scroll.verticalScrollElasticity = .none
+        scroll.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(scroll)
+        let doc = FlippedView()
+        doc.translatesAutoresizingMaskIntoConstraints = false
+        doc.addSubview(stack)
+        scroll.documentView = doc
         stack.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(stack)
         NSLayoutConstraint.activate([
-            stack.leadingAnchor.constraint(equalTo: leadingAnchor),
-            stack.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor),
-            stack.topAnchor.constraint(equalTo: topAnchor),
-            stack.bottomAnchor.constraint(equalTo: bottomAnchor),
+            scroll.leadingAnchor.constraint(equalTo: leadingAnchor),
+            scroll.trailingAnchor.constraint(equalTo: trailingAnchor),
+            scroll.topAnchor.constraint(equalTo: topAnchor),
+            scroll.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -1),
+            doc.heightAnchor.constraint(equalTo: scroll.contentView.heightAnchor),
+            stack.leadingAnchor.constraint(equalTo: doc.leadingAnchor),
+            stack.trailingAnchor.constraint(equalTo: doc.trailingAnchor),
+            stack.topAnchor.constraint(equalTo: doc.topAnchor),
+            stack.bottomAnchor.constraint(equalTo: doc.bottomAnchor),
         ])
         toolPopup.controlSize = .small
         toolPopup.isBordered = true
+        toolPopup.translatesAutoresizingMaskIntoConstraints = false
+        toolPopup.widthAnchor.constraint(lessThanOrEqualToConstant: 160).isActive = true
         for t in ToolKind.allCases {
             let item = NSMenuItem(title: t.name, action: nil, keyEquivalent: "")
             item.image = Icons.image(t.icon, size: 16)
@@ -164,13 +183,34 @@ final class ToolOptionsBar: NSView {
             antialiasing()
             blendMode()
         }
+        if [.paintBucket, .gradient, .paintbrush, .eraser, .pencil, .cloneStamp, .recolor, .text, .lineCurve, .shapes].contains(tool) {
+            selectionClipping()
+        }
+        if [.rectangleSelect, .ellipseSelect, .magicWand, .moveSelectedPixels, .paintBucket, .gradient, .text, .lineCurve,
+            .shapes].contains(tool) {
+            add(ToolbarSeparator())
+            let finish = NSButton(title: L("Finish"), image: NSImage(systemSymbolName: "checkmark", accessibilityDescription: nil)!,
+                                  target: nil, action: nil)
+            finish.controlSize = .small
+            finish.font = .systemFont(ofSize: NSFont.smallSystemFontSize)
+            finish.bezelStyle = .rounded
+            finish.toolTip = L("Finish (Return)")
+            finish.onAction { [weak self] _ in self?.host?.commitPendingTool() }
+            add(finish)
+        }
         refresh()
     }
 
     // MARK: - Option builders
 
+    private func selectionClipping() {
+        add(toolbarLabel(L("Clipping:")))
+        add(popup([(L("Antialiased"), nil), (L("Aliased"), nil)], get: { self.s.selectionClippingAntialiased ? 0 : 1 },
+                  set: { self.s.selectionClippingAntialiased = $0 == 0 }, tooltip: L("Selection clipping")))
+    }
+
     private func popup(_ items: [(String, NSImage?)], get: @escaping () -> Int, set: @escaping (Int) -> Void,
-                       tooltip: String) -> NSPopUpButton {
+                       tooltip: String, imageOnly: Bool = false, maxWidth: CGFloat = 130) -> NSPopUpButton {
         let p = NSPopUpButton(frame: .zero, pullsDown: false)
         p.controlSize = .small
         p.font = .systemFont(ofSize: NSFont.smallSystemFontSize)
@@ -180,6 +220,10 @@ final class ToolOptionsBar: NSView {
             p.lastItem?.tag = i
         }
         p.toolTip = tooltip
+        p.translatesAutoresizingMaskIntoConstraints = false
+        p.widthAnchor.constraint(lessThanOrEqualToConstant: imageOnly ? 62 : maxWidth).isActive = true
+        // Swatch-only pickers (dash, fill) show just the selected pattern, like Paint.NET.
+        if imageOnly { p.imagePosition = .imageOnly }
         p.onAction { [weak self] _ in
             guard self?.updating == false else { return }
             set(p.selectedTag())
@@ -257,11 +301,15 @@ final class ToolOptionsBar: NSView {
     }
 
     private func antialiasing() {
-        let b = NSButton(checkboxWithTitle: L("Antialiasing"), target: nil, action: nil)
-        b.controlSize = .small
-        b.font = .systemFont(ofSize: NSFont.smallSystemFontSize)
-        b.onAction { [weak self] _ in self?.s.antialiasing = b.state == .on }
-        refreshers.append { [weak self] in b.state = self?.s.antialiasing == true ? .on : .off }
+        // Paint.NET's "Rasterization" toggle: smooth vs. jagged edges.
+        let b = ToolbarButton(icon: "opt.antialias", tooltip: L("Antialiasing"), target: nil, action: nil, size: 24)
+        b.onAction { [weak self] _ in self?.s.antialiasing.toggle() }
+        refreshers.append { [weak self] in
+            let on = self?.s.antialiasing == true
+            b.isToggled = on
+            b.image = Icons.image(on ? "opt.antialias" : "opt.aliased", size: 16)
+            b.toolTip = on ? L("Antialiasing enabled") : L("Antialiasing disabled")
+        }
         add(b)
     }
 
@@ -319,7 +367,7 @@ final class ToolOptionsBar: NSView {
     private func fillStyle() {
         add(toolbarLabel(L("Fill:")))
         add(popup(FillStyle.allCases.map { (L($0.displayName), Self.patternSwatch($0)) }, get: { self.s.fillStyle.rawValue },
-                  set: { self.s.fillStyle = FillStyle(rawValue: $0) ?? .solid }, tooltip: L("Fill style")))
+                  set: { self.s.fillStyle = FillStyle(rawValue: $0) ?? .solid }, tooltip: L("Fill style"), imageOnly: true))
     }
 
     static func patternSwatch(_ style: FillStyle) -> NSImage {
@@ -392,7 +440,7 @@ final class ToolOptionsBar: NSView {
             fontPopup.selectItem(withTitle: family)
         }
         fontPopup.translatesAutoresizingMaskIntoConstraints = false
-        fontPopup.widthAnchor.constraint(lessThanOrEqualToConstant: 170).isActive = true
+        fontPopup.widthAnchor.constraint(lessThanOrEqualToConstant: 150).isActive = true
         add(fontPopup)
         let size = NSComboBox()
         size.controlSize = .small
@@ -424,7 +472,7 @@ final class ToolOptionsBar: NSView {
     private func dashStyle() {
         add(toolbarLabel(L("Dash:")))
         add(popup(LineDashStyle.allCases.map { ($0.name, Self.dashSwatch($0)) }, get: { self.s.dashStyle.rawValue },
-                  set: { self.s.dashStyle = LineDashStyle(rawValue: $0) ?? .solid }, tooltip: L("Dash style")))
+                  set: { self.s.dashStyle = LineDashStyle(rawValue: $0) ?? .solid }, tooltip: L("Dash style"), imageOnly: true))
     }
 
     static func dashSwatch(_ d: LineDashStyle) -> NSImage {
@@ -455,9 +503,13 @@ final class ToolOptionsBar: NSView {
         let p = NSPopUpButton(frame: .zero, pullsDown: false)
         p.controlSize = .small
         p.font = .systemFont(ofSize: NSFont.smallSystemFontSize)
+        p.translatesAutoresizingMaskIntoConstraints = false
+        p.widthAnchor.constraint(lessThanOrEqualToConstant: 150).isActive = true
+        p.autoenablesItems = false
         for cat in ShapeKind.Category.allCases {
             let header = NSMenuItem(title: cat.name, action: nil, keyEquivalent: "")
             header.isEnabled = false
+            header.tag = -1
             p.menu?.addItem(header)
             for shape in ShapeKind.allCases where shape.category == cat {
                 let item = NSMenuItem(title: shape.name, action: nil, keyEquivalent: "")

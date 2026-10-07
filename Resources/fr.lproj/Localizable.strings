@@ -26,11 +26,15 @@
 "After click" = "Après le clic";
 "After click:" = "Après le clic :";
 "Algorithm" = "Algorithme";
+"Aliased" = "Crénelé";
 "Amount" = "Quantité";
 "Anchor" = "Ancrage";
 "Angle" = "Angle";
 "Antialias selection edges when clipping" = "Lisser les bords de la sélection lors du détourage";
+"Antialiased" = "Lissé";
 "Antialiasing" = "Lissage";
+"Antialiasing disabled" = "Lissage désactivé";
+"Antialiasing enabled" = "Lissage activé";
 "Arrow" = "Flèche";
 "Arrows" = "Flèches";
 "Artistic" = "Artistique";
@@ -88,6 +92,7 @@
 "Click and drag to navigate the image." = "Cliquez et faites glisser pour vous déplacer dans l'image.";
 "Click to add a point, drag to move it, right-click to remove it." = "Cliquez pour ajouter un point, faites-le glisser pour le déplacer, clic droit pour le supprimer.";
 "Click to select a region of similar color. ⌘ adds, ⌥ subtracts, right-click inverts. Shift-click for global selection." = "Cliquez pour sélectionner une zone de couleur similaire. ⌘ ajoute, ⌥ soustrait, le clic droit inverse. Maj+clic pour une sélection globale.";
+"Clipping:" = "Détourage :";
 "Clone Stamp" = "Tampon de duplication";
 "Clone source set at %d, %d" = "Source de duplication définie en %d, %d";
 "Close" = "Fermer";
@@ -198,6 +203,8 @@
 "Fill style" = "Style de remplissage";
 "Fill:" = "Remplissage :";
 "Filled Arrow" = "Flèche pleine";
+"Finish" = "Terminer";
+"Finish (Return)" = "Terminer (Entrée)";
 "Finish / cancel the current edit (⏎ again deselects)" = "Valider / annuler la modification en cours (⏎ de nouveau désélectionne)";
 "Fixed Ratio" = "Proportions fixes";
 "Fixed Size" = "Taille fixe";
@@ -488,6 +495,7 @@
 "Select All" = "Tout sélectionner";
 "Select All / Deselect" = "Tout sélectionner / Désélectionner";
 "Selection" = "Sélection";
+"Selection clipping" = "Détourage par la sélection";
 "Selection drawing mode" = "Mode de tracé de la sélection";
 "Selection mode:" = "Mode de sélection :";
 "Selection tools combine with the existing selection: ⌘ adds (union), ⌥ subtracts, right-click inverts (xor) and ⌥+right-click intersects. The mode can also be chosen in the tool bar." = "Les outils de sélection se combinent avec la sélection existante : ⌘ ajoute (union), ⌥ soustrait, le clic droit inverse (xor) et ⌥+clic droit fait l'intersection. Le mode peut aussi être choisi dans la barre d'outils.";

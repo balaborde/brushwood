@@ -258,6 +258,16 @@ final class MainWindowController: NSWindowController, NSWindowDelegate, NSMenuIt
         }
     }
 
+    /// Reorders the image list (drag in the thumbnails strip).
+    func moveWorkspace(_ ws: DocumentWorkspace, to index: Int) {
+        guard let from = workspaces.firstIndex(where: { $0 === ws }) else { return }
+        let to = min(index, workspaces.count - 1)
+        guard from != to else { return }
+        workspaces.remove(at: from)
+        workspaces.insert(ws, at: to)
+        mainToolbar.tabs.reload(workspaces, active: active)
+    }
+
     /// Closes every image except `keep`, one at a time (each may ask to save).
     func closeOthers(than keep: DocumentWorkspace) {
         guard let next = workspaces.first(where: { $0 !== keep }) else {

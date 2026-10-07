@@ -157,6 +157,12 @@ final class ImageTabsView: NSView {
             tab.host = host
             tab.onSelect = { [weak self] in self?.host?.activate(ws) }
             tab.onClose = { [weak self] in self?.host?.close(ws) }
+            tab.onDragReorder = { [weak self] windowX in
+                guard let self else { return }
+                // Drop position → index among the tabs (52 pt per tab including spacing).
+                let local = self.stack.convert(NSPoint(x: windowX, y: 0), from: nil).x
+                self.host?.moveWorkspace(ws, to: max(0, Int(local / 52)))
+            }
             stack.addArrangedSubview(tab)
         }
     }
@@ -229,8 +235,11 @@ final class ImageTab: NSView {
             NSBezierPath(rect: tr.insetBy(dx: -0.5, dy: -0.5)).stroke()
         }
         if workspace.document.isDirty {
-            NSColor.systemOrange.setFill()
-            NSBezierPath(ovalIn: NSRect(x: 3, y: 3, width: 6, height: 6)).fill()
+            // Unsaved images get an asterisk, as in Paint.NET's image list.
+            let star = NSAttributedString(string: "*", attributes: [.font: NSFont.boldSystemFont(ofSize: 14),
+                                                                     .foregroundColor: NSColor.systemOrange,
+                                                                     .strokeColor: NSColor.white, .strokeWidth: -3])
+            star.draw(at: NSPoint(x: 2, y: -2))
         }
         if hovering {
             NSColor.black.withAlphaComponent(0.6).setFill()
@@ -245,14 +254,25 @@ final class ImageTab: NSView {
         }
     }
 
+    var onDragReorder: ((CGFloat) -> Void)?
+    private var dragStart: NSPoint?
+
     override func mouseDown(with event: NSEvent) {
         let p = convert(event.locationInWindow, from: nil)
         if hovering && closeRect.insetBy(dx: -2, dy: -2).contains(p) {
             onClose?()
         } else {
+            dragStart = event.locationInWindow
             onSelect?()
         }
     }
+
+    override func mouseDragged(with event: NSEvent) {
+        guard let s = dragStart, abs(event.locationInWindow.x - s.x) > 6 else { return }
+        onDragReorder?(event.locationInWindow.x)
+    }
+
+    override func mouseUp(with event: NSEvent) { dragStart = nil }
 
     override func otherMouseDown(with event: NSEvent) { onClose?() }
 

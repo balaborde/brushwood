@@ -410,6 +410,26 @@ enum Icons {
                 lightBlue.setFill(); p.fill()
                 p.lineWidth = 1.6; blue.setStroke(); p.stroke()
             }
+        case "opt.antialias", "opt.aliased":
+            let smooth = name == "opt.antialias"
+            return drawn(size) { r in
+                if smooth {
+                    let p = NSBezierPath()
+                    p.move(to: NSPoint(x: r.width * 0.15, y: r.height * 0.2))
+                    p.curve(to: NSPoint(x: r.width * 0.85, y: r.height * 0.8), controlPoint1: NSPoint(x: r.width * 0.7, y: r.height * 0.15),
+                            controlPoint2: NSPoint(x: r.width * 0.3, y: r.height * 0.85))
+                    p.lineWidth = r.width * 0.14
+                    p.lineCapStyle = .round
+                    dark.setStroke()
+                    p.stroke()
+                } else {
+                    let cell = r.width / 8
+                    dark.setFill()
+                    for (x, y) in [(1, 1), (2, 1), (3, 2), (4, 3), (4, 4), (5, 5), (6, 6), (6, 5)] {
+                        NSRect(x: CGFloat(x) * cell, y: CGFloat(y) * cell, width: cell, height: cell).fill()
+                    }
+                }
+            }
         case "gradient.colorMode":
             return vector(size) {
                 NSGradient(starting: red, ending: blue)?.draw(in: NSRect(x: 1.5, y: 3, width: 13, height: 10), angle: 0)

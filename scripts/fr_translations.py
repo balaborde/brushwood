@@ -1,5 +1,13 @@
 # French UI strings for Brushwood. Keys are the English source strings (as written in Swift, with escapes).
 FR = {
+'Antialiasing enabled': 'Lissage activé',
+'Antialiasing disabled': 'Lissage désactivé',
+'Finish': 'Terminer',
+'Finish (Return)': 'Terminer (Entrée)',
+'Clipping:': 'Détourage :',
+'Antialiased': 'Lissé',
+'Aliased': 'Crénelé',
+'Selection clipping': 'Détourage par la sélection',
 'letter': 'lettre',
 'Cycle tools sharing a letter in reverse (⇧S = Magic Wand)': 'Parcourir à rebours les outils partageant une lettre (⇧S = Baguette magique)',
 'Finish / cancel the current edit (⏎ again deselects)': 'Valider / annuler la modification en cours (⏎ de nouveau désélectionne)',
