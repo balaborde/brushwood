@@ -185,6 +185,9 @@ public final class HistoryStack {
         notify()
     }
 
+    /// Memory budget for undo data; the oldest steps are dropped beyond it.
+    public var memoryLimit: Int = min(4 << 30, Int(ProcessInfo.processInfo.physicalMemory / 3))
+
     /// Records an action that has already been applied to the document.
     public func push(_ item: HistoryItem) {
         if currentIndex < items.count - 1 {
@@ -192,7 +195,18 @@ public final class HistoryStack {
         }
         items.append(item)
         currentIndex = items.count - 1
+        trimToMemoryLimit()
         notify()
+    }
+
+    /// Drops the oldest undo steps (keeping the base entry) while over budget.
+    private func trimToMemoryLimit() {
+        var total = memoryFootprint
+        while total > memoryLimit && items.count > 2 {
+            total -= items[1].memoryFootprint
+            items.remove(at: 1)
+            currentIndex -= 1
+        }
     }
 
     public func undo() {

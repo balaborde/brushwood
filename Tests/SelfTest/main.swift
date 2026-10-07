@@ -167,6 +167,23 @@ struct DocumentTests {
         expect(layer.surface[3, 3] == .black)
     }
 
+    func historyMemoryLimitDropsOldestSteps() {
+        let doc = Document(width: 100, height: 100, background: .white)
+        doc.history.reset(baseName: "New Image", icon: "new")
+        doc.history.memoryLimit = 100 * 100 * 4 * 2 * 3  // room for three full-layer steps
+        for i in 0..<6 {
+            let layer = doc.activeLayer
+            let before = layer.surface.copy(rect: doc.bounds)!
+            layer.surface.clear(ColorBgra(r: UInt8(i * 40), g: 0, b: 0))
+            doc.history.push(PixelHistoryItem(name: "Step \(i)", icon: "", layer: layer, rect: doc.bounds, before: before,
+                                              after: layer.surface.copy(rect: doc.bounds)!))
+        }
+        expect(doc.history.items.count == 4, "kept \(doc.history.items.count)")
+        expect(doc.history.items.last?.name == "Step 5")
+        while doc.history.canUndo { doc.history.undo() }
+        expect(doc.activeLayer.surface[0, 0].r == 80, "oldest reachable state")
+    }
+
     func structuralHistoryRestoresLayers() {
         let doc = Document(width: 8, height: 8, background: .white)
         doc.history.reset(baseName: "New Image", icon: "new")
@@ -342,6 +359,7 @@ run("FloodFillTests.contiguousStopsAtBorder") { FloodFillTests().contiguousStops
 run("FloodFillTests.toleranceZeroIsExact") { FloodFillTests().toleranceZeroIsExact() }
 run("DocumentTests.compositeRespectsOpacityAndVisibility") { DocumentTests().compositeRespectsOpacityAndVisibility() }
 run("DocumentTests.historyUndoRedoPixels") { DocumentTests().historyUndoRedoPixels() }
+run("DocumentTests.historyMemoryLimitDropsOldestSteps") { DocumentTests().historyMemoryLimitDropsOldestSteps() }
 run("DocumentTests.structuralHistoryRestoresLayers") { DocumentTests().structuralHistoryRestoresLayers() }
 run("FileFormatTests.zipRoundTrip") { try FileFormatTests().zipRoundTrip() }
 run("FileFormatTests.openRasterRoundTrip") { try FileFormatTests().openRasterRoundTrip() }
