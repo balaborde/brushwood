@@ -4,6 +4,8 @@ import BrushwoodCore
 /// Tiny command language to drive the app for automated visual checks (used with `BRUSHWOOD_SNAPSHOT`).
 /// Example: `tool:paintbrush; color:FF0000; width:12; drag:50,50,300,200; key:return`
 enum DebugScript {
+    private static var lastMark = CFAbsoluteTimeGetCurrent()
+
     static func run(_ script: String, controller c: MainWindowController) {
         for raw in script.components(separatedBy: ";") {
             let cmd = raw.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -84,6 +86,11 @@ enum DebugScript {
                            "selection = \(b.map { "\($0)" } ?? "none"), expected \(arg)")
                 }
             case "log": print("LOG \(arg)")
+            case "time":
+                let now = CFAbsoluteTimeGetCurrent()
+                print(String(format: "TIME %@: %.0f ms", arg, (now - lastMark) * 1000))
+                fflush(stdout)
+                lastMark = now
             case "open": c.open(urls: [URL(fileURLWithPath: arg)])
             case "new" where nums.count >= 2: c.newImage(width: Int(nums[0]), height: Int(nums[1]), background: .white, dpi: 96)
             case "save":
