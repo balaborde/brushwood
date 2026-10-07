@@ -86,6 +86,73 @@ enum DebugScript {
                            "selection = \(b.map { "\($0)" } ?? "none"), expected \(arg)")
                 }
             case "log": print("LOG \(arg)")
+            case "setting":
+                // setting:name=value for a few tool options (exercises live re-rendering of pending edits).
+                let kv = arg.split(separator: "=").map(String.init)
+                guard kv.count == 2 else { break }
+                let t = AppEnvironment.shared.tools
+                switch kv[0] {
+                case "tolerance": t.tolerance = Double(kv[1]) ?? 0.5
+                case "antialias": t.antialiasing = kv[1] == "1"
+                case "fill": t.fillStyle = FillStyle(rawValue: Int(kv[1]) ?? 0) ?? .solid
+                case "flood": t.floodMode = FloodMode(rawValue: Int(kv[1]) ?? 0) ?? .contiguous
+                case "blend": t.blendMode = BlendMode(rawValue: Int(kv[1]) ?? 0) ?? .normal
+                case "overwrite": t.overwrite = kv[1] == "1"
+                case "endcap": t.endCap = LineCap(rawValue: Int(kv[1]) ?? 0) ?? .flat
+                case "align": t.textAlignment = TextAlignmentOption(rawValue: Int(kv[1]) ?? 0) ?? .left
+                case "fontsize": t.fontSize = CGFloat(Double(kv[1]) ?? 12)
+                case "pickafter": t.colorPickerAfterClick = ColorPickerAfterClick(rawValue: Int(kv[1]) ?? 0) ?? .doNotSwitch
+                case "transparency": t.gradientTransparencyMode = kv[1] == "1"
+                default: print("FAIL unknown setting \(kv[0])")
+                }
+            case "expecttext":
+                let got = (c.canvas.tool as? TextTool)?.debugText ?? "<no text tool>"
+                let want = arg.replacingOccurrences(of: "|", with: "\n")
+                report(got == want, "text = \(got.debugDescription), expected \(want.debugDescription)")
+            case "textcmd":
+                (c.canvas.tool as? TextTool)?.perform(Selector(arg))
+            case "expectcolor":
+                // expectcolor:primary|secondary,RRGGBB
+                let f = arg.split(separator: ",").map(String.init)
+                let got = f[0] == "secondary" ? AppEnvironment.shared.secondaryColor : AppEnvironment.shared.primaryColor
+                report(ColorBgra(hex: f[1]) == got, "\(f[0]) color = \(got.hexString), expected \(f[1])")
+            case "expecttool":
+                report("\(AppEnvironment.shared.activeTool)".lowercased() == arg.lowercased(),
+                       "tool = \(AppEnvironment.shared.activeTool), expected \(arg)")
+            case "expectzoom":
+                report(abs(c.canvas.zoom - CGFloat(nums.first ?? 0)) < 0.001, "zoom = \(c.canvas.zoom), expected \(arg)")
+            case "expectimages":
+                report(c.workspaces.count == Int(nums.first ?? -1), "images = \(c.workspaces.count), expected \(arg)")
+            case "layerprops":
+                // layerprops:opacity,blendRaw,visible(0/1)
+                if let ws = c.active, nums.count >= 3 {
+                    var p = ws.document.activeLayer.properties
+                    p.opacity = UInt8(nums[0])
+                    p.blendMode = BlendMode(rawValue: Int(nums[1])) ?? .normal
+                    p.isVisible = nums[2] != 0
+                    ws.setLayerProperties(ws.document.activeLayerIndex, p)
+                }
+            case "effectvalues":
+                // effectvalues:Effect Name|id=value|id=value (repeat with explicit values)
+                let f = arg.split(separator: "|").map(String.init)
+                let all = EffectsCatalog.adjustments + EffectsCatalog.effects.flatMap(\.1) + [{ RotateZoomLayerEffect() }]
+                if let factory = all.first(where: { $0().name.lowercased() == f[0].lowercased() }) {
+                    var v = EffectValues(factory().parameters)
+                    for kv in f.dropFirst() {
+                        let p = kv.split(separator: "=").map(String.init)
+                        if p.count == 2, let d = Double(p[1]) {
+                            if case .int = v[p[0]] { v[p[0]] = .int(Int(d)) } else if case .bool = v[p[0]] { v[p[0]] = .bool(d != 0) } else { v[p[0]] = .double(d) }
+                        }
+                    }
+                    c.runEffect(factory: factory, repeatValues: v)
+                }
+            case "resize" where nums.count >= 2:
+                c.active?.resizeImage(to: IntSize(width: Int(nums[0]), height: Int(nums[1])), mode: .bestQuality, dpi: 96)
+            case "canvassize" where nums.count >= 4:
+                c.active?.resizeCanvas(to: IntSize(width: Int(nums[0]), height: Int(nums[1])), anchor: (Int(nums[2]), Int(nums[3])), dpi: 96)
+            case "activate" where !nums.isEmpty:
+                let i = Int(nums[0])
+                if i < c.workspaces.count { c.activate(c.workspaces[i]) }
             case "time":
                 let now = CFAbsoluteTimeGetCurrent()
                 print(String(format: "TIME %@: %.0f ms", arg, (now - lastMark) * 1000))

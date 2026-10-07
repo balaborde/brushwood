@@ -22,6 +22,9 @@ final class TextTool: Tool {
 
     override var hasPendingEdits: Bool { session != nil }
 
+    /// Current text (lines joined with newlines); used by the scripted UI tests.
+    var debugText: String { lines.joined(separator: "\n") }
+
     deinit { blinkTimer?.invalidate() }
 
     private var font: NSFont {

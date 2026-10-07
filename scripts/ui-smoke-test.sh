@@ -52,5 +52,35 @@ run files "tool:pencil; color:FF0000; drag:1,1,1,20; menu:addLayer:; save:$OUT/t
  expect:1,10,FF0000; save:$OUT/t.pdn; open:$OUT/t.pdn; expectlayers:2; expect:1,10,FF0000;
  save:$OUT/t.png; open:$OUT/t.png; expectlayers:1; expect:1,10,FF0000"
 
+run tools2 "tool:pencil; color:FF0000; drag:10,10,10,30; tool:cloneStamp; width:6; click:10,20,cmd; drag:100,20,100,22;
+ expect:100,21,FF0000; tool:colorPicker; click:100,21; expectcolor:primary,FF0000; click:500,500,right;
+ expectcolor:secondary,FFFFFF; setting:pickafter=1; tool:paintbrush; tool:colorPicker; click:5,5; expecttool:paintbrush;
+ setting:pickafter=0; color:00FF00; color:FF0000,secondary; tool:recolor; width:20; drag:10,15,10,25; expect:10,20,00FF00;
+ expect:100,21,FF0000"
+
+run live "tool:paintBucket; color:0000FF; select:0,0,800,600; menu:deselect:; tool:pencil; color:000000; drag:400,0,400,599;
+ tool:paintBucket; color:0000FF; click:10,10; expect:10,10,0000FF; expect:700,10,FFFFFF; setting:flood=1;
+ expect:700,10,0000FF; setting:flood=0; expect:700,10,FFFFFF; key:return; setting:fill=5; color:FF0000;
+ color:FFFF00,secondary; click:700,10; key:return; setting:fill=0; tool:gradient; color:000000; color:FFFFFF,secondary;
+ setting:transparency=1; drag:0,0,0,600; key:return; expect:10,595,0000FF00,10; setting:transparency=0"
+
+run text "tool:text; color:000000; setting:fontsize=24; click:50,50; type:AB; textcmd:deleteBackward:; type:C\nD;
+ expecttext:AC|D; textcmd:moveLeft:; textcmd:moveLeft:; textcmd:moveLeft:; type:X; expecttext:AXC|D;
+ textcmd:insertNewline:; expecttext:AX|C|D; textcmd:deleteBackward:; textcmd:moveToEndOfLine:; type:!; expecttext:AXC!|D;
+ key:return; expecthistory:1"
+
+run image "tool:pencil; color:FF0000; drag:0,0,0,0; resize:400,300; expectsize:400,300; menu:undo:; expectsize:800,600;
+ canvassize:1000,700,2,2; expectsize:1000,700; expect:999,699,000000,255; expect:200,100,FF0000; menu:undo:;
+ menu:rotateImageCW:; expectsize:600,800; expect:599,0,FF0000; menu:undo:; menu:flipImageHorizontal:; expect:799,0,FF0000;
+ menu:undo:; menu:flipLayerVertical:; expect:0,599,FF0000; menu:undo:; expect:0,0,FF0000"
+
+run layers2 "menu:addLayer:; tool:paintBucket; color:FF0000; click:10,10; key:return; layerprops:128,0,1;
+ expect:10,10,FF8080,3; layerprops:255,1,1; expect:10,10,FF0000; menu:undo:; menu:undo:; layerprops:255,0,0;
+ expect:10,10,FFFFFF; menu:undo:; effectvalues:Rotate / Zoom|zoom=0.5; expect:10,10,FFFFFF; expect:400,300,FF0000;
+ effectvalues:Brightness / Contrast|brightness=-100; effectvalues:Gaussian Blur|radius=20"
+
+run images "new:300,200; expectimages:2; expectsize:300,200; activate:0; expectsize:800,600; menu:nextImage:;
+ expectsize:300,200; menu:pasteIntoNewImage:; tool:zoom; click:150,100; expectzoom:1.5; click:150,100,right; expectzoom:1"
+
 rm -rf "$OUT"
 [ $fail -eq 0 ] && echo "UI smoke tests passed" || { echo "UI smoke tests FAILED"; exit 1; }
