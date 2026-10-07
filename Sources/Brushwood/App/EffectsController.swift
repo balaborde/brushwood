@@ -90,14 +90,14 @@ final class EffectPreviewSession {
                 done += band.area
                 let fraction = Double(done) / Double(total)
                 lock.unlock()
-                DispatchQueue.main.async {
+                performOnMain {
                     guard gen == self.generation else { return }
                     self.canvas?.renderer?.invalidate(band)
                     if let c = self.canvas { c.setNeedsDisplay(c.toView(band.cgRect).insetBy(dx: -1, dy: -1)) }
                     self.statusBar?.setProgress(fraction)
                 }
             }
-            DispatchQueue.main.async {
+            performOnMain {
                 guard gen == self.generation else { return }
                 if ok { self.renderedValues = values }
                 self.statusBar?.setProgress(nil)

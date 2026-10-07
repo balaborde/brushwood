@@ -188,6 +188,8 @@ final class ColorsPanel: FloatingPanel {
         currentColor = c
     }
 
+    func debugToggleExpanded() { toggleExpanded() }
+
     private func toggleExpanded() {
         isExpanded.toggle()
         expanded.isHidden = !isExpanded

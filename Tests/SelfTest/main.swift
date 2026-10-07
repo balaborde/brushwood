@@ -324,5 +324,46 @@ run("EffectTests.blurOfSolidColorIsUnchanged") { EffectTests().blurOfSolidColorI
 run("EffectTests.everyEffectRunsWithDefaults") { EffectTests().everyEffectRunsWithDefaults() }
 run("EffectTests.curveIdentityTable") { EffectTests().curveIdentityTable() }
 run("EffectTests.brightnessContrastNeutral") { EffectTests().brightnessContrastNeutral() }
+
+// Optional: `swift run selftest <dir>` checks .pdn decoding and blend modes against Paint.NET reference renders
+// (files from the pypdn project: FlattenBlendTest.pdn + Flatten*Test.png).
+if CommandLine.arguments.count > 1 {
+    let dir = URL(fileURLWithPath: CommandLine.arguments[1])
+    run("PDN.untitled") {
+        for name in ["Untitled.pdn", "Untitled2.pdn", "Untitled3.pdn"] {
+            let doc = try PdnReader.load(url: dir.appendingPathComponent(name))
+            expect(doc.width > 0 && doc.layers.count > 0, name)
+            print("  \(name): \(doc.width)×\(doc.height), layers: " + doc.layers.map { "\($0.name) [\($0.blendMode.displayName), \($0.opacity)]" }.joined(separator: ", "))
+        }
+    }
+    run("PDN.blendModes") {
+        let doc = try PdnReader.load(url: dir.appendingPathComponent("FlattenBlendTest.pdn"))
+        expect(doc.width == 800 && doc.height == 600, "size")
+        let refs: [(BlendMode, String)] = [(.multiply, "flattenMultiplyTest.png"), (.additive, "FlattenAdditiveTest.png"),
+            (.colorBurn, "FlattenColorBurnTest.png"), (.colorDodge, "FlattenColorDodgeTest.png"), (.reflect, "FlattenReflectTest.png"),
+            (.glow, "FlattenGlowTest.png"), (.overlay, "FlattenOverlayTest.png"), (.difference, "FlattenDifferenceTest.png"),
+            (.negation, "FlattenNegationTest.png"), (.lighten, "FlattenLightenTest.png"), (.darken, "FlattenDarkenTest.png"),
+            (.screen, "FlattenScreenTest.png"), (.xor, "FlattenXORTest.png")]
+        for (mode, file) in refs {
+            guard let data = try? Data(contentsOf: dir.appendingPathComponent(file)),
+                  let ref = ImageCodec.surface(fromImageData: data) else { expect(false, "missing \(file)"); continue }
+            for (i, l) in doc.layers.enumerated() { l.isVisible = i == 0 || i == mode.rawValue }
+            expect(doc.layers[mode.rawValue].blendMode == mode, "layer \(mode.rawValue) blend mode is \(doc.layers[mode.rawValue].blendMode)")
+            let flat = doc.flattened()
+            var maxDiff = 0, bad = 0
+            for y in 0..<flat.height {
+                for x in 0..<flat.width {
+                    let a = flat[x, y], b = ref[x, y]
+                    let d = max(abs(Int(a.r) - Int(b.r)), abs(Int(a.g) - Int(b.g)), abs(Int(a.b) - Int(b.b)))
+                    maxDiff = max(maxDiff, d)
+                    if d > 2 { bad += 1 }
+                }
+            }
+            print("  \(mode.displayName): max diff \(maxDiff), pixels off by >2: \(bad)")
+            expect(bad == 0, "\(mode.displayName) differs from Paint.NET reference (\(bad) pixels, max \(maxDiff))")
+        }
+    }
+}
+
 print(failures == 0 ? "✔ All \(checks) checks passed" : "✘ \(failures) of \(checks) checks failed")
 exit(failures == 0 ? 0 : 1)

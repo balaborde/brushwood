@@ -81,7 +81,7 @@ final class MoveSelectedPixelsTool: Tool {
 
     private func render() {
         guard let session, let floating else { return }
-        let layer = session.layer.surface, original = session.original
+        let layer = session.layer.surface
         let newBounds = IntRect(enclosing: currentFloatingRect.insetBy(dx: -1, dy: -1)).intersection(doc.bounds)
         let dirty = lastRendered.union(newBounds).union(holeRect).intersection(doc.bounds)
         // Restore, punch the hole, then draw the floating pixels.

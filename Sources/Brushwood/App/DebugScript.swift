@@ -48,6 +48,12 @@ enum DebugScript {
                 if let f = all.first(where: { $0().name.lowercased() == arg.lowercased() }) {
                     c.runEffect(factory: f, repeatValues: EffectValues(f().parameters))
                 }
+            case "dialog":
+                let all = EffectsCatalog.adjustments + EffectsCatalog.effects.flatMap(\.1)
+                if let f = all.first(where: { $0().name.lowercased() == arg.lowercased() }) {
+                    performOnMain { c.runEffect(factory: f) }
+                }
+            case "colorsmore": c.colorsPanel.debugToggleExpanded()
             case "open": c.open(urls: [URL(fileURLWithPath: arg)])
             case "new" where nums.count >= 2: c.newImage(width: Int(nums[0]), height: Int(nums[1]), background: .white, dpi: 96)
             case "save":

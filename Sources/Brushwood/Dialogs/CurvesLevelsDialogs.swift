@@ -141,11 +141,12 @@ final class CurveGraphView: NSView {
         NSColor.textBackgroundColor.setFill()
         bounds.fill()
         // Histogram backdrop.
-        let lum: [Int] = (0..<256).map { (histogram.r[$0] + histogram.g[$0] + histogram.b[$0]) / 3 }
+        // Square-root scale so a single dominant value doesn't flatten the rest.
+        let lum: [Double] = (0..<256).map { sqrt(Double(histogram.r[$0] + histogram.g[$0] + histogram.b[$0]) / 3) }
         if let mx = lum.max(), mx > 0 {
             NSColor.secondaryLabelColor.withAlphaComponent(0.18).setFill()
             for i in 0..<256 {
-                let h = CGFloat(lum[i]) / CGFloat(mx) * plot.height
+                let h = CGFloat(lum[i] / mx) * plot.height
                 NSRect(x: plot.minX + CGFloat(i) / 256 * plot.width, y: plot.minY, width: plot.width / 256 + 0.5, height: h).fill()
             }
         }
@@ -393,12 +394,12 @@ final class LevelsHistogramView: NSView {
     override func draw(_ dirtyRect: NSRect) {
         NSColor.textBackgroundColor.setFill()
         bounds.fill()
-        let mx = max(1, (histogram.r + histogram.g + histogram.b).max() ?? 1)
+        let mx = sqrt(Double(max(1, (histogram.r + histogram.g + histogram.b).max() ?? 1)))
         for (hist, color) in [(histogram.r, NSColor.systemRed), (histogram.g, .systemGreen), (histogram.b, .systemBlue)] {
             let p = NSBezierPath()
             p.move(to: NSPoint(x: 0, y: 0))
             for i in 0..<256 {
-                p.line(to: NSPoint(x: CGFloat(i) / 255 * bounds.width, y: CGFloat(hist[i]) / CGFloat(mx) * bounds.height * 0.95))
+                p.line(to: NSPoint(x: CGFloat(i) / 255 * bounds.width, y: CGFloat(sqrt(Double(hist[i])) / mx) * bounds.height * 0.95))
             }
             p.line(to: NSPoint(x: bounds.width, y: 0))
             p.close()

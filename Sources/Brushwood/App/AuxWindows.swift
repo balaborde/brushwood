@@ -238,12 +238,14 @@ final class HelpWindow: NSWindow {
 enum DebugSnapshot {
     static func schedule(path: String, controller: MainWindowController) {
         let script = ProcessInfo.processInfo.environment["BRUSHWOOD_SCRIPT"] ?? ""
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+        // The capture is scheduled independently so it also fires while a modal dialog opened by the script runs.
+        let delay = Double(ProcessInfo.processInfo.environment["BRUSHWOOD_SNAPSHOT_DELAY"] ?? "") ?? 2.5
+        performOnMain(after: 1.0 + delay) {
+            capture(controller: controller, to: path)
+            exit(0)
+        }
+        performOnMain(after: 1.0) {
             DebugScript.run(script, controller: controller)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                capture(controller: controller, to: path)
-                NSApp.terminate(nil)
-            }
         }
     }
 

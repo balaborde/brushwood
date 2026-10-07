@@ -92,11 +92,13 @@ final class LayersPanel: FloatingPanel, NSTableViewDataSource, NSTableViewDelega
 
     private func scheduleThumbnails() {
         thumbTimer?.invalidate()
-        thumbTimer = Timer.scheduledTimer(withTimeInterval: 0.4, repeats: false) { [weak self] _ in
+        let t = Timer(timeInterval: 0.4, repeats: false) { [weak self] _ in
             self?.thumbnails.removeAll()
             self?.table.reloadData()
             self?.selectActive()
         }
+        RunLoop.main.add(t, forMode: .common)
+        thumbTimer = t
     }
 
     private var doc: Document? { workspace?.document }

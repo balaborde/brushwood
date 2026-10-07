@@ -272,11 +272,13 @@ final class MainWindowController: NSWindowController, NSWindowDelegate, NSMenuIt
 
     private func scheduleThumbnail() {
         thumbTimer?.invalidate()
-        thumbTimer = Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { [weak self] _ in
+        let t = Timer(timeInterval: 0.6, repeats: false) { [weak self] _ in
             guard let self, let ws = self.active else { return }
             self.updateThumbnail(ws)
             self.mainToolbar.tabs.refreshThumbnails()
         }
+        RunLoop.main.add(t, forMode: .common)
+        thumbTimer = t
     }
 
     private func updateThumbnail(_ ws: DocumentWorkspace) {
@@ -457,6 +459,7 @@ final class MainWindowController: NSWindowController, NSWindowDelegate, NSMenuIt
 
     func newImage(width: Int, height: Int, background: ColorBgra, dpi: Double) {
         let doc = Document(width: width, height: height, background: background)
+        doc.layers[0].name = L("Background")
         doc.dpi = dpi
         doc.history.reset(baseName: L("New Image"), icon: "history.new")
         add(DocumentWorkspace(document: doc))
@@ -470,6 +473,7 @@ final class MainWindowController: NSWindowController, NSWindowDelegate, NSMenuIt
             }
             do {
                 let doc = try ImageCodec.load(url: url)
+                if doc.layers.count == 1 && doc.layers[0].name == "Background" { doc.layers[0].name = L("Background") }
                 doc.history.reset(baseName: L("Open Image"), icon: "history.open")
                 doc.markSaved()
                 let ws = DocumentWorkspace(document: doc, url: url)
@@ -777,6 +781,7 @@ final class MainWindowController: NSWindowController, NSWindowDelegate, NSMenuIt
         guard let img = Clipboard.read() else { return }
         commitPendingTool()
         let doc = Document(width: img.width, height: img.height, background: .transparent)
+        doc.layers[0].name = L("Background")
         doc.layers[0].surface.copy(from: img, to: IntPoint(x: 0, y: 0))
         doc.history.reset(baseName: L("Paste Into New Image"), icon: "history.paste")
         add(DocumentWorkspace(document: doc))
