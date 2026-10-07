@@ -18,7 +18,9 @@ def extract():
     for f in glob.glob(os.path.join(ROOT, 'Sources/Brushwood/**/*.swift'), recursive=True):
         for m in re.finditer(r'\bLF?\("((?:[^"\\]|\\.)*)"', open(f).read()):
             keys.add(m.group(1))
-    for f in glob.glob(os.path.join(ROOT, 'Sources/BrushwoodCore/**/*.swift'), recursive=True):
+    core_like = glob.glob(os.path.join(ROOT, 'Sources/BrushwoodCore/**/*.swift'), recursive=True)
+    core_like += [os.path.join(ROOT, 'Sources/Brushwood/App/EffectsController.swift')]
+    for f in core_like:
         s = open(f).read()
         pats = [r'override var name: String \{ "([^"]+)" \}', r'label: "([^"]+)"', r'case \.\w+: return "([^"]+)"',
                 r'requiresSelectionHint: String\? \{\s*"([^"]+)"', r'case \w+ = "([A-Z][a-z]+)"']
@@ -28,7 +30,7 @@ def extract():
             keys.update(re.findall(r'"([^"]+)"', m.group(1)))
         for m in re.finditer(r'\[("Clamp".*?)\]', s):
             keys.update(re.findall(r'"([^"]+)"', m.group(1)))
-    return sorted(k for k in keys if not k.startswith(('svg:', 'brushwood:')))
+    return sorted(k for k in keys if not k.startswith(('svg:', 'brushwood:', 'sym.', 'app.brushwood')))
 
 
 def main():

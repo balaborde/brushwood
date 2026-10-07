@@ -434,6 +434,8 @@ FR = {
 'Right Arrow': 'Flèche vers la droite',
 'Right Triangle': 'Triangle rectangle',
 'Rotate / Zoom…': 'Rotation / Zoom…',
+'Rotate / Zoom': 'Rotation / Zoom',
+'Tiling': 'Mosaïque',
 'Rotate 180°': 'Rotation de 180°',
 'Rotate 90° CW / 90° CCW / 180°': 'Rotation 90° horaire / 90° antihoraire / 180°',
 'Rotate 90° Clockwise': 'Rotation de 90° dans le sens horaire',
