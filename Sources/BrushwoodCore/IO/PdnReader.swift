@@ -43,13 +43,15 @@ public enum PdnReader {
         guard case .object(let docObj)? = parser.resolve(root) else { throw PdnError.malformed("no document") }
         let width = parser.int(docObj.member("width")) ?? 0
         let height = parser.int(docObj.member("height")) ?? 0
-        guard width > 0, height > 0 else { throw PdnError.malformed("size") }
+        guard width > 0, height > 0, width <= 65535, height <= 65535, width * height <= 1 << 30 else {
+            throw PdnError.malformed("size")
+        }
 
         // Layer list: LayerList derives from ArrayList ("_items" / "_size").
         guard case .object(let layerList)? = parser.resolve(docObj.member("layers")) else {
             throw PdnError.malformed("layers")
         }
-        let size = parser.int(layerList.member("_size")) ?? 0
+        let size = max(0, parser.int(layerList.member("_size")) ?? 0)
         guard case .array(let items)? = parser.resolve(layerList.member("_items")) else { throw PdnError.malformed("items") }
 
         struct LayerInfo {
@@ -76,10 +78,12 @@ public enum PdnReader {
             let w = parser.int(surf.member("width")) ?? width
             let h = parser.int(surf.member("height")) ?? height
             let stride = parser.int(surf.member("stride")) ?? w * 4
+            guard w > 0, h > 0, w <= 65535, h <= 65535, stride >= w * 4, stride * h <= 1 << 32 else { throw PdnError.malformed("surface") }
             var length = stride * h
             if case .object(let mb)? = parser.resolve(surf.member("scan0")) {
                 length = parser.int(mb.member("length64")) ?? parser.int(mb.member("length")) ?? length
             }
+            guard length >= stride * (h - 1) + w * 4, length <= stride * h else { throw PdnError.malformed("memory block") }
             infos.append(LayerInfo(props: props, width: w, height: h, stride: stride, length: length))
         }
         guard !infos.isEmpty else { throw PdnError.malformed("no layers") }
@@ -423,8 +427,14 @@ final class NRBFParser {
             let id = try i32()
             let arrayType = try u8()
             let rank = Int(try i32())
+            guard rank >= 1 && rank <= 32 else { throw PdnReader.PdnError.malformed("array rank") }
             var total = 1
-            for _ in 0..<rank { total *= Int(try i32()) }
+            for _ in 0..<rank {
+                let (m, overflow) = total.multipliedReportingOverflow(by: Int(try i32()))
+                guard !overflow, m >= 0 else { throw PdnReader.PdnError.malformed("array size") }
+                total = m
+            }
+            guard total <= bytes.count - position else { throw PdnReader.PdnError.malformed("array size") }
             if [3, 4, 5].contains(arrayType) { for _ in 0..<rank { _ = try i32() } }
             let elemType = try u8()
             var addl: Any?
@@ -461,10 +471,12 @@ final class NRBFParser {
             return .null
         case 0x0E:
             pendingNulls = Int(try i32())
+            guard pendingNulls >= 0 && pendingNulls <= bytes.count else { throw PdnReader.PdnError.malformed("null count") }
             return .null
         case 0x0F:
             let id = try i32()
             let length = Int(try i32())
+            guard length >= 0, length <= bytes.count - position else { throw PdnReader.PdnError.malformed("array size") }
             let pt = try u8()
             var elems: [Value] = []
             if pt == 2 {
@@ -481,6 +493,7 @@ final class NRBFParser {
         case 0x10, 0x11:
             let id = try i32()
             let length = Int(try i32())
+            guard length >= 0, length <= bytes.count - position + 1 << 16 else { throw PdnReader.PdnError.malformed("array size") }
             var elems: [Value] = []
             try readElements(count: length, into: &elems)
             objects[id] = .array(elems)

@@ -129,11 +129,12 @@ public final class ZipReader {
         let count = u16(eocd + 10)
         var p = u32(eocd + 16)
         for _ in 0..<count {
-            guard p + 46 <= n, u32(p) == 0x0201_4B50 else { throw ZipError.invalidArchive("bad central directory") }
+            guard p >= 0, p + 46 <= n, u32(p) == 0x0201_4B50 else { throw ZipError.invalidArchive("bad central directory") }
             let method = u16(p + 10)
             let csize = u32(p + 20), usize = u32(p + 24)
             let nameLen = u16(p + 28), extraLen = u16(p + 30), commentLen = u16(p + 32)
             let lho = u32(p + 42)
+            guard p + 46 + nameLen <= n else { throw ZipError.invalidArchive("bad entry name") }
             let nameData = data.subdata(in: (data.startIndex + p + 46)..<(data.startIndex + p + 46 + nameLen))
             let name = String(decoding: nameData, as: UTF8.self)
             entries[name] = Entry(name: name, method: method, compressedSize: csize, uncompressedSize: usize,
@@ -146,8 +147,9 @@ public final class ZipReader {
     public func read(_ name: String) throws -> Data? {
         guard let e = entries[name] else { return nil }
         let p = e.localHeaderOffset
-        guard u32(p) == 0x0403_4B50 else { throw ZipError.invalidArchive("bad local header") }
+        guard p >= 0, p + 30 <= data.count, u32(p) == 0x0403_4B50 else { throw ZipError.invalidArchive("bad local header") }
         let nameLen = u16(p + 26), extraLen = u16(p + 28)
+        guard p + 30 + nameLen + extraLen + e.compressedSize <= data.count else { throw ZipError.corrupt("truncated entry") }
         let start = data.startIndex + p + 30 + nameLen + extraLen
         let raw = data.subdata(in: start..<(start + e.compressedSize))
         switch e.method {

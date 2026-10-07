@@ -53,7 +53,8 @@ public enum OpenRaster {
         let parser = StackParser()
         let xml = XMLParser(data: stack)
         xml.delegate = parser
-        guard xml.parse(), parser.width > 0, parser.height > 0 else {
+        guard xml.parse(), parser.width > 0, parser.height > 0, parser.width <= 65535, parser.height <= 65535,
+              parser.width * parser.height <= 1 << 30 else {
             throw ImageCodecError.unreadable("invalid stack.xml")
         }
         var layers: [BitmapLayer] = []

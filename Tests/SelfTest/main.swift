@@ -254,6 +254,26 @@ struct FileFormatTests {
         }
     }
 
+    func malformedFilesThrow() throws {
+        // Truncations and random corruption must throw, never crash.
+        let doc = Document(width: 40, height: 30, background: .white)
+        doc.layers.append(BitmapLayer(width: 40, height: 30, name: "L"))
+        let pdn = try PdnWriter.encode(doc), ora = try OpenRaster.encode(doc)
+        let iterations = Int(ProcessInfo.processInfo.environment["FUZZ_ITERATIONS"] ?? "") ?? 200
+        var rng = SeededRandom(seed: Int(ProcessInfo.processInfo.environment["FUZZ_SEED"] ?? "") ?? 42)
+        for (data, decode) in [(pdn, { (d: Data) in _ = try PdnReader.decode(d) }), (ora, { (d: Data) in _ = try OpenRaster.decode(d) })] {
+            for cut in stride(from: 0, to: data.count, by: max(1, data.count / 60)) {
+                _ = try? decode(data.prefix(cut))
+            }
+            for _ in 0..<iterations {
+                var d = data
+                for _ in 0..<4 { d[rng.nextInt(d.count)] = UInt8(rng.nextInt(256)) }
+                _ = try? decode(d)
+            }
+        }
+        expect(true)
+    }
+
     func gzipDecode() throws {
         // gzip of "abc" produced by Python's gzip module (mtime 0).
         let gz = Data([0x1F, 0x8B, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xFF, 0x4B, 0x4C, 0x4A, 0x06, 0x00,
@@ -286,6 +306,20 @@ struct EffectTests {
         expect(r[0, 0] == s[0, 0])
     }
 
+    func allEffects() -> [Effect] {
+        [AutoLevelAdjustment(), BlackAndWhiteAdjustment(), BrightnessContrastAdjustment(),
+         CurvesAdjustment(), HueSaturationAdjustment(), InvertColorsAdjustment(), LevelsAdjustment(),
+         PosterizeAdjustment(), SepiaAdjustment(), InkSketchEffect(), OilPaintingEffect(),
+         PencilSketchEffect(), BokehEffect(), FragmentEffect(), GaussianBlurEffect(), MotionBlurEffect(),
+         RadialBlurEffect(), SurfaceBlurEffect(), UnfocusEffect(), ZoomBlurEffect(), BulgeEffect(),
+         DentsEffect(), FrostedGlassEffect(), PixelateEffect(), PolarInversionEffect(),
+         TileReflectionEffect(), TwistEffect(), AddNoiseEffect(), MedianEffect(), ReduceNoiseEffect(),
+         DropShadowEffect(), FeatherEffect(), OutlineObjectEffect(), GlowEffect(), RedEyeRemovalEffect(),
+         SharpenEffect(), SoftenPortraitEffect(), VignetteEffect(), CloudsEffect(), JuliaFractalEffect(),
+         MandelbrotFractalEffect(), VoronoiEffect(), EdgeDetectEffect(), EmbossEffect(), OutlineEffect(),
+         ReliefEffect()]
+    }
+
     func everyEffectRunsWithDefaults() {
         let s = Surface(width: 24, height: 18)
         for y in 0..<18 { for x in 0..<24 { s[x, y] = ColorBgra(r: UInt8(x * 10), g: UInt8(y * 14), b: 128) } }
@@ -304,6 +338,39 @@ struct EffectTests {
             let r = run(e, s)
             expect(r.width == 24, "\(e.name)")
         }
+    }
+
+    func everyEffectSurvivesExtremeParameters() {
+        let s = Surface(width: 37, height: 23)
+        for y in 0..<23 { for x in 0..<37 { s[x, y] = ColorBgra(r: UInt8(x * 7), g: UInt8(y * 11), b: UInt8((x * y) % 256), a: UInt8((x * 13 + 40) % 256)) } }
+        let sel = Selection.ellipse(CGRect(x: 3, y: 2, width: 20, height: 15))
+        let mask = sel.mask(width: 37, height: 23, antialias: true)
+        for e in allEffects() {
+            var variants: [EffectValues] = [EffectValues(e.parameters)]
+            for p in e.parameters {
+                for pick in 0..<2 {
+                    var v = EffectValues(e.parameters)
+                    switch p {
+                    case .integer(let id, _, let r, _): v[id] = .int(pick == 0 ? r.lowerBound : r.upperBound)
+                    case .double(let id, _, let r, _, _): v[id] = .double(pick == 0 ? r.lowerBound : r.upperBound)
+                    case .angle(let id, _, let r, _): v[id] = .double(pick == 0 ? r.lowerBound : r.upperBound)
+                    case .offset(let id, _, _): v[id] = .point(pick == 0 ? CGPoint(x: -2, y: -2) : CGPoint(x: 2, y: 2))
+                    case .checkbox(let id, _, _): v[id] = .bool(pick == 1)
+                    case .choice(let id, _, let options, _, _): v[id] = .int(pick == 0 ? 0 : options.count - 1)
+                    default: continue
+                    }
+                    variants.append(v)
+                }
+            }
+            for (i, v) in variants.enumerated() {
+                let env = EffectEnvironment(primaryColor: .black, secondaryColor: .white,
+                                            selectionBounds: i % 2 == 0 ? s.bounds : sel.intBounds, selectionMask: i % 2 == 0 ? nil : mask)
+                let dst = s.clone()
+                EffectRunner.run(effect: e, src: s, dst: dst, values: v, env: env)
+                if i % 2 == 1 { expect(dst[36, 22] == s[36, 22], "\(e.name) touched pixels outside the selection") }
+            }
+        }
+        expect(true)
     }
 
     func curveIdentityTable() {
@@ -364,10 +431,12 @@ run("DocumentTests.structuralHistoryRestoresLayers") { DocumentTests().structura
 run("FileFormatTests.zipRoundTrip") { try FileFormatTests().zipRoundTrip() }
 run("FileFormatTests.openRasterRoundTrip") { try FileFormatTests().openRasterRoundTrip() }
 run("FileFormatTests.gzipDecode") { try FileFormatTests().gzipDecode() }
+run("FileFormatTests.malformedFilesThrow") { try FileFormatTests().malformedFilesThrow() }
 run("FileFormatTests.pdnRoundTrip") { try FileFormatTests().pdnRoundTrip() }
 run("EffectTests.invertTwiceIsIdentity") { EffectTests().invertTwiceIsIdentity() }
 run("EffectTests.blurOfSolidColorIsUnchanged") { EffectTests().blurOfSolidColorIsUnchanged() }
 run("EffectTests.everyEffectRunsWithDefaults") { EffectTests().everyEffectRunsWithDefaults() }
+run("EffectTests.everyEffectSurvivesExtremeParameters") { EffectTests().everyEffectSurvivesExtremeParameters() }
 run("EffectTests.curveIdentityTable") { EffectTests().curveIdentityTable() }
 run("EffectTests.brightnessContrastNeutral") { EffectTests().brightnessContrastNeutral() }
 
