@@ -48,8 +48,8 @@ public final class AddNoiseEffect: Effect {
 }
 
 public final class MedianEffect: Effect {
-    public override var name: String { "Median" }
-    public override var category: EffectCategory { .noise }
+    public override var name: String { "Median Blur" }
+    public override var category: EffectCategory { .blurs }
     public override var parameters: [EffectParameter] {
         [
             .integer(id: "radius", label: "Radius", range: 1...200, defaultValue: 10),
@@ -363,7 +363,7 @@ public final class VignetteEffect: Effect {
         [
             .offset(id: "center", label: "Center", defaultValue: .zero),
             .double(id: "radius", label: "Radius", range: 0.1...4, defaultValue: 0.5, decimals: 2),
-            .double(id: "density", label: "Density", range: 0...1, defaultValue: 1, decimals: 2),
+            .double(id: "density", label: "Strength", range: 0...1, defaultValue: 1, decimals: 2),
         ]
     }
 

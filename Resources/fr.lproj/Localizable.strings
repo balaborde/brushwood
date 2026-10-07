@@ -25,6 +25,7 @@
 "Adjustments" = "Réglages";
 "After click" = "Après le clic";
 "After click:" = "Après le clic :";
+"Algorithm" = "Algorithme";
 "Amount" = "Quantité";
 "Anchor" = "Ancrage";
 "Angle" = "Angle";
@@ -44,6 +45,7 @@
 "Bilinear" = "Bilinéaire";
 "Bit Depth" = "Profondeur de couleur";
 "Black and White" = "Noir et blanc";
+"Blend" = "Fusionner";
 "Blend mode" = "Mode de fusion";
 "Blend modes not supported by Paint.NET" = "Modes de fusion non pris en charge par Paint.NET";
 "Blending" = "Fusion";
@@ -51,7 +53,7 @@
 "Blue" = "Bleu";
 "Blur radius" = "Rayon du flou";
 "Blurs" = "Flous";
-"Bokeh" = "Bokeh";
+"Bokeh Blur" = "Flou bokeh";
 "Bold" = "Gras";
 "Brightness" = "Luminosité";
 "Brightness / Contrast" = "Luminosité / Contraste";
@@ -66,6 +68,7 @@
 "Cancel" = "Annuler";
 "Canvas Size" = "Taille du canevas";
 "Canvas Size…" = "Taille du canevas…";
+"Cell Size" = "Taille des cellules";
 "Cell size" = "Taille des cellules";
 "Center" = "Centre";
 "Centered" = "Centré";
@@ -97,6 +100,7 @@
 "Color Mode" = "Mode couleur";
 "Color Picker" = "Pipette";
 "Color Saturation" = "Saturation des couleurs";
+"Color count" = "Nombre de couleurs";
 "Color range" = "Plage de couleurs";
 "Coloring" = "Coloration";
 "Colors" = "Couleurs";
@@ -114,6 +118,7 @@
 "Crop to Selection" = "Rogner selon la sélection";
 "Crop to Selection (⇧⌘X)" = "Rogner selon la sélection (⇧⌘X)";
 "Cross" = "Croix";
+"Crystalize" = "Cristalliser";
 "Curvature" = "Courbure";
 "Curve" = "Courbe";
 "Curves" = "Courbes";
@@ -133,7 +138,6 @@
 "Dashed Vertical" = "Tirets verticaux";
 "Decrease / increase brush width (Shift: ×10)" = "Diminuer / augmenter la largeur du pinceau (Maj : ×10)";
 "Delete Layer" = "Supprimer le calque";
-"Density" = "Densité";
 "Dents" = "Bosses";
 "Deselect" = "Désélectionner";
 "Deselect (⌘D)" = "Désélectionner (⌘D)";
@@ -141,9 +145,11 @@
 "Diagonal Cross" = "Croix en diagonale";
 "Diamond" = "Losange";
 "Difference" = "Différence";
+"Dilate" = "Dilatation";
 "Distance" = "Distance";
 "Distance metric" = "Mesure de distance";
 "Distort" = "Déformation";
+"Dithering" = "Tramage";
 "Divot" = "Gazon";
 "Do not switch tool" = "Ne pas changer d'outil";
 "Don't Save" = "Ne pas enregistrer";
@@ -173,6 +179,7 @@
 "Enter Full Screen" = "Passer en plein écran";
 "Erase Selection" = "Effacer la sélection";
 "Eraser" = "Gomme";
+"Erode" = "Érosion";
 "Euclidean" = "Euclidienne";
 "Expand canvas" = "Agrandir le canevas";
 "Explosion" = "Explosion";
@@ -201,10 +208,12 @@
 "Font:" = "Police :";
 "Format:" = "Format :";
 "Forward Diagonal" = "Diagonale avant";
-"Fragment" = "Fragmenter";
+"Fractal Sum" = "Somme fractale";
+"Fragment Blur" = "Flou fragmenté";
 "Fragments" = "Fragments";
 "Frosted Glass" = "Verre dépoli";
 "Gamma" = "Gamma";
+"Gamma Boost" = "Renforcement gamma";
 "Gaussian Blur" = "Flou gaussien";
 "General" = "Général";
 "Global" = "Global";
@@ -216,6 +225,7 @@
 "Hard Light" = "Lumière crue";
 "Hardness:" = "Dureté :";
 "Heart" = "Cœur";
+"Height" = "Hauteur";
 "Height:" = "Hauteur :";
 "Help" = "Aide";
 "Hex:" = "Hex :";
@@ -293,13 +303,16 @@
 "Mandelbrot Fractal" = "Fractale de Mandelbrot";
 "Manhattan" = "Manhattan";
 "Maximum scatter radius" = "Rayon de dispersion maximal";
-"Median" = "Médiane";
+"Median Blur" = "Flou médian";
+"Median Cut" = "Coupure médiane";
 "Merge Layer Down" = "Fusionner avec le calque inférieur";
 "Minimize" = "Placer dans le Dock";
 "Minimum scatter radius" = "Rayon de dispersion minimal";
+"Mode" = "Mode";
 "Mode:" = "Mode :";
 "Moon" = "Lune";
 "More »" = "Plus »";
+"Morphology" = "Morphologie";
 "Motion Blur" = "Flou de mouvement";
 "Move Layer Down" = "Descendre le calque";
 "Move Layer Up" = "Monter le calque";
@@ -324,6 +337,8 @@
 "OK" = "OK";
 "Object" = "Objet";
 "Octagon" = "Octogone";
+"Octaves" = "Octaves";
+"Octree" = "Octree";
 "Offset" = "Décalage";
 "Oil Painting" = "Peinture à l'huile";
 "Opacity" = "Opacité";
@@ -356,6 +371,7 @@
 "Pencil tip size" = "Taille de la mine";
 "Pentagon" = "Pentagone";
 "Percentile" = "Centile";
+"Period" = "Période";
 "Photo" = "Photo";
 "Pixel Grid" = "Grille de pixels";
 "Pixel Grid (⌘')" = "Grille de pixels (⌘')";
@@ -367,6 +383,7 @@
 "Polar Inversion" = "Inversion polaire";
 "Polygons" = "Polygones";
 "Posterize" = "Postériser";
+"Preserve transparency" = "Conserver la transparence";
 "Previous Image" = "Image précédente";
 "Primary" = "Principale";
 "Print (⌘P)" = "Imprimer (⌘P)";
@@ -374,6 +391,7 @@
 "Print…" = "Imprimer…";
 "Quality" = "Qualité";
 "Quality:" = "Qualité :";
+"Quantize" = "Quantifier";
 "Quit Brushwood" = "Quitter Brushwood";
 "RGB" = "RVB";
 "RLE compression" = "Compression RLE";
@@ -383,6 +401,7 @@
 "Radius:" = "Rayon :";
 "Random Noise" = "Bruit aléatoire";
 "Random positions and colors" = "Positions et couleurs aléatoires";
+"Randomize" = "Aléatoire";
 "Recolor" = "Recolorer";
 "Rectangle" = "Rectangle";
 "Rectangle Callout" = "Bulle rectangulaire";
@@ -474,6 +493,7 @@
 "Show points" = "Afficher les points";
 "Single Pixel" = "Pixel unique";
 "Size" = "Taille";
+"Sketch Blur" = "Flou esquisse";
 "Small Checker Board" = "Petit damier";
 "Small Grid" = "Petite grille";
 "Smoothness" = "Douceur";
@@ -487,9 +507,11 @@
 "Sphere" = "Sphère";
 "Spiral (Clockwise)" = "Spirale (sens horaire)";
 "Spiral (Counter-clockwise)" = "Spirale (sens antihoraire)";
+"Square Blur" = "Flou carré";
 "Stars" = "Étoiles";
 "Start cap" = "Extrémité de début";
 "Start:" = "Début :";
+"Straighten" = "Redresser";
 "Strength" = "Force";
 "Strikethrough" = "Barré";
 "Stylize" = "Stylisation";
@@ -526,12 +548,12 @@
 "Trellis" = "Treillis";
 "Triangle" = "Triangle";
 "Triangle Repeat" = "Répétition en triangle";
+"Turbulence" = "Turbulence";
 "Twist" = "Torsion";
 "Underline" = "Souligné";
 "Undo" = "Annuler";
 "Undo %@" = "Annuler « %@ »";
 "Undo (⌘Z)" = "Annuler (⌘Z)";
-"Unfocus" = "Défocaliser";
 "Units" = "Unités";
 "Untitled" = "Sans titre";
 "Up Arrow" = "Flèche vers le haut";
@@ -546,6 +568,7 @@
 "Weave" = "Tissage";
 "Welcome to Brushwood" = "Bienvenue dans Brushwood";
 "White" = "Blanc";
+"Width" = "Largeur";
 "Width:" = "Largeur :";
 "Window" = "Fenêtre";
 "Wrap" = "Répéter";

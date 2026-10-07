@@ -311,7 +311,7 @@ struct EffectTests {
          CurvesAdjustment(), HueSaturationAdjustment(), InvertColorsAdjustment(), LevelsAdjustment(),
          PosterizeAdjustment(), SepiaAdjustment(), InkSketchEffect(), OilPaintingEffect(),
          PencilSketchEffect(), BokehEffect(), FragmentEffect(), GaussianBlurEffect(), MotionBlurEffect(),
-         RadialBlurEffect(), SurfaceBlurEffect(), UnfocusEffect(), ZoomBlurEffect(), BulgeEffect(),
+         RadialBlurEffect(), SurfaceBlurEffect(), ZoomBlurEffect(), SketchBlurEffect(), SquareBlurEffect(), QuantizeEffect(), CrystalizeEffect(), MorphologyEffect(), StraightenEffect(), TurbulenceEffect(), BulgeEffect(),
          DentsEffect(), FrostedGlassEffect(), PixelateEffect(), PolarInversionEffect(),
          TileReflectionEffect(), TwistEffect(), AddNoiseEffect(), MedianEffect(), ReduceNoiseEffect(),
          DropShadowEffect(), FeatherEffect(), OutlineObjectEffect(), GlowEffect(), RedEyeRemovalEffect(),
@@ -327,7 +327,7 @@ struct EffectTests {
                                  CurvesAdjustment(), HueSaturationAdjustment(), InvertColorsAdjustment(), LevelsAdjustment(),
                                  PosterizeAdjustment(), SepiaAdjustment(), InkSketchEffect(), OilPaintingEffect(),
                                  PencilSketchEffect(), BokehEffect(), FragmentEffect(), GaussianBlurEffect(), MotionBlurEffect(),
-                                 RadialBlurEffect(), SurfaceBlurEffect(), UnfocusEffect(), ZoomBlurEffect(), BulgeEffect(),
+                                 RadialBlurEffect(), SurfaceBlurEffect(), ZoomBlurEffect(), SketchBlurEffect(), SquareBlurEffect(), QuantizeEffect(), CrystalizeEffect(), MorphologyEffect(), StraightenEffect(), TurbulenceEffect(), BulgeEffect(),
                                  DentsEffect(), FrostedGlassEffect(), PixelateEffect(), PolarInversionEffect(),
                                  TileReflectionEffect(), TwistEffect(), AddNoiseEffect(), MedianEffect(), ReduceNoiseEffect(),
                                  DropShadowEffect(), FeatherEffect(), OutlineObjectEffect(), GlowEffect(), RedEyeRemovalEffect(),
@@ -439,6 +439,34 @@ run("EffectTests.everyEffectRunsWithDefaults") { EffectTests().everyEffectRunsWi
 run("EffectTests.everyEffectSurvivesExtremeParameters") { EffectTests().everyEffectSurvivesExtremeParameters() }
 run("EffectTests.curveIdentityTable") { EffectTests().curveIdentityTable() }
 run("EffectTests.brightnessContrastNeutral") { EffectTests().brightnessContrastNeutral() }
+
+// `RENDER_EFFECTS=<dir> swift run selftest` writes each effect applied to a test image (visual review).
+if let out = ProcessInfo.processInfo.environment["RENDER_EFFECTS"] {
+    let w = 240, h = 160
+    let img = Surface(width: w, height: h)
+    for y in 0..<h { for x in 0..<w {
+        img[x, y] = ColorBgra(r: UInt8(x * 255 / w), g: UInt8(y * 255 / h), b: UInt8(255 - x * 255 / w))
+    } }
+    img.drawWithCoreGraphics { ctx in
+        ctx.setFillColor(CGColor(srgbRed: 1, green: 1, blue: 1, alpha: 1))
+        ctx.fillEllipse(in: CGRect(x: 30, y: 30, width: 80, height: 80))
+        ctx.setFillColor(CGColor(srgbRed: 0.1, green: 0.1, blue: 0.1, alpha: 1))
+        ctx.fill(CGRect(x: 140, y: 40, width: 70, height: 50))
+        ctx.setStrokeColor(CGColor(srgbRed: 0.9, green: 0.1, blue: 0.1, alpha: 1))
+        ctx.setLineWidth(4)
+        ctx.strokeLineSegments(between: [CGPoint(x: 10, y: 150), CGPoint(x: 230, y: 120)])
+    }
+    let names = (ProcessInfo.processInfo.environment["EFFECTS"] ?? "").split(separator: ",").map(String.init)
+    for e in EffectTests().allEffects() where names.isEmpty || names.contains(e.name) {
+        let dst = img.clone()
+        let env = EffectEnvironment(primaryColor: .black, secondaryColor: .white, selectionBounds: img.bounds, selectionMask: nil)
+        EffectRunner.run(effect: e, src: img, dst: dst, values: EffectValues(e.parameters), env: env)
+        if let png = ImageCodec.pngData(dst) {
+            try? png.write(to: URL(fileURLWithPath: out + "/" + e.name.replacingOccurrences(of: " ", with: "_")
+                .replacingOccurrences(of: "/", with: "-") + ".png"))
+        }
+    }
+}
 
 // Optional: `swift run selftest <dir>` checks .pdn decoding and blend modes against Paint.NET reference renders
 // (files from the pypdn project: FlattenBlendTest.pdn + Flatten*Test.png).

@@ -11,14 +11,16 @@ enum EffectsCatalog {
 
     static let effects: [(EffectCategory, [() -> Effect])] = [
         (.artistic, [{ InkSketchEffect() }, { OilPaintingEffect() }, { PencilSketchEffect() }]),
-        (.blurs, [{ BokehEffect() }, { FragmentEffect() }, { GaussianBlurEffect() }, { MotionBlurEffect() }, { RadialBlurEffect() },
-                  { SurfaceBlurEffect() }, { UnfocusEffect() }, { ZoomBlurEffect() }]),
-        (.distort, [{ BulgeEffect() }, { DentsEffect() }, { FrostedGlassEffect() }, { PixelateEffect() }, { PolarInversionEffect() },
-                    { TileReflectionEffect() }, { TwistEffect() }]),
-        (.noise, [{ AddNoiseEffect() }, { MedianEffect() }, { ReduceNoiseEffect() }]),
+        (.blurs, [{ BokehEffect() }, { FragmentEffect() }, { GaussianBlurEffect() }, { MedianEffect() }, { MotionBlurEffect() },
+                  { RadialBlurEffect() }, { SketchBlurEffect() }, { SquareBlurEffect() }, { SurfaceBlurEffect() }, { ZoomBlurEffect() }]),
+        (.color, [{ QuantizeEffect() }]),
+        (.distort, [{ BulgeEffect() }, { CrystalizeEffect() }, { DentsEffect() }, { FrostedGlassEffect() }, { MorphologyEffect() },
+                    { PixelateEffect() }, { PolarInversionEffect() }, { TileReflectionEffect() }, { TwistEffect() }]),
+        (.noise, [{ AddNoiseEffect() }, { ReduceNoiseEffect() }]),
         (.object, [{ DropShadowEffect() }, { FeatherEffect() }, { OutlineObjectEffect() }]),
-        (.photo, [{ GlowEffect() }, { RedEyeRemovalEffect() }, { SharpenEffect() }, { SoftenPortraitEffect() }, { VignetteEffect() }]),
-        (.render, [{ CloudsEffect() }, { JuliaFractalEffect() }, { MandelbrotFractalEffect() }, { VoronoiEffect() }]),
+        (.photo, [{ GlowEffect() }, { RedEyeRemovalEffect() }, { SharpenEffect() }, { SoftenPortraitEffect() }, { StraightenEffect() },
+                  { VignetteEffect() }]),
+        (.render, [{ CloudsEffect() }, { JuliaFractalEffect() }, { MandelbrotFractalEffect() }, { TurbulenceEffect() }, { VoronoiEffect() }]),
         (.stylize, [{ EdgeDetectEffect() }, { EmbossEffect() }, { OutlineEffect() }, { ReliefEffect() }]),
     ]
 
@@ -27,6 +29,7 @@ enum EffectsCatalog {
         case .adjustment: return "sym.circle.lefthalf.filled"
         case .artistic: return "sym.paintpalette"
         case .blurs: return "sym.drop.halffull"
+        case .color: return "sym.paintpalette"
         case .distort: return "sym.tornado"
         case .noise: return "sym.circle.grid.cross"
         case .object: return "sym.square.on.circle"

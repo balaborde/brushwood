@@ -193,33 +193,8 @@ public final class SurfaceBlurEffect: Effect {
     }
 }
 
-public final class UnfocusEffect: Effect {
-    public override var name: String { "Unfocus" }
-    public override var category: EffectCategory { .blurs }
-    public override var parameters: [EffectParameter] {
-        [.integer(id: "radius", label: "Radius", range: 1...200, defaultValue: 4)]
-    }
-
-    public override func makeRenderer(src: Surface, values: EffectValues, env: EffectEnvironment) -> EffectRenderer {
-        let radius = values.int("radius")
-        return ClosureRenderer(wholeRegion: true) { dst, rect in
-            LocalHistogram.run(src: src, dst: dst, rect: rect, radius: radius) { _, area, hb, hg, hr, ha in
-                var b = 0, g = 0, r = 0, a = 0
-                for i in 0..<256 {
-                    b += i * Int(hb[i])
-                    g += i * Int(hg[i])
-                    r += i * Int(hr[i])
-                    a += i * Int(ha[i])
-                }
-                let n = max(1, area)
-                return ColorBgra(b: UInt8(b / n), g: UInt8(g / n), r: UInt8(r / n), a: UInt8(a / n))
-            }
-        }
-    }
-}
-
 public final class FragmentEffect: Effect {
-    public override var name: String { "Fragment" }
+    public override var name: String { "Fragment Blur" }
     public override var category: EffectCategory { .blurs }
     public override var parameters: [EffectParameter] {
         [
@@ -254,7 +229,7 @@ public final class FragmentEffect: Effect {
 }
 
 public final class BokehEffect: Effect {
-    public override var name: String { "Bokeh" }
+    public override var name: String { "Bokeh Blur" }
     public override var category: EffectCategory { .blurs }
     public override var parameters: [EffectParameter] {
         [

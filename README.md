@@ -49,14 +49,16 @@ percentage or absolute size, print size), Canvas Size with anchor, Flip, Rotate 
 **Adjustments** — Auto-Level, Black and White, Brightness/Contrast, Curves (luminosity or per-channel RGB), Hue/Saturation,
 Invert Colors, Levels, Posterize, Sepia.
 
-**Effects** (all with live preview; ⌘F repeats the last one)
+**Effects** (all with live preview; ⌘F repeats the last one) — the same menu as Paint.NET 5
 - Artistic: Ink Sketch, Oil Painting, Pencil Sketch
-- Blurs: Bokeh, Fragment, Gaussian Blur, Motion Blur, Radial Blur, Surface Blur, Unfocus, Zoom Blur
-- Distort: Bulge, Dents, Frosted Glass, Pixelate, Polar Inversion, Tile Reflection, Twist
-- Noise: Add Noise, Median, Reduce Noise
+- Blurs: Bokeh Blur, Fragment Blur, Gaussian Blur, Median Blur, Motion Blur, Radial Blur, Sketch Blur, Square Blur,
+  Surface Blur, Zoom Blur
+- Color: Quantize (Octree or Median Cut, dithering)
+- Distort: Bulge, Crystalize, Dents, Frosted Glass, Morphology, Pixelate, Polar Inversion, Tile Reflection, Twist
+- Noise: Add Noise, Reduce Noise
 - Object: Drop Shadow, Feather, Outline Object
-- Photo: Glow, Red Eye Removal, Sharpen, Soften Portrait, Vignette
-- Render: Clouds, Julia Fractal, Mandelbrot Fractal, Voronoi Diagram
+- Photo: Glow, Red Eye Removal, Sharpen, Soften Portrait, Straighten, Vignette
+- Render: Clouds, Julia Fractal, Mandelbrot Fractal, Turbulence, Voronoi Diagram
 - Stylize: Edge Detect, Emboss, Outline, Relief
 
 **Colors** — primary/secondary colors, HSV wheel, 96-color palette (Paint.NET's default; load/save Paint.NET `.txt`
@@ -146,8 +148,9 @@ Strings are written in English in the source (`L("…")`). To add or update a la
 - `.pdn` files are written with the same object graph and chunked pixel layout as Paint.NET 4.21 (checked record by
   record against files saved by Paint.NET), but they have not been opened in Paint.NET itself during development. The six
   extra blend modes are saved as Normal in `.pdn` (Brushwood warns and suggests OpenRaster).
-- Several effects (for example Ink Sketch, Dents, Frosted Glass, Vignette, Bokeh and the Object effects) are
-  reimplementations with the same parameters, not exact ports, so their output can differ from Paint.NET's.
+- Several effects (for example Ink Sketch, Dents, Frosted Glass, Vignette, the Paint.NET 5 additions such as Bokeh Blur,
+  Sketch Blur, Crystalize or Turbulence, and the Object effects) are reimplementations of the documented behaviour, not
+  exact ports, so their output can differ from Paint.NET's.
 - Selection handles of Move Selected Pixels follow the axis-aligned bounds (Paint.NET rotates them with the content).
 - No plugin system, no tablet pressure, and no Windows-specific features such as scanner/camera acquisition.
 

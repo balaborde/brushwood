@@ -1,7 +1,7 @@
 import Foundation
 
 /// Circular-neighborhood sliding histograms, the engine behind Paint.NET's `LocalHistogramEffect`
-/// (Median, Reduce Noise, Sharpen, Outline, Unfocus, Surface Blur).
+/// (Median Blur, Sketch Blur, Reduce Noise, Sharpen, Outline, Surface Blur).
 public enum LocalHistogram {
     public typealias Apply = (_ src: ColorBgra, _ area: Int,
                               _ hb: UnsafeMutablePointer<Int32>, _ hg: UnsafeMutablePointer<Int32>,

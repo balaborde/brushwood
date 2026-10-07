@@ -5,6 +5,7 @@ public enum EffectCategory: String, CaseIterable {
     case adjustment = "Adjustments"
     case artistic = "Artistic"
     case blurs = "Blurs"
+    case color = "Color"
     case distort = "Distort"
     case noise = "Noise"
     case object = "Object"
