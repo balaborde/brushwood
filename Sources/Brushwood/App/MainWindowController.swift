@@ -640,9 +640,10 @@ final class MainWindowController: NSWindowController, NSWindowDelegate, NSMenuIt
             return (doc?.layers.count ?? 0) > 1
         case #selector(mergeLayerDown(_:)):
             return (doc?.activeLayerIndex ?? 0) > 0
-        case #selector(moveLayerDown(_:)):
+        case #selector(moveLayerDown(_:)), #selector(moveLayerToBottom(_:)), #selector(selectLayerBelow(_:)),
+             #selector(selectBottomLayer(_:)):
             return (doc?.activeLayerIndex ?? 0) > 0
-        case #selector(moveLayerUp(_:)):
+        case #selector(moveLayerUp(_:)), #selector(moveLayerToTop(_:)), #selector(selectLayerAbove(_:)), #selector(selectTopLayer(_:)):
             guard let doc else { return false }
             return doc.activeLayerIndex < doc.layers.count - 1
         case #selector(flatten(_:)):
@@ -982,6 +983,21 @@ final class MainWindowController: NSWindowController, NSWindowDelegate, NSMenuIt
     func moveLayer(from: Int, to: Int) {
         commitPendingTool()
         active?.moveLayer(from: from, to: to)
+    }
+
+    @objc func rotateLayer180(_ sender: Any?) {
+        commitPendingTool()
+        active?.rotateLayer180()
+    }
+
+    @objc func moveLayerToTop(_ sender: Any?) {
+        commitPendingTool()
+        active?.moveLayerToEnd(top: true)
+    }
+
+    @objc func moveLayerToBottom(_ sender: Any?) {
+        commitPendingTool()
+        active?.moveLayerToEnd(top: false)
     }
 
     @objc func flipLayerHorizontal(_ sender: Any?) {

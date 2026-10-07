@@ -336,6 +336,8 @@
 "Motion Blur" = "Flou de mouvement";
 "Move Layer Down" = "Descendre le calque";
 "Move Layer Up" = "Monter le calque";
+"Move Layer to Bottom" = "Placer le calque en bas";
+"Move Layer to Top" = "Placer le calque en haut";
 "Move Selected Pixels" = "Déplacer les pixels sélectionnés";
 "Move Selection" = "Déplacer la sélection";
 "Multiply" = "Produit";
@@ -465,6 +467,7 @@
 "Rotate 90° CW / 90° CCW / 180°" = "Rotation 90° horaire / 90° antihoraire / 180°";
 "Rotate 90° Clockwise" = "Rotation de 90° dans le sens horaire";
 "Rotate 90° Counter-clockwise" = "Rotation de 90° dans le sens antihoraire";
+"Rotate Layer 180°" = "Rotation du calque de 180°";
 "Rotation" = "Rotation";
 "Roughness" = "Rugosité";
 "Rounded" = "Arrondi";

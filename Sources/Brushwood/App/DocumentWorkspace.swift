@@ -290,13 +290,40 @@ final class DocumentWorkspace {
         }
     }
 
+    /// Layers > Import From File. Like Paint.NET, the canvas grows when the imported image is larger.
     func addLayer(surface: Surface, name: String) {
         structural(L("Import From File"), icon: "layer.import") {
-            let s = Surface(width: document.width, height: document.height)
+            let w = max(document.width, surface.width), h = max(document.height, surface.height)
+            if w != document.width || h != document.height {
+                for layer in document.layers {
+                    let grown = Surface(width: w, height: h)
+                    grown.copy(from: layer.surface, to: IntPoint(x: 0, y: 0))
+                    layer.surface = grown
+                }
+                document.replaceAll(width: w, height: h, layers: document.layers)
+            }
+            let s = Surface(width: w, height: h)
             s.copy(from: surface, to: IntPoint(x: 0, y: 0))
             let idx = document.activeLayerIndex + 1
             document.layers.insert(BitmapLayer(surface: s, properties: LayerProperties(name: name)), at: idx)
             document.activeLayerIndex = idx
+        }
+    }
+
+    func rotateLayer180() {
+        editPixels(L("Rotate Layer 180°"), icon: "cmd.rotate180", rect: document.bounds) { s in
+            s.copy(from: Resampler.rotate180(s), to: IntPoint(x: 0, y: 0))
+        }
+    }
+
+    func moveLayerToEnd(top: Bool) {
+        let idx = document.activeLayerIndex
+        let target = top ? document.layers.count - 1 : 0
+        guard idx != target else { return }
+        structural(top ? L("Move Layer to Top") : L("Move Layer to Bottom"), icon: top ? "layer.up" : "layer.down") {
+            let l = document.layers.remove(at: idx)
+            document.layers.insert(l, at: target)
+            document.activeLayerIndex = target
         }
     }
 

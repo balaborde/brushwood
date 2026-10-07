@@ -1,5 +1,8 @@
 # French UI strings for Brushwood. Keys are the English source strings (as written in Swift, with escapes).
 FR = {
+'Rotate Layer 180°': 'Rotation du calque de 180°',
+'Move Layer to Top': 'Placer le calque en haut',
+'Move Layer to Bottom': 'Placer le calque en bas',
 'Antialiasing enabled': 'Lissage activé',
 'Antialiasing disabled': 'Lissage désactivé',
 'Finish': 'Terminer',
