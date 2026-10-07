@@ -434,7 +434,8 @@ final class CanvasView: NSView {
     override func updateTrackingAreas() {
         super.updateTrackingAreas()
         if let t = trackingArea { removeTrackingArea(t) }
-        let t = NSTrackingArea(rect: .zero, options: [.mouseMoved, .mouseEnteredAndExited, .activeInKeyWindow,
+        // Active in the whole app so hovering keeps working after clicking a floating window.
+        let t = NSTrackingArea(rect: .zero, options: [.mouseMoved, .mouseEnteredAndExited, .activeInActiveApp,
                                                       .inVisibleRect, .cursorUpdate], owner: self, userInfo: nil)
         addTrackingArea(t)
         trackingArea = t
@@ -596,7 +597,7 @@ final class CanvasView: NSView {
             (panStart != nil ? NSCursor.closedHand : NSCursor.openHand).set()
             return
         }
-        guard let tool, window?.isKeyWindow == true else { return }
+        guard let tool, NSApp.isActive else { return }
         let point: CGPoint
         if let ev { point = ev.viewPoint } else {
             guard let w = window else { return }

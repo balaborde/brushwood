@@ -22,6 +22,8 @@ final class HistoryPanel: FloatingPanel, NSTableViewDataSource, NSTableViewDeleg
         table.delegate = self
         table.style = .plain
         table.allowsEmptySelection = false
+        // Letters must reach the canvas as tool shortcuts, not type-select rows.
+        table.allowsTypeSelect = false
         let scroll = NSScrollView()
         scroll.documentView = table
         scroll.hasVerticalScroller = true

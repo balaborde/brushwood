@@ -49,7 +49,8 @@ run effects "effect:Invert Colors; expect:5,5,000000; effect:Gaussian Blur; expe
  effect:Hue / Saturation; effect:Pixelate; expecthistory:5; menu:undo:; menu:undo:; menu:undo:; menu:undo:; expect:5,5,000000"
 
 run files "tool:pencil; color:FF0000; drag:1,1,1,20; menu:addLayer:; save:$OUT/t.ora; open:$OUT/t.ora; expectlayers:2;
- expect:1,10,FF0000; save:$OUT/t.png; open:$OUT/t.png; expectlayers:1; expect:1,10,FF0000"
+ expect:1,10,FF0000; save:$OUT/t.pdn; open:$OUT/t.pdn; expectlayers:2; expect:1,10,FF0000;
+ save:$OUT/t.png; open:$OUT/t.png; expectlayers:1; expect:1,10,FF0000"
 
 rm -rf "$OUT"
 [ $fail -eq 0 ] && echo "UI smoke tests passed" || { echo "UI smoke tests FAILED"; exit 1; }

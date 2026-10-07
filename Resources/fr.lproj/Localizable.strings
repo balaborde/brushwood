@@ -45,6 +45,7 @@
 "Bit Depth" = "Profondeur de couleur";
 "Black and White" = "Noir et blanc";
 "Blend mode" = "Mode de fusion";
+"Blend modes not supported by Paint.NET" = "Modes de fusion non pris en charge par Paint.NET";
 "Blending" = "Fusion";
 "Blending:" = "Fusion :";
 "Blue" = "Bleu";
@@ -258,7 +259,7 @@
 "Layer Properties" = "Propriétés du calque";
 "Layer Properties…" = "Propriétés du calque…";
 "Layer Shown" = "Calque affiché";
-"Layered images are saved in the OpenRaster format (.ora), which Krita, GIMP and MyPaint also open. Paint.NET .pdn files can be opened. PNG, JPEG, BMP, GIF, TIFF, TGA, DDS, HEIC, AVIF and ICO can be saved; WebP, JPEG XL and PSD can be opened." = "Les images à calques sont enregistrées au format OpenRaster (.ora), que Krita, GIMP et MyPaint savent aussi ouvrir. Les fichiers .pdn de Paint.NET peuvent être ouverts. Enregistrement possible en PNG, JPEG, BMP, GIF, TIFF, TGA, DDS, HEIC, AVIF et ICO ; ouverture des WebP, JPEG XL et PSD.";
+"Layered images are saved as Paint.NET files (.pdn) or in the OpenRaster format (.ora), which Krita, GIMP and MyPaint also open. PNG, JPEG, BMP, GIF, TIFF, TGA, DDS, HEIC, AVIF and ICO can be saved; WebP, JPEG XL and PSD can be opened." = "Les images à calques s'enregistrent au format Paint.NET (.pdn) ou OpenRaster (.ora), que Krita, GIMP et MyPaint savent aussi ouvrir. Enregistrement possible en PNG, JPEG, BMP, GIF, TIFF, TGA, DDS, HEIC, AVIF et ICO ; ouverture des WebP, JPEG XL et PSD.";
 "Layers" = "Calques";
 "Layers (F7)" = "Calques (F7)";
 "Left" = "Gauche";
@@ -434,6 +435,7 @@
 "Save" = "Enregistrer";
 "Save (⌘S)" = "Enregistrer (⌘S)";
 "Save All" = "Tout enregistrer";
+"Save Anyway" = "Enregistrer quand même";
 "Save As" = "Enregistrer sous";
 "Save As…" = "Enregistrer sous…";
 "Save Configuration — %@" = "Options d'enregistrement — %@";
@@ -499,6 +501,7 @@
 "Text" = "Texte";
 "The image being pasted is larger than the canvas size. What would you like to do?" = "L'image collée est plus grande que le canevas. Que voulez-vous faire ?";
 "The interface language follows the macOS system language (English and French are included)." = "La langue de l'interface suit celle de macOS (anglais et français sont inclus).";
+"These blend modes will be saved as Normal in the .pdn file: %@. Save as OpenRaster (.ora) to keep them." = "Ces modes de fusion seront enregistrés en Normal dans le fichier .pdn : %@. Enregistrez en OpenRaster (.ora) pour les conserver.";
 "Thickness" = "Épaisseur";
 "This file format does not support layers. The saved file will contain a flattened copy of the image; your layers are kept in Brushwood." = "Ce format ne gère pas les calques. Le fichier contiendra une copie aplatie de l'image ; vos calques sont conservés dans Brushwood.";
 "This is not a Paint.NET (.pdn) file." = "Ce n'est pas un fichier Paint.NET (.pdn).";

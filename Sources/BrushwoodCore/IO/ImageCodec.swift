@@ -48,7 +48,7 @@ public struct FileType: Hashable {
                                             canRead: true, canWrite: true, supportsLayers: true, supportsAlpha: true,
                                             hasQuality: false, hasBitDepth: false)
     public static let paintDotNet = FileType(id: "pdn", name: "Paint.NET Image", extensions: ["pdn"], utType: nil,
-                                             canRead: true, canWrite: false, supportsLayers: true, supportsAlpha: true,
+                                             canRead: true, canWrite: true, supportsLayers: true, supportsAlpha: true,
                                              hasQuality: false, hasBitDepth: false)
     public static let png = FileType(id: "png", name: "PNG", extensions: ["png"], utType: "public.png", canRead: true,
                                      canWrite: true, supportsLayers: false, supportsAlpha: true, hasQuality: false, hasBitDepth: true)
@@ -157,6 +157,10 @@ public enum ImageCodec {
     public static func save(_ doc: Document, to url: URL, type: FileType, options: SaveOptions) throws {
         if type == .openRaster {
             try OpenRaster.save(doc, to: url)
+            return
+        }
+        if type == .paintDotNet {
+            try PdnWriter.save(doc, to: url)
             return
         }
         guard type.canWrite, let ut = type.utType else { throw ImageCodecError.unsupportedFormat(type.name) }

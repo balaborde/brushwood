@@ -66,8 +66,8 @@ palettes), hex/RGB/HSV/alpha controls.
 
 | Format | Open | Save | Notes |
 |--------|:----:|:----:|-------|
-| OpenRaster `.ora` | ✓ | ✓ | Brushwood's layered format (also read by Krita, GIMP, MyPaint) |
-| Paint.NET `.pdn` | ✓ | | Layers, names, opacity, visibility and blend modes |
+| Paint.NET `.pdn` | ✓ | ✓ | Default for layered images. Layers, names, opacity, visibility and blend modes |
+| OpenRaster `.ora` | ✓ | ✓ | Layered format also read by Krita, GIMP and MyPaint; keeps the extra blend modes |
 | PNG, JPEG, BMP, GIF, TIFF, TGA, DDS, HEIC, AVIF, ICO | ✓ | ✓ | Quality / bit depth options, live file-size estimate |
 | WebP, JPEG XL, PSD (flattened) | ✓ | | via ImageIO |
 
@@ -109,7 +109,7 @@ The complete list is under **Help › Keyboard Shortcuts**.
 
 ```
 Sources/BrushwoodCore/     Pixel engine (no UI): surfaces, layers, blend modes, selections, history,
-                           flood fill, resampling, adjustments & effects, file formats (ORA, PDN, ImageIO)
+                           flood fill, resampling, adjustments & effects, file formats (PDN read/write, ORA, ImageIO)
 Sources/Brushwood/         AppKit application
   App/                     app delegate, menus, main window controller, documents, effects plumbing
   Canvas/                  tiled canvas view and renderer
@@ -143,7 +143,9 @@ Strings are written in English in the source (`L("…")`). To add or update a la
 
 ## Known differences from Paint.NET
 
-- Layered files are saved as OpenRaster; `.pdn` files can be opened but not written.
+- `.pdn` files are written with the same object graph and chunked pixel layout as Paint.NET 4.21 (checked record by
+  record against files saved by Paint.NET), but they have not been opened in Paint.NET itself during development. The six
+  extra blend modes are saved as Normal in `.pdn` (Brushwood warns and suggests OpenRaster).
 - Several effects (for example Ink Sketch, Dents, Frosted Glass, Vignette, Bokeh and the Object effects) are
   reimplementations with the same parameters, not exact ports, so their output can differ from Paint.NET's.
 - Selection handles of Move Selected Pixels follow the axis-aligned bounds (Paint.NET rotates them with the content).

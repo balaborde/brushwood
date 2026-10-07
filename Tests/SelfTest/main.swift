@@ -210,6 +210,33 @@ struct FileFormatTests {
         expect(back.layers[0].surface[0, 0] == .white)
     }
 
+    func pdnRoundTrip() throws {
+        let doc = Document(width: 300, height: 700, background: .white)
+        let l2 = BitmapLayer(width: 300, height: 700, name: "Ébauche “quotes” & more")
+        for y in 0..<700 { for x in 0..<300 where (x + y) % 7 == 0 { l2.surface[x, y] = ColorBgra(r: UInt8(x % 256), g: UInt8(y % 256), b: 9, a: 200) } }
+        l2.blendMode = .screen
+        l2.opacity = 77
+        l2.isVisible = false
+        doc.layers.append(l2)
+        let l3 = BitmapLayer(width: 300, height: 700, name: "Third")
+        l3.blendMode = .screen
+        doc.layers.append(l3)
+        let data = try PdnWriter.encode(doc)
+        let back = try PdnReader.decode(data)
+        expect(back.width == 300 && back.height == 700)
+        expect(back.layers.count == 3)
+        expect(back.layers[1].name == "Ébauche “quotes” & more")
+        expect(back.layers[1].blendMode == .screen && back.layers[2].blendMode == .screen)
+        expect(back.layers[1].opacity == 77 && !back.layers[1].isVisible)
+        for i in 0..<3 { expect(back.layers[i].surface.contentEquals(doc.layers[i].surface), "layer \(i) pixels") }
+        if let dir = ProcessInfo.processInfo.environment["PDN_OUT"] {
+            try data.write(to: URL(fileURLWithPath: dir + "/roundtrip.pdn"))
+            if let u3 = try? PdnReader.load(url: URL(fileURLWithPath: dir + "/Untitled3.pdn")) {
+                try PdnWriter.encode(u3).write(to: URL(fileURLWithPath: dir + "/Untitled3-rewritten.pdn"))
+            }
+        }
+    }
+
     func gzipDecode() throws {
         // gzip of "abc" produced by Python's gzip module (mtime 0).
         let gz = Data([0x1F, 0x8B, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xFF, 0x4B, 0x4C, 0x4A, 0x06, 0x00,
@@ -319,6 +346,7 @@ run("DocumentTests.structuralHistoryRestoresLayers") { DocumentTests().structura
 run("FileFormatTests.zipRoundTrip") { try FileFormatTests().zipRoundTrip() }
 run("FileFormatTests.openRasterRoundTrip") { try FileFormatTests().openRasterRoundTrip() }
 run("FileFormatTests.gzipDecode") { try FileFormatTests().gzipDecode() }
+run("FileFormatTests.pdnRoundTrip") { try FileFormatTests().pdnRoundTrip() }
 run("EffectTests.invertTwiceIsIdentity") { EffectTests().invertTwiceIsIdentity() }
 run("EffectTests.blurOfSolidColorIsUnchanged") { EffectTests().blurOfSolidColorIsUnchanged() }
 run("EffectTests.everyEffectRunsWithDefaults") { EffectTests().everyEffectRunsWithDefaults() }

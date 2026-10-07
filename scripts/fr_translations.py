@@ -38,6 +38,12 @@ FR = {
 'Bit Depth': 'Profondeur de couleur',
 'Black and White': 'Noir et blanc',
 'Blend mode': 'Mode de fusion',
+'Blend modes not supported by Paint.NET': 'Modes de fusion non pris en charge par Paint.NET',
+'These blend modes will be saved as Normal in the .pdn file: %@. Save as OpenRaster (.ora) to keep them.':
+ 'Ces modes de fusion seront enregistrés en Normal dans le fichier .pdn : %@. Enregistrez en OpenRaster (.ora) pour les conserver.',
+'Save Anyway': 'Enregistrer quand même',
+'Layered images are saved as Paint.NET files (.pdn) or in the OpenRaster format (.ora), which Krita, GIMP and MyPaint also open. PNG, JPEG, BMP, GIF, TIFF, TGA, DDS, HEIC, AVIF and ICO can be saved; WebP, JPEG XL and PSD can be opened.':
+ 'Les images à calques s\'enregistrent au format Paint.NET (.pdn) ou OpenRaster (.ora), que Krita, GIMP et MyPaint savent aussi ouvrir. Enregistrement possible en PNG, JPEG, BMP, GIF, TIFF, TGA, DDS, HEIC, AVIF et ICO ; ouverture des WebP, JPEG XL et PSD.',
 'Blending': 'Fusion',
 'Blending:': 'Fusion :',
 'Blue': 'Bleu',

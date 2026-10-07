@@ -13,6 +13,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     }
 
     func applicationDidFinishLaunching(_ notification: Notification) {
+        if Bundle.main.bundleURL.pathExtension != "app" { NSApp.applicationIconImage = AppIcon.image }
+        if let a = ProcessInfo.processInfo.environment["BRUSHWOOD_APPEARANCE"] {
+            NSApp.appearance = NSAppearance(named: a == "dark" ? .darkAqua : .aqua)
+        }
         main = MainWindowController()
         main.window?.center()
         main.showWindow(nil)

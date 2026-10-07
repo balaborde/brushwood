@@ -510,7 +510,9 @@ final class MainWindowController: NSWindowController, NSWindowDelegate, NSMenuIt
         panel.title = L("Save As")
         panel.nameFieldStringValue = (ws.fileURL?.deletingPathExtension().lastPathComponent ?? ws.displayName)
         panel.canSelectHiddenExtension = true
-        let accessory = SaveFormatAccessory(current: ws.fileType?.canWrite == true ? ws.fileType! : (ws.document.layers.count > 1 ? .openRaster : .png),
+        // Like Paint.NET, layered images default to .pdn (OpenRaster when a blend mode isn't representable in .pdn).
+        let layeredDefault: FileType = PdnWriter.unsupportedBlendModes(in: ws.document).isEmpty ? .paintDotNet : .openRaster
+        let accessory = SaveFormatAccessory(current: ws.fileType?.canWrite == true ? ws.fileType! : (ws.document.layers.count > 1 ? layeredDefault : .png),
                                             panel: panel)
         panel.accessoryView = accessory.view
         panel.beginSheetModal(for: window!) { [weak self] r in
@@ -548,6 +550,17 @@ final class MainWindowController: NSWindowController, NSWindowDelegate, NSMenuIt
         if (type.hasQuality || type.hasBitDepth) && (ws.fileType != type || ws.fileURL != url) {
             SaveOptionsDialog.run(for: ws, type: type, parent: window) { options in
                 if let options { proceed(options) } else { completion?(false) }
+            }
+        } else if type == .paintDotNet, !PdnWriter.unsupportedBlendModes(in: ws.document).isEmpty {
+            let modes = Set(PdnWriter.unsupportedBlendModes(in: ws.document)).map { L($0.displayName) }.sorted()
+            let alert = NSAlert()
+            alert.messageText = L("Blend modes not supported by Paint.NET")
+            alert.informativeText = LF("These blend modes will be saved as Normal in the .pdn file: %@. Save as OpenRaster (.ora) to keep them.",
+                                       modes.joined(separator: ", "))
+            alert.addButton(withTitle: L("Save Anyway"))
+            alert.addButton(withTitle: L("Cancel"))
+            alert.beginSheetModal(for: window!) { r in
+                if r == .alertFirstButtonReturn { proceed(ws.saveOptions) } else { completion?(false) }
             }
         } else if !type.supportsLayers && ws.document.layers.count > 1 && (ws.fileType != type || ws.fileURL != url) {
             let alert = NSAlert()

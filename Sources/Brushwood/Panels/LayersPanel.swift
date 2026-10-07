@@ -22,6 +22,8 @@ final class LayersPanel: FloatingPanel, NSTableViewDataSource, NSTableViewDelega
         table.delegate = self
         table.style = .plain
         table.allowsEmptySelection = false
+        // Letters must reach the canvas as tool shortcuts, not type-select rows.
+        table.allowsTypeSelect = false
         table.doubleAction = #selector(doubleClicked)
         table.target = self
         table.registerForDraggedTypes([LayersPanel.dragType])

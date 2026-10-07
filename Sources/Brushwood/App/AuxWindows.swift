@@ -200,7 +200,7 @@ final class HelpWindow: NSWindow {
             h(L("Editable shapes"))
             p(L("Shapes, lines, gradients, text and paint bucket fills stay editable after you draw them: drag their handles or change options in the tool bar. Press Return or switch tools to finish, Escape or ⌘Z to cancel."))
             h(L("Files"))
-            p(L("Layered images are saved in the OpenRaster format (.ora), which Krita, GIMP and MyPaint also open. Paint.NET .pdn files can be opened. PNG, JPEG, BMP, GIF, TIFF, TGA, DDS, HEIC, AVIF and ICO can be saved; WebP, JPEG XL and PSD can be opened."))
+            p(L("Layered images are saved as Paint.NET files (.pdn) or in the OpenRaster format (.ora), which Krita, GIMP and MyPaint also open. PNG, JPEG, BMP, GIF, TIFF, TGA, DDS, HEIC, AVIF and ICO can be saved; WebP, JPEG XL and PSD can be opened."))
         case .shortcuts:
             h(L("Tools"))
             for t in ToolKind.allCases { row(String(t.shortcutKey).uppercased(), t.name) }
@@ -250,11 +250,12 @@ enum DebugSnapshot {
     }
 
     /// Renders a window's content view hierarchy into a bitmap (each view drawn with cacheDisplay).
-    static func render(_ window: NSWindow) -> NSBitmapImageRep? {
+    static func render(_ window: NSWindow, overlaySubviews: Bool = true) -> NSBitmapImageRep? {
         guard let content = window.contentView else { return nil }
         content.layoutSubtreeIfNeeded()
         guard let rep = content.bitmapImageRepForCachingDisplay(in: content.bounds) else { return nil }
         content.cacheDisplay(in: content.bounds, to: rep)
+        if !overlaySubviews { return rep }
         // Caching the whole tree skips some layer-backed subviews; draw each top-level subview on top.
         NSGraphicsContext.saveGraphicsState()
         NSGraphicsContext.current = NSGraphicsContext(bitmapImageRep: rep)
@@ -292,7 +293,7 @@ enum DebugSnapshot {
         // Overlay child panels at their on-screen positions.
         let contentScreen = window.convertToScreen(content.frame)
         for child in window.childWindows ?? [] where child.isVisible {
-            guard let cv = child.contentView, let rep = render(child) else { continue }
+            guard let cv = child.contentView, let rep = render(child, overlaySubviews: false) else { continue }
             let cf = child.convertToScreen(cv.frame)
             let r = NSRect(x: cf.minX - contentScreen.minX, y: cf.minY - contentScreen.minY, width: cf.width, height: cf.height)
             rep.draw(in: r)

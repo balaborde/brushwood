@@ -22,7 +22,11 @@ enum Icons {
     static let orange = NSColor(srgbRed: 0.96, green: 0.55, blue: 0.12, alpha: 1)
     static let purple = NSColor(srgbRed: 0.55, green: 0.3, blue: 0.8, alpha: 1)
     static let gray = NSColor(srgbRed: 0.45, green: 0.47, blue: 0.5, alpha: 1)
-    static let dark = NSColor(srgbRed: 0.2, green: 0.22, blue: 0.25, alpha: 1)
+    /// Outline color that stays readable in light and dark appearance (icons are redrawn per appearance).
+    static let dark = NSColor(name: nil) { a in
+        a.bestMatch(from: [.darkAqua, .aqua]) == .darkAqua
+            ? NSColor(srgbRed: 0.86, green: 0.87, blue: 0.9, alpha: 1) : NSColor(srgbRed: 0.2, green: 0.22, blue: 0.25, alpha: 1)
+    }
     static let wood = NSColor(srgbRed: 0.72, green: 0.5, blue: 0.28, alpha: 1)
 
     private static func symbol(_ name: String, size: CGFloat, colors: [NSColor], weight: NSFont.Weight = .regular) -> NSImage {
@@ -60,10 +64,13 @@ enum Icons {
         }
     }
 
+    /// Contrasting base under dashed outlines (white in light mode, black in dark mode).
+    static let dashBase = NSColor(name: nil) { a in a.bestMatch(from: [.darkAqua, .aqua]) == .darkAqua ? .black : .white }
+
     private static func dashedRect(_ r: NSRect, color: NSColor = dark) {
         let p = NSBezierPath(rect: r)
         p.lineWidth = 1.2
-        NSColor.white.setStroke()
+        dashBase.setStroke()
         p.stroke()
         p.setLineDash([2, 1.5], count: 2, phase: 0)
         color.setStroke()
@@ -73,7 +80,7 @@ enum Icons {
     private static func dashedOval(_ r: NSRect) {
         let p = NSBezierPath(ovalIn: r)
         p.lineWidth = 1.2
-        NSColor.white.setStroke()
+        dashBase.setStroke()
         p.stroke()
         p.setLineDash([2, 1.5], count: 2, phase: 0)
         dark.setStroke()
@@ -129,7 +136,7 @@ enum Icons {
                 p.curve(to: NSPoint(x: 8, y: 5), controlPoint1: NSPoint(x: 15, y: 9), controlPoint2: NSPoint(x: 12, y: 5))
                 p.curve(to: NSPoint(x: 4, y: 1), controlPoint1: NSPoint(x: 5, y: 5), controlPoint2: NSPoint(x: 3, y: 3))
                 p.lineWidth = 1.2
-                NSColor.white.setStroke(); p.stroke()
+                dashBase.setStroke(); p.stroke()
                 p.setLineDash([2, 1.5], count: 2, phase: 0)
                 dark.setStroke(); p.stroke()
             }
@@ -175,7 +182,7 @@ enum Icons {
         case "tool.gradient":
             return vector(size) {
                 let r = NSRect(x: 1.5, y: 2.5, width: 13, height: 11)
-                NSGradient(starting: dark, ending: NSColor.white)?.draw(in: NSBezierPath(rect: r), angle: 0)
+                NSGradient(starting: NSColor(white: 0.15, alpha: 1), ending: NSColor.white)?.draw(in: NSBezierPath(rect: r), angle: 0)
                 gray.setStroke()
                 NSBezierPath(rect: r).stroke()
             }
