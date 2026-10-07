@@ -1,0 +1,44 @@
+{
+    "configurations": [
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:brushwood}",
+            "name": "Debug Brushwood",
+            "target": "Brushwood",
+            "configuration": "debug",
+            "preLaunchTask": "swift: Build Debug Brushwood"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:brushwood}",
+            "name": "Release Brushwood",
+            "target": "Brushwood",
+            "configuration": "release",
+            "preLaunchTask": "swift: Build Release Brushwood"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:brushwood}",
+            "name": "Debug selftest",
+            "target": "selftest",
+            "configuration": "debug",
+            "preLaunchTask": "swift: Build Debug selftest"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:brushwood}",
+            "name": "Release selftest",
+            "target": "selftest",
+            "configuration": "release",
+            "preLaunchTask": "swift: Build Release selftest"
+        }
+    ]
+}
