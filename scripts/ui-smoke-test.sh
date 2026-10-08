@@ -90,5 +90,10 @@ run keyboard "tool:paintbrush; color:FF0000; width:10; drag:100,100,300,100; exp
  keyeq:i,cmd,shift; expect:10,10,000000; keyeq:z,cmd; expect:10,10,FFFFFF; select:0,0,400,300; keyeq:x,cmd,shift;
  expectsize:400,300; keyeq:z,cmd; expectsize:800,600"
 
+run width "tool:paintbrush; width:2; widthcombo:select,25; expectwidth:25; color:FF0000; drag:100,100,300,100;
+ expect:200,106,FF0000,8; expect:200,120,FFFFFF; widthcombo:type,40; expectwidth:40; widthcombo:blur; expectwidth:40; drag:100,300,300,300;
+ expect:200,312,FF0000,8; expect:200,330,FFFFFF; widthcombo:wheel,up; expectwidth:45; widthcombo:wheel,down; widthcombo:wheel,down; expectwidth:35;
+ tool:eraser; expectwidth:35; widthcombo:type,3; widthcombo:blur; expectwidth:3"
+
 rm -rf "$OUT"
 [ $fail -eq 0 ] && echo "UI smoke tests passed" || { echo "UI smoke tests FAILED"; exit 1; }

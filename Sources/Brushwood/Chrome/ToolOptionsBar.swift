@@ -10,6 +10,8 @@ final class ToolOptionsBar: NSView {
     private var observers: [NSObjectProtocol] = []
     private var updating = false
     private var refreshers: [() -> Void] = []
+    /// Exposed for the scripted UI tests.
+    private(set) weak var brushWidthCombo: NumberComboBox?
 
     var env: AppEnvironment { .shared }
     var s: ToolSettings { env.tools }
@@ -333,27 +335,27 @@ final class ToolOptionsBar: NSView {
 
     private func brushWidth() {
         add(toolbarLabel(L("Brush width:")))
-        let combo = NSComboBox()
+        let combo = NumberComboBox(presets: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60,
+                                             65, 70, 75, 80, 85, 90, 95, 100, 125, 150, 175, 200, 225, 250, 275, 300, 350, 400,
+                                             450, 500, 750, 1000, 1500, 2000], range: 1...2000)
         combo.controlSize = .small
         combo.font = .systemFont(ofSize: NSFont.smallSystemFontSize)
-        combo.addItems(withObjectValues: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60,
-                                          65, 70, 75, 80, 85, 90, 95, 100, 125, 150, 175, 200, 225, 250, 275, 300, 350, 400, 450,
-                                          500, 750, 1000, 1500, 2000].map { "\($0)" })
-        combo.numberOfVisibleItems = 16
         combo.translatesAutoresizingMaskIntoConstraints = false
         combo.widthAnchor.constraint(equalToConstant: 64).isActive = true
-        combo.onAction { [weak self] _ in
-            let v = combo.doubleValue
-            if v >= 1 { self?.s.brushWidth = CGFloat(min(2000, v)) }
-        }
-        refreshers.append { [weak self] in combo.stringValue = "\(Int(self?.s.brushWidth ?? 2))" }
+        combo.toolTip = L("Brush width (mouse wheel, [ and ] also change it)")
+        combo.onValue = { [weak self] v in self?.s.brushWidth = CGFloat(v) }
+        refreshers.append { [weak self, weak combo] in combo?.show(Double(self?.s.brushWidth ?? 2)) }
         add(combo)
+        brushWidthCombo = combo
         let stepper = NSStepper()
         stepper.controlSize = .small
         stepper.minValue = 1
         stepper.maxValue = 2000
-        stepper.onAction { [weak self] _ in self?.s.brushWidth = CGFloat(stepper.doubleValue) }
-        refreshers.append { [weak self] in stepper.doubleValue = Double(self?.s.brushWidth ?? 2) }
+        stepper.onAction { [weak self, weak stepper] _ in
+            guard let stepper else { return }
+            self?.s.brushWidth = CGFloat(stepper.doubleValue)
+        }
+        refreshers.append { [weak self, weak stepper] in stepper?.doubleValue = Double(self?.s.brushWidth ?? 2) }
         add(stepper)
     }
 
@@ -444,16 +446,14 @@ final class ToolOptionsBar: NSView {
         fontPopup.translatesAutoresizingMaskIntoConstraints = false
         fontPopup.widthAnchor.constraint(lessThanOrEqualToConstant: 150).isActive = true
         add(fontPopup)
-        let size = NSComboBox()
+        let size = NumberComboBox(presets: [8, 9, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26, 28, 36, 48, 72, 96, 144, 288],
+                                  range: 1...2000)
         size.controlSize = .small
         size.font = .systemFont(ofSize: NSFont.smallSystemFontSize)
-        size.addItems(withObjectValues: [8, 9, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26, 28, 36, 48, 72, 96, 144, 288].map { "\($0)" })
         size.translatesAutoresizingMaskIntoConstraints = false
         size.widthAnchor.constraint(equalToConstant: 56).isActive = true
-        size.onAction { [weak self] _ in
-            if size.doubleValue > 0 { self?.s.fontSize = CGFloat(size.doubleValue) }
-        }
-        refreshers.append { [weak self] in size.stringValue = "\(Int(self?.s.fontSize ?? 12))" }
+        size.onValue = { [weak self] v in self?.s.fontSize = CGFloat(v) }
+        refreshers.append { [weak self, weak size] in size?.show(Double(self?.s.fontSize ?? 12)) }
         add(size)
         let styles: [(String, ReferenceWritableKeyPath<ToolSettings, Bool>, String)] = [
             ("bold", \.bold, L("Bold")), ("italic", \.italic, L("Italic")), ("underline", \.underline, L("Underline")),

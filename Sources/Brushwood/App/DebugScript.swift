@@ -90,6 +90,36 @@ enum DebugScript {
                            "selection = \(b.map { "\($0)" } ?? "none"), expected \(arg)")
                 }
             case "log": print("LOG \(arg)")
+            case "widthcombo":
+                // widthcombo:select,25 | widthcombo:type,40 | widthcombo:wheel,up|down | widthcombo:blur
+                guard let combo = c.optionsBar.brushWidthCombo else {
+                    report(false, "no brush width combo")
+                    break
+                }
+                let f = arg.split(separator: ",").map(String.init)
+                switch f[0] {
+                case "select":
+                    let i = combo.indexOfItem(withObjectValue: f[1])
+                    combo.selectItem(at: i)
+                case "type":
+                    // Real typing path: focus the field, replace its text through the field editor.
+                    c.window?.makeFirstResponder(combo)
+                    if let editor = combo.currentEditor() as? NSTextView {
+                        editor.selectAll(nil)
+                        editor.insertText(f[1], replacementRange: editor.selectedRange())
+                    }
+                case "wheel":
+                    if let cg = CGEvent(scrollWheelEvent2Source: nil, units: .line, wheelCount: 1, wheel1: f[1] == "up" ? 3 : -3,
+                                        wheel2: 0, wheel3: 0), let e = NSEvent(cgEvent: cg) {
+                        combo.scrollWheel(with: e)
+                    }
+                case "blur":
+                    c.window?.makeFirstResponder(c.canvas)
+                default: break
+                }
+            case "expectwidth":
+                let w = AppEnvironment.shared.tools.brushWidth
+                report(abs(w - CGFloat(nums.first ?? -1)) < 0.01, "brush width = \(w), expected \(arg)")
             case "keyeq":
                 // keyeq:z,cmd[,shift] sends a real key event through NSApp (menu key equivalents, validation,
                 // responder chain), the same path as typing on the keyboard.

@@ -97,6 +97,8 @@ extension NSControl {
         objc_setAssociatedObject(self, &trampolineKey, t, .OBJC_ASSOCIATION_RETAIN)
         target = t
         action = #selector(ActionTrampoline.fire(_:))
+        // Text fields also commit when focus leaves them (clicking the canvas, OK...), not only on Return.
+        if self is NSTextField { (cell as? NSTextFieldCell)?.sendsActionOnEndEditing = true }
     }
 }
 
@@ -234,4 +236,75 @@ final class ColorSwatchButton: NSView {
     }
 
     override func mouseDown(with event: NSEvent) { onClick?() }
+}
+
+/// Editable number combo box (brush width, font size) that applies values the way Paint.NET does:
+/// while typing, when an item is picked from the list, with the mouse wheel, and on Return / focus loss.
+final class NumberComboBox: NSComboBox, NSComboBoxDelegate {
+    var onValue: ((Double) -> Void)?
+    private let range: ClosedRange<Double>
+    private let presets: [Double]
+
+    init(presets: [Double], range: ClosedRange<Double>) {
+        self.range = range
+        self.presets = presets
+        super.init(frame: .zero)
+        addItems(withObjectValues: presets.map { Self.format($0) })
+        numberOfVisibleItems = 16
+        completes = false
+        delegate = self
+        target = self
+        action = #selector(committed)
+        (cell as? NSTextFieldCell)?.sendsActionOnEndEditing = true
+    }
+
+    required init?(coder: NSCoder) { fatalError() }
+
+    static func format(_ v: Double) -> String {
+        v == v.rounded() ? "\(Int(v))" : String(format: "%.1f", v)
+    }
+
+    /// Shows a value without notifying (does nothing while the user is typing in the field).
+    func show(_ v: Double) {
+        if currentEditor() != nil { return }
+        stringValue = Self.format(v)
+    }
+
+    private func parse(_ s: String) -> Double? {
+        let t = s.trimmingCharacters(in: .whitespaces).replacingOccurrences(of: ",", with: ".")
+        guard let v = Double(t), v >= range.lowerBound else { return nil }
+        return min(range.upperBound, v)
+    }
+
+    @objc private func committed() {
+        if let v = parse(stringValue) { onValue?(v) } else { stringValue = "" }
+    }
+
+    // Picking from the list: the selected item is authoritative (stringValue may still hold the old text).
+    func comboBoxSelectionDidChange(_ notification: Notification) {
+        guard indexOfSelectedItem >= 0, let s = objectValueOfSelectedItem as? String, let v = parse(s) else { return }
+        onValue?(v)
+    }
+
+    // Typing applies immediately, without needing Return.
+    func controlTextDidChange(_ obj: Notification) {
+        let text = (currentEditor()?.string) ?? stringValue
+        if let v = parse(text) { onValue?(v) }
+    }
+
+    // Mouse wheel steps through the preset list, like Paint.NET's tool bar.
+    override func scrollWheel(with event: NSEvent) {
+        let delta = event.hasPreciseScrollingDeltas ? event.scrollingDeltaY / 8 : event.scrollingDeltaY
+        guard abs(delta) >= 0.5, let current = parse(stringValue) else { return }
+        let next: Double?
+        if delta > 0 {
+            next = presets.first { $0 > current }
+        } else {
+            next = presets.last { $0 < current }
+        }
+        if let next {
+            stringValue = Self.format(next)
+            onValue?(next)
+        }
+    }
 }
