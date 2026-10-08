@@ -49,7 +49,11 @@ enum DebugScript {
             case "key":
                 if arg == "return" { c.canvas.tool?.commit() } else if arg == "escape" { c.canvas.tool?.cancel() }
             case "menu":
-                NSApp.sendAction(Selector(arg), to: c, from: nil)
+                if c.responds(to: Selector(arg)) {
+                    NSApp.sendAction(Selector(arg), to: c, from: nil)
+                } else {
+                    report(false, "unknown action \(arg)")
+                }
             case "effect":
                 let all = EffectsCatalog.adjustments + EffectsCatalog.effects.flatMap(\.1)
                 if let f = all.first(where: { $0().name.lowercased() == arg.lowercased() }) {
@@ -86,6 +90,27 @@ enum DebugScript {
                            "selection = \(b.map { "\($0)" } ?? "none"), expected \(arg)")
                 }
             case "log": print("LOG \(arg)")
+            case "keyeq":
+                // keyeq:z,cmd[,shift] sends a real key event through NSApp (menu key equivalents, validation,
+                // responder chain), the same path as typing on the keyboard.
+                let f = arg.split(separator: ",").map(String.init)
+                var flags: NSEvent.ModifierFlags = []
+                if f.contains("cmd") { flags.insert(.command) }
+                if f.contains("shift") { flags.insert(.shift) }
+                if f.contains("opt") { flags.insert(.option) }
+                let key = f[0] == "delete" ? "\u{8}" : f[0]
+                let codes: [String: UInt16] = ["z": 6, "y": 16, "a": 0, "d": 2, "\u{8}": 51, "=": 24, "+": 24, "-": 27, "n": 45,
+                                               "i": 34, "s": 1, "c": 8, "v": 9, "x": 7, "f": 3, "b": 11, "l": 37]
+                for type in [NSEvent.EventType.keyDown, .keyUp] {
+                    if let e = NSEvent.keyEvent(with: type, location: .zero, modifierFlags: flags, timestamp: ProcessInfo.processInfo.systemUptime,
+                                                windowNumber: c.window?.windowNumber ?? 0, context: nil,
+                                                characters: flags.contains(.shift) ? key.uppercased() : key,
+                                                // Like a real keyboard: Shift still applies to charactersIgnoringModifiers.
+                                                charactersIgnoringModifiers: flags.contains(.shift) ? key.uppercased() : key,
+                                                isARepeat: false, keyCode: codes[key] ?? 0) {
+                        NSApp.sendEvent(e)
+                    }
+                }
             case "setting":
                 // setting:name=value for a few tool options (exercises live re-rendering of pending edits).
                 let kv = arg.split(separator: "=").map(String.init)

@@ -612,6 +612,14 @@ final class MainWindowController: NSWindowController, NSWindowDelegate, NSMenuIt
 
     func validateMenuItem(_ item: NSMenuItem) -> Bool {
         guard let action = item.action else { return true }
+        // Typing undo in a text field (dialogs included) goes to that field.
+        if let tv = editingTextView, action == #selector(undo(_:)) || action == #selector(redo(_:)) {
+            let um = tv.undoManager
+            item.title = action == #selector(undo(_:)) ? L("Undo") : L("Redo")
+            return action == #selector(undo(_:)) ? um?.canUndo == true : um?.canRedo == true
+        }
+        // Nothing may change the image while a dialog (effect, resize, properties…) is open.
+        if NSApp.modalWindow != nil { return false }
         let doc = active?.document
         let hasDoc = doc != nil
         let hasSel = doc?.selection != nil
@@ -753,7 +761,19 @@ final class MainWindowController: NSWindowController, NSWindowDelegate, NSMenuIt
 
     // MARK: - Edit actions
 
-    @objc func undo(_ sender: Any?) {
+    /// Text field being edited in the key window (dialogs, Colors hex field), whose own typing undo should win.
+    private var editingTextView: NSTextView? {
+        guard let tv = NSApp.keyWindow?.firstResponder as? NSTextView, tv.isEditable else { return nil }
+        return tv
+    }
+
+    // NSWindow itself implements `undo:` / `redo:` (backed by its own, empty NSUndoManager) and sits before this
+    // controller in the responder chain, so the image history uses its own selectors or ⌘Z would just beep.
+    @objc(brushwoodUndo:) func undo(_ sender: Any?) {
+        if let tv = editingTextView {
+            tv.undoManager?.undo()
+            return
+        }
         guard let doc = active?.document else { return }
         if tool?.hasPendingEdits == true {
             // Undoing while editing discards the uncommitted edit (Paint.NET behaviour).
@@ -763,7 +783,11 @@ final class MainWindowController: NSWindowController, NSWindowDelegate, NSMenuIt
         doc.history.undo()
     }
 
-    @objc func redo(_ sender: Any?) {
+    @objc(brushwoodRedo:) func redo(_ sender: Any?) {
+        if let tv = editingTextView {
+            tv.undoManager?.redo()
+            return
+        }
         commitPendingTool()
         active?.document.history.redo()
     }

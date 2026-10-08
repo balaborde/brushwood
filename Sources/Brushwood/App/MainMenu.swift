@@ -31,6 +31,13 @@ enum MainMenu {
     @discardableResult
     private static func add(_ menu: NSMenu, _ title: String, _ action: Selector?, _ key: String = "",
                             _ mods: NSEvent.ModifierFlags = [.command], icon: String? = nil, target: AnyObject? = nil) -> NSMenuItem {
+        var key = key, mods = mods
+        // AppKit matches Shift+letter shortcuts written Apple's way: an uppercase letter without the Shift flag.
+        // ("z" + ⇧⌘ never fires and lets the plain ⌘Z item swallow the key.)
+        if mods.contains(.shift), key.count == 1, let ch = key.first, ch.isLetter, ch.isLowercase {
+            key = key.uppercased()
+            mods.remove(.shift)
+        }
         let item = NSMenuItem(title: title, action: action, keyEquivalent: key)
         item.keyEquivalentModifierMask = key.isEmpty ? [] : mods
         if let icon { item.image = Icons.image(icon, size: 16) }

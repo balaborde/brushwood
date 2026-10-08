@@ -24,8 +24,10 @@ final class HistoryPanel: FloatingPanel, NSTableViewDataSource, NSTableViewDeleg
         table.action = #selector(rowClicked)
         table.style = .plain
         table.allowsEmptySelection = false
-        // Letters must reach the canvas as tool shortcuts, not type-select rows.
+        // Letters must reach the canvas as tool shortcuts, not type-select rows, and ⌘A / ⌘Z must reach the image:
+        // the list never takes keyboard focus (clicking still selects rows).
         table.allowsTypeSelect = false
+        table.refusesFirstResponder = true
         let scroll = NSScrollView()
         scroll.documentView = table
         scroll.hasVerticalScroller = true
