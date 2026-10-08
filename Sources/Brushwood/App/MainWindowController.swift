@@ -93,7 +93,6 @@ final class MainWindowController: NSWindowController, NSWindowDelegate, NSMenuIt
             optionsBar.topAnchor.constraint(equalTo: mainToolbar.bottomAnchor),
             optionsBar.leadingAnchor.constraint(equalTo: content.leadingAnchor),
             optionsBar.trailingAnchor.constraint(equalTo: content.trailingAnchor),
-            optionsBar.heightAnchor.constraint(equalToConstant: 32),
             scrollView.topAnchor.constraint(equalTo: optionsBar.bottomAnchor),
             scrollView.leadingAnchor.constraint(equalTo: content.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: content.trailingAnchor),

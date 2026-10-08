@@ -51,6 +51,8 @@ enum DebugScript {
             case "menu":
                 if c.responds(to: Selector(arg)) {
                     NSApp.sendAction(Selector(arg), to: c, from: nil)
+                } else if let d = NSApp.delegate as? NSObject, d.responds(to: Selector(arg)) {
+                    NSApp.sendAction(Selector(arg), to: d, from: nil)
                 } else {
                     report(false, "unknown action \(arg)")
                 }
@@ -251,6 +253,25 @@ enum DebugScript {
             case "select" where nums.count >= 4:
                 c.active?.changeSelection(to: Selection.rect(CGRect(x: nums[0], y: nums[1], width: nums[2], height: nums[3])),
                                           name: "Select")
+            case "fitreport":
+                // Localization check: lists controls too narrow for their text, for every tool's options and every window.
+                for t in ToolKind.allCases {
+                    c.selectTool(t)
+                    c.window?.contentView?.layoutSubtreeIfNeeded()
+                    reportFit(c.optionsBar, context: "tool \(t)")
+                    if c.optionsBar.contentWidth > c.optionsBar.bounds.width {
+                        print("WRAPS tool \(t) needs \(Int(c.optionsBar.contentWidth)) of \(Int(c.optionsBar.bounds.width))")
+                    }
+                }
+                for w in NSApp.windows where w.isVisible {
+                    guard let v = w.contentView else { continue }
+                    v.layoutSubtreeIfNeeded()
+                    reportFit(v, context: "window '\(w.title)'")
+                    if v.fittingSize.width > v.bounds.width + 1 {
+                        print("OVERFLOW window '\(w.title)' needs \(Int(v.fittingSize.width)) of \(Int(v.bounds.width))")
+                    }
+                }
+                fflush(stdout)
             case "panel":
                 let f = c.window!.frame
                 c.window?.setFrame(NSRect(x: f.minX, y: f.minY, width: nums.first ?? f.width, height: nums.count > 1 ? nums[1] : f.height),
@@ -262,6 +283,28 @@ enum DebugScript {
     }
 
     private enum Phase { case down, drag, up }
+
+    private static func reportFit(_ v: NSView, context: String) {
+        for sub in v.subviews where !sub.isHidden {
+            if let ctl = sub as? NSControl, !(ctl is NSSlider), !(ctl is NSStepper),
+               (ctl as? NSPopUpButton)?.imagePosition != .imageOnly {
+                var need = ctl.intrinsicContentSize.width
+                if let p = ctl as? NSPopUpButton, let font = p.font, p.imagePosition != .imageOnly {
+                    // A pop-up's intrinsic width fits its widest item; only the selected one is shown.
+                    func w(_ s: String) -> CGFloat { (s as NSString).size(withAttributes: [.font: font]).width }
+                    let chrome = need - (p.itemTitles.map(w).max() ?? 0)
+                    need = chrome + w(p.titleOfSelectedItem ?? "")
+                    let long = p.itemTitles.filter { !$0.isEmpty && chrome + w($0) > p.frame.width + 1 }
+                    if !long.isEmpty { print("ITEMS \(context) [\(Int(p.frame.width))] " + long.joined(separator: " | ")) }
+                }
+                if need != NSView.noIntrinsicMetric, need > ctl.frame.width + 1 {
+                    let text = (ctl as? NSPopUpButton)?.titleOfSelectedItem ?? (ctl as? NSButton)?.title ?? ctl.stringValue
+                    print("TRUNC \(context) \(type(of: ctl)) '\(text)' needs \(Int(need)) of \(Int(ctl.frame.width))")
+                }
+            }
+            reportFit(sub, context: context)
+        }
+    }
 
     private static func report(_ ok: Bool, _ message: String) {
         print("\(ok ? "PASS" : "FAIL") \(message)")

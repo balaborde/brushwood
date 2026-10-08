@@ -1,0 +1,635 @@
+# Русский (ru) UI strings: one "English source string|translation" per line. The English side is exactly
+# as written in the Swift source (escapes included); run scripts/gen_strings.py after editing.
+T = dict(line.split('|', 1) for line in r"""
+%@ copy|%@ (копия)
+%d x %d Region|Область %d x %d
+10 Percent|10 процентов
+20 Percent|20 процентов
+24-bit|24 бита
+25 Percent|25 процентов
+32-bit|32 бита
+4 Point Star|4-конечная звезда
+5 Percent|5 процентов
+5 Point Star|5-конечная звезда
+50 Percent|50 процентов
+6 Point Star|6-конечная звезда
+75 Percent|75 процентов
+8 Point Star|8-конечная звезда
+90 Percent|90 процентов
+A free, open-source image editor for macOS, modeled on the workflow of Paint.NET.\n\nLicensed under the MIT License.\nNot affiliated with or endorsed by dotPDN LLC. Paint.NET is a trademark of its respective owner.|Бесплатный графический редактор с открытым исходным кодом для macOS, повторяющий принципы работы Paint.NET.\n\nРаспространяется по лицензии MIT.\nНе связан с dotPDN LLC и не одобрен ею. Paint.NET является товарным знаком своего владельца.
+About Brushwood|О программе Brushwood
+Actual Size|Реальный размер
+Add (union)|Добавить (объединение)
+Add New Layer|Добавить новый слой
+Add Noise|Добавить шум
+Additive|Сложение
+Adjustments|Коррекция
+After click|После щелчка
+After click:|После щелчка:
+Algorithm|Алгоритм
+Aliased|Без сглаживания
+Amount|Количество
+Anchor|Привязка
+Angle|Угол
+Antialias selection edges when clipping|Сглаживать края выделения при обрезке
+Antialiased|Со сглаживанием
+Antialiasing|Сглаживание
+Antialiasing disabled|Сглаживание выключено
+Antialiasing enabled|Сглаживание включено
+Appearance|Оформление
+Arrow|Стрелка
+Arrows|Стрелки
+Artistic|Художественные
+Auto|Авто
+Auto-Level|Автоуровень
+Auto-Level, Black and White, Brightness / Contrast, Curves|Автоуровень, Черно-белое, Яркость / Контраст, Кривые
+Auto-detect|Автоопределение
+Background|Фон
+Backward Diagonal|Обратная диагональ
+Basic|Основные
+Best Quality|Наилучшее качество
+Bicubic|Бикубическая
+Bilinear|Билинейная
+Bit Depth|Глубина цвета
+Black and White|Черно-белое
+Blend|Смешать
+Blend mode|Режим наложения
+Blend modes not supported by Paint.NET|Режимы наложения, не поддерживаемые Paint.NET
+Blending|Наложение
+Blending:|Наложение:
+Blue|Синий
+Blur radius|Радиус размытия
+Blurs|Размытие
+Bokeh Blur|Размытие боке
+Bold|Жирный
+Brightness|Яркость
+Brightness / Contrast|Яркость / Контраст
+Brush size|Размер кисти
+Brush width (mouse wheel, [ and ] also change it)|Ширина кисти (также меняется колесиком мыши и клавишами [ и ])
+Brush width:|Ширина кисти:
+Brushwood Help|Справка Brushwood
+Brushwood is a free image editor for macOS whose workflow follows Paint.NET: one main window with image tabs, floating Tools, History, Layers and Colors windows, layers with blend modes, unlimited history, and a large set of adjustments and effects with live preview.|Brushwood — бесплатный графический редактор для macOS, работающий как Paint.NET: одно главное окно с вкладками изображений, плавающие окна «Инструменты», «Журнал», «Слои» и «Цвета», слои с режимами наложения, неограниченный журнал действий и большой набор коррекций и эффектов с предварительным просмотром.
+Bulge|Выпуклость
+By absolute size|По абсолютному размеру
+By percentage:|В процентах:
+Callouts|Выноски
+Cancel|Отменить
+Canvas Size|Размер холста
+Canvas Size…|Размер холста…
+Cell Size|Размер ячейки
+Cell size|Размер ячейки
+Center|По центру
+Centered|По центру
+Centimeters|Сантиметры
+Chebyshev|Чебышёва
+Chevron|Шеврон
+Clamp|Ограничить
+Clear Menu|Очистить меню
+Click and drag to draw a gradient from the primary to the secondary color. Right mouse button reverses the colors.|Щелкните и перетащите, чтобы нарисовать градиент от основного цвета к вторичному. Правая кнопка мыши меняет цвета местами.
+Click and drag to draw a line. Then drag the handles to bend it into a curve. Press Enter to finish.|Щелкните и перетащите, чтобы нарисовать линию. Затем перетаскивайте маркеры, чтобы изогнуть ее. Нажмите Return, чтобы завершить.
+Click and drag to draw a rectangular selection. Hold Shift to constrain to a square. ⌘ adds, ⌥ subtracts, right-click inverts.|Щелкните и перетащите, чтобы создать прямоугольное выделение. Shift ограничивает его квадратом. ⌘ добавляет, ⌥ вычитает, правый щелчок инвертирует.
+Click and drag to draw a shape. Drag the handles to adjust it. Press Enter to finish.|Щелкните и перетащите, чтобы нарисовать фигуру. Настройте ее маркерами. Нажмите Return, чтобы завершить.
+Click and drag to draw an elliptical selection. Hold Shift to constrain to a circle. ⌘ adds, ⌥ subtracts, right-click inverts.|Щелкните и перетащите, чтобы создать эллиптическое выделение. Shift ограничивает его кругом. ⌘ добавляет, ⌥ вычитает, правый щелчок инвертирует.
+Click and drag to draw the outline of a selection area. ⌘ adds, ⌥ subtracts, right-click inverts.|Щелкните и перетащите, чтобы обвести область выделения. ⌘ добавляет, ⌥ вычитает, правый щелчок инвертирует.
+Click and drag to erase a portion of the image.|Щелкните и перетащите, чтобы стереть часть изображения.
+Click and drag to navigate the image.|Щелкните и перетащите, чтобы перемещаться по изображению.
+Click to add a point, drag to move it, right-click to remove it.|Щелкните, чтобы добавить точку, перетащите, чтобы переместить ее, щелкните правой кнопкой, чтобы удалить.
+Click to select a region of similar color. ⌘ adds, ⌥ subtracts, right-click inverts. Shift-click for global selection.|Щелкните, чтобы выделить область похожего цвета. ⌘ добавляет, ⌥ вычитает, правый щелчок инвертирует. Shift-щелчок — глобальное выделение.
+Clipping:|Обрезка:
+Clone Stamp|Клонирующий штамп
+Clone source set at %d, %d|Источник клонирования: %d, %d
+Close|Закрыть
+Close Others|Закрыть остальные
+Cloud|Облако
+Clouds|Облака
+Coarseness|Зернистость
+Color|Цвет
+Color Burn|Затемнение основы
+Color Dodge|Осветление основы
+Color Mode|Цветовой режим
+Color Picker|Пипетка
+Color Saturation|Насыщенность цвета
+Color count|Число цветов
+Color range|Диапазон цветов
+Coloring|Окрашивание
+Colors|Цвета
+Colors (F8)|Цвета (F8)
+Commands|Команды
+Conical|Конический
+Contiguous|Смежные
+Contrast|Контраст
+Copy|Скопировать
+Copy (⌘C)|Скопировать (⌘C)
+Copy / paste the selection outline|Копирование / вставка контура выделения
+Copy Merged|Скопировать сведенное
+Copy Selection|Скопировать выделение
+Could not open \"%@\"|Не удалось открыть «%@»
+Could not save \"%@\"|Не удалось сохранить «%@»
+Coverage|Покрытие
+Crop to Selection|Обрезать по выделению
+Crop to Selection (⇧⌘X)|Обрезать по выделению (⇧⌘X)
+Cross|Крест
+Crystalize|Кристаллизация
+Curvature|Кривизна
+Curve|Кривая
+Curves|Кривые
+Cut|Вырезать
+Cut (⌘X)|Вырезать (⌘X)
+Cut, Copy, Paste|Вырезать, Скопировать, Вставить
+Cycle tools sharing a letter in reverse (⇧S = Magic Wand)|Перебирать в обратном порядке инструменты с одной буквой (⇧S = Волшебная палочка)
+Cylinder|Цилиндр
+Dark|Темное
+Dark Horizontal|Темные горизонтальные
+Dark Vertical|Темные вертикальные
+Darken|Замена темным
+Dash|Штрих
+Dash Dot|Штрих-пунктир
+Dash Dot Dot|Штрих-две точки
+Dash style|Стиль штриха
+Dash:|Штрих:
+Dashed Horizontal|Пунктирные горизонтальные
+Dashed Vertical|Пунктирные вертикальные
+Decrease / increase brush width (Shift: ×10)|Уменьшить / увеличить ширину кисти (Shift: ×10)
+Delete Layer|Удалить слой
+Dents|Вмятины
+Deselect|Снять выделение
+Deselect (⌘D)|Снять выделение (⌘D)
+Diagonal Brick|Диагональная кладка
+Diagonal Cross|Диагональная сетка
+Diamond|Ромб
+Difference|Разница
+Dilate|Расширение
+Distance|Расстояние
+Distance metric|Метрика расстояния
+Distort|Искажение
+Dithering|Дизеринг
+Divot|Дерн
+Do not switch tool|Не менять инструмент
+Don't Save|Не сохранять
+Dot|Точка
+Dotted Diamond|Пунктирные ромбы
+Dotted Grid|Точечная сетка
+Double Arrow|Двойная стрелка
+Down Arrow|Стрелка вниз
+Drag the selection outline to move it. Drag the handles to scale. Drag with the right mouse button to rotate.|Перетащите контур выделения, чтобы переместить его, маркеры — чтобы масштабировать, правой кнопкой мыши — чтобы повернуть.
+Drag the selection to move it. Drag the handles to scale. Drag with the right mouse button to rotate. Hold ⌘ while dragging to leave a copy behind.|Перетащите выделение, чтобы переместить его, маркеры — чтобы масштабировать, правой кнопкой мыши — чтобы повернуть. Удерживайте ⌘ при перетаскивании, чтобы оставить копию.
+Draw Filled Shape|Заливка фигуры
+Draw Filled Shape With Outline|Заливка фигуры с контуром
+Draw Shape Outline|Контур фигуры
+Drop Shadow|Отбрасываемая тень
+Duplicate Layer|Дублировать слой
+Edge Behavior|Поведение на краях
+Edge Detect|Выделение краев
+Edit|Правка
+Editable shapes|Редактируемые фигуры
+Effects|Эффекты
+Ellipse|Эллипс
+Ellipse Callout|Эллиптическая выноска
+Ellipse Select|Эллиптическое выделение
+Emboss|Тиснение
+End cap|Конец линии
+End:|Конец:
+Enter Full Screen|Включить полноэкранный режим
+Erase Selection|Стереть выделенное
+Eraser|Ластик
+Erode|Сужение
+Euclidean|Евклидова
+Expand canvas|Расширить холст
+Explosion|Взрыв
+Exposure|Экспозиция
+Factor|Коэффициент
+Fast-forward to the end|Перейти в конец
+Feather|Растушевка
+File|Файл
+File size: %@|Размер файла: %@
+Files|Файлы
+Fill Selection|Залить выделение
+Fill style|Стиль заливки
+Fill:|Заливка:
+Filled Arrow|Закрашенная стрелка
+Finish|Завершить
+Finish (Return)|Завершить (Return)
+Finish / cancel the current edit (⏎ again deselects)|Завершить / отменить текущее редактирование (повторное ⏎ снимает выделение)
+Fixed Ratio|Фиксированные пропорции
+Fixed Size|Фиксированный размер
+Flat|Плоский
+Flatten|Свести
+Flatten image|Свести изображение
+Flip Horizontal|Отразить по горизонтали
+Flip Layer Horizontal|Отразить слой по горизонтали
+Flip Layer Vertical|Отразить слой по вертикали
+Flip Vertical|Отразить по вертикали
+Flood mode:|Режим заливки:
+Font:|Шрифт:
+Format:|Формат:
+Forward Diagonal|Прямая диагональ
+Fractal Sum|Фрактальная сумма
+Fragment Blur|Фрагментное размытие
+Fragments|Фрагменты
+Frosted Glass|Матовое стекло
+Gamma|Гамма
+Gamma Boost|Усиление гаммы
+Gaussian Blur|Размытие по Гауссу
+General|Общие
+Global|Глобально
+Glow|Свечение
+Go to Bottom Layer|Перейти к нижнему слою
+Go to Layer Above|Перейти к слою выше
+Go to Layer Below|Перейти к слою ниже
+Go to Top Layer|Перейти к верхнему слою
+Go to the layer above / below|Перейти к слою выше / ниже
+Gradient|Градиент
+Gradient:|Градиент:
+Green|Зеленый
+Guide|Руководство
+Hard Light|Жесткий свет
+Hardness:|Жесткость:
+Heart|Сердце
+Height|Высота
+Height:|Высота:
+Help|Справка
+Hex:|Hex:
+Hexagon|Шестиугольник
+Hide Brushwood|Скрыть Brushwood
+Hide Others|Скрыть остальные
+Highlight boost|Усиление светов
+Highlights|Света
+Highlights / Shadows|Света / Тени
+Hint: For best results, first use the selection tools to select each eye.|Совет: для лучшего результата сначала выделите каждый глаз инструментами выделения.
+History|Журнал
+History (F6)|Журнал (F6)
+Hold to pan|Удерживайте для перемещения
+Horizontal|Горизонтально
+Horizontal Brick|Горизонтальная кладка
+Hue|Цветовой тон
+Hue / Saturation|Цветовой тон / Насыщенность
+Hue / Saturation, Invert Alpha, Invert Colors, Levels|Цветовой тон / Насыщенность, Инверсия альфа-канала, Инверсия цветов, Уровни
+If you don't save, your changes will be lost.|Если не сохранить, изменения будут потеряны.
+Image|Изображение
+Image larger than canvas|Изображение больше холста
+Import From File|Импорт из файла
+Import From File…|Импорт из файла…
+Inches|Дюймы
+Ink Sketch|Набросок тушью
+Ink outline|Контур тушью
+Input black|Входной черный
+Input white|Входной белый
+Intensity|Интенсивность
+Intersect|Пересечение
+Invert (xor)|Инвертировать (xor)
+Invert Alpha|Инверсия альфа-канала
+Invert Colors|Инверсия цветов
+Invert Selection|Инвертировать выделение
+Italic|Курсив
+Julia Fractal|Фрактал Жюлиа
+Keep canvas size|Сохранить размер холста
+Keyboard Shortcuts|Сочетания клавиш
+Lanczos 3|Lanczos 3
+Language|Язык
+Large Checker Board|Крупная шахматная доска
+Large Grid|Крупная сетка
+Lasso Select|Лассо
+Layer|Слой
+Layer %d|Слой %d
+Layer Hidden|Слой скрыт
+Layer Properties|Свойства слоя
+Layer Properties…|Свойства слоя…
+Layer Shown|Слой показан
+Layered images are saved as Paint.NET files (.pdn) or in the OpenRaster format (.ora), which Krita, GIMP and MyPaint also open. PNG, JPEG, BMP, GIF, TIFF, TGA, DDS, HEIC, AVIF and ICO can be saved; WebP, JPEG XL and PSD can be opened.|Изображения со слоями сохраняются в формате Paint.NET (.pdn) или OpenRaster (.ora), который также открывают Krita, GIMP и MyPaint. Можно сохранять в PNG, JPEG, BMP, GIF, TIFF, TGA, DDS, HEIC, AVIF и ICO и открывать WebP, JPEG XL и PSD.
+Layers|Слои
+Layers (F7)|Слои (F7)
+Left|Слева
+Left Arrow|Стрелка влево
+Left click to draw freehand one-pixel wide lines with the primary color, right click to use the secondary color.|Левый щелчок — рисование от руки линиями толщиной в один пиксель основным цветом, правый — вторичным.
+Left click to draw with the primary color, right click to draw with the secondary color.|Левый щелчок — рисование основным цветом, правый — вторичным.
+Left click to fill a region with the primary color, right click to fill with the secondary color.|Левый щелчок — заливка области основным цветом, правый — вторичным.
+Left click to place the cursor, then type the desired text. The text color is the primary color.|Щелкните, чтобы поставить курсор, затем введите текст. Цвет текста — основной цвет.
+Left click to replace the secondary color with the primary color.|Левый щелчок заменяет вторичный цвет основным.
+Left click to set the primary color. Right click to set the secondary color.|Левый щелчок задает основной цвет, правый — вторичный.
+Left click to zoom in. Right click to zoom out. Click and drag to zoom in on a rectangle.|Левый щелчок увеличивает, правый уменьшает. Щелкните и перетащите, чтобы увеличить прямоугольную область.
+Left-click a swatch to set the primary color, right-click for the secondary color. Shift-click stores the current color.|Левый щелчок по образцу задает основной цвет, правый — вторичный. Shift-щелчок запоминает текущий цвет.
+Less «|Меньше «
+Levels|Уровни
+Light|Светлое
+Light Horizontal|Светлые горизонтальные
+Light Vertical|Светлые вертикальные
+Lighten|Замена светлым
+Lighting|Освещение
+Lightness|Светлота
+Lightning|Молния
+Line|Линия
+Line / Curve|Линия / Кривая
+Linear|Линейный
+Linear (Diamond)|Линейный (ромб)
+Linear (Reflected)|Линейный (отраженный)
+Linked|Связаны
+Luminosity|Яркость
+Magic Wand|Волшебная палочка
+Maintain aspect ratio|Сохранять пропорции
+Mandelbrot Fractal|Фрактал Мандельброта
+Manhattan|Манхэттенская
+Maximum scatter radius|Максимальный радиус рассеивания
+Median Blur|Медианное размытие
+Median Cut|Медианное сечение
+Merge Layer Down|Объединить с нижним слоем
+Minimize|Свернуть
+Minimum scatter radius|Минимальный радиус рассеивания
+Mode|Режим
+Mode:|Режим:
+Moon|Луна
+More »|Больше »
+Morphology|Морфология
+Motion Blur|Размытие в движении
+Move Layer Down|Переместить слой вниз
+Move Layer Up|Переместить слой вверх
+Move Layer to Bottom|Переместить слой в самый низ
+Move Layer to Top|Переместить слой в самый верх
+Move Selected Pixels|Перемещение пикселей
+Move Selection|Перемещение выделения
+Multiply|Умножение
+Name:|Имя:
+Nearest Neighbor|Ближайший сосед
+Negation|Отрицание
+New|Новый
+New (⌘N)|Новый (⌘N)
+New Image|Новое изображение
+New size: %@|Новый размер: %@
+New size: %d × %d (%@)|Новый размер: %d × %d (%@)
+New…|Новый…
+Next Image|Следующее изображение
+Next image|Следующее изображение
+No Repeat|Без повторения
+Noise|Шум
+Normal|Обычный
+Number of cells|Число ячеек
+OK|OK
+Object|Объект
+Octagon|Восьмиугольник
+Octaves|Октавы
+Octree|Octree
+Offset|Смещение
+Oil Painting|Масляная живопись
+Opacity|Непрозрачность
+Opacity:|Непрозрачность:
+Open|Открыть
+Open (⌘O)|Открыть (⌘O)
+Open Image|Открыть изображение
+Open Palette…|Открыть палитру…
+Open Recent|Открыть недавние
+Open…|Открыть…
+Original|Исходный
+Outline|Контур
+Outline Object|Обводка объекта
+Outlined Diamond|Контурные ромбы
+Output black|Выходной черный
+Output white|Выходной белый
+Overlay|Перекрытие
+Overwrite|Замена
+Paint Bucket|Заливка
+Paintbrush|Кисть
+Palette|Палитра
+Pan|Рука
+Parallelogram|Параллелограмм
+Paste|Вставить
+Paste (⌘V)|Вставить (⌘V)
+Paste Into New Image|Вставить в новое изображение
+Paste Into New Layer|Вставить в новый слой
+Paste Selection|Вставить выделение
+Paste Selection (Replace)|Вставить выделение (заменить)
+Pencil|Карандаш
+Pencil Sketch|Набросок карандашом
+Pencil tip size|Размер грифеля
+Pentagon|Пятиугольник
+Percentile|Процентиль
+Period|Период
+Photo|Фото
+Pixel Grid|Пиксельная сетка
+Pixel Grid (⌘')|Пиксельная сетка (⌘')
+Pixel size|Размер пикселя
+Pixelate|Пикселизация
+Pixels|Пиксели
+Plaid|Шотландка
+Plus|Плюс
+Polar Inversion|Полярная инверсия
+Polygons|Многоугольники
+Posterize|Постеризация
+Posterize, Sepia|Постеризация, Сепия
+Preserve transparency|Сохранять прозрачность
+Previous Image|Предыдущее изображение
+Primary|Основной
+Print (⌘P)|Напечатать (⌘P)
+Print size|Размер печати
+Print…|Напечатать…
+Quality|Качество
+Quality:|Качество:
+Quantize|Квантование
+Quit Brushwood|Завершить Brushwood
+RGB|RGB
+RLE compression|Сжатие RLE
+Radial|Радиальный
+Radial Blur|Радиальное размытие
+Radius|Радиус
+Radius:|Радиус:
+Random Noise|Случайный шум
+Random positions and colors|Случайные позиции и цвета
+Randomize|Случайно
+Recolor|Перекраска
+Rectangle|Прямоугольник
+Rectangle Callout|Прямоугольная выноска
+Rectangle Select|Прямоугольное выделение
+Red|Красный
+Red Eye Removal|Удаление эффекта красных глаз
+Redo|Повторить
+Redo %@|Повторить «%@»
+Redo (⇧⌘Z)|Повторить (⇧⌘Z)
+Reduce Noise|Уменьшение шума
+Reflect|Отражение
+Refraction|Преломление
+Relief|Рельеф
+Render|Визуализация
+Repeat|Повторить
+Repeat %@|Повторно применить «%@»
+Repeat last effect|Повторно применить последний эффект
+Replace|Заменить
+Resampling|Передискретизация
+Resampling:|Передискретизация:
+Reseed|Новое зерно
+Reset|Сбросить
+Reset Colors|Сбросить цвета
+Reset Palette to Default|Восстановить палитру по умолчанию
+Reset Window Positions|Сбросить положение окон
+Reset to Default|Восстановить значения по умолчанию
+Resize|Изменить размер
+Resize Image|Изменить размер изображения
+Resize…|Изменить размер…
+Resolution:|Разрешение:
+Restart Brushwood to use the new language.|Перезапустите Brushwood, чтобы использовать новый язык.
+Restart Now|Перезапустить
+Rewind to the beginning|Перейти в начало
+Right|Справа
+Right Arrow|Стрелка вправо
+Right Triangle|Прямоугольный треугольник
+Rotate / Zoom|Поворот / Масштаб
+Rotate / Zoom…|Поворот / Масштаб…
+Rotate 180°|Повернуть на 180°
+Rotate 90° CW / 90° CCW / 180°|Повернуть на 90° по часовой / 90° против часовой / 180°
+Rotate 90° Clockwise|Повернуть на 90° по часовой стрелке
+Rotate 90° Counter-clockwise|Повернуть на 90° против часовой стрелки
+Rotate Layer 180°|Повернуть слой на 180°
+Rotation|Поворот
+Roughness|Шероховатость
+Rounded|Скругленный
+Rounded Rectangle|Скругленный прямоугольник
+Rounded Rectangle Callout|Скругленная выноска
+Rulers|Линейки
+Rulers (⌥⌘R)|Линейки (⌥⌘R)
+Sample size|Размер образца
+Sampling|Выборка
+Sampling:|Выборка:
+Saturation|Насыщенность
+Saturation percentage|Насыщенность в процентах
+Save|Сохранить
+Save (⌘S)|Сохранить (⌘S)
+Save All|Сохранить все
+Save Anyway|Все равно сохранить
+Save As|Сохранить как
+Save As…|Сохранить как…
+Save Configuration — %@|Параметры сохранения — %@
+Save Palette As…|Сохранить палитру как…
+Save changes to \"%@\"?|Сохранить изменения в «%@»?
+Sawtooth Repeat|Пилообразное повторение
+Scale|Масштаб
+Screen|Экран
+Secondary|Вторичный
+Secondary color|Вторичный цвет
+Seed|Зерно
+Select All|Выбрать все
+Select All / Deselect|Выбрать все / Снять выделение
+Selection|Выделение
+Selection clipping|Обрезка по выделению
+Selection drawing mode|Режим рисования выделения
+Selection mode:|Режим выделения:
+Selection tools combine with the existing selection: ⌘ adds (union), ⌥ subtracts, right-click inverts (xor) and ⌥+right-click intersects. The mode can also be chosen in the tool bar.|Инструменты выделения сочетаются с существующим выделением: ⌘ добавляет (объединение), ⌥ вычитает, правый щелчок инвертирует (xor), а ⌥+правый щелчок дает пересечение. Режим также можно выбрать на панели инструментов.
+Selection: %d × %d|Выделение: %d × %d
+Selections|Выделения
+Sepia|Сепия
+Services|Службы
+Settings|Настройки
+Settings (⌘,)|Настройки (⌘,)
+Settings…|Настройки…
+Shadow only|Только тень
+Shadows|Тени
+Shape:|Фигура:
+Shapes|Фигуры
+Shapes, lines, gradients, text and paint bucket fills stay editable after you draw them: drag their handles or change options in the tool bar. Press Return or switch tools to finish, Escape or ⌘Z to cancel.|Фигуры, линии, градиенты, текст и заливки остаются редактируемыми после рисования: перетаскивайте их маркеры или меняйте параметры на панели инструментов. Нажмите Return или смените инструмент, чтобы завершить, Esc или ⌘Z — чтобы отменить.
+Sharpen|Резкость
+Shingle|Черепица
+Show All|Показать все
+Show in Finder|Показать в Finder
+Show points|Показывать точки
+Single Pixel|Один пиксель
+Size|Размер
+Sketch Blur|Эскизное размытие
+Small Checker Board|Мелкая шахматная доска
+Small Grid|Мелкая сетка
+Smoothness|Плавность
+Soft Light|Мягкий свет
+Soften Portrait|Смягчение портрета
+Softness|Мягкость
+Solid|Сплошная
+Solid Color|Сплошной цвет
+Solid Diamond|Сплошные ромбы
+Space|Пробел
+Sphere|Сфера
+Spiral (Clockwise)|Спираль (по часовой)
+Spiral (Counter-clockwise)|Спираль (против часовой)
+Square Blur|Квадратное размытие
+Stars|Звезды
+Start cap|Начало линии
+Start:|Начало:
+Straighten|Выпрямление
+Strength|Сила
+Strikethrough|Зачеркнутый
+Stylize|Стилизация
+Subtract|Вычесть
+Supersampling|Суперсэмплинг
+Surface Blur|Размытие по поверхности
+Swap Colors|Поменять цвета
+Swap primary and secondary colors|Поменять местами основной и вторичный цвета
+Switch to Pencil tool|Переключиться на карандаш
+Switch to previous tool|К предыдущему инструменту
+Symbols|Символы
+Temperature|Температура
+Temperature and Tint|Температура и оттенок
+Tension|Натяжение
+Text|Текст
+The image being pasted is larger than the canvas size. What would you like to do?|Вставляемое изображение больше холста. Что вы хотите сделать?
+These blend modes will be saved as Normal in the .pdn file: %@. Save as OpenRaster (.ora) to keep them.|Эти режимы наложения будут сохранены в файле .pdn как обычные: %@. Сохраните в формате OpenRaster (.ora), чтобы они не потерялись.
+Thickness|Толщина
+This file format does not support layers. The saved file will contain a flattened copy of the image; your layers are kept in Brushwood.|Этот формат файла не поддерживает слои. Сохраненный файл будет содержать сведенную копию изображения; слои останутся в Brushwood.
+This is not a Paint.NET (.pdn) file.|Это не файл Paint.NET (.pdn).
+Threshold|Порог
+Tile Reflection|Мозаичное отражение
+Tile Size|Размер плитки
+Tiling|Мозаика
+Tint|Оттенок
+Toggle Layer Visibility|Показать/скрыть слой
+Tolerance|Допуск
+Tolerance:|Допуск:
+Tool:|Инструмент:
+Tools|Инструменты
+Tools (F5)|Инструменты (F5)
+Tools, History, Layers, Colors windows|Окна «Инструменты», «Журнал», «Слои», «Цвета»
+Transfer Map:|Кривая переноса:
+Transparency Mode|Режим прозрачности
+Transparent|Прозрачный
+Trapezoid|Трапеция
+Trellis|Решетка
+Triangle|Треугольник
+Triangle Repeat|Треугольное повторение
+Turbulence|Турбулентность
+Twist|Скручивание
+Underline|Подчеркнутый
+Undo|Отменить
+Undo %@|Отменить «%@»
+Undo (⌘Z)|Отменить (⌘Z)
+Units|Единицы
+Untitled|Без названия
+Up Arrow|Стрелка вверх
+Use System Setting|Как в системе
+Value|Значение
+Vertical|Вертикально
+View|Вид
+Vignette|Виньетка
+Visible|Видимый
+Voronoi Diagram|Диаграмма Вороного
+Warmth|Теплота
+Wave|Волна
+Weave|Плетение
+Welcome to Brushwood|Добро пожаловать в Brushwood
+White|Белый
+Width|Ширина
+Width:|Ширина:
+Window|Окно
+Wrap|Циклически
+Xor|Xor
+Zig Zag|Зигзаг
+Zoom|Масштаб
+Zoom Amount|Сила масштабирования
+Zoom Blur|Размытие масштабированием
+Zoom In|Увеличить
+Zoom In / Out|Увеличить / уменьшить
+Zoom Out|Уменьшить
+Zoom to Selection|Масштаб по выделению
+Zoom to Window|По размеру окна
+centimeters|сантиметры
+cm|см
+in|дюйм
+inches|дюймы
+letter|буква
+pixels|пиксели
+pixels/inch|пикс./дюйм
+px|пикс.
+⌘-click to set the clone origin first.|Сначала ⌘-щелчком задайте источник клонирования.
+⌘-click to set the origin, then click and drag to paint with the cloned pixels.|⌘-щелчок задает источник, затем щелкните и перетащите, чтобы рисовать клонированными пикселями.
+""".strip().splitlines())

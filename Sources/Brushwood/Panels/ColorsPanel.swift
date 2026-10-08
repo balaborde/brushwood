@@ -54,7 +54,7 @@ final class ColorsPanel: FloatingPanel {
         targetPopup.addItems(withTitles: [L("Primary"), L("Secondary")])
         targetPopup.controlSize = .small
         targetPopup.font = .systemFont(ofSize: NSFont.smallSystemFontSize)
-        targetPopup.frame = NSRect(x: 8, y: 8, width: 96, height: 22)
+        targetPopup.frame = NSRect(x: 8, y: 8, width: 104, height: 22)
         targetPopup.onAction { [weak self] _ in
             self?.editingSecondary = self?.targetPopup.indexOfSelectedItem == 1
             self?.sync()

@@ -2,9 +2,9 @@ import AppKit
 import BrushwoodCore
 
 /// The second toolbar row: tool chooser plus the options of the active tool (Paint.NET's tool bar).
+/// Like Paint.NET's, it wraps onto more rows when the window is too narrow for all the options.
 final class ToolOptionsBar: NSView {
-    private let stack = NSStackView()
-    private let scroll = NSScrollView()
+    private let flow = WrappingRow()
     private let toolPopup = NSPopUpButton(frame: .zero, pullsDown: false)
     weak var host: MainWindowController?
     private var observers: [NSObjectProtocol] = []
@@ -19,38 +19,18 @@ final class ToolOptionsBar: NSView {
     override init(frame: NSRect) {
         super.init(frame: frame)
         if #available(macOS 14.0, *) { clipsToBounds = true }
-        stack.orientation = .horizontal
-        stack.spacing = 6
-        stack.alignment = .centerY
-        stack.edgeInsets = NSEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
-        // Options scroll horizontally if the window is too narrow to show them all.
-        scroll.drawsBackground = false
-        scroll.hasHorizontalScroller = false
-        scroll.hasVerticalScroller = false
-        scroll.horizontalScrollElasticity = .allowed
-        scroll.verticalScrollElasticity = .none
-        scroll.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(scroll)
-        let doc = FlippedView()
-        doc.translatesAutoresizingMaskIntoConstraints = false
-        doc.addSubview(stack)
-        scroll.documentView = doc
-        stack.translatesAutoresizingMaskIntoConstraints = false
+        flow.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(flow)
         NSLayoutConstraint.activate([
-            scroll.leadingAnchor.constraint(equalTo: leadingAnchor),
-            scroll.trailingAnchor.constraint(equalTo: trailingAnchor),
-            scroll.topAnchor.constraint(equalTo: topAnchor),
-            scroll.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -1),
-            doc.heightAnchor.constraint(equalTo: scroll.contentView.heightAnchor),
-            stack.leadingAnchor.constraint(equalTo: doc.leadingAnchor),
-            stack.trailingAnchor.constraint(equalTo: doc.trailingAnchor),
-            stack.topAnchor.constraint(equalTo: doc.topAnchor),
-            stack.bottomAnchor.constraint(equalTo: doc.bottomAnchor),
+            flow.leadingAnchor.constraint(equalTo: leadingAnchor),
+            flow.trailingAnchor.constraint(equalTo: trailingAnchor),
+            flow.topAnchor.constraint(equalTo: topAnchor),
+            flow.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -1),
         ])
         toolPopup.controlSize = .small
         toolPopup.isBordered = true
         toolPopup.translatesAutoresizingMaskIntoConstraints = false
-        toolPopup.widthAnchor.constraint(lessThanOrEqualToConstant: 160).isActive = true
+        toolPopup.widthAnchor.constraint(lessThanOrEqualToConstant: 260).isActive = true
         for t in ToolKind.allCases {
             let item = NSMenuItem(title: t.name, action: nil, keyEquivalent: "")
             item.image = Icons.image(t.icon, size: 16)
@@ -71,6 +51,9 @@ final class ToolOptionsBar: NSView {
 
     required init?(coder: NSCoder) { fatalError() }
 
+    /// Width the current options need on a single row (they wrap when it exceeds the bar's width).
+    var contentWidth: CGFloat { flow.singleRowWidth }
+
     deinit { observers.forEach { NotificationCenter.default.removeObserver($0) } }
 
     override func draw(_ dirtyRect: NSRect) {
@@ -87,10 +70,10 @@ final class ToolOptionsBar: NSView {
         updating = false
     }
 
-    private func add(_ v: NSView) { stack.addArrangedSubview(v) }
+    private func add(_ v: NSView) { flow.append(v) }
 
     func rebuild() {
-        stack.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        flow.removeAll()
         refreshers.removeAll()
         let tool = env.activeTool
         add(toolbarLabel(L("Tool:")))
@@ -214,7 +197,7 @@ final class ToolOptionsBar: NSView {
     }
 
     private func popup(_ items: [(String, NSImage?)], get: @escaping () -> Int, set: @escaping (Int) -> Void,
-                       tooltip: String, imageOnly: Bool = false, maxWidth: CGFloat = 130) -> NSPopUpButton {
+                       tooltip: String, imageOnly: Bool = false, maxWidth: CGFloat = 200) -> NSPopUpButton {
         let p = NSPopUpButton(frame: .zero, pullsDown: false)
         p.controlSize = .small
         p.font = .systemFont(ofSize: NSFont.smallSystemFontSize)
@@ -405,7 +388,7 @@ final class ToolOptionsBar: NSView {
 
     private func gradientRepeat() {
         add(popup(GradientRepeat.allCases.map { ($0.name, nil) }, get: { self.s.gradientRepeat.rawValue },
-                  set: { self.s.gradientRepeat = GradientRepeat(rawValue: $0) ?? .none }, tooltip: L("Repeat")))
+                  set: { self.s.gradientRepeat = GradientRepeat(rawValue: $0) ?? .none }, tooltip: L("Repeat"), maxWidth: 230))
     }
 
     private func resampling() {
@@ -425,7 +408,7 @@ final class ToolOptionsBar: NSView {
         add(toolbarLabel(L("After click:")))
         add(popup(ColorPickerAfterClick.allCases.map { ($0.name, nil) }, get: { self.s.colorPickerAfterClick.rawValue },
                   set: { self.s.colorPickerAfterClick = ColorPickerAfterClick(rawValue: $0) ?? .doNotSwitch },
-                  tooltip: L("After click")))
+                  tooltip: L("After click"), maxWidth: 230))
     }
 
     private func fontOptions() {
@@ -506,7 +489,7 @@ final class ToolOptionsBar: NSView {
         p.controlSize = .small
         p.font = .systemFont(ofSize: NSFont.smallSystemFontSize)
         p.translatesAutoresizingMaskIntoConstraints = false
-        p.widthAnchor.constraint(lessThanOrEqualToConstant: 150).isActive = true
+        p.widthAnchor.constraint(lessThanOrEqualToConstant: 260).isActive = true
         p.autoenablesItems = false
         for cat in ShapeKind.Category.allCases {
             let header = NSMenuItem(title: cat.name, action: nil, keyEquivalent: "")
@@ -550,5 +533,103 @@ final class ToolOptionsBar: NSView {
     private func shapeDrawType() {
         add(segmented(ShapeDrawType.allCases.map { ("drawtype.\($0)", $0.name) }, get: { self.s.shapeDrawType.rawValue },
                       set: { self.s.shapeDrawType = ShapeDrawType(rawValue: $0) ?? .outline }))
+    }
+}
+
+/// Lays its items out left to right and starts a new row when the next one does not fit. A label ending with a colon
+/// stays on the same row as the control after it, a label without one (a unit such as "%") stays with the control before
+/// it, and a separator that would start or end a row is hidden.
+final class WrappingRow: NSView {
+    static let rowHeight: CGFloat = 31
+    private let spacing: CGFloat = 6
+    private let inset: CGFloat = 8
+    private var items: [NSView] = []
+    private var rows = 1
+
+    override var isFlipped: Bool { true }
+
+    override init(frame: NSRect) {
+        super.init(frame: frame)
+        setContentHuggingPriority(.required, for: .vertical)
+        setContentCompressionResistancePriority(.required, for: .vertical)
+    }
+
+    required init?(coder: NSCoder) { fatalError() }
+
+    func append(_ v: NSView) {
+        v.translatesAutoresizingMaskIntoConstraints = true
+        items.append(v)
+        addSubview(v)
+        needsLayout = true
+    }
+
+    func removeAll() {
+        items.forEach { $0.removeFromSuperview() }
+        items.removeAll()
+        needsLayout = true
+    }
+
+    var singleRowWidth: CGFloat {
+        items.reduce(inset * 2 - spacing) { $0 + $1.fittingSize.width + spacing }
+    }
+
+    override var intrinsicContentSize: NSSize {
+        NSSize(width: NSView.noIntrinsicMetric, height: CGFloat(rows) * Self.rowHeight)
+    }
+
+    private static func isLabel(_ v: NSView) -> Bool {
+        guard let l = v as? NSTextField else { return false }
+        return !l.isEditable && !l.isBezeled && !l.isBordered
+    }
+
+    private static func endsWithColon(_ v: NSView) -> Bool {
+        guard let l = v as? NSTextField else { return false }
+        return l.stringValue.hasSuffix(":") || l.stringValue.hasSuffix("：")
+    }
+
+    /// Items grouped into the pieces that never break apart.
+    private func units() -> [[NSView]] {
+        var units: [[NSView]] = []
+        var joinNext = false
+        for v in items {
+            if joinNext || (Self.isLabel(v) && !Self.endsWithColon(v) && !units.isEmpty) {
+                units[units.count - 1].append(v)
+            } else {
+                units.append([v])
+            }
+            joinNext = Self.isLabel(v) && Self.endsWithColon(v)
+        }
+        return units
+    }
+
+    override func layout() {
+        super.layout()
+        let groups = units()
+        let sizes = groups.map { $0.map(\.fittingSize) }
+        let widths = sizes.map { $0.reduce(-spacing) { $0 + $1.width + spacing } }
+        let maxX = bounds.width - inset
+        var x = inset, row = 0
+        for (i, group) in groups.enumerated() {
+            let isSeparator = group.count == 1 && group[0] is ToolbarSeparator
+            if isSeparator {
+                // Hidden when it would start a row or when what follows it moves to the next row.
+                let next = i + 1 < widths.count ? widths[i + 1] : 0
+                let hide = x == inset || x + widths[i] + spacing + next > maxX
+                group[0].isHidden = hide
+                if hide { continue }
+            } else if x > inset && x + widths[i] > maxX {
+                row += 1
+                x = inset
+            }
+            for (v, size) in zip(group, sizes[i]) {
+                let y = CGFloat(row) * Self.rowHeight + ((Self.rowHeight - size.height) / 2).rounded()
+                v.frame = NSRect(x: x, y: y, width: size.width, height: size.height)
+                x += size.width + spacing
+            }
+        }
+        if row + 1 != rows {
+            rows = row + 1
+            invalidateIntrinsicContentSize()
+        }
     }
 }

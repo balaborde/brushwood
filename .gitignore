@@ -4,3 +4,4 @@ build/
 .DS_Store
 .swiftpm/
 .claude/
+__pycache__/

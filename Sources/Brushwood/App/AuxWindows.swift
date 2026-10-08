@@ -136,13 +136,82 @@ final class SettingsWindow: NSWindow {
             for k in ["Tools", "Colors", "History", "Layers"] { UserDefaults.standard.removeObject(forKey: "panelHidden.\(k)") }
             UserDefaults.standard.removeObject(forKey: "NSWindow Frame BrushwoodMainWindow")
         }
-        let row = NSStackView(views: [resetPalette, resetWindows])
-        stack.addArrangedSubview(row)
-        let note = NSTextField(wrappingLabelWithString: L("The interface language follows the macOS system language (English and French are included)."))
-        note.textColor = .secondaryLabelColor
-        note.preferredMaxLayoutWidth = 400
-        stack.addArrangedSubview(note)
+        stack.addArrangedSubview(resetPalette)
+        stack.addArrangedSubview(resetWindows)
+        stack.addArrangedSubview(header(L("Language")))
+        let language = NSPopUpButton(frame: .zero, pullsDown: false)
+        language.addItem(withTitle: L("Use System Setting"))
+        for (code, name) in AppLanguage.available { language.addItem(withTitle: name); language.lastItem?.representedObject = code }
+        if let current = AppLanguage.chosen, let i = AppLanguage.available.firstIndex(where: { $0.code == current }) {
+            language.selectItem(at: i + 1)
+        }
+        let restartNote = NSTextField(wrappingLabelWithString: L("Restart Brushwood to use the new language."))
+        restartNote.textColor = .secondaryLabelColor
+        restartNote.preferredMaxLayoutWidth = 400
+        restartNote.isHidden = true
+        let restart = NSButton(title: L("Restart Now"), target: nil, action: nil)
+        restart.bezelStyle = .rounded
+        restart.isHidden = true
+        restart.onAction { _ in AppLanguage.relaunch() }
+        language.onAction { [weak self] _ in
+            AppLanguage.chosen = language.selectedItem?.representedObject as? String
+            restartNote.isHidden = false
+            restart.isHidden = false
+            self?.fitContent()
+        }
+        stack.addArrangedSubview(language)
+        stack.addArrangedSubview(restartNote)
+        stack.addArrangedSubview(restart)
         contentView = stack
+        fitContent()
+    }
+
+    /// Sizes the window to its content, which depends on the interface language.
+    private func fitContent() {
+        guard let content = contentView else { return }
+        content.layoutSubtreeIfNeeded()
+        let size = content.fittingSize
+        let top = frame.maxY
+        setContentSize(NSSize(width: max(440, size.width), height: size.height))
+        setFrameTopLeftPoint(NSPoint(x: frame.minX, y: top))
+    }
+}
+
+/// Interface languages shipped with Brushwood (names written in their own language).
+enum AppLanguage {
+    static let available: [(code: String, name: String)] = [
+        ("en", "English"), ("de", "Deutsch"), ("es", "Español"), ("fr", "Français"), ("it", "Italiano"),
+        ("nl", "Nederlands"), ("pl", "Polski"), ("pt-BR", "Português (Brasil)"), ("ru", "Русский"),
+        ("ja", "日本語"), ("ko", "한국어"), ("zh-Hans", "简体中文"),
+    ]
+
+    /// Language picked in Settings, or nil to follow macOS. Stored as the app's own AppleLanguages preference.
+    static var chosen: String? {
+        get {
+            guard let list = UserDefaults.standard.persistentDomain(forName: Bundle.main.bundleIdentifier ?? "")?["AppleLanguages"]
+                as? [String] else { return nil }
+            return list.first
+        }
+        set {
+            if let newValue {
+                UserDefaults.standard.set([newValue], forKey: "AppleLanguages")
+            } else {
+                UserDefaults.standard.removeObject(forKey: "AppleLanguages")
+            }
+        }
+    }
+
+    /// Quits and reopens the app so the new language takes effect. The reopen waits until this process has exited
+    /// (unsaved-changes prompts can delay it) and gives up after a minute, e.g. if the user cancelled quitting.
+    static func relaunch() {
+        let path = Bundle.main.bundleURL.path
+        let pid = String(ProcessInfo.processInfo.processIdentifier)
+        let task = Process()
+        task.executableURL = URL(fileURLWithPath: "/bin/sh")
+        task.arguments = ["-c", "for i in $(seq 300); do kill -0 \"$1\" 2>/dev/null || exec /usr/bin/open \"$0\"; sleep 0.2; done",
+                          path, pid]
+        try? task.run()
+        NSApp.terminate(nil)
     }
 }
 

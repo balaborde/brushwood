@@ -1,0 +1,635 @@
+# Français (fr) UI strings: one "English source string|translation" per line. The English side is exactly
+# as written in the Swift source (escapes included); run scripts/gen_strings.py after editing.
+T = dict(line.split('|', 1) for line in r"""
+%@ copy|%@ copie
+%d x %d Region|Zone de %d x %d
+10 Percent|10 pour cent
+20 Percent|20 pour cent
+24-bit|24 bits
+25 Percent|25 pour cent
+32-bit|32 bits
+4 Point Star|Étoile à 4 branches
+5 Percent|5 pour cent
+5 Point Star|Étoile à 5 branches
+50 Percent|50 pour cent
+6 Point Star|Étoile à 6 branches
+75 Percent|75 pour cent
+8 Point Star|Étoile à 8 branches
+90 Percent|90 pour cent
+A free, open-source image editor for macOS, modeled on the workflow of Paint.NET.\n\nLicensed under the MIT License.\nNot affiliated with or endorsed by dotPDN LLC. Paint.NET is a trademark of its respective owner.|Un éditeur d'images libre et gratuit pour macOS, inspiré du fonctionnement de Paint.NET.\n\nDistribué sous licence MIT.\nSans lien avec dotPDN LLC. Paint.NET est une marque de son propriétaire.
+About Brushwood|À propos de Brushwood
+Actual Size|Taille réelle
+Add (union)|Ajouter (union)
+Add New Layer|Ajouter un nouveau calque
+Add Noise|Ajouter du bruit
+Additive|Additif
+Adjustments|Réglages
+After click|Après le clic
+After click:|Après le clic :
+Algorithm|Algorithme
+Aliased|Crénelé
+Amount|Quantité
+Anchor|Ancrage
+Angle|Angle
+Antialias selection edges when clipping|Lisser les bords de la sélection lors du détourage
+Antialiased|Lissé
+Antialiasing|Lissage
+Antialiasing disabled|Lissage désactivé
+Antialiasing enabled|Lissage activé
+Appearance|Apparence
+Arrow|Flèche
+Arrows|Flèches
+Artistic|Artistique
+Auto|Auto
+Auto-Level|Niveaux automatiques
+Auto-Level, Black and White, Brightness / Contrast, Curves|Niveaux automatiques, Noir et blanc, Luminosité / Contraste, Courbes
+Auto-detect|Détection automatique
+Background|Arrière-plan
+Backward Diagonal|Diagonale arrière
+Basic|De base
+Best Quality|Meilleure qualité
+Bicubic|Bicubique
+Bilinear|Bilinéaire
+Bit Depth|Profondeur de couleur
+Black and White|Noir et blanc
+Blend|Fusionner
+Blend mode|Mode de fusion
+Blend modes not supported by Paint.NET|Modes de fusion non pris en charge par Paint.NET
+Blending|Fusion
+Blending:|Fusion :
+Blue|Bleu
+Blur radius|Rayon du flou
+Blurs|Flous
+Bokeh Blur|Flou bokeh
+Bold|Gras
+Brightness|Luminosité
+Brightness / Contrast|Luminosité / Contraste
+Brush size|Taille de la brosse
+Brush width (mouse wheel, [ and ] also change it)|Largeur du pinceau (la molette, [ et ] la modifient aussi)
+Brush width:|Largeur du pinceau :
+Brushwood Help|Aide de Brushwood
+Brushwood is a free image editor for macOS whose workflow follows Paint.NET: one main window with image tabs, floating Tools, History, Layers and Colors windows, layers with blend modes, unlimited history, and a large set of adjustments and effects with live preview.|Brushwood est un éditeur d'images gratuit pour macOS qui reprend le fonctionnement de Paint.NET : une fenêtre principale avec des onglets d'images, des fenêtres flottantes Outils, Historique, Calques et Couleurs, des calques avec modes de fusion, un historique illimité et un large choix de réglages et d'effets avec aperçu en direct.
+Bulge|Bombement
+By absolute size|Par taille absolue
+By percentage:|En pourcentage :
+Callouts|Bulles
+Cancel|Annuler
+Canvas Size|Taille du canevas
+Canvas Size…|Taille du canevas…
+Cell Size|Taille des cellules
+Cell size|Taille des cellules
+Center|Centre
+Centered|Centré
+Centimeters|Centimètres
+Chebyshev|Tchebychev
+Chevron|Chevron
+Clamp|Bloquer
+Clear Menu|Effacer le menu
+Click and drag to draw a gradient from the primary to the secondary color. Right mouse button reverses the colors.|Cliquez et faites glisser pour tracer un dégradé de la couleur principale vers la couleur secondaire. Le bouton droit inverse les couleurs.
+Click and drag to draw a line. Then drag the handles to bend it into a curve. Press Enter to finish.|Cliquez et faites glisser pour tracer une ligne, puis déplacez les poignées pour la courber. Appuyez sur Entrée pour terminer.
+Click and drag to draw a rectangular selection. Hold Shift to constrain to a square. ⌘ adds, ⌥ subtracts, right-click inverts.|Cliquez et faites glisser pour dessiner une sélection rectangulaire. Maj contraint à un carré. ⌘ ajoute, ⌥ soustrait, le clic droit inverse.
+Click and drag to draw a shape. Drag the handles to adjust it. Press Enter to finish.|Cliquez et faites glisser pour dessiner une forme. Ajustez-la avec les poignées. Appuyez sur Entrée pour terminer.
+Click and drag to draw an elliptical selection. Hold Shift to constrain to a circle. ⌘ adds, ⌥ subtracts, right-click inverts.|Cliquez et faites glisser pour dessiner une sélection elliptique. Maj contraint à un cercle. ⌘ ajoute, ⌥ soustrait, le clic droit inverse.
+Click and drag to draw the outline of a selection area. ⌘ adds, ⌥ subtracts, right-click inverts.|Cliquez et faites glisser pour tracer le contour d'une zone de sélection. ⌘ ajoute, ⌥ soustrait, le clic droit inverse.
+Click and drag to erase a portion of the image.|Cliquez et faites glisser pour effacer une partie de l'image.
+Click and drag to navigate the image.|Cliquez et faites glisser pour vous déplacer dans l'image.
+Click to add a point, drag to move it, right-click to remove it.|Cliquez pour ajouter un point, faites-le glisser pour le déplacer, clic droit pour le supprimer.
+Click to select a region of similar color. ⌘ adds, ⌥ subtracts, right-click inverts. Shift-click for global selection.|Cliquez pour sélectionner une zone de couleur similaire. ⌘ ajoute, ⌥ soustrait, le clic droit inverse. Maj+clic pour une sélection globale.
+Clipping:|Détourage :
+Clone Stamp|Tampon de duplication
+Clone source set at %d, %d|Source de duplication définie en %d, %d
+Close|Fermer
+Close Others|Fermer les autres
+Cloud|Nuage
+Clouds|Nuages
+Coarseness|Grossièreté
+Color|Couleur
+Color Burn|Densité couleur +
+Color Dodge|Densité couleur −
+Color Mode|Mode couleur
+Color Picker|Pipette
+Color Saturation|Saturation des couleurs
+Color count|Nombre de couleurs
+Color range|Plage de couleurs
+Coloring|Coloration
+Colors|Couleurs
+Colors (F8)|Couleurs (F8)
+Commands|Commandes
+Conical|Conique
+Contiguous|Contigu
+Contrast|Contraste
+Copy|Copier
+Copy (⌘C)|Copier (⌘C)
+Copy / paste the selection outline|Copier / coller le contour de la sélection
+Copy Merged|Copier avec fusion
+Copy Selection|Copier la sélection
+Could not open \"%@\"|Impossible d'ouvrir « %@ »
+Could not save \"%@\"|Impossible d'enregistrer « %@ »
+Coverage|Couverture
+Crop to Selection|Rogner selon la sélection
+Crop to Selection (⇧⌘X)|Rogner selon la sélection (⇧⌘X)
+Cross|Croix
+Crystalize|Cristalliser
+Curvature|Courbure
+Curve|Courbe
+Curves|Courbes
+Cut|Couper
+Cut (⌘X)|Couper (⌘X)
+Cut, Copy, Paste|Couper, Copier, Coller
+Cycle tools sharing a letter in reverse (⇧S = Magic Wand)|Parcourir à rebours les outils partageant une lettre (⇧S = Baguette magique)
+Cylinder|Cylindre
+Dark|Sombre
+Dark Horizontal|Horizontal foncé
+Dark Vertical|Vertical foncé
+Darken|Obscurcir
+Dash|Tiret
+Dash Dot|Tiret point
+Dash Dot Dot|Tiret point point
+Dash style|Style de trait
+Dash:|Trait :
+Dashed Horizontal|Tirets horizontaux
+Dashed Vertical|Tirets verticaux
+Decrease / increase brush width (Shift: ×10)|Diminuer / augmenter la largeur du pinceau (Maj : ×10)
+Delete Layer|Supprimer le calque
+Dents|Bosses
+Deselect|Désélectionner
+Deselect (⌘D)|Désélectionner (⌘D)
+Diagonal Brick|Briques en diagonale
+Diagonal Cross|Croix en diagonale
+Diamond|Losange
+Difference|Différence
+Dilate|Dilatation
+Distance|Distance
+Distance metric|Mesure de distance
+Distort|Déformation
+Dithering|Tramage
+Divot|Gazon
+Do not switch tool|Ne pas changer d'outil
+Don't Save|Ne pas enregistrer
+Dot|Point
+Dotted Diamond|Losanges pointillés
+Dotted Grid|Grille pointillée
+Double Arrow|Double flèche
+Down Arrow|Flèche vers le bas
+Drag the selection outline to move it. Drag the handles to scale. Drag with the right mouse button to rotate.|Faites glisser le contour de la sélection pour le déplacer, les poignées pour le redimensionner, et avec le bouton droit pour le faire pivoter.
+Drag the selection to move it. Drag the handles to scale. Drag with the right mouse button to rotate. Hold ⌘ while dragging to leave a copy behind.|Faites glisser la sélection pour la déplacer, les poignées pour la redimensionner, et avec le bouton droit pour la faire pivoter. Maintenez ⌘ pour laisser une copie.
+Draw Filled Shape|Forme pleine
+Draw Filled Shape With Outline|Forme pleine avec contour
+Draw Shape Outline|Contour de forme
+Drop Shadow|Ombre portée
+Duplicate Layer|Dupliquer le calque
+Edge Behavior|Comportement des bords
+Edge Detect|Détection des contours
+Edit|Édition
+Editable shapes|Formes modifiables
+Effects|Effets
+Ellipse|Ellipse
+Ellipse Callout|Bulle elliptique
+Ellipse Select|Sélection elliptique
+Emboss|Estampage
+End cap|Extrémité de fin
+End:|Fin :
+Enter Full Screen|Passer en plein écran
+Erase Selection|Effacer la sélection
+Eraser|Gomme
+Erode|Érosion
+Euclidean|Euclidienne
+Expand canvas|Agrandir le canevas
+Explosion|Explosion
+Exposure|Exposition
+Factor|Facteur
+Fast-forward to the end|Avancer jusqu'à la fin
+Feather|Contour progressif
+File|Fichier
+File size: %@|Taille du fichier : %@
+Files|Fichiers
+Fill Selection|Remplir la sélection
+Fill style|Style de remplissage
+Fill:|Remplissage :
+Filled Arrow|Flèche pleine
+Finish|Terminer
+Finish (Return)|Terminer (Entrée)
+Finish / cancel the current edit (⏎ again deselects)|Valider / annuler la modification en cours (⏎ de nouveau désélectionne)
+Fixed Ratio|Proportions fixes
+Fixed Size|Taille fixe
+Flat|Plat
+Flatten|Aplatir
+Flatten image|Aplatir l'image
+Flip Horizontal|Retourner horizontalement
+Flip Layer Horizontal|Retourner le calque horizontalement
+Flip Layer Vertical|Retourner le calque verticalement
+Flip Vertical|Retourner verticalement
+Flood mode:|Mode de remplissage :
+Font:|Police :
+Format:|Format :
+Forward Diagonal|Diagonale avant
+Fractal Sum|Somme fractale
+Fragment Blur|Flou fragmenté
+Fragments|Fragments
+Frosted Glass|Verre dépoli
+Gamma|Gamma
+Gamma Boost|Renforcement gamma
+Gaussian Blur|Flou gaussien
+General|Général
+Global|Global
+Glow|Lueur
+Go to Bottom Layer|Aller au calque du bas
+Go to Layer Above|Aller au calque supérieur
+Go to Layer Below|Aller au calque inférieur
+Go to Top Layer|Aller au calque du haut
+Go to the layer above / below|Aller au calque supérieur / inférieur
+Gradient|Dégradé
+Gradient:|Dégradé :
+Green|Vert
+Guide|Guide
+Hard Light|Lumière crue
+Hardness:|Dureté :
+Heart|Cœur
+Height|Hauteur
+Height:|Hauteur :
+Help|Aide
+Hex:|Hex :
+Hexagon|Hexagone
+Hide Brushwood|Masquer Brushwood
+Hide Others|Masquer les autres
+Highlight boost|Renforcement des hautes lumières
+Highlights|Tons clairs
+Highlights / Shadows|Tons clairs / Tons foncés
+Hint: For best results, first use the selection tools to select each eye.|Astuce : pour un meilleur résultat, sélectionnez d'abord chaque œil avec les outils de sélection.
+History|Historique
+History (F6)|Historique (F6)
+Hold to pan|Maintenir pour se déplacer
+Horizontal|Horizontal
+Horizontal Brick|Briques horizontales
+Hue|Teinte
+Hue / Saturation|Teinte / Saturation
+Hue / Saturation, Invert Alpha, Invert Colors, Levels|Teinte / Saturation, Inverser l'alpha, Inverser les couleurs, Niveaux
+If you don't save, your changes will be lost.|Si vous n'enregistrez pas, vos modifications seront perdues.
+Image|Image
+Image larger than canvas|Image plus grande que le canevas
+Import From File|Importer depuis un fichier
+Import From File…|Importer depuis un fichier…
+Inches|Pouces
+Ink Sketch|Esquisse à l'encre
+Ink outline|Contour à l'encre
+Input black|Noir en entrée
+Input white|Blanc en entrée
+Intensity|Intensité
+Intersect|Intersection
+Invert (xor)|Inverser (xor)
+Invert Alpha|Inverser l'alpha
+Invert Colors|Inverser les couleurs
+Invert Selection|Inverser la sélection
+Italic|Italique
+Julia Fractal|Fractale de Julia
+Keep canvas size|Conserver la taille du canevas
+Keyboard Shortcuts|Raccourcis clavier
+Lanczos 3|Lanczos 3
+Language|Langue
+Large Checker Board|Grand damier
+Large Grid|Grande grille
+Lasso Select|Sélection au lasso
+Layer|Calque
+Layer %d|Calque %d
+Layer Hidden|Calque masqué
+Layer Properties|Propriétés du calque
+Layer Properties…|Propriétés du calque…
+Layer Shown|Calque affiché
+Layered images are saved as Paint.NET files (.pdn) or in the OpenRaster format (.ora), which Krita, GIMP and MyPaint also open. PNG, JPEG, BMP, GIF, TIFF, TGA, DDS, HEIC, AVIF and ICO can be saved; WebP, JPEG XL and PSD can be opened.|Les images à calques s'enregistrent au format Paint.NET (.pdn) ou OpenRaster (.ora), que Krita, GIMP et MyPaint savent aussi ouvrir. Enregistrement possible en PNG, JPEG, BMP, GIF, TIFF, TGA, DDS, HEIC, AVIF et ICO ; ouverture des WebP, JPEG XL et PSD.
+Layers|Calques
+Layers (F7)|Calques (F7)
+Left|Gauche
+Left Arrow|Flèche vers la gauche
+Left click to draw freehand one-pixel wide lines with the primary color, right click to use the secondary color.|Clic gauche pour dessiner à main levée des traits d'un pixel avec la couleur principale, clic droit pour la couleur secondaire.
+Left click to draw with the primary color, right click to draw with the secondary color.|Clic gauche pour peindre avec la couleur principale, clic droit pour la couleur secondaire.
+Left click to fill a region with the primary color, right click to fill with the secondary color.|Clic gauche pour remplir une zone avec la couleur principale, clic droit avec la couleur secondaire.
+Left click to place the cursor, then type the desired text. The text color is the primary color.|Cliquez pour placer le curseur, puis tapez votre texte. Le texte utilise la couleur principale.
+Left click to replace the secondary color with the primary color.|Clic gauche pour remplacer la couleur secondaire par la couleur principale.
+Left click to set the primary color. Right click to set the secondary color.|Clic gauche pour définir la couleur principale, clic droit pour la couleur secondaire.
+Left click to zoom in. Right click to zoom out. Click and drag to zoom in on a rectangle.|Clic gauche pour zoomer, clic droit pour dézoomer. Cliquez et faites glisser pour zoomer sur un rectangle.
+Left-click a swatch to set the primary color, right-click for the secondary color. Shift-click stores the current color.|Clic gauche sur une case pour la couleur principale, clic droit pour la secondaire. Maj+clic mémorise la couleur courante.
+Less «|Moins «
+Levels|Niveaux
+Light|Clair
+Light Horizontal|Horizontal clair
+Light Vertical|Vertical clair
+Lighten|Éclaircir
+Lighting|Éclairage
+Lightness|Luminosité
+Lightning|Éclair
+Line|Ligne
+Line / Curve|Ligne / Courbe
+Linear|Linéaire
+Linear (Diamond)|Linéaire (losange)
+Linear (Reflected)|Linéaire (réfléchi)
+Linked|Liés
+Luminosity|Luminosité
+Magic Wand|Baguette magique
+Maintain aspect ratio|Conserver les proportions
+Mandelbrot Fractal|Fractale de Mandelbrot
+Manhattan|Manhattan
+Maximum scatter radius|Rayon de dispersion maximal
+Median Blur|Flou médian
+Median Cut|Coupure médiane
+Merge Layer Down|Fusionner avec le calque inférieur
+Minimize|Placer dans le Dock
+Minimum scatter radius|Rayon de dispersion minimal
+Mode|Mode
+Mode:|Mode :
+Moon|Lune
+More »|Plus »
+Morphology|Morphologie
+Motion Blur|Flou de mouvement
+Move Layer Down|Descendre le calque
+Move Layer Up|Monter le calque
+Move Layer to Bottom|Placer le calque en bas
+Move Layer to Top|Placer le calque en haut
+Move Selected Pixels|Déplacer les pixels sélectionnés
+Move Selection|Déplacer la sélection
+Multiply|Produit
+Name:|Nom :
+Nearest Neighbor|Plus proche voisin
+Negation|Négation
+New|Nouveau
+New (⌘N)|Nouveau (⌘N)
+New Image|Nouvelle image
+New size: %@|Nouvelle taille : %@
+New size: %d × %d (%@)|Nouvelle taille : %d × %d (%@)
+New…|Nouveau…
+Next Image|Image suivante
+Next image|Image suivante
+No Repeat|Sans répétition
+Noise|Bruit
+Normal|Normal
+Number of cells|Nombre de cellules
+OK|OK
+Object|Objet
+Octagon|Octogone
+Octaves|Octaves
+Octree|Octree
+Offset|Décalage
+Oil Painting|Peinture à l'huile
+Opacity|Opacité
+Opacity:|Opacité :
+Open|Ouvrir
+Open (⌘O)|Ouvrir (⌘O)
+Open Image|Ouvrir l'image
+Open Palette…|Ouvrir une palette…
+Open Recent|Ouvrir l'élément récent
+Open…|Ouvrir…
+Original|Original
+Outline|Contour
+Outline Object|Contour de l'objet
+Outlined Diamond|Losanges en contour
+Output black|Noir en sortie
+Output white|Blanc en sortie
+Overlay|Incrustation
+Overwrite|Écraser
+Paint Bucket|Pot de peinture
+Paintbrush|Pinceau
+Palette|Palette
+Pan|Main
+Parallelogram|Parallélogramme
+Paste|Coller
+Paste (⌘V)|Coller (⌘V)
+Paste Into New Image|Coller dans une nouvelle image
+Paste Into New Layer|Coller dans un nouveau calque
+Paste Selection|Coller la sélection
+Paste Selection (Replace)|Coller la sélection (remplacer)
+Pencil|Crayon
+Pencil Sketch|Esquisse au crayon
+Pencil tip size|Taille de la mine
+Pentagon|Pentagone
+Percentile|Centile
+Period|Période
+Photo|Photo
+Pixel Grid|Grille de pixels
+Pixel Grid (⌘')|Grille de pixels (⌘')
+Pixel size|Taille en pixels
+Pixelate|Pixeliser
+Pixels|Pixels
+Plaid|Écossais
+Plus|Plus
+Polar Inversion|Inversion polaire
+Polygons|Polygones
+Posterize|Postériser
+Posterize, Sepia|Postériser, Sépia
+Preserve transparency|Conserver la transparence
+Previous Image|Image précédente
+Primary|Principale
+Print (⌘P)|Imprimer (⌘P)
+Print size|Taille d'impression
+Print…|Imprimer…
+Quality|Qualité
+Quality:|Qualité :
+Quantize|Quantifier
+Quit Brushwood|Quitter Brushwood
+RGB|RVB
+RLE compression|Compression RLE
+Radial|Radial
+Radial Blur|Flou radial
+Radius|Rayon
+Radius:|Rayon :
+Random Noise|Bruit aléatoire
+Random positions and colors|Positions et couleurs aléatoires
+Randomize|Aléatoire
+Recolor|Recolorer
+Rectangle|Rectangle
+Rectangle Callout|Bulle rectangulaire
+Rectangle Select|Sélection rectangulaire
+Red|Rouge
+Red Eye Removal|Suppression des yeux rouges
+Redo|Rétablir
+Redo %@|Rétablir « %@ »
+Redo (⇧⌘Z)|Rétablir (⇧⌘Z)
+Reduce Noise|Réduire le bruit
+Reflect|Réflexion
+Refraction|Réfraction
+Relief|Relief
+Render|Rendu
+Repeat|Répéter
+Repeat %@|Répéter « %@ »
+Repeat last effect|Répéter le dernier effet
+Replace|Remplacer
+Resampling|Rééchantillonnage
+Resampling:|Rééchantillonnage :
+Reseed|Nouvelle graine
+Reset|Réinitialiser
+Reset Colors|Réinitialiser les couleurs
+Reset Palette to Default|Rétablir la palette par défaut
+Reset Window Positions|Réinitialiser la position des fenêtres
+Reset to Default|Rétablir les valeurs par défaut
+Resize|Redimensionner
+Resize Image|Redimensionner l'image
+Resize…|Redimensionner…
+Resolution:|Résolution :
+Restart Brushwood to use the new language.|Redémarrez Brushwood pour utiliser la nouvelle langue.
+Restart Now|Redémarrer maintenant
+Rewind to the beginning|Revenir au début
+Right|Droite
+Right Arrow|Flèche vers la droite
+Right Triangle|Triangle rectangle
+Rotate / Zoom|Rotation / Zoom
+Rotate / Zoom…|Rotation / Zoom…
+Rotate 180°|Rotation de 180°
+Rotate 90° CW / 90° CCW / 180°|Rotation 90° horaire / 90° antihoraire / 180°
+Rotate 90° Clockwise|Rotation de 90° dans le sens horaire
+Rotate 90° Counter-clockwise|Rotation de 90° dans le sens antihoraire
+Rotate Layer 180°|Rotation du calque de 180°
+Rotation|Rotation
+Roughness|Rugosité
+Rounded|Arrondi
+Rounded Rectangle|Rectangle arrondi
+Rounded Rectangle Callout|Bulle rectangulaire arrondie
+Rulers|Règles
+Rulers (⌥⌘R)|Règles (⌥⌘R)
+Sample size|Taille de l'échantillon
+Sampling|Échantillonnage
+Sampling:|Échantillonnage :
+Saturation|Saturation
+Saturation percentage|Pourcentage de saturation
+Save|Enregistrer
+Save (⌘S)|Enregistrer (⌘S)
+Save All|Tout enregistrer
+Save Anyway|Enregistrer quand même
+Save As|Enregistrer sous
+Save As…|Enregistrer sous…
+Save Configuration — %@|Options d'enregistrement — %@
+Save Palette As…|Enregistrer la palette sous…
+Save changes to \"%@\"?|Enregistrer les modifications de « %@ » ?
+Sawtooth Repeat|Répétition en dents de scie
+Scale|Échelle
+Screen|Superposition
+Secondary|Secondaire
+Secondary color|Couleur secondaire
+Seed|Graine
+Select All|Tout sélectionner
+Select All / Deselect|Tout sélectionner / Désélectionner
+Selection|Sélection
+Selection clipping|Détourage par la sélection
+Selection drawing mode|Mode de tracé de la sélection
+Selection mode:|Mode de sélection :
+Selection tools combine with the existing selection: ⌘ adds (union), ⌥ subtracts, right-click inverts (xor) and ⌥+right-click intersects. The mode can also be chosen in the tool bar.|Les outils de sélection se combinent avec la sélection existante : ⌘ ajoute (union), ⌥ soustrait, le clic droit inverse (xor) et ⌥+clic droit fait l'intersection. Le mode peut aussi être choisi dans la barre d'outils.
+Selection: %d × %d|Sélection : %d × %d
+Selections|Sélections
+Sepia|Sépia
+Services|Services
+Settings|Réglages
+Settings (⌘,)|Réglages (⌘,)
+Settings…|Réglages…
+Shadow only|Ombre seule
+Shadows|Tons foncés
+Shape:|Forme :
+Shapes|Formes
+Shapes, lines, gradients, text and paint bucket fills stay editable after you draw them: drag their handles or change options in the tool bar. Press Return or switch tools to finish, Escape or ⌘Z to cancel.|Les formes, lignes, dégradés, textes et remplissages restent modifiables après leur tracé : déplacez leurs poignées ou changez les options dans la barre d'outils. Appuyez sur Entrée ou changez d'outil pour valider, Échap ou ⌘Z pour annuler.
+Sharpen|Netteté
+Shingle|Bardeaux
+Show All|Tout afficher
+Show in Finder|Afficher dans le Finder
+Show points|Afficher les points
+Single Pixel|Pixel unique
+Size|Taille
+Sketch Blur|Flou esquisse
+Small Checker Board|Petit damier
+Small Grid|Petite grille
+Smoothness|Douceur
+Soft Light|Lumière tamisée
+Soften Portrait|Adoucir le portrait
+Softness|Douceur
+Solid|Plein
+Solid Color|Couleur unie
+Solid Diamond|Losanges pleins
+Space|Espace
+Sphere|Sphère
+Spiral (Clockwise)|Spirale (sens horaire)
+Spiral (Counter-clockwise)|Spirale (sens antihoraire)
+Square Blur|Flou carré
+Stars|Étoiles
+Start cap|Extrémité de début
+Start:|Début :
+Straighten|Redresser
+Strength|Force
+Strikethrough|Barré
+Stylize|Stylisation
+Subtract|Soustraire
+Supersampling|Suréchantillonnage
+Surface Blur|Flou de surface
+Swap Colors|Permuter les couleurs
+Swap primary and secondary colors|Permuter les couleurs principale et secondaire
+Switch to Pencil tool|Passer au crayon
+Switch to previous tool|Revenir à l'outil précédent
+Symbols|Symboles
+Temperature|Température
+Temperature and Tint|Température et teinte
+Tension|Tension
+Text|Texte
+The image being pasted is larger than the canvas size. What would you like to do?|L'image collée est plus grande que le canevas. Que voulez-vous faire ?
+These blend modes will be saved as Normal in the .pdn file: %@. Save as OpenRaster (.ora) to keep them.|Ces modes de fusion seront enregistrés en Normal dans le fichier .pdn : %@. Enregistrez en OpenRaster (.ora) pour les conserver.
+Thickness|Épaisseur
+This file format does not support layers. The saved file will contain a flattened copy of the image; your layers are kept in Brushwood.|Ce format ne gère pas les calques. Le fichier contiendra une copie aplatie de l'image ; vos calques sont conservés dans Brushwood.
+This is not a Paint.NET (.pdn) file.|Ce n'est pas un fichier Paint.NET (.pdn).
+Threshold|Seuil
+Tile Reflection|Réflexion en mosaïque
+Tile Size|Taille des carreaux
+Tiling|Mosaïque
+Tint|Teinte (vert/magenta)
+Toggle Layer Visibility|Afficher/masquer le calque
+Tolerance|Tolérance
+Tolerance:|Tolérance :
+Tool:|Outil :
+Tools|Outils
+Tools (F5)|Outils (F5)
+Tools, History, Layers, Colors windows|Fenêtres Outils, Historique, Calques, Couleurs
+Transfer Map:|Courbe de transfert :
+Transparency Mode|Mode transparence
+Transparent|Transparent
+Trapezoid|Trapèze
+Trellis|Treillis
+Triangle|Triangle
+Triangle Repeat|Répétition en triangle
+Turbulence|Turbulence
+Twist|Torsion
+Underline|Souligné
+Undo|Annuler
+Undo %@|Annuler « %@ »
+Undo (⌘Z)|Annuler (⌘Z)
+Units|Unités
+Untitled|Sans titre
+Up Arrow|Flèche vers le haut
+Use System Setting|Utiliser le réglage du système
+Value|Valeur
+Vertical|Vertical
+View|Affichage
+Vignette|Vignette
+Visible|Visible
+Voronoi Diagram|Diagramme de Voronoï
+Warmth|Chaleur
+Wave|Vagues
+Weave|Tissage
+Welcome to Brushwood|Bienvenue dans Brushwood
+White|Blanc
+Width|Largeur
+Width:|Largeur :
+Window|Fenêtre
+Wrap|Répéter
+Xor|Ou exclusif
+Zig Zag|Zigzag
+Zoom|Zoom
+Zoom Amount|Intensité du zoom
+Zoom Blur|Flou de zoom
+Zoom In|Zoom avant
+Zoom In / Out|Zoom avant / arrière
+Zoom Out|Zoom arrière
+Zoom to Selection|Zoomer sur la sélection
+Zoom to Window|Ajuster à la fenêtre
+centimeters|centimètres
+cm|cm
+in|po
+inches|pouces
+letter|lettre
+pixels|pixels
+pixels/inch|pixels/pouce
+px|px
+⌘-click to set the clone origin first.|⌘+clic pour définir d'abord l'origine de la duplication.
+⌘-click to set the origin, then click and drag to paint with the cloned pixels.|⌘+clic pour définir l'origine, puis cliquez et faites glisser pour peindre avec les pixels dupliqués.
+""".strip().splitlines())
