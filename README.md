@@ -22,6 +22,8 @@ owner. No Paint.NET code, icons or other assets are used — every icon is drawn
 - Floating **Tools**, **History**, **Layers** and **Colors** windows (F5–F8)
 - Status bar with tool hint, selection size, cursor position, units and zoom slider
 - Rulers, pixel grid, units (pixels / inches / centimeters), checkerboard transparency, drag & drop to open
+- Free panning: the image can be moved anywhere in the window, in any direction, at any zoom (Pan tool, Space+drag, middle button,
+  trackpad or scroll wheel), until only a small strip of it remains visible
 
 **Tools** (same order and letter shortcuts as Paint.NET; pressing a letter again cycles tools that share it)
 

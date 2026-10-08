@@ -69,6 +69,8 @@ final class MainWindowController: NSWindowController, NSWindowDelegate, NSMenuIt
         scrollView.contentView.postsBoundsChangedNotifications = true
         scrollView.contentView.postsFrameChangedNotifications = true
         scrollView.allowsMagnification = false
+        // Two-finger trackpad scrolling moves the image diagonally too, instead of locking to one axis.
+        scrollView.usesPredominantAxisScrolling = false
         scrollView.hasHorizontalRuler = true
         scrollView.hasVerticalRuler = true
         NotificationCenter.default.addObserver(forName: NSView.frameDidChangeNotification, object: scrollView.contentView,

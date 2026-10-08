@@ -95,5 +95,8 @@ run width "tool:paintbrush; width:2; widthcombo:select,25; expectwidth:25; color
  expect:200,312,FF0000,8; expect:200,330,FFFFFF; widthcombo:wheel,up; expectwidth:45; widthcombo:wheel,down; widthcombo:wheel,down; expectwidth:35;
  tool:eraser; expectwidth:35; widthcombo:type,3; widthcombo:blur; expectwidth:3"
 
+run pan "expectfreescroll; zoom:0.25; expectpanlimits; zoom:1; expectpanlimits; zoom:8; expectpanlimits; tool:pencil; color:FF0000;
+ zoom:0.5; scrollby:200,100; drag:10,10,10,40; expect:10,25,FF0000; zoom:2; scrollby:-300,50; expectzoom:2"
+
 rm -rf "$OUT"
 [ $fail -eq 0 ] && echo "UI smoke tests passed" || { echo "UI smoke tests FAILED"; exit 1; }

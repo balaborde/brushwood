@@ -140,10 +140,12 @@ final class CanvasView: NSView {
         return CGSize(width: d.width, height: d.height)
     }
 
-    var imageOrigin: CGPoint {
-        let w = imageSize.width * zoom, h = imageSize.height * zoom
-        return CGPoint(x: floor((bounds.width - w) / 2), y: floor((bounds.height - h) / 2))
-    }
+    /// Top-left of the image inside this (scrollable) view. The image sits in a margin as large as the viewport,
+    /// so it can be panned freely anywhere in the window, at any zoom (only `keepVisible` points must remain on screen).
+    private(set) var imageOrigin: CGPoint = .zero
+
+    /// Amount of image that always stays visible when it is pushed against a window edge.
+    let keepVisible: CGFloat = 48
 
     var imageRectInView: CGRect {
         CGRect(origin: imageOrigin, size: CGSize(width: imageSize.width * zoom, height: imageSize.height * zoom))
@@ -171,15 +173,20 @@ final class CanvasView: NSView {
 
     var clipView: NSClipView? { enclosingScrollView?.contentView }
 
-    /// Resizes the document view so it is at least as large as the viewport plus margins around the image.
+    /// Sizes the document view to the image plus a viewport-sized margin on every side, keeping the image point
+    /// that is at the center of the viewport in place (window resizes, panels, zoom).
     func updateFrame() {
         guard let clip = clipView else { return }
         let vis = clip.bounds.size
-        let w = max(vis.width, imageSize.width * zoom + 2 * margin)
-        let h = max(vis.height, imageSize.height * zoom + 2 * margin)
-        if frame.size != CGSize(width: w, height: h) {
-            setFrameSize(NSSize(width: w, height: h))
-        }
+        let hadImage = workspace != nil && frame.width > 0 && frame.height > 0
+        let centerBefore = hadImage ? toImage(CGPoint(x: clip.bounds.midX, y: clip.bounds.midY)) : nil
+        let padX = max(margin, vis.width - keepVisible), padY = max(margin, vis.height - keepVisible)
+        let newOrigin = CGPoint(x: floor(padX), y: floor(padY))
+        let size = NSSize(width: imageSize.width * zoom + 2 * newOrigin.x, height: imageSize.height * zoom + 2 * newOrigin.y)
+        let changed = frame.size != size || newOrigin != imageOrigin
+        imageOrigin = newOrigin
+        if frame.size != size { setFrameSize(size) }
+        if changed, let centerBefore { scroll(toImageCenter: centerBefore) }
         selectionViewPath = nil
         host?.canvasGeometryChanged()
     }

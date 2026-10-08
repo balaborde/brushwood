@@ -117,6 +117,35 @@ enum DebugScript {
                     c.window?.makeFirstResponder(c.canvas)
                 default: break
                 }
+            case "scrollby" where nums.count >= 2:
+                // Same effect as dragging with the Pan tool by (-dx, -dy).
+                if let clip = c.canvas.clipView {
+                    c.canvas.pan(to: NSPoint(x: clip.bounds.origin.x + nums[0], y: clip.bounds.origin.y + nums[1]), clip: clip)
+                }
+            case "expectonscreen":
+                // expectonscreen:minX,minY — where the image's top-left corner sits inside the viewport (view points).
+                if let clip = c.canvas.clipView {
+                    let r = c.canvas.imageRectInView.offsetBy(dx: -clip.bounds.minX, dy: -clip.bounds.minY)
+                    let ok = abs(r.minX - nums[0]) <= 2 && abs(r.minY - nums[1]) <= 2
+                    report(ok, "image top-left in viewport = (\(Int(r.minX)), \(Int(r.minY))), expected \(arg)")
+                }
+            case "expectfreescroll":
+                report(!c.scrollView.usesPredominantAxisScrolling, "trackpad scrolling is not locked to one axis")
+            case "expectpanlimits":
+                // Pans to both extremes: the image can leave the viewport until only `keepVisible` points remain.
+                guard let clip = c.canvas.clipView else { break }
+                let k = c.canvas.keepVisible
+                c.canvas.pan(to: NSPoint(x: -1e9, y: -1e9), clip: clip)
+                var r = c.canvas.imageRectInView.offsetBy(dx: -clip.bounds.minX, dy: -clip.bounds.minY)
+                report(abs(r.minX - (clip.bounds.width - k)) <= 1 && abs(r.minY - (clip.bounds.height - k)) <= 1,
+                       "pushed to bottom-right: image top-left at (\(Int(r.minX)), \(Int(r.minY))) in a \(Int(clip.bounds.width))×\(Int(clip.bounds.height)) viewport")
+                c.canvas.pan(to: NSPoint(x: 1e9, y: 1e9), clip: clip)
+                r = c.canvas.imageRectInView.offsetBy(dx: -clip.bounds.minX, dy: -clip.bounds.minY)
+                report(abs(r.maxX - k) <= 1 && abs(r.maxY - k) <= 1,
+                       "pushed to top-left: image bottom-right at (\(Int(r.maxX)), \(Int(r.maxY)))")
+                c.canvas.centerImage()
+                r = c.canvas.imageRectInView.offsetBy(dx: -clip.bounds.minX, dy: -clip.bounds.minY)
+                report(abs(r.midX - clip.bounds.width / 2) <= 1 && abs(r.midY - clip.bounds.height / 2) <= 1, "re-centered")
             case "expectwidth":
                 let w = AppEnvironment.shared.tools.brushWidth
                 report(abs(w - CGFloat(nums.first ?? -1)) < 0.01, "brush width = \(w), expected \(arg)")
