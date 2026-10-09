@@ -6,6 +6,7 @@
   <a href="https://github.com/balaborde/brushwood/releases/latest"><img alt="Download for macOS" src="https://img.shields.io/badge/download-macOS%20.dmg-2f80ed"></a>
   <img alt="macOS 13 or later, Apple silicon and Intel" src="https://img.shields.io/badge/macOS%2013%2B-Apple%20silicon%20%26%20Intel-555555">
   <a href="LICENSE"><img alt="MIT license" src="https://img.shields.io/badge/license-MIT-4db04f"></a>
+  <a href="https://buymeacoffee.com/balaborde"><img alt="Support Brushwood on Buy Me a Coffee" src="https://img.shields.io/badge/Buy_Me_a_Coffee-support-FFDD00?logo=buymeacoffee&logoColor=black"></a>
 </p>
 
 Brushwood brings Paint.NET's workflow to the Mac as a native AppKit application: one main window with image tabs, the four
@@ -266,6 +267,12 @@ To add a language, copy a table to `scripts/translations/<code>.py`, translate t
 - Not implemented: plugins, tablet pressure, Image › Color Profile, and File › Acquire (scanner/camera).
 - Menus live in the macOS menu bar rather than inside the window, and a few shortcuts differ where macOS reserves the key
   (see the table above).
+
+## Support Brushwood
+
+Brushwood is free and open source. If it is useful to you, you can support its development on
+[Buy Me a Coffee](https://buymeacoffee.com/balaborde) (also from **Brushwood › Support Brushwood…** in the app).
+Starring the repository helps too: it makes Brushwood easier to find.
 
 ## Contributing
 
