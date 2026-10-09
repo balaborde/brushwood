@@ -2,6 +2,7 @@
 # as written in the Swift source (escapes included); run scripts/gen_strings.py after editing.
 T = dict(line.split('|', 1) for line in r"""
 %@ copy|%@ 사본
+%@ of %@|%@ / %@
 %d x %d Region|%d x %d 영역
 10 Percent|10퍼센트
 20 Percent|20퍼센트
@@ -17,6 +18,8 @@ T = dict(line.split('|', 1) for line in r"""
 8 Point Star|8각 별
 90 Percent|90퍼센트
 A free, open-source image editor for macOS, modeled on the workflow of Paint.NET.\n\nLicensed under the MIT License.\nNot affiliated with or endorsed by dotPDN LLC. Paint.NET is a trademark of its respective owner.|Paint.NET의 작업 방식을 본뜬 macOS용 무료 오픈 소스 이미지 편집기입니다.\n\nMIT 라이선스로 배포됩니다.\ndotPDN LLC와 제휴 관계가 없으며 보증을 받지 않았습니다. Paint.NET은 해당 소유자의 상표입니다.
+A new version of Brushwood is available|새로운 버전의 Brushwood를 사용할 수 있습니다
+A star on GitHub also helps more people find Brushwood, and it means a lot.|GitHub에서 별을 눌러 주시면 더 많은 사람들이 Brushwood를 찾는 데 도움이 되며, 큰 힘이 됩니다.
 About Brushwood|Brushwood에 관하여
 Actual Size|실제 크기
 Add (union)|추가(합집합)
@@ -67,8 +70,12 @@ Brightness / Contrast|밝기 / 대비
 Brush size|브러시 크기
 Brush width (mouse wheel, [ and ] also change it)|브러시 너비(마우스 휠, [ 및 ] 키로도 변경 가능)
 Brush width:|브러시 너비:
+Brushwood %@ is available. You have version %@.|Brushwood %@을(를) 사용할 수 있습니다. 현재 버전은 %@입니다.
 Brushwood Help|Brushwood 도움말
+Brushwood cannot replace itself in its current folder. Download the new version from GitHub and install it by hand.|Brushwood가 현재 폴더에서 자신을 교체할 수 없습니다. GitHub에서 새 버전을 다운로드하여 직접 설치하십시오.
 Brushwood is a free image editor for macOS whose workflow follows Paint.NET: one main window with image tabs, floating Tools, History, Layers and Colors windows, layers with blend modes, unlimited history, and a large set of adjustments and effects with live preview.|Brushwood는 Paint.NET의 작업 방식을 따르는 macOS용 무료 이미지 편집기입니다. 이미지 탭이 있는 하나의 메인 윈도우, 도구·기록·레이어·색상 플로팅 윈도우, 혼합 모드를 지원하는 레이어, 무제한 기록, 실시간 미리보기가 있는 다양한 조정 및 효과를 제공합니다.
+Brushwood is running from the disk image or the Downloads folder. Move it to the Applications folder, then try again.|Brushwood가 디스크 이미지 또는 다운로드 폴더에서 실행 중입니다. 응용 프로그램 폴더로 옮긴 다음 다시 시도하십시오.
+Brushwood is up to date|Brushwood가 최신 버전입니다
 Bulge|볼록하게
 By absolute size|절대 크기로
 By percentage:|백분율로:
@@ -82,6 +89,10 @@ Center|가운데
 Centered|가운데
 Centimeters|센티미터
 Chebyshev|체비쇼프
+Check for Updates…|업데이트 확인…
+Check for updates automatically|자동으로 업데이트 확인
+Check your internet connection and try again.|인터넷 연결을 확인한 다음 다시 시도하십시오.
+Checking for updates…|업데이트 확인 중…
 Chevron|갈매기형
 Clamp|고정
 Clear Menu|메뉴 지우기
@@ -123,6 +134,7 @@ Copy (⌘C)|복사하기(⌘C)
 Copy / paste the selection outline|선택 영역 윤곽 복사 / 붙여넣기
 Copy Merged|병합하여 복사
 Copy Selection|선택 영역 복사
+Could not check for updates|업데이트를 확인할 수 없음
 Could not open \"%@\"|‘%@’을(를) 열 수 없음
 Could not save \"%@\"|‘%@’을(를) 저장할 수 없음
 Coverage|적용 범위
@@ -166,11 +178,14 @@ Dithering|디더링
 Divot|잔디 조각
 Do not switch tool|도구 전환 안 함
 Don't Save|저장 안 함
+Done|완료
 Dot|점
 Dotted Diamond|점선 다이아몬드
 Dotted Grid|점선 격자
 Double Arrow|양방향 화살표
 Down Arrow|아래쪽 화살표
+Download from GitHub|GitHub에서 다운로드
+Downloading…|다운로드 중…
 Drag the selection outline to move it. Drag the handles to scale. Drag with the right mouse button to rotate.|선택 영역 윤곽을 드래그하여 이동하고, 핸들을 드래그하여 크기를 조절하고, 오른쪽 버튼으로 드래그하여 회전합니다.
 Drag the selection to move it. Drag the handles to scale. Drag with the right mouse button to rotate. Hold ⌘ while dragging to leave a copy behind.|선택 영역을 드래그하여 이동하고, 핸들을 드래그하여 크기를 조절하고, 오른쪽 버튼으로 드래그하여 회전합니다. 드래그하는 동안 ⌘ 키를 누르고 있으면 사본이 남습니다.
 Draw Filled Shape|채워진 도형
@@ -248,6 +263,7 @@ Heart|하트
 Height|높이
 Height:|높이:
 Help|도움말
+Help Brushwood keep growing|Brushwood가 계속 성장하도록 도와주십시오
 Hex:|16진수:
 Hexagon|육각형
 Hide Brushwood|Brushwood 가리기
@@ -265,6 +281,7 @@ Hue|색조
 Hue / Saturation|색조 / 채도
 Hue / Saturation, Invert Alpha, Invert Colors, Levels|색조 / 채도, 알파 반전, 색상 반전, 레벨
 If you don't save, your changes will be lost.|저장하지 않으면 변경 사항이 손실됩니다.
+If you would like to support development financially, Buy Me a Coffee is the one place to do it.|개발을 재정적으로 후원하고 싶으시다면 Buy Me a Coffee가 유일한 창구입니다.
 Image|이미지
 Image larger than canvas|이미지가 캔버스보다 큼
 Import From File|파일에서 가져오기
@@ -274,6 +291,8 @@ Ink Sketch|잉크 스케치
 Ink outline|잉크 윤곽
 Input black|입력 검정
 Input white|입력 흰색
+Install and Relaunch|설치 후 재시작
+Installing…|설치 중…
 Intensity|강도
 Intersect|교차
 Invert (xor)|반전(xor)
@@ -289,6 +308,7 @@ Language|언어
 Large Checker Board|큰 바둑판
 Large Grid|큰 격자
 Lasso Select|올가미 선택
+Later|나중에
 Layer|레이어
 Layer %d|레이어 %d
 Layer Hidden|레이어 숨김
@@ -359,6 +379,7 @@ New…|신규…
 Next Image|다음 이미지
 Next image|다음 이미지
 No Repeat|반복 안 함
+No download is available for this version yet.|이 버전은 아직 다운로드할 수 없습니다.
 Noise|노이즈
 Normal|표준
 Number of cells|셀 수
@@ -536,6 +557,7 @@ Smoothness|매끄러움
 Soft Light|소프트 라이트
 Soften Portrait|인물 부드럽게
 Softness|부드러움
+Software Update|소프트웨어 업데이트
 Solid|실선
 Solid Color|단색
 Solid Diamond|채워진 다이아몬드
@@ -553,6 +575,8 @@ Strikethrough|취소선
 Stylize|스타일화
 Subtract|빼기
 Supersampling|슈퍼샘플링
+Support Brushwood…|Brushwood 후원…
+Support on Buy Me a Coffee|Buy Me a Coffee에서 후원
 Surface Blur|표면 흐림
 Swap Colors|색상 교체
 Swap primary and secondary colors|기본 색상과 보조 색상 교체
@@ -563,7 +587,10 @@ Temperature|색온도
 Temperature and Tint|색온도 및 틴트
 Tension|장력
 Text|텍스트
+Thank you for being here.|함께해 주셔서 감사합니다.
+The downloaded file is damaged. Try again later.|다운로드한 파일이 손상되었습니다. 나중에 다시 시도하십시오.
 The image being pasted is larger than the canvas size. What would you like to do?|붙여넣는 이미지가 캔버스보다 큽니다. 어떻게 하시겠습니까?
+The update could not be installed|업데이트를 설치할 수 없음
 These blend modes will be saved as Normal in the .pdn file: %@. Save as OpenRaster (.ora) to keep them.|다음 혼합 모드는 .pdn 파일에 표준으로 저장됩니다: %@. 유지하려면 OpenRaster(.ora)로 저장하십시오.
 Thickness|두께
 This file format does not support layers. The saved file will contain a flattened copy of the image; your layers are kept in Brushwood.|이 파일 포맷은 레이어를 지원하지 않습니다. 저장된 파일에는 이미지의 병합된 사본이 포함되며, 레이어는 Brushwood에 유지됩니다.
@@ -596,8 +623,11 @@ Undo (⌘Z)|실행 취소(⌘Z)
 Units|단위
 Untitled|제목 없음
 Up Arrow|위쪽 화살표
+Updates|업데이트
 Use System Setting|시스템 설정 사용
 Value|값
+Version %@|버전 %@
+Version %@ is the latest version.|버전 %@이(가) 최신 버전입니다.
 Vertical|세로
 View|보기
 Vignette|비네트
@@ -607,6 +637,7 @@ Warmth|따뜻함
 Wave|물결
 Weave|직조
 Welcome to Brushwood|Brushwood에 오신 것을 환영합니다
+What's New|새로운 기능
 White|흰색
 Width|너비
 Width:|너비:

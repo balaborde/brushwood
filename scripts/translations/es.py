@@ -2,6 +2,7 @@
 # as written in the Swift source (escapes included); run scripts/gen_strings.py after editing.
 T = dict(line.split('|', 1) for line in r"""
 %@ copy|Copia de %@
+%@ of %@|%@ de %@
 %d x %d Region|Región de %d x %d
 10 Percent|10 por ciento
 20 Percent|20 por ciento
@@ -17,6 +18,8 @@ T = dict(line.split('|', 1) for line in r"""
 8 Point Star|Estrella de 8 puntas
 90 Percent|90 por ciento
 A free, open-source image editor for macOS, modeled on the workflow of Paint.NET.\n\nLicensed under the MIT License.\nNot affiliated with or endorsed by dotPDN LLC. Paint.NET is a trademark of its respective owner.|Un editor de imágenes gratuito y de código abierto para macOS, inspirado en el flujo de trabajo de Paint.NET.\n\nDistribuido bajo la licencia MIT.\nSin afiliación con dotPDN LLC ni respaldo de esta. Paint.NET es una marca comercial de su propietario.
+A new version of Brushwood is available|Hay una nueva versión de Brushwood disponible
+A star on GitHub also helps more people find Brushwood, and it means a lot.|Una estrella en GitHub también ayuda a que más gente descubra Brushwood, y significa mucho.
 About Brushwood|Acerca de Brushwood
 Actual Size|Tamaño real
 Add (union)|Añadir (unión)
@@ -67,8 +70,12 @@ Brightness / Contrast|Brillo / Contraste
 Brush size|Tamaño del pincel
 Brush width (mouse wheel, [ and ] also change it)|Ancho del pincel (también se cambia con la rueda del ratón, [ y ])
 Brush width:|Ancho del pincel:
+Brushwood %@ is available. You have version %@.|Brushwood %@ está disponible. Tienes la versión %@.
 Brushwood Help|Ayuda de Brushwood
+Brushwood cannot replace itself in its current folder. Download the new version from GitHub and install it by hand.|Brushwood no puede reemplazarse en su carpeta actual. Descarga la nueva versión desde GitHub e instálala manualmente.
 Brushwood is a free image editor for macOS whose workflow follows Paint.NET: one main window with image tabs, floating Tools, History, Layers and Colors windows, layers with blend modes, unlimited history, and a large set of adjustments and effects with live preview.|Brushwood es un editor de imágenes gratuito para macOS cuyo flujo de trabajo sigue el de Paint.NET: una ventana principal con pestañas de imágenes, ventanas flotantes de Herramientas, Historial, Capas y Colores, capas con modos de fusión, historial ilimitado y un amplio conjunto de ajustes y efectos con vista previa en directo.
+Brushwood is running from the disk image or the Downloads folder. Move it to the Applications folder, then try again.|Brushwood se está ejecutando desde la imagen de disco o la carpeta Descargas. Muévelo a la carpeta Aplicaciones e inténtalo de nuevo.
+Brushwood is up to date|Brushwood está actualizado
 Bulge|Abombar
 By absolute size|Por tamaño absoluto
 By percentage:|Por porcentaje:
@@ -82,6 +89,10 @@ Center|Centro
 Centered|Centrado
 Centimeters|Centímetros
 Chebyshev|Chebyshov
+Check for Updates…|Buscar actualizaciones…
+Check for updates automatically|Buscar actualizaciones automáticamente
+Check your internet connection and try again.|Comprueba tu conexión a Internet e inténtalo de nuevo.
+Checking for updates…|Buscando actualizaciones…
 Chevron|Cheurón
 Clamp|Limitar
 Clear Menu|Borrar menú
@@ -123,6 +134,7 @@ Copy (⌘C)|Copiar (⌘C)
 Copy / paste the selection outline|Copiar / pegar el contorno de la selección
 Copy Merged|Copiar combinado
 Copy Selection|Copiar selección
+Could not check for updates|No se han podido buscar actualizaciones
 Could not open \"%@\"|No se ha podido abrir «%@»
 Could not save \"%@\"|No se ha podido guardar «%@»
 Coverage|Cobertura
@@ -166,11 +178,14 @@ Dithering|Tramado
 Divot|Terrón
 Do not switch tool|No cambiar de herramienta
 Don't Save|No guardar
+Done|OK
 Dot|Punto
 Dotted Diamond|Rombos punteados
 Dotted Grid|Cuadrícula punteada
 Double Arrow|Flecha doble
 Down Arrow|Flecha abajo
+Download from GitHub|Descargar desde GitHub
+Downloading…|Descargando…
 Drag the selection outline to move it. Drag the handles to scale. Drag with the right mouse button to rotate.|Arrastra el contorno de la selección para moverlo, los tiradores para escalarlo y con el botón derecho para girarlo.
 Drag the selection to move it. Drag the handles to scale. Drag with the right mouse button to rotate. Hold ⌘ while dragging to leave a copy behind.|Arrastra la selección para moverla, los tiradores para escalarla y con el botón derecho para girarla. Mantén pulsada ⌘ al arrastrar para dejar una copia.
 Draw Filled Shape|Forma rellena
@@ -248,6 +263,7 @@ Heart|Corazón
 Height|Alto
 Height:|Alto:
 Help|Ayuda
+Help Brushwood keep growing|Ayuda a que Brushwood siga creciendo
 Hex:|Hex:
 Hexagon|Hexágono
 Hide Brushwood|Ocultar Brushwood
@@ -265,6 +281,7 @@ Hue|Tono
 Hue / Saturation|Tono / Saturación
 Hue / Saturation, Invert Alpha, Invert Colors, Levels|Tono / Saturación, Invertir alfa, Invertir colores, Niveles
 If you don't save, your changes will be lost.|Si no guardas, se perderán los cambios.
+If you would like to support development financially, Buy Me a Coffee is the one place to do it.|Si quieres apoyar económicamente el desarrollo, Buy Me a Coffee es el único lugar para hacerlo.
 Image|Imagen
 Image larger than canvas|Imagen más grande que el lienzo
 Import From File|Importar desde archivo
@@ -274,6 +291,8 @@ Ink Sketch|Boceto a tinta
 Ink outline|Contorno de tinta
 Input black|Negro de entrada
 Input white|Blanco de entrada
+Install and Relaunch|Instalar y reiniciar
+Installing…|Instalando…
 Intensity|Intensidad
 Intersect|Intersección
 Invert (xor)|Invertir (xor)
@@ -289,6 +308,7 @@ Language|Idioma
 Large Checker Board|Tablero de ajedrez grande
 Large Grid|Cuadrícula grande
 Lasso Select|Selección de lazo
+Later|Más tarde
 Layer|Capa
 Layer %d|Capa %d
 Layer Hidden|Capa oculta
@@ -359,6 +379,7 @@ New…|Nuevo…
 Next Image|Imagen siguiente
 Next image|Imagen siguiente
 No Repeat|Sin repetición
+No download is available for this version yet.|Todavía no hay ninguna descarga disponible para esta versión.
 Noise|Ruido
 Normal|Normal
 Number of cells|Número de celdas
@@ -536,6 +557,7 @@ Smoothness|Suavidad
 Soft Light|Luz suave
 Soften Portrait|Suavizar retrato
 Softness|Suavidad
+Software Update|Actualización de software
 Solid|Continuo
 Solid Color|Color sólido
 Solid Diamond|Rombos sólidos
@@ -553,6 +575,8 @@ Strikethrough|Tachado
 Stylize|Estilizar
 Subtract|Restar
 Supersampling|Supermuestreo
+Support Brushwood…|Apoyar a Brushwood…
+Support on Buy Me a Coffee|Apoyar en Buy Me a Coffee
 Surface Blur|Desenfoque de superficie
 Swap Colors|Intercambiar colores
 Swap primary and secondary colors|Intercambiar los colores primario y secundario
@@ -563,7 +587,10 @@ Temperature|Temperatura
 Temperature and Tint|Temperatura y matiz
 Tension|Tensión
 Text|Texto
+Thank you for being here.|Gracias por estar aquí.
+The downloaded file is damaged. Try again later.|El archivo descargado está dañado. Inténtalo más tarde.
 The image being pasted is larger than the canvas size. What would you like to do?|La imagen que se pega es más grande que el lienzo. ¿Qué quieres hacer?
+The update could not be installed|No se ha podido instalar la actualización
 These blend modes will be saved as Normal in the .pdn file: %@. Save as OpenRaster (.ora) to keep them.|Estos modos de fusión se guardarán como Normal en el archivo .pdn: %@. Guarda en OpenRaster (.ora) para conservarlos.
 Thickness|Grosor
 This file format does not support layers. The saved file will contain a flattened copy of the image; your layers are kept in Brushwood.|Este formato de archivo no admite capas. El archivo guardado contendrá una copia acoplada de la imagen; tus capas se conservan en Brushwood.
@@ -596,8 +623,11 @@ Undo (⌘Z)|Deshacer (⌘Z)
 Units|Unidades
 Untitled|Sin título
 Up Arrow|Flecha arriba
+Updates|Actualizaciones
 Use System Setting|Usar el ajuste del sistema
 Value|Valor
+Version %@|Versión %@
+Version %@ is the latest version.|La versión %@ es la más reciente.
 Vertical|Vertical
 View|Visualización
 Vignette|Viñeta
@@ -607,6 +637,7 @@ Warmth|Calidez
 Wave|Onda
 Weave|Tejido
 Welcome to Brushwood|Te damos la bienvenida a Brushwood
+What's New|Novedades
 White|Blanco
 Width|Ancho
 Width:|Ancho:

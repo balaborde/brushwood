@@ -152,7 +152,7 @@ final class SettingsWindow: NSWindow {
         let restart = NSButton(title: L("Restart Now"), target: nil, action: nil)
         restart.bezelStyle = .rounded
         restart.isHidden = true
-        restart.onAction { _ in AppLanguage.relaunch() }
+        restart.onAction { _ in relaunchApp() }
         language.onAction { [weak self] _ in
             AppLanguage.chosen = language.selectedItem?.representedObject as? String
             restartNote.isHidden = false
@@ -162,6 +162,19 @@ final class SettingsWindow: NSWindow {
         stack.addArrangedSubview(language)
         stack.addArrangedSubview(restartNote)
         stack.addArrangedSubview(restart)
+
+        stack.addArrangedSubview(header(L("Updates")))
+        let version = NSTextField(labelWithString: LF("Version %@", AppVersion.current?.description ?? "?"))
+        version.textColor = .secondaryLabelColor
+        stack.addArrangedSubview(version)
+        let automatic = NSButton(checkboxWithTitle: L("Check for updates automatically"), target: nil, action: nil)
+        automatic.state = UserDefaults.standard.bool(forKey: UpdateController.automaticKey) ? .on : .off
+        automatic.onAction { _ in UserDefaults.standard.set(automatic.state == .on, forKey: UpdateController.automaticKey) }
+        stack.addArrangedSubview(automatic)
+        let check = NSButton(title: L("Check for Updates…"), target: nil, action: nil)
+        check.bezelStyle = .rounded
+        check.onAction { _ in UpdateController.shared.checkNow() }
+        stack.addArrangedSubview(check)
         contentView = stack
         fitContent()
     }
@@ -201,18 +214,19 @@ enum AppLanguage {
         }
     }
 
-    /// Quits and reopens the app so the new language takes effect. The reopen waits until this process has exited
-    /// (unsaved-changes prompts can delay it) and gives up after a minute, e.g. if the user cancelled quitting.
-    static func relaunch() {
-        let path = Bundle.main.bundleURL.path
-        let pid = String(ProcessInfo.processInfo.processIdentifier)
-        let task = Process()
-        task.executableURL = URL(fileURLWithPath: "/bin/sh")
-        task.arguments = ["-c", "for i in $(seq 300); do kill -0 \"$1\" 2>/dev/null || exec /usr/bin/open \"$0\"; sleep 0.2; done",
-                          path, pid]
-        try? task.run()
-        NSApp.terminate(nil)
-    }
+}
+
+/// Quits and reopens the app, for a new language or after an update. The reopen waits until this process has exited
+/// (unsaved-changes prompts can delay it) and gives up after a minute, e.g. if the user cancelled quitting.
+func relaunchApp() {
+    let path = Bundle.main.bundleURL.path
+    let pid = String(ProcessInfo.processInfo.processIdentifier)
+    let task = Process()
+    task.executableURL = URL(fileURLWithPath: "/bin/sh")
+    task.arguments = ["-c", "for i in $(seq 300); do kill -0 \"$1\" 2>/dev/null || exec /usr/bin/open \"$0\"; sleep 0.2; done",
+                      path, pid]
+    try? task.run()
+    NSApp.terminate(nil)
 }
 
 /// Light / dark / system appearance chosen in Settings.

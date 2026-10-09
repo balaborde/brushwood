@@ -49,6 +49,8 @@ enum MainMenu {
     private static func appMenu(_ d: AppDelegate) -> NSMenu {
         let m = NSMenu(title: "Brushwood")
         add(m, L("About Brushwood"), #selector(AppDelegate.showAbout(_:)), target: d)
+        add(m, L("Check for Updates…"), #selector(AppDelegate.checkForUpdates(_:)), target: d)
+        add(m, L("Support Brushwood…"), #selector(AppDelegate.showSupport(_:)), target: d)
         m.addItem(.separator())
         add(m, L("Settings…"), #selector(AppDelegate.showSettings(_:)), ",", icon: "cmd.settings", target: d)
         m.addItem(.separator())

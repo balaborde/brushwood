@@ -2,6 +2,7 @@
 # as written in the Swift source (escapes included); run scripts/gen_strings.py after editing.
 T = dict(line.split('|', 1) for line in r"""
 %@ copy|%@のコピー
+%@ of %@|%@ / %@
 %d x %d Region|%d x %d の領域
 10 Percent|10 パーセント
 20 Percent|20 パーセント
@@ -17,6 +18,8 @@ T = dict(line.split('|', 1) for line in r"""
 8 Point Star|8 点の星
 90 Percent|90 パーセント
 A free, open-source image editor for macOS, modeled on the workflow of Paint.NET.\n\nLicensed under the MIT License.\nNot affiliated with or endorsed by dotPDN LLC. Paint.NET is a trademark of its respective owner.|Paint.NET のワークフローをモデルにした、macOS 用の無料でオープンソースの画像エディタです。\n\nMIT ライセンスで提供されています。\ndotPDN LLC とは提携しておらず、承認も受けていません。Paint.NET は各所有者の商標です。
+A new version of Brushwood is available|Brushwood の新しいバージョンがあります
+A star on GitHub also helps more people find Brushwood, and it means a lot.|GitHub でスターを付けていただくと、より多くの人が Brushwood を見つけやすくなります。とても励みになります。
 About Brushwood|Brushwood について
 Actual Size|実際のサイズ
 Add (union)|追加（和集合）
@@ -67,8 +70,12 @@ Brightness / Contrast|明るさ / コントラスト
 Brush size|ブラシサイズ
 Brush width (mouse wheel, [ and ] also change it)|ブラシの幅（マウスホイールや [ ] キーでも変更できます）
 Brush width:|ブラシの幅：
+Brushwood %@ is available. You have version %@.|Brushwood %@ が利用できます。現在のバージョンは %@ です。
 Brushwood Help|Brushwood ヘルプ
+Brushwood cannot replace itself in its current folder. Download the new version from GitHub and install it by hand.|Brushwood は現在のフォルダで自身を置き換えられません。GitHub から新しいバージョンをダウンロードして、手動でインストールしてください。
 Brushwood is a free image editor for macOS whose workflow follows Paint.NET: one main window with image tabs, floating Tools, History, Layers and Colors windows, layers with blend modes, unlimited history, and a large set of adjustments and effects with live preview.|Brushwood は Paint.NET のワークフローに沿った macOS 用の無料画像エディタです。画像タブ付きのメインウインドウ、フローティングの「ツール」「ヒストリー」「レイヤー」「カラー」ウインドウ、描画モード付きのレイヤー、無制限のヒストリー、ライブプレビュー付きの豊富な色調補正とエフェクトを備えています。
+Brushwood is running from the disk image or the Downloads folder. Move it to the Applications folder, then try again.|Brushwood がディスクイメージまたは“ダウンロード”フォルダから実行されています。“アプリケーション”フォルダに移動してから、もう一度お試しください。
+Brushwood is up to date|Brushwood は最新です
 Bulge|ふくらみ
 By absolute size|絶対サイズで指定
 By percentage:|パーセントで指定：
@@ -82,6 +89,10 @@ Center|中央
 Centered|中央
 Centimeters|センチメートル
 Chebyshev|チェビシェフ
+Check for Updates…|アップデートを確認…
+Check for updates automatically|アップデートを自動的に確認
+Check your internet connection and try again.|インターネット接続を確認して、もう一度お試しください。
+Checking for updates…|アップデートを確認中…
 Chevron|シェブロン
 Clamp|端を延長
 Clear Menu|メニューを消去
@@ -123,6 +134,7 @@ Copy (⌘C)|コピー (⌘C)
 Copy / paste the selection outline|選択範囲の輪郭をコピー / ペースト
 Copy Merged|結合部分をコピー
 Copy Selection|選択範囲をコピー
+Could not check for updates|アップデートを確認できませんでした
 Could not open \"%@\"|「%@」を開けませんでした
 Could not save \"%@\"|「%@」を保存できませんでした
 Coverage|カバー率
@@ -166,11 +178,14 @@ Dithering|ディザ
 Divot|芝目
 Do not switch tool|ツールを切り替えない
 Don't Save|保存しない
+Done|完了
 Dot|点線
 Dotted Diamond|点線のひし形
 Dotted Grid|点線のグリッド
 Double Arrow|両矢印
 Down Arrow|下矢印
+Download from GitHub|GitHub からダウンロード
+Downloading…|ダウンロード中…
 Drag the selection outline to move it. Drag the handles to scale. Drag with the right mouse button to rotate.|選択範囲の輪郭をドラッグして移動、ハンドルをドラッグして拡大・縮小、右ボタンでドラッグして回転します。
 Drag the selection to move it. Drag the handles to scale. Drag with the right mouse button to rotate. Hold ⌘ while dragging to leave a copy behind.|選択範囲をドラッグして移動、ハンドルをドラッグして拡大・縮小、右ボタンでドラッグして回転します。⌘キーを押しながらドラッグするとコピーを残します。
 Draw Filled Shape|塗りつぶし図形
@@ -248,6 +263,7 @@ Heart|ハート
 Height|高さ
 Height:|高さ：
 Help|ヘルプ
+Help Brushwood keep growing|Brushwood の成長を応援してください
 Hex:|16進：
 Hexagon|六角形
 Hide Brushwood|Brushwood を隠す
@@ -265,6 +281,7 @@ Hue|色相
 Hue / Saturation|色相 / 彩度
 Hue / Saturation, Invert Alpha, Invert Colors, Levels|色相 / 彩度、アルファを反転、色を反転、レベル補正
 If you don't save, your changes will be lost.|保存しないと、変更内容は失われます。
+If you would like to support development financially, Buy Me a Coffee is the one place to do it.|資金面でのご支援は、Buy Me a Coffee でのみ受け付けています。
 Image|イメージ
 Image larger than canvas|画像がキャンバスより大きい場合
 Import From File|ファイルから読み込む
@@ -274,6 +291,8 @@ Ink Sketch|インクスケッチ
 Ink outline|インクの輪郭
 Input black|入力の黒
 Input white|入力の白
+Install and Relaunch|インストールして再起動
+Installing…|インストール中…
 Intensity|強さ
 Intersect|交差
 Invert (xor)|反転（XOR）
@@ -289,6 +308,7 @@ Language|言語
 Large Checker Board|大きな市松模様
 Large Grid|大きなグリッド
 Lasso Select|なげなわ選択
+Later|あとで
 Layer|レイヤー
 Layer %d|レイヤー %d
 Layer Hidden|レイヤーを非表示
@@ -359,6 +379,7 @@ New…|新規…
 Next Image|次の画像
 Next image|次の画像
 No Repeat|繰り返しなし
+No download is available for this version yet.|このバージョンのダウンロードはまだありません。
 Noise|ノイズ
 Normal|通常
 Number of cells|セルの数
@@ -536,6 +557,7 @@ Smoothness|滑らかさ
 Soft Light|ソフトライト
 Soften Portrait|ポートレートをソフトに
 Softness|柔らかさ
+Software Update|ソフトウェア・アップデート
 Solid|実線
 Solid Color|単色
 Solid Diamond|塗りつぶしひし形
@@ -553,6 +575,8 @@ Strikethrough|取り消し線
 Stylize|表現手法
 Subtract|除外
 Supersampling|スーパーサンプリング
+Support Brushwood…|Brushwood を支援…
+Support on Buy Me a Coffee|Buy Me a Coffee で支援
 Surface Blur|ぼかし（表面）
 Swap Colors|色を入れ替え
 Swap primary and secondary colors|プライマリカラーとセカンダリカラーを入れ替え
@@ -563,7 +587,10 @@ Temperature|色温度
 Temperature and Tint|色温度と色かぶり補正
 Tension|張力
 Text|テキスト
+Thank you for being here.|いつもありがとうございます。
+The downloaded file is damaged. Try again later.|ダウンロードしたファイルが破損しています。しばらくしてからもう一度お試しください。
 The image being pasted is larger than the canvas size. What would you like to do?|ペーストする画像はキャンバスより大きいです。どうしますか？
+The update could not be installed|アップデートをインストールできませんでした
 These blend modes will be saved as Normal in the .pdn file: %@. Save as OpenRaster (.ora) to keep them.|これらの描画モードは .pdn ファイルでは「通常」として保存されます：%@。保持するには OpenRaster（.ora）で保存してください。
 Thickness|太さ
 This file format does not support layers. The saved file will contain a flattened copy of the image; your layers are kept in Brushwood.|このファイル形式はレイヤーに対応していません。保存されるファイルには画像を統合したコピーが含まれます。レイヤーは Brushwood 内に残ります。
@@ -596,8 +623,11 @@ Undo (⌘Z)|取り消す (⌘Z)
 Units|単位
 Untitled|名称未設定
 Up Arrow|上矢印
+Updates|アップデート
 Use System Setting|システム設定に従う
 Value|値
+Version %@|バージョン %@
+Version %@ is the latest version.|バージョン %@ が最新です。
 Vertical|垂直
 View|表示
 Vignette|周辺減光
@@ -607,6 +637,7 @@ Warmth|暖かさ
 Wave|波
 Weave|織物
 Welcome to Brushwood|Brushwood へようこそ
+What's New|新機能
 White|白
 Width|幅
 Width:|幅：

@@ -2,6 +2,7 @@
 # as written in the Swift source (escapes included); run scripts/gen_strings.py after editing.
 T = dict(line.split('|', 1) for line in r"""
 %@ copy|%@ 副本
+%@ of %@|%@ / %@
 %d x %d Region|%d x %d 区域
 10 Percent|10%
 20 Percent|20%
@@ -17,6 +18,8 @@ T = dict(line.split('|', 1) for line in r"""
 8 Point Star|八角星
 90 Percent|90%
 A free, open-source image editor for macOS, modeled on the workflow of Paint.NET.\n\nLicensed under the MIT License.\nNot affiliated with or endorsed by dotPDN LLC. Paint.NET is a trademark of its respective owner.|一款免费、开源的 macOS 图像编辑器，以 Paint.NET 的工作方式为蓝本。\n\n基于 MIT 许可证发布。\n与 dotPDN LLC 无关联，也未获其认可。Paint.NET 是其所有者的商标。
+A new version of Brushwood is available|Brushwood 有新版本可用
+A star on GitHub also helps more people find Brushwood, and it means a lot.|在 GitHub 上点个星标也能帮助更多人发现 Brushwood，这对我们意义重大。
 About Brushwood|关于 Brushwood
 Actual Size|实际大小
 Add (union)|添加（并集）
@@ -67,8 +70,12 @@ Brightness / Contrast|亮度 / 对比度
 Brush size|画笔大小
 Brush width (mouse wheel, [ and ] also change it)|画笔宽度（也可用鼠标滚轮、[ 和 ] 更改）
 Brush width:|画笔宽度：
+Brushwood %@ is available. You have version %@.|Brushwood %@ 现已推出。你的版本是 %@。
 Brushwood Help|Brushwood 帮助
+Brushwood cannot replace itself in its current folder. Download the new version from GitHub and install it by hand.|Brushwood 无法在当前文件夹中替换自身。请从 GitHub 下载新版本并手动安装。
 Brushwood is a free image editor for macOS whose workflow follows Paint.NET: one main window with image tabs, floating Tools, History, Layers and Colors windows, layers with blend modes, unlimited history, and a large set of adjustments and effects with live preview.|Brushwood 是一款免费的 macOS 图像编辑器，其工作方式与 Paint.NET 一致：一个带图像标签页的主窗口，浮动的“工具”“历史记录”“图层”“颜色”窗口，支持混合模式的图层，无限历史记录，以及大量带实时预览的调整和效果。
+Brushwood is running from the disk image or the Downloads folder. Move it to the Applications folder, then try again.|Brushwood 正从磁盘映像或“下载”文件夹中运行。请将它移到“应用程序”文件夹，然后再试一次。
+Brushwood is up to date|Brushwood 已是最新版本
 Bulge|凸起
 By absolute size|按绝对大小
 By percentage:|按百分比：
@@ -82,6 +89,10 @@ Center|居中
 Centered|居中
 Centimeters|厘米
 Chebyshev|切比雪夫
+Check for Updates…|检查更新…
+Check for updates automatically|自动检查更新
+Check your internet connection and try again.|请检查你的互联网连接，然后再试一次。
+Checking for updates…|正在检查更新…
 Chevron|V 形
 Clamp|钳制
 Clear Menu|清除菜单
@@ -123,6 +134,7 @@ Copy (⌘C)|拷贝 (⌘C)
 Copy / paste the selection outline|拷贝 / 粘贴选区轮廓
 Copy Merged|合并拷贝
 Copy Selection|拷贝选区
+Could not check for updates|无法检查更新
 Could not open \"%@\"|无法打开“%@”
 Could not save \"%@\"|无法存储“%@”
 Coverage|覆盖率
@@ -166,11 +178,14 @@ Dithering|仿色
 Divot|草皮
 Do not switch tool|不切换工具
 Don't Save|不存储
+Done|完成
 Dot|点
 Dotted Diamond|点线菱形
 Dotted Grid|点线网格
 Double Arrow|双箭头
 Down Arrow|下箭头
+Download from GitHub|从 GitHub 下载
+Downloading…|正在下载…
 Drag the selection outline to move it. Drag the handles to scale. Drag with the right mouse button to rotate.|拖移选区轮廓可移动，拖移控制点可缩放，按住右键拖移可旋转。
 Drag the selection to move it. Drag the handles to scale. Drag with the right mouse button to rotate. Hold ⌘ while dragging to leave a copy behind.|拖移选区可移动，拖移控制点可缩放，按住右键拖移可旋转。拖移时按住 ⌘ 键可留下副本。
 Draw Filled Shape|填充形状
@@ -248,6 +263,7 @@ Heart|心形
 Height|高度
 Height:|高度：
 Help|帮助
+Help Brushwood keep growing|帮助 Brushwood 持续成长
 Hex:|十六进制：
 Hexagon|六边形
 Hide Brushwood|隐藏 Brushwood
@@ -265,6 +281,7 @@ Hue|色相
 Hue / Saturation|色相 / 饱和度
 Hue / Saturation, Invert Alpha, Invert Colors, Levels|色相 / 饱和度、反相 Alpha、反相颜色、色阶
 If you don't save, your changes will be lost.|如果不存储，你的更改将会丢失。
+If you would like to support development financially, Buy Me a Coffee is the one place to do it.|如果你愿意在资金上支持开发，Buy Me a Coffee 是唯一的渠道。
 Image|图像
 Image larger than canvas|图像大于画布
 Import From File|从文件导入
@@ -274,6 +291,8 @@ Ink Sketch|墨水素描
 Ink outline|墨水轮廓
 Input black|输入黑场
 Input white|输入白场
+Install and Relaunch|安装并重新启动
+Installing…|正在安装…
 Intensity|强度
 Intersect|交集
 Invert (xor)|反转（异或）
@@ -289,6 +308,7 @@ Language|语言
 Large Checker Board|大棋盘格
 Large Grid|大网格
 Lasso Select|套索选择
+Later|以后
 Layer|图层
 Layer %d|图层 %d
 Layer Hidden|图层已隐藏
@@ -359,6 +379,7 @@ New…|新建…
 Next Image|下一个图像
 Next image|下一个图像
 No Repeat|不重复
+No download is available for this version yet.|此版本暂无可下载的文件。
 Noise|杂色
 Normal|正常
 Number of cells|单元格数量
@@ -536,6 +557,7 @@ Smoothness|平滑度
 Soft Light|柔光
 Soften Portrait|柔化人像
 Softness|柔和度
+Software Update|软件更新
 Solid|实线
 Solid Color|纯色
 Solid Diamond|实心菱形
@@ -553,6 +575,8 @@ Strikethrough|删除线
 Stylize|风格化
 Subtract|减去
 Supersampling|超采样
+Support Brushwood…|支持 Brushwood…
+Support on Buy Me a Coffee|在 Buy Me a Coffee 上支持
 Surface Blur|表面模糊
 Swap Colors|交换颜色
 Swap primary and secondary colors|交换主要颜色和次要颜色
@@ -563,7 +587,10 @@ Temperature|色温
 Temperature and Tint|色温和色调
 Tension|张力
 Text|文本
+Thank you for being here.|感谢有你。
+The downloaded file is damaged. Try again later.|下载的文件已损坏。请稍后再试。
 The image being pasted is larger than the canvas size. What would you like to do?|粘贴的图像大于画布。你想怎么做？
+The update could not be installed|无法安装更新
 These blend modes will be saved as Normal in the .pdn file: %@. Save as OpenRaster (.ora) to keep them.|这些混合模式在 .pdn 文件中将存储为“正常”：%@。若要保留它们，请存储为 OpenRaster (.ora)。
 Thickness|粗细
 This file format does not support layers. The saved file will contain a flattened copy of the image; your layers are kept in Brushwood.|此文件格式不支持图层。存储的文件将包含图像的拼合副本；你的图层仍保留在 Brushwood 中。
@@ -596,8 +623,11 @@ Undo (⌘Z)|撤销 (⌘Z)
 Units|单位
 Untitled|未命名
 Up Arrow|上箭头
+Updates|更新
 Use System Setting|使用系统设置
 Value|值
+Version %@|版本 %@
+Version %@ is the latest version.|版本 %@ 是最新版本。
 Vertical|垂直
 View|显示
 Vignette|晕影
@@ -607,6 +637,7 @@ Warmth|暖度
 Wave|波浪
 Weave|编织
 Welcome to Brushwood|欢迎使用 Brushwood
+What's New|新功能
 White|白色
 Width|宽度
 Width:|宽度：

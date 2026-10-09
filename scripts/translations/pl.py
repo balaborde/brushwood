@@ -2,6 +2,7 @@
 # as written in the Swift source (escapes included); run scripts/gen_strings.py after editing.
 T = dict(line.split('|', 1) for line in r"""
 %@ copy|%@ – kopia
+%@ of %@|%@ z %@
 %d x %d Region|Obszar %d x %d
 10 Percent|10 procent
 20 Percent|20 procent
@@ -17,6 +18,8 @@ T = dict(line.split('|', 1) for line in r"""
 8 Point Star|Gwiazda 8-ramienna
 90 Percent|90 procent
 A free, open-source image editor for macOS, modeled on the workflow of Paint.NET.\n\nLicensed under the MIT License.\nNot affiliated with or endorsed by dotPDN LLC. Paint.NET is a trademark of its respective owner.|Darmowy edytor obrazów open source dla macOS, wzorowany na sposobie pracy w Paint.NET.\n\nUdostępniany na licencji MIT.\nNie jest powiązany z dotPDN LLC ani przez nią wspierany. Paint.NET jest znakiem towarowym swojego właściciela.
+A new version of Brushwood is available|Dostępna jest nowa wersja Brushwood
+A star on GitHub also helps more people find Brushwood, and it means a lot.|Gwiazdka na GitHubie pomaga też innym znaleźć Brushwood i wiele znaczy.
 About Brushwood|Brushwood – informacje
 Actual Size|Rzeczywisty rozmiar
 Add (union)|Dodaj (suma)
@@ -67,8 +70,12 @@ Brightness / Contrast|Jasność / Kontrast
 Brush size|Rozmiar pędzla
 Brush width (mouse wheel, [ and ] also change it)|Szerokość pędzla (można ją też zmieniać kółkiem myszy oraz klawiszami [ i ])
 Brush width:|Szerokość pędzla:
+Brushwood %@ is available. You have version %@.|Brushwood %@ jest dostępny. Masz wersję %@.
 Brushwood Help|Pomoc Brushwood
+Brushwood cannot replace itself in its current folder. Download the new version from GitHub and install it by hand.|Brushwood nie może zastąpić się w obecnym folderze. Pobierz nową wersję z GitHuba i zainstaluj ją ręcznie.
 Brushwood is a free image editor for macOS whose workflow follows Paint.NET: one main window with image tabs, floating Tools, History, Layers and Colors windows, layers with blend modes, unlimited history, and a large set of adjustments and effects with live preview.|Brushwood to darmowy edytor obrazów dla macOS działający jak Paint.NET: jedno okno główne z kartami obrazów, pływające okna Narzędzia, Historia, Warstwy i Kolory, warstwy z trybami mieszania, nieograniczona historia oraz bogaty zestaw korekt i efektów z podglądem na żywo.
+Brushwood is running from the disk image or the Downloads folder. Move it to the Applications folder, then try again.|Brushwood działa z obrazu dysku lub z folderu Pobrane. Przenieś go do folderu Aplikacje i spróbuj ponownie.
+Brushwood is up to date|Brushwood jest aktualny
 Bulge|Wybrzuszenie
 By absolute size|Według rozmiaru bezwzględnego
 By percentage:|Według procentów:
@@ -82,6 +89,10 @@ Center|Środek
 Centered|Wyśrodkowany
 Centimeters|Centymetry
 Chebyshev|Czebyszewa
+Check for Updates…|Sprawdź uaktualnienia…
+Check for updates automatically|Automatycznie sprawdzaj uaktualnienia
+Check your internet connection and try again.|Sprawdź połączenie z internetem i spróbuj ponownie.
+Checking for updates…|Sprawdzanie uaktualnień…
 Chevron|Szewron
 Clamp|Ogranicz
 Clear Menu|Wymaż menu
@@ -123,6 +134,7 @@ Copy (⌘C)|Kopiuj (⌘C)
 Copy / paste the selection outline|Kopiowanie / wklejanie konturu zaznaczenia
 Copy Merged|Kopiuj scalone
 Copy Selection|Kopiuj zaznaczenie
+Could not check for updates|Nie można sprawdzić uaktualnień
 Could not open \"%@\"|Nie można otworzyć „%@”
 Could not save \"%@\"|Nie można zachować „%@”
 Coverage|Pokrycie
@@ -166,11 +178,14 @@ Dithering|Dithering
 Divot|Darń
 Do not switch tool|Nie zmieniaj narzędzia
 Don't Save|Nie zachowuj
+Done|Gotowe
 Dot|Kropka
 Dotted Diamond|Romby kropkowane
 Dotted Grid|Siatka kropkowana
 Double Arrow|Podwójna strzałka
 Down Arrow|Strzałka w dół
+Download from GitHub|Pobierz z GitHuba
+Downloading…|Pobieranie…
 Drag the selection outline to move it. Drag the handles to scale. Drag with the right mouse button to rotate.|Przeciągnij kontur zaznaczenia, aby go przesunąć, uchwyty, aby go skalować, a prawym przyciskiem myszy, aby go obrócić.
 Drag the selection to move it. Drag the handles to scale. Drag with the right mouse button to rotate. Hold ⌘ while dragging to leave a copy behind.|Przeciągnij zaznaczenie, aby je przesunąć, uchwyty, aby je skalować, a prawym przyciskiem myszy, aby je obrócić. Przytrzymaj ⌘ podczas przeciągania, aby zostawić kopię.
 Draw Filled Shape|Kształt wypełniony
@@ -248,6 +263,7 @@ Heart|Serce
 Height|Wysokość
 Height:|Wysokość:
 Help|Pomoc
+Help Brushwood keep growing|Pomóż Brushwood dalej się rozwijać
 Hex:|Hex:
 Hexagon|Sześciokąt
 Hide Brushwood|Ukryj Brushwood
@@ -265,6 +281,7 @@ Hue|Barwa
 Hue / Saturation|Barwa / Nasycenie
 Hue / Saturation, Invert Alpha, Invert Colors, Levels|Barwa / Nasycenie, Odwróć alfę, Odwróć kolory, Poziomy
 If you don't save, your changes will be lost.|Jeśli nie zachowasz, zmiany zostaną utracone.
+If you would like to support development financially, Buy Me a Coffee is the one place to do it.|Jeśli chcesz wesprzeć rozwój finansowo, Buy Me a Coffee to jedyne miejsce, by to zrobić.
 Image|Obraz
 Image larger than canvas|Obraz większy niż płótno
 Import From File|Importuj z pliku
@@ -274,6 +291,8 @@ Ink Sketch|Szkic tuszem
 Ink outline|Kontur tuszem
 Input black|Czerń wejściowa
 Input white|Biel wejściowa
+Install and Relaunch|Zainstaluj i uruchom ponownie
+Installing…|Instalowanie…
 Intensity|Intensywność
 Intersect|Część wspólna
 Invert (xor)|Odwróć (xor)
@@ -289,6 +308,7 @@ Language|Język
 Large Checker Board|Duża szachownica
 Large Grid|Duża siatka
 Lasso Select|Zaznaczenie lassem
+Later|Później
 Layer|Warstwa
 Layer %d|Warstwa %d
 Layer Hidden|Warstwa ukryta
@@ -359,6 +379,7 @@ New…|Nowy…
 Next Image|Następny obraz
 Next image|Następny obraz
 No Repeat|Bez powtarzania
+No download is available for this version yet.|Dla tej wersji nie ma jeszcze pliku do pobrania.
 Noise|Szum
 Normal|Normalny
 Number of cells|Liczba komórek
@@ -536,6 +557,7 @@ Smoothness|Gładkość
 Soft Light|Łagodne światło
 Soften Portrait|Zmiękczanie portretu
 Softness|Miękkość
+Software Update|Uaktualnienia oprogramowania
 Solid|Ciągła
 Solid Color|Jednolity kolor
 Solid Diamond|Romby pełne
@@ -553,6 +575,8 @@ Strikethrough|Przekreślenie
 Stylize|Stylizacja
 Subtract|Odejmij
 Supersampling|Nadpróbkowanie
+Support Brushwood…|Wesprzyj Brushwood…
+Support on Buy Me a Coffee|Wesprzyj na Buy Me a Coffee
 Surface Blur|Rozmycie powierzchniowe
 Swap Colors|Zamień kolory
 Swap primary and secondary colors|Zamień kolor główny i dodatkowy
@@ -563,7 +587,10 @@ Temperature|Temperatura
 Temperature and Tint|Temperatura i odcień
 Tension|Napięcie
 Text|Tekst
+Thank you for being here.|Dziękuję, że tu jesteś.
+The downloaded file is damaged. Try again later.|Pobrany plik jest uszkodzony. Spróbuj ponownie później.
 The image being pasted is larger than the canvas size. What would you like to do?|Wklejany obraz jest większy niż płótno. Co chcesz zrobić?
+The update could not be installed|Nie można zainstalować uaktualnienia
 These blend modes will be saved as Normal in the .pdn file: %@. Save as OpenRaster (.ora) to keep them.|Te tryby mieszania zostaną zapisane w pliku .pdn jako Normalny: %@. Użyj formatu OpenRaster (.ora), aby ich nie utracić.
 Thickness|Grubość
 This file format does not support layers. The saved file will contain a flattened copy of the image; your layers are kept in Brushwood.|Ten format pliku nie obsługuje warstw. Zachowany plik będzie zawierał spłaszczoną kopię obrazu; warstwy pozostaną w Brushwood.
@@ -596,8 +623,11 @@ Undo (⌘Z)|Cofnij (⌘Z)
 Units|Jednostki
 Untitled|Bez tytułu
 Up Arrow|Strzałka w górę
+Updates|Uaktualnienia
 Use System Setting|Użyj ustawienia systemowego
 Value|Wartość
+Version %@|Wersja %@
+Version %@ is the latest version.|Wersja %@ jest najnowsza.
 Vertical|Pionowo
 View|Widok
 Vignette|Winieta
@@ -607,6 +637,7 @@ Warmth|Ciepło
 Wave|Fala
 Weave|Splot
 Welcome to Brushwood|Witamy w Brushwood
+What's New|Co nowego
 White|Biały
 Width|Szerokość
 Width:|Szerokość:

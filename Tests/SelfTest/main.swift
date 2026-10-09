@@ -199,6 +199,19 @@ struct DocumentTests {
     }
 }
 
+struct VersionTests {
+    func ordering() {
+        func v(_ s: String) -> AppVersion { AppVersion(s)! }
+        expect(v("1.0.10") > v("1.0.9"), "1.0.10 is newer than 1.0.9")
+        expect(v("v1.1") > v("1.0.9"), "tags start with v")
+        expect(v("2") > v("1.9.9"))
+        expect(v("1.0") == v("1.0.0"), "missing parts count as 0")
+        expect(!(v("1.0.1") < v("1.0.1")))
+        expect(v("1.0.1").description == "1.0.1")
+        expect(AppVersion("") == nil && AppVersion("1.0-beta") == nil && AppVersion("1..2") == nil, "rejects malformed versions")
+    }
+}
+
 struct FileFormatTests {
     func zipRoundTrip() throws {
         let w = ZipWriter()
@@ -429,6 +442,7 @@ run("DocumentTests.compositeRespectsOpacityAndVisibility") { DocumentTests().com
 run("DocumentTests.historyUndoRedoPixels") { DocumentTests().historyUndoRedoPixels() }
 run("DocumentTests.historyMemoryLimitDropsOldestSteps") { DocumentTests().historyMemoryLimitDropsOldestSteps() }
 run("DocumentTests.structuralHistoryRestoresLayers") { DocumentTests().structuralHistoryRestoresLayers() }
+run("VersionTests.ordering") { VersionTests().ordering() }
 run("FileFormatTests.zipRoundTrip") { try FileFormatTests().zipRoundTrip() }
 run("FileFormatTests.openRasterRoundTrip") { try FileFormatTests().openRasterRoundTrip() }
 run("FileFormatTests.gzipDecode") { try FileFormatTests().gzipDecode() }

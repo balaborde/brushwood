@@ -8,8 +8,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     private var launched = false
 
     func applicationWillFinishLaunching(_ notification: Notification) {
+        SupportPrompt.noteLaunch()
         NSApp.mainMenu = MainMenu.build(delegate: self)
-        UserDefaults.standard.register(defaults: ["NSApplicationCrashOnExceptions": true])
+        UserDefaults.standard.register(defaults: ["NSApplicationCrashOnExceptions": true, UpdateController.automaticKey: true])
     }
 
     func applicationDidFinishLaunching(_ notification: Notification) {
@@ -38,6 +39,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         NSApp.activate(ignoringOtherApps: true)
         if let snapshot = ProcessInfo.processInfo.environment["BRUSHWOOD_SNAPSHOT"] {
             DebugSnapshot.schedule(path: snapshot, controller: main)
+        } else if Bundle.main.bundleURL.pathExtension == "app" {
+            if SupportPrompt.due { SupportSheet.present(over: main.window) }
+            UpdateController.shared.checkInBackgroundIfDue()
         }
     }
 
@@ -110,6 +114,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
             .credits: credits,
             .applicationIcon: AppIcon.image,
         ])
+    }
+
+    @objc func checkForUpdates(_ sender: Any?) {
+        UpdateController.shared.checkNow()
+    }
+
+    @objc func showSupport(_ sender: Any?) {
+        SupportSheet.present(over: main.window)
     }
 
     @objc func showHelp(_ sender: Any?) {

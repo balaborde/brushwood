@@ -44,6 +44,10 @@ Apple Developer ID. To allow it, once:
 
 Alternatively, run `xattr -dr com.apple.quarantine /Applications/Brushwood.app` in Terminal.
 
+**Updating:** choose **Brushwood › Check for Updates…** (or **Settings › Updates**). Brushwood shows what's new, then
+downloads the new version, installs it and relaunches. It also checks once a day at launch; this can be turned off in
+Settings. Versions without this menu item are updated by installing the new disk image the same way as above.
+
 ## Features
 
 <table>
@@ -128,6 +132,11 @@ palettes), hex/RGB/HSV/alpha controls.
 Clipboard (copy, copy merged, paste, paste into new layer / new image), printing, recent files and unsaved-changes
 prompts are supported.
 
+**Updates** — Brushwood › Check for Updates… finds a newer release on GitHub, shows its notes, then downloads it, checks
+it against GitHub's checksum, replaces the app and relaunches. Brushwood connects to the internet only for this: to
+api.github.com when checking (at most once a day at launch, which can be turned off in Settings › Updates) and to GitHub
+when downloading an update.
+
 ## Requirements
 
 - macOS 13 Ventura or later (Apple silicon or Intel)
@@ -154,6 +163,16 @@ scripts/make-dmg.sh           # builds build/Brushwood-<version>.dmg (Apple sili
 The version comes from `CFBundleShortVersionString` in `Resources/Info.plist`. The disk image opens on a window where
 the app is dragged onto Applications; Finder lays that window out, so the first run asks to let the terminal control
 Finder. Attach the .dmg to a GitHub release.
+
+For **Check for Updates…** to find a release, publish it on GitHub with:
+
+- a tag `v<version>`, where `<version>` is the app's `CFBundleShortVersionString` (for example `v1.0.2`);
+- the disk image attached (the first `.dmg` file of the release is the one installed);
+- release notes in Markdown: Brushwood shows them in its update window, up to a heading that starts with "Install"
+  (download instructions are not needed there).
+
+Increase `CFBundleVersion` (the build number) by one for each release as well. To try the updater without publishing,
+point it at a local copy of the GitHub API's answer: `BRUSHWOOD_UPDATE_FEED=file:///path/to/release.json`.
 
 With a paid Apple Developer account, the app and the disk image can be signed with a Developer ID and notarized, so
 macOS opens Brushwood without the first-launch warning:

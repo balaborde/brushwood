@@ -67,6 +67,10 @@ enum DebugScript {
                     if arg.contains("|") { EffectDialog.remembered[factory().id] = values }
                     performOnMain { c.runEffect(factory: factory) }
                 }
+            case "press":
+                // press:Title clicks a visible button with that title in any window (dialogs, sheets, Software Update).
+                let button = NSApp.windows.filter(\.isVisible).lazy.compactMap { $0.contentView.flatMap { findButton(titled: arg, in: $0) } }.first
+                if let button { button.performClick(nil) } else { report(false, "no visible button '\(arg)'") }
             case "colorsmore": c.colorsPanel.debugToggleExpanded()
             case "expect" where nums.count >= 2:
                 // expect:x,y,RRGGBB[AA][,tolerance] on the flattened image.
@@ -278,6 +282,12 @@ enum DebugScript {
     }
 
     private enum Phase { case down, drag, up }
+
+    private static func findButton(titled title: String, in view: NSView) -> NSButton? {
+        if let b = view as? NSButton, b.title == title, !b.isHidden { return b }
+        for sub in view.subviews { if let b = findButton(titled: title, in: sub) { return b } }
+        return nil
+    }
 
     /// Parses `Effect Name|id=value|id=value` into the effect's factory and its values (defaults for the others).
     private static func effectValues(_ arg: String) -> (() -> Effect, EffectValues)? {
