@@ -17,7 +17,7 @@ final class UpdateWindow: NSWindow, NSWindowDelegate {
     /// Called when the window closes or Cancel is pressed during a download.
     var onCancel: (() -> Void)?
 
-    private let titleLabel = NSTextField(labelWithString: "")
+    private let titleLabel = NSTextField(wrappingLabelWithString: "")
     private let messageLabel = NSTextField(wrappingLabelWithString: "")
     private let extras = NSStackView()
     private let buttons = NSStackView()
@@ -36,6 +36,7 @@ final class UpdateWindow: NSWindow, NSWindowDelegate {
         icon.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([icon.widthAnchor.constraint(equalToConstant: 64), icon.heightAnchor.constraint(equalToConstant: 64)])
         titleLabel.font = .boldSystemFont(ofSize: 14)
+        titleLabel.preferredMaxLayoutWidth = 360
         messageLabel.textColor = .secondaryLabelColor
         messageLabel.preferredMaxLayoutWidth = 360
         extras.orientation = .vertical

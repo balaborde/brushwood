@@ -31,9 +31,10 @@ final class SupportSheet: NSWindow {
         titlebarAppearsTransparent = true
         for b in [NSWindow.ButtonType.closeButton, .miniaturizeButton, .zoomButton] { standardWindowButton(b)?.isHidden = true }
 
-        let title = NSTextField(labelWithString: L("Help Brushwood keep growing"))
+        let title = NSTextField(wrappingLabelWithString: L("Help Brushwood keep growing"))
         title.font = .systemFont(ofSize: 20, weight: .bold)
         title.alignment = .center
+        title.preferredMaxLayoutWidth = 480
         let message = NSTextField(wrappingLabelWithString: Self.keepBrandTogether(
             L("If you would like to support development financially, Buy Me a Coffee is the one place to do it.")))
         message.font = .systemFont(ofSize: 14)
