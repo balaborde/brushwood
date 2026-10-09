@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: macOS won't open Brushwood
+    url: https://github.com/balaborde/brushwood#installing
+    about: The first time, macOS warns that it cannot verify the app. Here is how to allow it.

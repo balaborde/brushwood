@@ -1,0 +1,33 @@
+name: Feature request or Paint.NET difference
+description: Something Paint.NET does that Brushwood doesn't, or a new idea.
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Brushwood aims to work like Paint.NET. Some differences are deliberate: see
+        [Known differences from Paint.NET](https://github.com/balaborde/brushwood#known-differences-from-paintnet).
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of request is it?
+      options:
+        - Paint.NET has it, Brushwood doesn't (or does it differently)
+        - A new idea
+    validations:
+      required: true
+  - type: textarea
+    id: request
+    attributes:
+      label: What would you like?
+    validations:
+      required: true
+  - type: textarea
+    id: paintnet
+    attributes:
+      label: How does Paint.NET do it?
+      description: Menu path, shortcut, options, screenshots… Leave empty for a new idea.
+  - type: textarea
+    id: why
+    attributes:
+      label: What would you use it for?

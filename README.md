@@ -248,6 +248,11 @@ To add a language, copy a table to `scripts/translations/<code>.py`, translate t
 - Menus live in the macOS menu bar rather than inside the window, and a few shortcuts differ where macOS reserves the key
   (see the table above).
 
+## Contributing
+
+Bug reports, translation fixes and pull requests are welcome: see [CONTRIBUTING.md](CONTRIBUTING.md). Most translations
+have not been reviewed by native speakers yet, so corrections in your language help a lot.
+
 ## License
 
 MIT — see [LICENSE](LICENSE).

@@ -1,0 +1,68 @@
+name: Bug report
+description: Something in Brushwood doesn't work, crashes or looks wrong.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a problem. If macOS refuses to open Brushwood the first time, that is expected: see
+        [Installing](https://github.com/balaborde/brushwood#installing).
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What did you do, and what went wrong?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open an image with two layers
+        2. Select the bottom layer
+        3. Paint with the Paintbrush
+        4. …
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+      description: If you know what Paint.NET does in the same situation, please describe it.
+  - type: input
+    id: version
+    attributes:
+      label: Brushwood version
+      description: Shown in Brushwood › About Brushwood.
+      placeholder: 1.0.1 (2)
+    validations:
+      required: true
+  - type: input
+    id: macos
+    attributes:
+      label: macOS version
+      description: Shown in Apple menu › About This Mac.
+      placeholder: macOS 15.5
+    validations:
+      required: true
+  - type: dropdown
+    id: mac
+    attributes:
+      label: Mac
+      options:
+        - Apple silicon (M1 or later)
+        - Intel
+        - I don't know
+  - type: input
+    id: language
+    attributes:
+      label: Interface language
+      description: Only needed if the problem is about text or layout.
+  - type: textarea
+    id: files
+    attributes:
+      label: Screenshots, files or crash report
+      description: |
+        Drag screenshots or the image you were editing here (zip .pdn and .ora files first). If Brushwood quit
+        unexpectedly, paste the report text that macOS shows.
