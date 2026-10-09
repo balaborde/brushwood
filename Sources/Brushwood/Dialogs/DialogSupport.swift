@@ -7,6 +7,7 @@ class ModalDialog: NSWindow, NSWindowDelegate {
     private(set) var okButton: NSButton!
     private(set) var cancelButton: NSButton!
     private var result: NSApplication.ModalResponse = .cancel
+    private var placed = false
 
     init(title: String, okTitle: String = L("OK")) {
         super.init(contentRect: NSRect(x: 0, y: 0, width: 360, height: 200), styleMask: [.titled, .closable],
@@ -76,12 +77,18 @@ class ModalDialog: NSWindow, NSWindowDelegate {
             } else {
                 setFrameOrigin(NSPoint(x: pf.midX - frame.width / 2, y: pf.midY - frame.height / 2 + pf.height / 6))
             }
+            placed = true
         } else {
             center()
         }
         let r = NSApp.runModal(for: self)
         orderOut(nil)
         return r == .OK
+    }
+
+    /// `NSApp.runModal(for:)` centers the window on screen, which would undo the position chosen above.
+    override func center() {
+        if !placed { super.center() }
     }
 
     // MARK: Layout helpers

@@ -101,6 +101,8 @@ final class LayersPanel: FloatingPanel, NSTableViewDataSource, NSTableViewDelega
                 observers.append(nc.addObserver(forName: name, object: doc, queue: .main) { [weak self] _ in
                     self?.thumbnails.removeAll()
                     self?.reload()
+                    // Keeps the active layer in view when it changes from the menu or the keyboard.
+                    if name == .documentActiveLayerChanged, let table = self?.table { table.scrollRowToVisible(table.selectedRow) }
                 })
             }
             observers.append(nc.addObserver(forName: .documentInvalidated, object: doc, queue: .main) { [weak self] _ in
@@ -114,8 +116,9 @@ final class LayersPanel: FloatingPanel, NSTableViewDataSource, NSTableViewDelega
         thumbTimer?.invalidate()
         let t = Timer(timeInterval: 0.4, repeats: false) { [weak self] _ in
             self?.thumbnails.removeAll()
-            self?.table.reloadData()
-            self?.selectActive()
+            // reload() ignores the selection changes reloadData makes; taking them as clicks would switch the
+            // active layer to the top one after every edit.
+            self?.reload()
         }
         RunLoop.main.add(t, forMode: .common)
         thumbTimer = t

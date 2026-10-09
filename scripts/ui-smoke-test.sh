@@ -34,6 +34,10 @@ run layers "menu:addLayer:; expectlayers:2; tool:paintBucket; color:FF0000; clic
  menu:duplicateLayer:; expectlayers:3; menu:mergeLayerDown:; expectlayers:2; menu:flatten:; expectlayers:1;
  menu:brushwoodUndo:; expectlayers:2; menu:moveLayerDown:; expect:10,10,FFFFFF; menu:moveLayerUp:; expect:10,10,FF0000"
 
+# Thumbnails refresh 0.4 s after an edit; that must not move the active layer back to the top.
+run activelayer "menu:addLayer:; menu:addLayer:; menu:selectBottomLayer:; tool:pencil; color:FF0000; drag:10,10,10,30;
+ wait:0.6; expectactivelayer:0; menu:selectLayerAbove:; expectactivelayer:1"
+
 run move "select:10,10,20,20; color:FF0000; menu:fillSelection:; tool:moveSelectedPixels; drag:20,20,120,20; key:return;
  expect:115,15,FF0000; expect:15,15,FF000000; expectselection:110,10,20,20; menu:copy:; menu:deselect:; menu:paste:;
  key:return; expect:5,5,FF0000; menu:brushwoodUndo:; expect:5,5,FFFFFF; tool:moveSelection; select:200,200,50,50;

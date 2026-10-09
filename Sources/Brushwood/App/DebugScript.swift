@@ -76,6 +76,11 @@ enum DebugScript {
                 let ok = abs(Int(got.r) - Int(want.r)) <= tol && abs(Int(got.g) - Int(want.g)) <= tol
                     && abs(Int(got.b) - Int(want.b)) <= tol && abs(Int(got.a) - Int(want.a)) <= tol
                 report(ok, "pixel \(fields[0]),\(fields[1]) = \(got.hexString), expected \(want.hexString)")
+            case "expectactivelayer": report(c.active?.document.activeLayerIndex == Int(nums.first ?? -1),
+                                             "active layer = \(c.active?.document.activeLayerIndex ?? -1), expected \(arg)")
+            case "wait":
+                // Lets timers fire (deferred refreshes such as layer thumbnails) before the next command.
+                RunLoop.current.run(until: Date(timeIntervalSinceNow: nums.first ?? 0.5))
             case "expectlayers": report(c.active?.document.layers.count == Int(nums.first ?? -1),
                                         "layers = \(c.active?.document.layers.count ?? -1), expected \(arg)")
             case "expectsize": report(c.active?.document.width == Int(nums.first ?? -1) && c.active?.document.height == Int(nums.last ?? -1),
