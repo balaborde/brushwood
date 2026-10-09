@@ -7,8 +7,8 @@ final class EffectDialog: ModalDialog {
     private let effect: Effect
     private let session: EffectPreviewSession
     private var resetters: [() -> Void] = []
-    /// Last settings per effect, remembered for the app session like Paint.NET.
-    private static var remembered: [String: EffectValues] = [:]
+    /// Last settings per effect, remembered for the app session like Paint.NET (DebugScript can preset them).
+    static var remembered: [String: EffectValues] = [:]
 
     init(effect: Effect, session: EffectPreviewSession) {
         self.effect = effect

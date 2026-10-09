@@ -62,9 +62,10 @@ enum DebugScript {
                     c.runEffect(factory: f, repeatValues: EffectValues(f().parameters))
                 }
             case "dialog":
-                let all = EffectsCatalog.adjustments + EffectsCatalog.effects.flatMap(\.1)
-                if let f = all.first(where: { $0().name.lowercased() == arg.lowercased() }) {
-                    performOnMain { c.runEffect(factory: f) }
+                // dialog:Effect Name[|id=value...] opens the effect's dialog, starting from the given values.
+                if let (factory, values) = effectValues(arg) {
+                    if arg.contains("|") { EffectDialog.remembered[factory().id] = values }
+                    performOnMain { c.runEffect(factory: factory) }
                 }
             case "colorsmore": c.colorsPanel.debugToggleExpanded()
             case "expect" where nums.count >= 2:
@@ -225,18 +226,7 @@ enum DebugScript {
                 }
             case "effectvalues":
                 // effectvalues:Effect Name|id=value|id=value (repeat with explicit values)
-                let f = arg.split(separator: "|").map(String.init)
-                let all = EffectsCatalog.adjustments + EffectsCatalog.effects.flatMap(\.1) + [{ RotateZoomLayerEffect() }]
-                if let factory = all.first(where: { $0().name.lowercased() == f[0].lowercased() }) {
-                    var v = EffectValues(factory().parameters)
-                    for kv in f.dropFirst() {
-                        let p = kv.split(separator: "=").map(String.init)
-                        if p.count == 2, let d = Double(p[1]) {
-                            if case .int = v[p[0]] { v[p[0]] = .int(Int(d)) } else if case .bool = v[p[0]] { v[p[0]] = .bool(d != 0) } else { v[p[0]] = .double(d) }
-                        }
-                    }
-                    c.runEffect(factory: factory, repeatValues: v)
-                }
+                if let (factory, values) = effectValues(arg) { c.runEffect(factory: factory, repeatValues: values) }
             case "resize" where nums.count >= 2:
                 c.active?.resizeImage(to: IntSize(width: Int(nums[0]), height: Int(nums[1])), mode: .bestQuality, dpi: 96)
             case "canvassize" where nums.count >= 4:
@@ -288,6 +278,21 @@ enum DebugScript {
     }
 
     private enum Phase { case down, drag, up }
+
+    /// Parses `Effect Name|id=value|id=value` into the effect's factory and its values (defaults for the others).
+    private static func effectValues(_ arg: String) -> (() -> Effect, EffectValues)? {
+        let f = arg.split(separator: "|").map(String.init)
+        let all = EffectsCatalog.adjustments + EffectsCatalog.effects.flatMap(\.1) + [{ RotateZoomLayerEffect() }]
+        guard let factory = all.first(where: { $0().name.lowercased() == f[0].lowercased() }) else { return nil }
+        var v = EffectValues(factory().parameters)
+        for kv in f.dropFirst() {
+            let p = kv.split(separator: "=").map(String.init)
+            if p.count == 2, let d = Double(p[1]) {
+                if case .int = v[p[0]] { v[p[0]] = .int(Int(d)) } else if case .bool = v[p[0]] { v[p[0]] = .bool(d != 0) } else { v[p[0]] = .double(d) }
+            }
+        }
+        return (factory, v)
+    }
 
     private static func reportFit(_ v: NSView, context: String) {
         for sub in v.subviews where !sub.isHidden {
