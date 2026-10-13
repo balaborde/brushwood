@@ -74,7 +74,7 @@ Brushwood %@ is available. You have version %@.|Brushwood %@ ist verfügbar. Sie
 Brushwood Help|Brushwood-Hilfe
 Brushwood cannot replace itself in its current folder. Download the new version from GitHub and install it by hand.|Brushwood kann sich in seinem aktuellen Ordner nicht selbst ersetzen. Laden Sie die neue Version von GitHub und installieren Sie sie manuell.
 Brushwood is a free image editor for macOS whose workflow follows Paint.NET: one main window with image tabs, floating Tools, History, Layers and Colors windows, layers with blend modes, unlimited history, and a large set of adjustments and effects with live preview.|Brushwood ist ein kostenloser Bildeditor für macOS, dessen Arbeitsweise Paint.NET folgt: ein Hauptfenster mit Bild-Tabs, schwebende Fenster für Werkzeuge, Verlauf, Ebenen und Farben, Ebenen mit Mischmodi, unbegrenzter Verlauf und zahlreiche Korrekturen und Effekte mit Live-Vorschau.
-Brushwood is running from the disk image or the Downloads folder. Move it to the Applications folder, then try again.|Brushwood wird vom Festplattenimage oder aus dem Ordner „Downloads“ ausgeführt. Bewegen Sie es in den Ordner „Programme“ und versuchen Sie es erneut.
+Brushwood is running from the disk image or the Downloads folder. Move it to the Applications folder, then try again.|Brushwood wird vom Disk-Image oder aus dem Ordner „Downloads“ ausgeführt. Bewegen Sie es in den Ordner „Programme“ und versuchen Sie es erneut.
 Brushwood is up to date|Brushwood ist auf dem neuesten Stand
 Bulge|Wölben
 By absolute size|Absolute Größe
@@ -648,9 +648,9 @@ Zig Zag|Zickzack
 Zoom|Zoomen
 Zoom Amount|Zoomstärke
 Zoom Blur|Zoom-Weichzeichner
-Zoom In|Einzoomen
-Zoom In / Out|Ein- / Auszoomen
-Zoom Out|Auszoomen
+Zoom In|Vergrößern
+Zoom In / Out|Vergrößern / Verkleinern
+Zoom Out|Verkleinern
 Zoom to Selection|Auf Auswahl zoomen
 Zoom to Window|An Fenster anpassen
 centimeters|Zentimeter
