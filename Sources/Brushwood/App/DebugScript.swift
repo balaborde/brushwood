@@ -275,6 +275,27 @@ enum DebugScript {
                 let f = c.window!.frame
                 c.window?.setFrame(NSRect(x: f.minX, y: f.minY, width: nums.first ?? f.width, height: nums.count > 1 ? nums[1] : f.height),
                                    display: true)
+                c.window?.layoutIfNeeded()
+            case "showpanels":
+                if !c.toolsPanel.isVisible { c.toggleToolsWindow(nil) }
+                if !c.historyPanel.isVisible { c.toggleHistoryWindow(nil) }
+                if !c.layersPanel.isVisible { c.toggleLayersWindow(nil) }
+                if !c.colorsPanel.isVisible { c.toggleColorsWindow(nil) }
+            case "expectpanels":
+                // Each visible floating window is still at its corner of the canvas area, inside it, and History and
+                // Layers do not overlap.
+                for p in [c.toolsPanel, c.colorsPanel, c.historyPanel, c.layersPanel] as [FloatingPanel] where p.isVisible {
+                    guard let r = c.panelLayout?.debugCheck(p) else {
+                        report(false, "\(p.title) is not attached to a corner")
+                        continue
+                    }
+                    let ok = abs(r.actual.width - r.expected.width) <= 1 && abs(r.actual.height - r.expected.height) <= 1 && r.inside
+                    report(ok, "\(p.title): \(Int(r.actual.width)),\(Int(r.actual.height)) from its corner, expected "
+                        + "\(Int(r.expected.width)),\(Int(r.expected.height)); inside the canvas: \(r.inside)")
+                }
+                if c.historyPanel.isVisible, c.layersPanel.isVisible {
+                    report(!c.historyPanel.frame.intersects(c.layersPanel.frame), "History and Layers do not overlap")
+                }
             default:
                 NSLog("DebugScript: unknown command \(cmd)")
             }

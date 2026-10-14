@@ -20,6 +20,7 @@ final class MainWindowController: NSWindowController, NSWindowDelegate, NSMenuIt
     private var docObservers: [NSObjectProtocol] = []
     private var thumbTimer: Timer?
     private var panelsPlaced = false
+    private(set) var panelLayout: PanelLayout?
     var lastEffect: (factory: () -> Effect, values: EffectValues, configure: ((Effect) -> Void)?)?
 
     var env: AppEnvironment { .shared }
@@ -124,6 +125,17 @@ final class MainWindowController: NSWindowController, NSWindowDelegate, NSMenuIt
         for (p, key) in [(toolsPanel, "Tools"), (colorsPanel, "Colors"), (historyPanel, "History"), (layersPanel, "Layers")]
             as [(NSPanel, String)] where d.object(forKey: "panelHidden.\(key)") as? Bool == true {
             p.orderOut(nil)
+        }
+        let layout = PanelLayout(panels: [toolsPanel, colorsPanel, historyPanel, layersPanel]) { [weak self] in
+            guard let self, let window = self.window else { return .zero }
+            return window.convertToScreen(self.scrollView.convert(self.scrollView.bounds, to: nil))
+        }
+        layout.anchorAll()
+        panelLayout = layout
+        // The canvas area changes with the window and when the tool bar wraps onto more rows.
+        scrollView.postsFrameChangedNotifications = true
+        NotificationCenter.default.addObserver(forName: NSView.frameDidChangeNotification, object: scrollView, queue: .main) {
+            [weak self] _ in self?.panelLayout?.apply()
         }
         mainToolbar.validate()
     }
@@ -1117,6 +1129,7 @@ final class MainWindowController: NSWindowController, NSWindowDelegate, NSMenuIt
             p.orderOut(nil)
         } else {
             if p.parent == nil { window?.addChildWindow(p, ordered: .above) }
+            panelLayout?.apply()
             p.orderFront(nil)
         }
         savePanelVisibility()

@@ -34,6 +34,10 @@ run layers "menu:addLayer:; expectlayers:2; tool:paintBucket; color:FF0000; clic
  menu:duplicateLayer:; expectlayers:3; menu:mergeLayerDown:; expectlayers:2; menu:flatten:; expectlayers:1;
  menu:brushwoodUndo:; expectlayers:2; menu:moveLayerDown:; expect:10,10,FFFFFF; menu:moveLayerUp:; expect:10,10,FF0000"
 
+# Floating windows follow their corner of the canvas when the main window is resized.
+run panels "showpanels; expectpanels; panel:1400,900; expectpanels; panel:820,560; expectpanels;
+ panel:1280,820; expectpanels"
+
 # Thumbnails refresh 0.4 s after an edit; that must not move the active layer back to the top.
 run activelayer "menu:addLayer:; menu:addLayer:; menu:selectBottomLayer:; tool:pencil; color:FF0000; drag:10,10,10,30;
  wait:0.6; expectactivelayer:0; menu:selectLayerAbove:; expectactivelayer:1"

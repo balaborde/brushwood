@@ -66,7 +66,9 @@ Settings. Versions without this menu item are updated by installing the new disk
 - Main toolbar (New, Open, Save, Print, Cut/Copy/Paste, Crop to Selection, Deselect, Undo/Redo, Pixel Grid, Rulers) with
   the image list as thumbnails, and toggles for the floating windows
 - Context-sensitive tool bar with the active tool's options
-- Floating **Tools**, **History**, **Layers** and **Colors** windows (F5–F8)
+- Floating **Tools**, **History**, **Layers** and **Colors** windows (F5–F8). They stay at their corner of the canvas
+  when the main window is resized (History and Layers get shorter when room runs out), and a window you move attaches
+  to its new nearest corner
 - Status bar with tool hint, selection size, cursor position, units and zoom slider
 - Rulers, pixel grid, units (pixels / inches / centimeters), checkerboard transparency, drag & drop to open
 - Free panning: the image can be moved anywhere in the window, in any direction, at any zoom (Pan tool, Space+drag, middle button,
