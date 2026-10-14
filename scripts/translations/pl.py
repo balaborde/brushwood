@@ -47,6 +47,7 @@ Auto|Auto
 Auto-Level|Autopoziomy
 Auto-Level, Black and White, Brightness / Contrast, Curves|Autopoziomy, Czarno-białe, Jasność / Kontrast, Krzywe
 Auto-detect|Wykryj automatycznie
+Back to %@|Powrót do: %@
 Background|Tło
 Backward Diagonal|Ukośnie wstecz
 Basic|Podstawowe
@@ -105,6 +106,7 @@ Click and drag to draw the outline of a selection area. ⌘ adds, ⌥ subtracts,
 Click and drag to erase a portion of the image.|Kliknij i przeciągnij, aby wymazać część obrazu.
 Click and drag to navigate the image.|Kliknij i przeciągnij, aby przesuwać widok obrazu.
 Click to add a point, drag to move it, right-click to remove it.|Kliknij, aby dodać punkt, przeciągnij, aby go przesunąć, kliknij prawym przyciskiem, aby go usunąć.
+Click to go back to this snapshot. Snapshots are not saved in the file.|Kliknij, aby wrócić do tej migawki. Migawki nie są zapisywane w pliku.
 Click to select a region of similar color. ⌘ adds, ⌥ subtracts, right-click inverts. Shift-click for global selection.|Kliknij, aby zaznaczyć obszar o podobnym kolorze. ⌘ dodaje, ⌥ odejmuje, prawy przycisk odwraca. Shift+kliknięcie zaznacza globalnie.
 Clipping:|Przycinanie:
 Clone Stamp|Stempel
@@ -163,6 +165,7 @@ Dashed Horizontal|Kreskowane poziome
 Dashed Vertical|Kreskowane pionowe
 Decrease / increase brush width (Shift: ×10)|Zmniejsz / zwiększ szerokość pędzla (Shift: ×10)
 Delete Layer|Usuń warstwę
+Delete Snapshot|Usuń migawkę
 Dents|Wgniecenia
 Deselect|Odznacz
 Deselect (⌘D)|Odznacz (⌘D)
@@ -248,6 +251,7 @@ Gaussian Blur|Rozmycie gaussowskie
 General|Ogólne
 Global|Globalnie
 Glow|Poświata
+Go Back to This Snapshot|Wróć do tej migawki
 Go to Bottom Layer|Przejdź do najniższej warstwy
 Go to Layer Above|Przejdź do warstwy wyżej
 Go to Layer Below|Przejdź do warstwy niżej
@@ -374,6 +378,7 @@ Negation|Negacja
 New|Nowy
 New (⌘N)|Nowy (⌘N)
 New Image|Nowy obraz
+New Snapshot|Nowa migawka
 New size: %@|Nowy rozmiar: %@
 New size: %d × %d (%@)|Nowy rozmiar: %d × %d (%@)
 New…|Nowy…
@@ -468,6 +473,9 @@ Reduce Noise|Redukcja szumu
 Reflect|Odbicie
 Refraction|Załamanie
 Relief|Relief
+Rename|Zmień nazwę
+Rename Snapshot|Zmień nazwę migawki
+Rename Snapshot…|Zmień nazwę migawki…
 Render|Renderowanie
 Repeat|Powtórz
 Repeat %@|Powtórz „%@”
@@ -557,6 +565,7 @@ Sketch Blur|Rozmycie szkicowe
 Small Checker Board|Mała szachownica
 Small Grid|Mała siatka
 Smoothness|Gładkość
+Snapshot %d|Migawka %d
 Soft Light|Łagodne światło
 Soften Portrait|Zmiękczanie portretu
 Softness|Miękkość

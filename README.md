@@ -31,6 +31,10 @@ everyday editing easier. Each Brushwood release is merged into it. It adds:
 
 - **Times in the History window:** each step shows when it was made (14:32) or how long ago (12 min ago), or nothing.
   Choose with a right-click in the History window or in **Settings › History**; the tooltip gives the full date.
+- **Snapshots:** the camera button of the History window keeps a full copy of the image, listed at the top of the
+  window. Clicking a snapshot brings the image back to it as a new step, so a snapshot is never lost to undo or to new
+  edits, and going back can itself be undone. Right-click a snapshot to rename or delete it. Snapshots count in the
+  history's memory budget and are not saved in the file.
 
 Brushwood Plus is a separate app that installs next to Brushwood, with its own name, its own settings and a "+" on its
 icon. **Check for Updates…** only offers Plus versions. A Plus version is the Brushwood version it is based on followed

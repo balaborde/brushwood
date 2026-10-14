@@ -47,6 +47,7 @@ Auto|Auto
 Auto-Level|Automatisch niveau
 Auto-Level, Black and White, Brightness / Contrast, Curves|Automatisch niveau, Zwart-wit, Helderheid / Contrast, Curven
 Auto-detect|Automatisch detecteren
+Back to %@|Terug naar %@
 Background|Achtergrond
 Backward Diagonal|Diagonaal achteruit
 Basic|Basis
@@ -105,6 +106,7 @@ Click and drag to draw the outline of a selection area. ⌘ adds, ⌥ subtracts,
 Click and drag to erase a portion of the image.|Klik en sleep om een deel van de afbeelding te wissen.
 Click and drag to navigate the image.|Klik en sleep om door de afbeelding te navigeren.
 Click to add a point, drag to move it, right-click to remove it.|Klik om een punt toe te voegen, sleep om het te verplaatsen, rechtsklik om het te verwijderen.
+Click to go back to this snapshot. Snapshots are not saved in the file.|Klik om terug te gaan naar deze momentopname. Momentopnamen worden niet in het bestand bewaard.
 Click to select a region of similar color. ⌘ adds, ⌥ subtracts, right-click inverts. Shift-click for global selection.|Klik om een gebied met een vergelijkbare kleur te selecteren. ⌘ voegt toe, ⌥ trekt af, rechtsklikken keert om. Shift-klik voor een globale selectie.
 Clipping:|Bijsnijden:
 Clone Stamp|Kloonstempel
@@ -163,6 +165,7 @@ Dashed Horizontal|Gestreept horizontaal
 Dashed Vertical|Gestreept verticaal
 Decrease / increase brush width (Shift: ×10)|Penseelbreedte verkleinen / vergroten (Shift: ×10)
 Delete Layer|Verwijder laag
+Delete Snapshot|Verwijder momentopname
 Dents|Deuken
 Deselect|Deselecteer
 Deselect (⌘D)|Deselecteer (⌘D)
@@ -248,6 +251,7 @@ Gaussian Blur|Gaussiaanse vervaging
 General|Algemeen
 Global|Globaal
 Glow|Gloed
+Go Back to This Snapshot|Terug naar deze momentopname
 Go to Bottom Layer|Ga naar onderste laag
 Go to Layer Above|Ga naar laag erboven
 Go to Layer Below|Ga naar laag eronder
@@ -374,6 +378,7 @@ Negation|Negatie
 New|Nieuw
 New (⌘N)|Nieuw (⌘N)
 New Image|Nieuwe afbeelding
+New Snapshot|Nieuwe momentopname
 New size: %@|Nieuwe grootte: %@
 New size: %d × %d (%@)|Nieuwe grootte: %d × %d (%@)
 New…|Nieuw…
@@ -468,6 +473,9 @@ Reduce Noise|Ruis verminderen
 Reflect|Weerspiegelen
 Refraction|Breking
 Relief|Reliëf
+Rename|Hernoem
+Rename Snapshot|Hernoem momentopname
+Rename Snapshot…|Hernoem momentopname…
 Render|Renderen
 Repeat|Herhaal
 Repeat %@|Herhaal ‘%@’
@@ -557,6 +565,7 @@ Sketch Blur|Schetsvervaging
 Small Checker Board|Klein dambord
 Small Grid|Klein raster
 Smoothness|Gladheid
+Snapshot %d|Momentopname %d
 Soft Light|Zacht licht
 Soften Portrait|Portret verzachten
 Softness|Zachtheid

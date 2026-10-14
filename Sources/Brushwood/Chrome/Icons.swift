@@ -333,6 +333,7 @@ enum Icons {
             }
         case "cmd.undo": return symbol("arrow.uturn.backward", size: size, colors: [blue], weight: .semibold)
         case "cmd.redo": return symbol("arrow.uturn.forward", size: size, colors: [blue], weight: .semibold)
+        case "cmd.snapshot": return symbol("camera", size: size, colors: [blue], weight: .semibold)
         case "cmd.grid": return symbol("grid", size: size, colors: [gray])
         case "cmd.rulers": return symbol("ruler", size: size, colors: [wood])
         case "cmd.resize": return symbol("arrow.up.left.and.arrow.down.right", size: size, colors: [blue])
@@ -375,6 +376,7 @@ enum Icons {
         case "window.colors": return symbol("paintpalette.fill", size: size, colors: [orange])
         case "history.new": return symbol("doc.badge.plus", size: size, colors: [green, gray])
         case "history.open": return symbol("folder.fill", size: size, colors: [yellow])
+        case "history.snapshot": return symbol("camera.fill", size: size, colors: [blue])
         case "history.selection": return image("tool.rectangleSelect", size: size)
         case "history.paste": return image("cmd.paste", size: size)
         case "history.effect": return symbol("sparkles", size: size, colors: [purple])

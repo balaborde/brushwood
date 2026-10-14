@@ -47,6 +47,7 @@ Auto|자동
 Auto-Level|자동 레벨
 Auto-Level, Black and White, Brightness / Contrast, Curves|자동 레벨, 흑백, 밝기 / 대비, 곡선
 Auto-detect|자동 감지
+Back to %@|%@(으)로 돌아가기
 Background|배경
 Backward Diagonal|역방향 대각선
 Basic|기본
@@ -105,6 +106,7 @@ Click and drag to draw the outline of a selection area. ⌘ adds, ⌥ subtracts,
 Click and drag to erase a portion of the image.|클릭하고 드래그하여 이미지의 일부를 지웁니다.
 Click and drag to navigate the image.|클릭하고 드래그하여 이미지를 탐색합니다.
 Click to add a point, drag to move it, right-click to remove it.|클릭하여 점을 추가하고, 드래그하여 이동하고, 오른쪽 클릭하여 제거합니다.
+Click to go back to this snapshot. Snapshots are not saved in the file.|클릭하면 이 스냅샷으로 돌아갑니다. 스냅샷은 파일에 저장되지 않습니다.
 Click to select a region of similar color. ⌘ adds, ⌥ subtracts, right-click inverts. Shift-click for global selection.|클릭하여 비슷한 색상의 영역을 선택합니다. ⌘는 추가, ⌥는 빼기, 오른쪽 클릭은 반전입니다. Shift-클릭하면 전역 선택입니다.
 Clipping:|클리핑:
 Clone Stamp|복제 도장
@@ -163,6 +165,7 @@ Dashed Horizontal|가로 파선
 Dashed Vertical|세로 파선
 Decrease / increase brush width (Shift: ×10)|브러시 너비 줄이기 / 늘리기(Shift: ×10)
 Delete Layer|레이어 삭제
+Delete Snapshot|스냅샷 삭제
 Dents|움푹 들어감
 Deselect|선택 해제
 Deselect (⌘D)|선택 해제(⌘D)
@@ -248,6 +251,7 @@ Gaussian Blur|가우시안 흐림
 General|일반
 Global|전역
 Glow|광선
+Go Back to This Snapshot|이 스냅샷으로 돌아가기
 Go to Bottom Layer|맨 아래 레이어로 이동
 Go to Layer Above|위 레이어로 이동
 Go to Layer Below|아래 레이어로 이동
@@ -374,6 +378,7 @@ Negation|부정
 New|신규
 New (⌘N)|신규(⌘N)
 New Image|새 이미지
+New Snapshot|새 스냅샷
 New size: %@|새 크기: %@
 New size: %d × %d (%@)|새 크기: %d × %d(%@)
 New…|신규…
@@ -468,6 +473,9 @@ Reduce Noise|노이즈 감소
 Reflect|반사
 Refraction|굴절
 Relief|부조
+Rename|이름 변경
+Rename Snapshot|스냅샷 이름 변경
+Rename Snapshot…|스냅샷 이름 변경…
 Render|렌더
 Repeat|반복
 Repeat %@|‘%@’ 반복
@@ -557,6 +565,7 @@ Sketch Blur|스케치 흐림
 Small Checker Board|작은 바둑판
 Small Grid|작은 격자
 Smoothness|매끄러움
+Snapshot %d|스냅샷 %d
 Soft Light|소프트 라이트
 Soften Portrait|인물 부드럽게
 Softness|부드러움

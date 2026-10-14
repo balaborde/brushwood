@@ -47,6 +47,7 @@ Auto|Авто
 Auto-Level|Автоуровень
 Auto-Level, Black and White, Brightness / Contrast, Curves|Автоуровень, Черно-белое, Яркость / Контраст, Кривые
 Auto-detect|Автоопределение
+Back to %@|Возврат: %@
 Background|Фон
 Backward Diagonal|Обратная диагональ
 Basic|Основные
@@ -105,6 +106,7 @@ Click and drag to draw the outline of a selection area. ⌘ adds, ⌥ subtracts,
 Click and drag to erase a portion of the image.|Щелкните и перетащите, чтобы стереть часть изображения.
 Click and drag to navigate the image.|Щелкните и перетащите, чтобы перемещаться по изображению.
 Click to add a point, drag to move it, right-click to remove it.|Щелкните, чтобы добавить точку, перетащите, чтобы переместить ее, щелкните правой кнопкой, чтобы удалить.
+Click to go back to this snapshot. Snapshots are not saved in the file.|Щёлкните, чтобы вернуться к этому снимку. Снимки не сохраняются в файле.
 Click to select a region of similar color. ⌘ adds, ⌥ subtracts, right-click inverts. Shift-click for global selection.|Щелкните, чтобы выделить область похожего цвета. ⌘ добавляет, ⌥ вычитает, правый щелчок инвертирует. Shift-щелчок — глобальное выделение.
 Clipping:|Обрезка:
 Clone Stamp|Клонирующий штамп
@@ -163,6 +165,7 @@ Dashed Horizontal|Пунктирные горизонтальные
 Dashed Vertical|Пунктирные вертикальные
 Decrease / increase brush width (Shift: ×10)|Уменьшить / увеличить ширину кисти (Shift: ×10)
 Delete Layer|Удалить слой
+Delete Snapshot|Удалить снимок
 Dents|Вмятины
 Deselect|Снять выделение
 Deselect (⌘D)|Снять выделение (⌘D)
@@ -248,6 +251,7 @@ Gaussian Blur|Размытие по Гауссу
 General|Общие
 Global|Глобально
 Glow|Свечение
+Go Back to This Snapshot|Вернуться к этому снимку
 Go to Bottom Layer|Перейти к нижнему слою
 Go to Layer Above|Перейти к слою выше
 Go to Layer Below|Перейти к слою ниже
@@ -374,6 +378,7 @@ Negation|Отрицание
 New|Новый
 New (⌘N)|Новый (⌘N)
 New Image|Новое изображение
+New Snapshot|Новый снимок
 New size: %@|Новый размер: %@
 New size: %d × %d (%@)|Новый размер: %d × %d (%@)
 New…|Новый…
@@ -468,6 +473,9 @@ Reduce Noise|Уменьшение шума
 Reflect|Отражение
 Refraction|Преломление
 Relief|Рельеф
+Rename|Переименовать
+Rename Snapshot|Переименовать снимок
+Rename Snapshot…|Переименовать снимок…
 Render|Визуализация
 Repeat|Повторить
 Repeat %@|Повторно применить «%@»
@@ -557,6 +565,7 @@ Sketch Blur|Эскизное размытие
 Small Checker Board|Мелкая шахматная доска
 Small Grid|Мелкая сетка
 Smoothness|Плавность
+Snapshot %d|Снимок %d
 Soft Light|Мягкий свет
 Soften Portrait|Смягчение портрета
 Softness|Мягкость

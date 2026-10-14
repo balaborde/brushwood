@@ -47,6 +47,7 @@ Auto|自动
 Auto-Level|自动色阶
 Auto-Level, Black and White, Brightness / Contrast, Curves|自动色阶、黑白、亮度 / 对比度、曲线
 Auto-detect|自动检测
+Back to %@|回到 %@
 Background|背景
 Backward Diagonal|反向对角线
 Basic|基本
@@ -105,6 +106,7 @@ Click and drag to draw the outline of a selection area. ⌘ adds, ⌥ subtracts,
 Click and drag to erase a portion of the image.|单击并拖移以擦除图像的一部分。
 Click and drag to navigate the image.|单击并拖移以浏览图像。
 Click to add a point, drag to move it, right-click to remove it.|单击以添加点，拖移以移动点，右键单击以删除点。
+Click to go back to this snapshot. Snapshots are not saved in the file.|单击以回到此快照。快照不会存储在文件中。
 Click to select a region of similar color. ⌘ adds, ⌥ subtracts, right-click inverts. Shift-click for global selection.|单击以选择颜色相近的区域。⌘ 添加，⌥ 减去，右键反转。按住 Shift 键单击进行全局选择。
 Clipping:|裁剪：
 Clone Stamp|仿制图章
@@ -163,6 +165,7 @@ Dashed Horizontal|横虚线
 Dashed Vertical|竖虚线
 Decrease / increase brush width (Shift: ×10)|减小 / 增大画笔宽度（Shift：×10）
 Delete Layer|删除图层
+Delete Snapshot|删除快照
 Dents|凹痕
 Deselect|取消选择
 Deselect (⌘D)|取消选择 (⌘D)
@@ -248,6 +251,7 @@ Gaussian Blur|高斯模糊
 General|通用
 Global|全局
 Glow|发光
+Go Back to This Snapshot|回到此快照
 Go to Bottom Layer|转到最底层图层
 Go to Layer Above|转到上一图层
 Go to Layer Below|转到下一图层
@@ -374,6 +378,7 @@ Negation|求反
 New|新建
 New (⌘N)|新建 (⌘N)
 New Image|新建图像
+New Snapshot|新建快照
 New size: %@|新大小：%@
 New size: %d × %d (%@)|新大小：%d × %d（%@）
 New…|新建…
@@ -468,6 +473,9 @@ Reduce Noise|减少杂色
 Reflect|反射
 Refraction|折射
 Relief|浮凸
+Rename|重命名
+Rename Snapshot|重命名快照
+Rename Snapshot…|重命名快照…
 Render|渲染
 Repeat|重复
 Repeat %@|重复“%@”
@@ -557,6 +565,7 @@ Sketch Blur|素描模糊
 Small Checker Board|小棋盘格
 Small Grid|小网格
 Smoothness|平滑度
+Snapshot %d|快照 %d
 Soft Light|柔光
 Soften Portrait|柔化人像
 Softness|柔和度

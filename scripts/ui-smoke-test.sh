@@ -34,6 +34,12 @@ run layers "menu:addLayer:; expectlayers:2; tool:paintBucket; color:FF0000; clic
  menu:duplicateLayer:; expectlayers:3; menu:mergeLayerDown:; expectlayers:2; menu:flatten:; expectlayers:1;
  menu:brushwoodUndo:; expectlayers:2; menu:moveLayerDown:; expect:10,10,FFFFFF; menu:moveLayerUp:; expect:10,10,FF0000"
 
+# Brushwood Plus snapshots: going back survives undo and new edits, and is itself a step that can be undone.
+run snapshots "tool:paintBucket; color:FF0000; click:10,10; key:return; snapshot; expectsnapshots:1; gobacktosnapshot:0;
+ expecthistory:1; color:0000FF; click:10,10; key:return; menu:brushwoodUndo:; menu:brushwoodUndo:; tool:pencil;
+ color:00FF00; drag:400,10,400,50; expecthistory:1; gobacktosnapshot:0; expect:10,10,FF0000; expect:400,30,FF0000;
+ expecthistory:2; menu:brushwoodUndo:; expect:10,10,FFFFFF; expect:400,30,00FF00; snapshot; expectsnapshots:2"
+
 # Floating windows follow their corner of the canvas when the main window is resized.
 run panels "showpanels; expectpanels; panel:1400,900; expectpanels; panel:820,560; expectpanels;
  panel:1280,820; expectpanels"

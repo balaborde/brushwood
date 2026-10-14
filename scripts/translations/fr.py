@@ -47,6 +47,7 @@ Auto|Auto
 Auto-Level|Niveaux automatiques
 Auto-Level, Black and White, Brightness / Contrast, Curves|Niveaux automatiques, Noir et blanc, Luminosité / Contraste, Courbes
 Auto-detect|Détection automatique
+Back to %@|Retour à %@
 Background|Arrière-plan
 Backward Diagonal|Diagonale arrière
 Basic|De base
@@ -105,6 +106,7 @@ Click and drag to draw the outline of a selection area. ⌘ adds, ⌥ subtracts,
 Click and drag to erase a portion of the image.|Cliquez et faites glisser pour effacer une partie de l'image.
 Click and drag to navigate the image.|Cliquez et faites glisser pour vous déplacer dans l'image.
 Click to add a point, drag to move it, right-click to remove it.|Cliquez pour ajouter un point, faites-le glisser pour le déplacer, clic droit pour le supprimer.
+Click to go back to this snapshot. Snapshots are not saved in the file.|Cliquez pour revenir à cet instantané. Les instantanés ne sont pas enregistrés dans le fichier.
 Click to select a region of similar color. ⌘ adds, ⌥ subtracts, right-click inverts. Shift-click for global selection.|Cliquez pour sélectionner une zone de couleur similaire. ⌘ ajoute, ⌥ soustrait, le clic droit inverse. Maj+clic pour une sélection globale.
 Clipping:|Détourage :
 Clone Stamp|Tampon de duplication
@@ -163,6 +165,7 @@ Dashed Horizontal|Tirets horizontaux
 Dashed Vertical|Tirets verticaux
 Decrease / increase brush width (Shift: ×10)|Diminuer / augmenter la largeur du pinceau (Maj : ×10)
 Delete Layer|Supprimer le calque
+Delete Snapshot|Supprimer l'instantané
 Dents|Bosses
 Deselect|Désélectionner
 Deselect (⌘D)|Désélectionner (⌘D)
@@ -248,6 +251,7 @@ Gaussian Blur|Flou gaussien
 General|Général
 Global|Global
 Glow|Lueur
+Go Back to This Snapshot|Revenir à cet instantané
 Go to Bottom Layer|Aller au calque du bas
 Go to Layer Above|Aller au calque supérieur
 Go to Layer Below|Aller au calque inférieur
@@ -374,6 +378,7 @@ Negation|Négation
 New|Nouveau
 New (⌘N)|Nouveau (⌘N)
 New Image|Nouvelle image
+New Snapshot|Nouvel instantané
 New size: %@|Nouvelle taille : %@
 New size: %d × %d (%@)|Nouvelle taille : %d × %d (%@)
 New…|Nouveau…
@@ -468,6 +473,9 @@ Reduce Noise|Réduire le bruit
 Reflect|Réflexion
 Refraction|Réfraction
 Relief|Relief
+Rename|Renommer
+Rename Snapshot|Renommer l'instantané
+Rename Snapshot…|Renommer l'instantané…
 Render|Rendu
 Repeat|Répéter
 Repeat %@|Répéter « %@ »
@@ -557,6 +565,7 @@ Sketch Blur|Flou esquisse
 Small Checker Board|Petit damier
 Small Grid|Petite grille
 Smoothness|Douceur
+Snapshot %d|Instantané %d
 Soft Light|Lumière tamisée
 Soften Portrait|Adoucir le portrait
 Softness|Douceur

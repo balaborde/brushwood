@@ -171,6 +171,8 @@ public final class HistoryStack {
     public private(set) var items: [HistoryItem] = []
     /// Index of the current state; items after it are "redo" steps.
     public private(set) var currentIndex = -1
+    /// Copies of the image kept beside the steps (Brushwood Plus); see Snapshots.swift.
+    public internal(set) var snapshots: [HistorySnapshot] = []
 
     init() {}
 
@@ -184,10 +186,11 @@ public final class HistoryStack {
     public func reset(baseName: String, icon: String) {
         items = [BaseHistoryItem(name: baseName, icon: icon)]
         currentIndex = 0
+        snapshots = []
         notify()
     }
 
-    /// Memory budget for undo data; the oldest steps are dropped beyond it.
+    /// Memory budget for undo data and snapshots; the oldest steps are dropped beyond it.
     public var memoryLimit: Int = min(4 << 30, Int(ProcessInfo.processInfo.physicalMemory / 3))
 
     /// Records an action that has already been applied to the document.
@@ -202,7 +205,7 @@ public final class HistoryStack {
     }
 
     /// Drops the oldest undo steps (keeping the base entry) while over budget.
-    private func trimToMemoryLimit() {
+    func trimToMemoryLimit() {
         var total = memoryFootprint
         while total > memoryLimit && items.count > 2 {
             total -= items[1].memoryFootprint
@@ -232,9 +235,11 @@ public final class HistoryStack {
         while currentIndex < target { redo() }
     }
 
-    public var memoryFootprint: Int { items.reduce(0) { $0 + $1.memoryFootprint } }
+    public var memoryFootprint: Int {
+        items.reduce(0) { $0 + $1.memoryFootprint } + snapshots.reduce(0) { $0 + $1.memoryFootprint }
+    }
 
-    private func notify() {
+    func notify() {
         document?.post(.documentHistoryChanged)
     }
 }

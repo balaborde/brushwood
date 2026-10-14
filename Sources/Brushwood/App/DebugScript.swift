@@ -101,6 +101,14 @@ enum DebugScript {
                     report(b == IntRect(x: Int(nums[0]), y: Int(nums[1]), width: Int(nums[2]), height: Int(nums[3])),
                            "selection = \(b.map { "\($0)" } ?? "none"), expected \(arg)")
                 }
+            case "snapshot": c.historyPanel.takeSnapshot()
+            case "gobacktosnapshot":
+                // gobacktosnapshot:i, as clicking the i-th snapshot (from 0) in the History window.
+                let snapshots = c.active?.document.history.snapshots ?? []
+                let i = Int(nums.first ?? 0)
+                if i < snapshots.count { c.historyPanel.goBack(to: snapshots[i]) } else { report(false, "no snapshot \(i)") }
+            case "expectsnapshots": report(c.active?.document.history.snapshots.count == Int(nums.first ?? -1),
+                                           "snapshots = \(c.active?.document.history.snapshots.count ?? -1), expected \(arg)")
             case "log": print("LOG \(arg)")
             case "widthcombo":
                 // widthcombo:select,25 | widthcombo:type,40 | widthcombo:wheel,up|down | widthcombo:blur

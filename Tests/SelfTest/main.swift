@@ -199,6 +199,112 @@ struct DocumentTests {
     }
 }
 
+struct SnapshotTests {
+    /// Fills the active layer with one color as a history step.
+    func paint(_ doc: Document, _ c: ColorBgra, name: String = "Fill") {
+        let layer = doc.activeLayer
+        let before = layer.surface.copy(rect: doc.bounds)!
+        layer.surface.clear(c)
+        doc.history.push(PixelHistoryItem(name: name, icon: "", layer: layer, rect: doc.bounds, before: before,
+                                          after: layer.surface.copy(rect: doc.bounds)!))
+    }
+
+    func snapshotSurvivesUndoAndNewEdits() {
+        let doc = Document(width: 8, height: 8, background: .white)
+        doc.history.reset(baseName: "New Image", icon: "new")
+        let red = ColorBgra(r: 255, g: 0, b: 0), blue = ColorBgra(r: 0, g: 0, b: 255)
+        paint(doc, red)
+        let snap = doc.history.takeSnapshot()!
+        paint(doc, blue)
+        doc.history.undo()
+        doc.history.undo()
+        paint(doc, .black)  // drops the redo steps, including the one the snapshot was taken at
+        expect(doc.history.items.count == 2)
+        doc.history.restore(snap, name: "Back", icon: "")
+        expect(doc.activeLayer.surface[3, 3] == red, "image is back to the snapshot")
+        expect(doc.history.items.count == 3 && doc.history.items.last?.name == "Back", "going back is a step")
+        doc.history.undo()
+        expect(doc.activeLayer.surface[3, 3] == .black, "undo goes back to before the restore")
+        doc.history.redo()
+        expect(doc.activeLayer.surface[3, 3] == red)
+    }
+
+    func editsAfterRestoreLeaveTheSnapshotAlone() {
+        let doc = Document(width: 8, height: 8, background: .white)
+        doc.history.reset(baseName: "New Image", icon: "new")
+        let snap = doc.history.takeSnapshot()!
+        paint(doc, .black)
+        doc.history.restore(snap, name: "Back", icon: "")
+        paint(doc, ColorBgra(r: 0, g: 255, b: 0))
+        doc.history.restore(snap, name: "Back", icon: "")
+        expect(doc.activeLayer.surface[0, 0] == .white, "the snapshot still holds the original pixels")
+        while doc.history.canUndo { doc.history.undo() }
+        expect(doc.activeLayer.surface[0, 0] == .white)
+        while doc.history.canRedo { doc.history.redo() }
+        expect(doc.activeLayer.surface[0, 0] == .white)
+        doc.history.undo()
+        expect(doc.activeLayer.surface[0, 0] == ColorBgra(r: 0, g: 255, b: 0), "edit made after the first restore")
+    }
+
+    func snapshotRestoresDeletedAndAddedLayers() {
+        let doc = Document(width: 8, height: 8, background: .white)
+        doc.history.reset(baseName: "New Image", icon: "new")
+        let snap = doc.history.takeSnapshot()!
+        let before = DocumentState(doc)
+        doc.layers.append(BitmapLayer(width: 8, height: 8, name: "Layer 2"))
+        doc.activeLayerIndex = 1
+        doc.history.push(DocumentHistoryItem(name: "Add New Layer", icon: "", before: before, after: DocumentState(doc)))
+        paint(doc, .black)
+        let removed = DocumentState(doc)
+        doc.layers.remove(at: 0)
+        doc.activeLayerIndex = 0
+        doc.history.push(DocumentHistoryItem(name: "Delete Layer", icon: "", before: removed, after: DocumentState(doc)))
+        doc.history.restore(snap, name: "Back", icon: "")
+        expect(doc.layers.count == 1 && doc.layers[0].name == "Background", "deleted layer is back, added one is gone")
+        expect(doc.flattened()[1, 1] == .white)
+        doc.history.undo()
+        expect(doc.layers.count == 1 && doc.layers[0].name == "Layer 2" && doc.layers[0].surface[1, 1] == .black)
+    }
+
+    func goingBackToTheCurrentStateAddsNothing() {
+        let doc = Document(width: 8, height: 8, background: .white)
+        doc.history.reset(baseName: "New Image", icon: "new")
+        paint(doc, .black)
+        let snap = doc.history.takeSnapshot()!
+        expect(doc.history.isShowing(snap))
+        doc.history.restore(snap, name: "Back", icon: "")
+        expect(doc.history.items.count == 2, "just taken: no step")
+        paint(doc, .white)
+        expect(!doc.history.isShowing(snap))
+        doc.history.restore(snap, name: "Back", icon: "")
+        doc.history.restore(snap, name: "Back", icon: "")
+        expect(doc.history.items.count == 4, "a second click adds nothing")
+        doc.history.step(to: 1)
+        expect(doc.history.isShowing(snap), "back at the step it was taken at")
+    }
+
+    func snapshotsCountInMemoryAndNamesAndReset() {
+        let doc = Document(width: 100, height: 100, background: .white)
+        doc.history.reset(baseName: "New Image", icon: "new")
+        doc.history.memoryLimit = 100 * 100 * 4 * 2 * 3  // three full-layer steps
+        doc.history.takeSnapshot()
+        doc.history.takeSnapshot()
+        for i in 0..<6 { paint(doc, ColorBgra(r: UInt8(i * 40), g: 0, b: 0), name: "Step \(i)") }
+        expect(doc.history.memoryFootprint <= doc.history.memoryLimit)
+        expect(doc.history.items.count == 3, "two snapshots take the room of one step: kept \(doc.history.items.count)")
+        let s = doc.history.snapshots
+        expect(s.map(\.number) == [1, 2])
+        doc.history.removeSnapshot(s[0])
+        expect(doc.history.takeSnapshot()?.number == 3, "numbers go on after the highest")
+        doc.history.rename(s[1], to: "Sky done")
+        expect(s[1].customName == "Sky done")
+        doc.history.rename(s[1], to: "")
+        expect(s[1].customName == nil)
+        doc.history.reset(baseName: "Open Image", icon: "open")
+        expect(doc.history.snapshots.isEmpty, "a new image starts without snapshots")
+    }
+}
+
 struct VersionTests {
     func ordering() {
         func v(_ s: String) -> AppVersion { AppVersion(s)! }
@@ -454,6 +560,11 @@ run("DocumentTests.compositeRespectsOpacityAndVisibility") { DocumentTests().com
 run("DocumentTests.historyUndoRedoPixels") { DocumentTests().historyUndoRedoPixels() }
 run("DocumentTests.historyMemoryLimitDropsOldestSteps") { DocumentTests().historyMemoryLimitDropsOldestSteps() }
 run("DocumentTests.structuralHistoryRestoresLayers") { DocumentTests().structuralHistoryRestoresLayers() }
+run("SnapshotTests.snapshotSurvivesUndoAndNewEdits") { SnapshotTests().snapshotSurvivesUndoAndNewEdits() }
+run("SnapshotTests.editsAfterRestoreLeaveTheSnapshotAlone") { SnapshotTests().editsAfterRestoreLeaveTheSnapshotAlone() }
+run("SnapshotTests.snapshotRestoresDeletedAndAddedLayers") { SnapshotTests().snapshotRestoresDeletedAndAddedLayers() }
+run("SnapshotTests.goingBackToTheCurrentStateAddsNothing") { SnapshotTests().goingBackToTheCurrentStateAddsNothing() }
+run("SnapshotTests.snapshotsCountInMemoryAndNamesAndReset") { SnapshotTests().snapshotsCountInMemoryAndNamesAndReset() }
 run("VersionTests.ordering") { VersionTests().ordering() }
 run("VersionTests.editions") { VersionTests().editions() }
 run("FileFormatTests.zipRoundTrip") { try FileFormatTests().zipRoundTrip() }
