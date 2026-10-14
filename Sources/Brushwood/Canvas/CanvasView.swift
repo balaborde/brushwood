@@ -146,6 +146,10 @@ final class CanvasView: NSView {
 
     /// Amount of image that always stays visible when it is pushed against a window edge.
     let keepVisible: CGFloat = 48
+    /// Viewport size at the last `updateFrame`, to keep the same image point centered when the window is resized.
+    private var lastVisibleSize: NSSize?
+    /// Image point last kept at the viewport center, with the scroll position and zoom it was set for.
+    private var centerAnchor: (point: CGPoint, origin: NSPoint, zoom: CGFloat)?
 
     var imageRectInView: CGRect {
         CGRect(origin: imageOrigin, size: CGSize(width: imageSize.width * zoom, height: imageSize.height * zoom))
@@ -179,14 +183,33 @@ final class CanvasView: NSView {
         guard let clip = clipView else { return }
         let vis = clip.bounds.size
         let hadImage = workspace != nil && frame.width > 0 && frame.height > 0
-        let centerBefore = hadImage ? toImage(CGPoint(x: clip.bounds.midX, y: clip.bounds.midY)) : nil
+        // When the window is resized, the clip view already has its new size but still its old origin: the point
+        // that was at the center of the viewport is half the *previous* size away from that origin. Until the user
+        // scrolls or zooms, the exact point kept at the center last time is reused: AppKit rounds each scroll to
+        // the pixel grid, and recomputing from the rounded position would drift during a live resize.
+        let old = lastVisibleSize ?? vis
+        lastVisibleSize = vis
+        var centerBefore: CGPoint?
+        if hadImage {
+            if let a = centerAnchor, a.zoom == zoom, abs(a.origin.x - clip.bounds.minX) <= 1, abs(a.origin.y - clip.bounds.minY) <= 1 {
+                centerBefore = a.point
+            } else {
+                centerBefore = toImage(CGPoint(x: clip.bounds.minX + old.width / 2, y: clip.bounds.minY + old.height / 2))
+            }
+        }
         let padX = max(margin, vis.width - keepVisible), padY = max(margin, vis.height - keepVisible)
         let newOrigin = CGPoint(x: floor(padX), y: floor(padY))
         let size = NSSize(width: imageSize.width * zoom + 2 * newOrigin.x, height: imageSize.height * zoom + 2 * newOrigin.y)
         let changed = frame.size != size || newOrigin != imageOrigin
         imageOrigin = newOrigin
         if frame.size != size { setFrameSize(size) }
-        if changed, let centerBefore { scroll(toImageCenter: centerBefore) }
+        if changed, let centerBefore {
+            scroll(toImageCenter: centerBefore)
+            centerAnchor = (centerBefore, clip.bounds.origin, zoom)
+        }
+        // With the .onSetNeedsDisplay redraw policy, a resized view keeps its old picture, stretched, and the image
+        // usually moves inside the view too (its margins follow the viewport): redraw all of it.
+        needsDisplay = true
         selectionViewPath = nil
         host?.canvasGeometryChanged()
     }

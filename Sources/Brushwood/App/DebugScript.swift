@@ -53,6 +53,8 @@ enum DebugScript {
                     NSApp.sendAction(Selector(arg), to: c, from: nil)
                 } else if let d = NSApp.delegate as? NSObject, d.responds(to: Selector(arg)) {
                     NSApp.sendAction(Selector(arg), to: d, from: nil)
+                } else if let w = c.window, w.responds(to: Selector(arg)) {
+                    NSApp.sendAction(Selector(arg), to: w, from: nil)
                 } else {
                     report(false, "unknown action \(arg)")
                 }
@@ -140,6 +142,14 @@ enum DebugScript {
                     let r = c.canvas.imageRectInView.offsetBy(dx: -clip.bounds.minX, dy: -clip.bounds.minY)
                     let ok = abs(r.minX - nums[0]) <= 2 && abs(r.minY - nums[1]) <= 2
                     report(ok, "image top-left in viewport = (\(Int(r.minX)), \(Int(r.minY))), expected \(arg)")
+                }
+            case "expectimagecentered":
+                // The image's center is at the center of the viewport (within a point).
+                if let clip = c.canvas.clipView {
+                    let r = c.canvas.imageRectInView
+                    let ok = abs(r.midX - clip.bounds.midX) <= 1 && abs(r.midY - clip.bounds.midY) <= 1
+                    report(ok, "image center (\(Int(r.midX - clip.bounds.minX)), \(Int(r.midY - clip.bounds.minY))) in a "
+                        + "\(Int(clip.bounds.width))×\(Int(clip.bounds.height)) viewport")
                 }
             case "expectfreescroll":
                 report(!c.scrollView.usesPredominantAxisScrolling, "trackpad scrolling is not locked to one axis")

@@ -34,6 +34,13 @@ run layers "menu:addLayer:; expectlayers:2; tool:paintBucket; color:FF0000; clic
  menu:duplicateLayer:; expectlayers:3; menu:mergeLayerDown:; expectlayers:2; menu:flatten:; expectlayers:1;
  menu:brushwoodUndo:; expectlayers:2; menu:moveLayerDown:; expect:10,10,FFFFFF; menu:moveLayerUp:; expect:10,10,FF0000"
 
+# Resizing the window or going full screen keeps the image centered, also over the many small steps of a live
+# resize (scroll positions are rounded to pixels, which must not add up).
+STEPS=""
+for i in $(seq 0 29); do STEPS+="panel:$((900 + i * 13)),$((620 + i * 7)); "; done
+run resize "expectimagecentered; panel:1000,700; expectimagecentered; panel:1400,900; expectimagecentered; zoom:2;
+ panel:1100,760; expectimagecentered; $STEPS expectimagecentered"
+
 # Floating windows follow their corner of the canvas when the main window is resized.
 run panels "showpanels; expectpanels; panel:1400,900; expectpanels; panel:820,560; expectpanels;
  panel:1280,820; expectpanels"
