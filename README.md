@@ -24,11 +24,34 @@ editable shapes and selections, and the full set of Adjustments and Effects with
 Brushwood is an independent project. It is not affiliated with or endorsed by dotPDN LLC; "Paint.NET" is a trademark of its
 owner. No Paint.NET code, icons or other assets are used — every icon is drawn in code.
 
+## Brushwood Plus
+
+**Brushwood Plus** is an edition of Brushwood with extra features that Paint.NET does not have but that make everyday
+editing easier, such as snapshots in the History window or brush smoothing. Brushwood itself stays faithful to
+Paint.NET; Brushwood Plus is built from the `plus` branch, follows every Brushwood release and adds its features on top.
+
+- Each feature can be turned on or off, one by one or by category, in the **Plus Features** window
+  (**Brushwood Plus › Plus Features…**), which also describes them. The window opens by itself at the first launch and
+  after each update, with what the update brings tagged **NEW**. With every feature off, Brushwood Plus works like
+  Brushwood.
+- It is a separate app, **Brushwood Plus.app**, with its own settings and a "+" on its icon: it can be installed next
+  to Brushwood (see [Installing](#installing)).
+- Its versions are the Brushwood version they are based on, followed by a revision: `1.0.3-plus.1`, `1.0.3-plus.2`,
+  then `1.0.4-plus.1` once Brushwood 1.0.4 is merged.
+
+> *En bref (FR) :* Brushwood Plus est une édition de Brushwood avec des fonctionnalités absentes de Paint.NET, comme
+> les instantanés dans l'historique ou la stabilisation du pinceau. Chacune s'active ou se désactive dans la fenêtre
+> **Fonctionnalités Plus**. C'est une app à part, qui s'installe à côté de Brushwood avec ses propres réglages.
+
 ## Installing
 
-1. Download **Brushwood-<version>.dmg** from the [latest release](https://github.com/balaborde/brushwood/releases/latest).
-2. Open it and drag **Brushwood** onto the **Applications** folder.
-3. Eject the disk image, then open Brushwood from Applications or Launchpad.
+1. Download the disk image of the app you want:
+   - **Brushwood:** **Brushwood-<version>.dmg** from the [latest release](https://github.com/balaborde/brushwood/releases/latest);
+   - **Brushwood Plus:** the most recent **Brushwood-<version>-plus.<n>.dmg** on the
+     [Releases](https://github.com/balaborde/brushwood/releases) page (Plus releases are never the one marked Latest).
+2. Open it and drag the app (**Brushwood** or **Brushwood Plus**) onto the **Applications** folder. The two apps can be
+   installed side by side.
+3. Eject the disk image, then open the app from Applications or Launchpad.
 
 <p align="center">
   <img src="docs/images/install.png" width="460" alt="The disk image window: drag Brushwood onto the Applications folder">
@@ -40,14 +63,19 @@ Brushwood runs on macOS 13 Ventura or later, on Apple silicon and Intel Macs.
 Apple Developer ID. To allow it, once:
 
 - **macOS 15 Sequoia and later:** click **Done**, open **System Settings › Privacy & Security**, scroll down to the
-  message about Brushwood, click **Open Anyway** and confirm.
+  message about the app, click **Open Anyway** and confirm.
 - **macOS 13 Ventura and 14 Sonoma:** Control-click Brushwood in Applications, choose **Open**, then click **Open**.
 
-Alternatively, run `xattr -dr com.apple.quarantine /Applications/Brushwood.app` in Terminal.
+Alternatively, run `xattr -dr com.apple.quarantine /Applications/Brushwood.app` in Terminal (for Brushwood Plus:
+`xattr -dr com.apple.quarantine "/Applications/Brushwood Plus.app"`).
 
 **Updating:** choose **Brushwood › Check for Updates…** (or **Settings › Updates**). Brushwood shows what's new, then
 downloads the new version, installs it and relaunches. It also checks once a day at launch; this can be turned off in
 Settings. Versions without this menu item are updated by installing the new disk image the same way as above.
+
+Each app only updates to its own edition. Brushwood offers the release marked Latest, which is always a Brushwood
+version. Brushwood Plus looks through all releases for the newest Brushwood Plus version, so it never switches to
+Brushwood, and it opens the Plus Features window after updating. Neither offers betas (pre-releases).
 
 ## Features
 
