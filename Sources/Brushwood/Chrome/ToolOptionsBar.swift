@@ -117,14 +117,14 @@ final class ToolOptionsBar: NSView {
             hardness()
             add(ToolbarSeparator())
             antialiasing()
-            smoothing()
+            strokeOptions()
             blendMode()
         case .eraser:
             brushWidth()
             hardness()
             add(ToolbarSeparator())
             antialiasing()
-            smoothing()
+            strokeOptions()
         case .pencil:
             blendMode()
         case .colorPicker:
@@ -134,7 +134,7 @@ final class ToolOptionsBar: NSView {
             hardness()
             add(ToolbarSeparator())
             antialiasing()
-            smoothing()
+            strokeOptions()
             blendMode()
         case .recolor:
             brushWidth()
@@ -142,7 +142,7 @@ final class ToolOptionsBar: NSView {
             tolerance()
             add(ToolbarSeparator())
             antialiasing()
-            smoothing()
+            strokeOptions()
         case .text:
             fontOptions()
             add(ToolbarSeparator())
@@ -304,17 +304,39 @@ final class ToolOptionsBar: NSView {
         add(b)
     }
 
-    private func smoothing() {
-        // Brushwood Plus's brush smoothing, toggled like Antialiasing.
-        let b = ToolbarButton(icon: "opt.smoothing", tooltip: L("Smoothing"), target: nil, action: nil, size: 24)
-        b.onAction { [weak self] _ in self?.s.smoothing.toggle() }
+    /// Brushwood Plus's stroke options, toggled like Antialiasing: Smoothing (with the string's length while it is on)
+    /// and Magnetic Closing.
+    private func strokeOptions() {
+        let smoothing = ToolbarButton(icon: "opt.smoothing", tooltip: L("Smoothing"), target: nil, action: nil, size: 24)
+        smoothing.onAction { [weak self] _ in self?.s.smoothing.toggle() }
+        let builtWithSmoothing = s.smoothing
         refreshers.append { [weak self] in
-            let on = self?.s.smoothing == true
-            b.isToggled = on
-            b.image = Icons.image(on ? "opt.smoothing" : "opt.unsmoothed", size: 16)
-            b.toolTip = on ? L("Smoothing enabled") : L("Smoothing disabled")
+            guard let self else { return }
+            let on = s.smoothing
+            smoothing.isToggled = on
+            smoothing.image = Icons.image(on ? "opt.smoothing" : "opt.unsmoothed", size: 16)
+            smoothing.toolTip = on ? L("Smoothing enabled") : L("Smoothing disabled")
+            // Shows or hides the string length.
+            if on != builtWithSmoothing { DispatchQueue.main.async { self.rebuild() } }
         }
-        add(b)
+        add(smoothing)
+        let closing = ToolbarButton(icon: "opt.closing", tooltip: L("Magnetic Closing"), target: nil, action: nil, size: 24)
+        closing.onAction { [weak self] _ in self?.s.magneticClosing.toggle() }
+        refreshers.append { [weak self] in
+            let on = self?.s.magneticClosing == true
+            closing.isToggled = on
+            closing.image = Icons.image(on ? "opt.closing" : "opt.open", size: 16)
+            closing.toolTip = on ? L("Magnetic closing enabled: a stroke released near its start joins it")
+                : L("Magnetic closing disabled")
+        }
+        add(closing)
+        guard builtWithSmoothing else { return }
+        add(toolbarLabel(L("String length:")))
+        let length = NumericSliderControl(range: 2...100, value: Double(s.smoothingLength), showReset: false, sliderWidth: 70)
+        length.toolTip = L("Length of the smoothing string, in points on screen")
+        length.onChange = { [weak self] v in self?.s.smoothingLength = CGFloat(v) }
+        refreshers.append { [weak self] in length.setValue(Double(self?.s.smoothingLength ?? 15), notify: false) }
+        add(length)
     }
 
     private func blendMode() {

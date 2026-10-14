@@ -462,6 +462,27 @@ enum Icons {
                 blue.setFill()
                 NSBezierPath(ovalIn: NSRect(x: w * 0.71, y: h * 0.67, width: w * 0.2, height: h * 0.2)).fill()
             }
+        case "opt.closing", "opt.open":
+            // Brushwood Plus's magnetic closing: a ring joined where the stroke started, or left open.
+            let on = name == "opt.closing"
+            return drawn(size) { r in
+                let w = r.width, c = NSPoint(x: w * 0.47, y: r.height * 0.47)
+                let p = NSBezierPath()
+                if on {
+                    p.appendOval(in: NSRect(x: c.x - w * 0.32, y: c.y - w * 0.32, width: w * 0.64, height: w * 0.64))
+                } else {
+                    p.appendArc(withCenter: c, radius: w * 0.32, startAngle: 110, endAngle: 50)
+                }
+                p.lineWidth = w * 0.12
+                p.lineCapStyle = .round
+                dark.setStroke()
+                p.stroke()
+                guard on else { return }
+                // Where the end met the start.
+                let joint = NSPoint(x: c.x + w * 0.32 * cos(.pi * 80 / 180), y: c.y + w * 0.32 * sin(.pi * 80 / 180))
+                blue.setFill()
+                NSBezierPath(ovalIn: NSRect(x: joint.x - w * 0.12, y: joint.y - w * 0.12, width: w * 0.24, height: w * 0.24)).fill()
+            }
         case "gradient.colorMode":
             return vector(size) {
                 NSGradient(starting: red, ending: blue)?.draw(in: NSRect(x: 1.5, y: 3, width: 13, height: 10), angle: 0)

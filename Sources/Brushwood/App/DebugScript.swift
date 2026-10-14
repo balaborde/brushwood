@@ -208,6 +208,8 @@ enum DebugScript {
                 case "tolerance": t.tolerance = Double(kv[1]) ?? 0.5
                 case "antialias": t.antialiasing = kv[1] == "1"
                 case "smoothing": t.smoothing = kv[1] == "1"
+                case "stringlength": t.smoothingLength = CGFloat(Double(kv[1]) ?? 15)
+                case "closing": t.magneticClosing = kv[1] == "1"
                 case "fill": t.fillStyle = FillStyle(rawValue: Int(kv[1]) ?? 0) ?? .solid
                 case "flood": t.floodMode = FloodMode(rawValue: Int(kv[1]) ?? 0) ?? .contiguous
                 case "blend": t.blendMode = BlendMode(rawValue: Int(kv[1]) ?? 0) ?? .normal

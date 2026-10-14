@@ -306,14 +306,15 @@ struct SnapshotTests {
 }
 
 struct StabilizerTests {
-    func takesOutJitterAndEndsAtThePointer() {
+    func takesOutJitterAndEndsAtTheBrush() {
         var s = StrokeStabilizer(at: .zero, length: 8, spacing: 1)
         var path: [CGPoint] = []
         for i in 1...100 { path += s.move(to: CGPoint(x: Double(i) * 3, y: i % 2 == 0 ? 2 : -2)) }
         let maxY = path.map { abs($0.y) }.max() ?? 99
         expect(!path.isEmpty && maxY < 0.6, "±2 px of wobble is down to \(maxY)")
-        path += s.finish(at: CGPoint(x: 303, y: 1))
-        expect(path.last == CGPoint(x: 303, y: 1), "the stroke ends at the pointer")
+        path += s.pause()
+        expect(path.last == s.brush && abs(hypot(s.brush.x - 300, s.brush.y - 2) - 8) < 0.01,
+               "the stroke ends at the brush, a string's length from the pointer, with no tail")
     }
 
     func slackStringPaintsNothing() {
@@ -321,7 +322,7 @@ struct StabilizerTests {
         var path: [CGPoint] = []
         for p in [CGPoint(x: 55, y: 50), CGPoint(x: 50, y: 58), CGPoint(x: 43, y: 45)] { path += s.move(to: p) }
         expect(path.isEmpty && s.brush == CGPoint(x: 50, y: 50), "moving inside the string leaves the brush in place")
-        expect(s.finish(at: CGPoint(x: 50, y: 50)).isEmpty, "a click paints no path")
+        expect(s.pause().isEmpty, "a click paints no path")
     }
 
     func pausePaintsUpToTheBrush() {
@@ -332,8 +333,8 @@ struct StabilizerTests {
         path += s.pause()
         expect(path.last == s.brush && s.brush == CGPoint(x: 50, y: 0), "a pause paints up to the brush")
         expect(s.pause().isEmpty, "nothing left to paint")
-        path += s.move(to: CGPoint(x: 80, y: 0)) + s.finish(at: CGPoint(x: 80, y: 0))
-        expect(path.last == CGPoint(x: 80, y: 0) && zip(path, path.dropFirst()).allSatisfy { $0.x < $1.x }, "goes on from there")
+        path += s.move(to: CGPoint(x: 80, y: 0)) + s.pause()
+        expect(path.last == CGPoint(x: 70, y: 0) && zip(path, path.dropFirst()).allSatisfy { $0.x < $1.x }, "goes on from there")
     }
 
     func fastCurvesStayRound() {
@@ -343,7 +344,7 @@ struct StabilizerTests {
         var s = StrokeStabilizer(at: onCircle(0), length: 0, spacing: 1)
         var path: [CGPoint] = []
         for i in 1...12 { path += s.move(to: onCircle(i)) }
-        path += s.finish(at: onCircle(12))
+        path += s.pause()
         // The first and last segments (27 points each) start and end straight, as any stroke does.
         let inner = path.dropFirst(27).dropLast(27)
         let worst = inner.map { abs(($0.x * $0.x + $0.y * $0.y).squareRoot() - r) }.max() ?? 99
@@ -351,6 +352,38 @@ struct StabilizerTests {
         expect(worst < chord / 4, "off the circle by \(worst), straight segments would be off by \(chord)")
         let gaps = zip(path, path.dropFirst()).map { hypot($0.x - $1.x, $0.y - $1.y) }
         expect((gaps.max() ?? 99) <= 1.5, "points are about `spacing` apart")
+    }
+}
+
+struct CloserTests {
+    func onCircle(_ degrees: Double, r: Double = 100) -> CGPoint {
+        CGPoint(x: r * cos(degrees * .pi / 180), y: r * sin(degrees * .pi / 180))
+    }
+
+    func circleClosesAlongTheCircle() {
+        var c = StrokeCloser(start: onCircle(0), radius: 40)
+        for d in stride(from: 5.0, through: 340, by: 5) { c.add([onCircle(d)]) }
+        expect(c.armed && c.joins())
+        let path = c.closingPath(spacing: 1)
+        expect(path.last == onCircle(0), "ends at the start")
+        let worst = path.map { abs(hypot($0.x, $0.y) - 100) }.max() ?? 99
+        expect(worst < 1, "follows the circle: off by \(worst)")
+        let gaps = zip([onCircle(340)] + path, path).map { hypot($0.x - $1.x, $0.y - $1.y) }
+        expect((gaps.max() ?? 99) <= 1.5, "continuous")
+    }
+
+    func onlyStrokesThatComeBackClose() {
+        var near = StrokeCloser(start: .zero, radius: 20)
+        near.add([CGPoint(x: 10, y: 0), CGPoint(x: 25, y: 5), CGPoint(x: 5, y: 3)])
+        expect(!near.armed && near.closingPath(spacing: 1).isEmpty, "a scribble near the start stays open")
+        var far = StrokeCloser(start: onCircle(0), radius: 20)
+        for d in stride(from: 5.0, through: 180, by: 5) { far.add([onCircle(d)]) }
+        expect(far.armed && !far.joins() && far.closingPath(spacing: 1).isEmpty, "an open arc stays open")
+        expect(far.joins(pointer: onCircle(5)) && far.closingPath(spacing: 1, pointer: onCircle(5)).last == onCircle(0),
+               "the pointer near the start closes a stroke that trails behind it")
+        var closed = StrokeCloser(start: onCircle(0), radius: 20)
+        for d in stride(from: 5.0, through: 360, by: 5) { closed.add([onCircle(d)]) }
+        expect(closed.closingPath(spacing: 1).isEmpty, "a stroke that already ends at its start needs nothing")
     }
 }
 
@@ -614,10 +647,12 @@ run("SnapshotTests.editsAfterRestoreLeaveTheSnapshotAlone") { SnapshotTests().ed
 run("SnapshotTests.snapshotRestoresDeletedAndAddedLayers") { SnapshotTests().snapshotRestoresDeletedAndAddedLayers() }
 run("SnapshotTests.goingBackToTheCurrentStateAddsNothing") { SnapshotTests().goingBackToTheCurrentStateAddsNothing() }
 run("SnapshotTests.snapshotsCountInMemoryAndNamesAndReset") { SnapshotTests().snapshotsCountInMemoryAndNamesAndReset() }
-run("StabilizerTests.takesOutJitterAndEndsAtThePointer") { StabilizerTests().takesOutJitterAndEndsAtThePointer() }
+run("StabilizerTests.takesOutJitterAndEndsAtTheBrush") { StabilizerTests().takesOutJitterAndEndsAtTheBrush() }
 run("StabilizerTests.slackStringPaintsNothing") { StabilizerTests().slackStringPaintsNothing() }
 run("StabilizerTests.pausePaintsUpToTheBrush") { StabilizerTests().pausePaintsUpToTheBrush() }
 run("StabilizerTests.fastCurvesStayRound") { StabilizerTests().fastCurvesStayRound() }
+run("CloserTests.circleClosesAlongTheCircle") { CloserTests().circleClosesAlongTheCircle() }
+run("CloserTests.onlyStrokesThatComeBackClose") { CloserTests().onlyStrokesThatComeBackClose() }
 run("VersionTests.ordering") { VersionTests().ordering() }
 run("VersionTests.editions") { VersionTests().editions() }
 run("FileFormatTests.zipRoundTrip") { try FileFormatTests().zipRoundTrip() }

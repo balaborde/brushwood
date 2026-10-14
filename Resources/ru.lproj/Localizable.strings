@@ -332,6 +332,7 @@
 "Left click to set the primary color. Right click to set the secondary color." = "Левый щелчок задает основной цвет, правый — вторичный.";
 "Left click to zoom in. Right click to zoom out. Click and drag to zoom in on a rectangle." = "Левый щелчок увеличивает, правый уменьшает. Щелкните и перетащите, чтобы увеличить прямоугольную область.";
 "Left-click a swatch to set the primary color, right-click for the secondary color. Shift-click stores the current color." = "Левый щелчок по образцу задает основной цвет, правый — вторичный. Shift-щелчок запоминает текущий цвет.";
+"Length of the smoothing string, in points on screen" = "Длина нити стабилизации в точках экрана";
 "Less «" = "Меньше «";
 "Levels" = "Уровни";
 "Light" = "Светлое";
@@ -349,6 +350,9 @@
 "Linked" = "Связаны";
 "Luminosity" = "Яркость";
 "Magic Wand" = "Волшебная палочка";
+"Magnetic Closing" = "Магнитное замыкание";
+"Magnetic closing disabled" = "Магнитное замыкание выключено";
+"Magnetic closing enabled: a stroke released near its start joins it" = "Магнитное замыкание включено: штрих, отпущенный рядом с началом, соединяется с ним";
 "Maintain aspect ratio" = "Сохранять пропорции";
 "Mandelbrot Fractal" = "Фрактал Мандельброта";
 "Manhattan" = "Манхэттенская";
@@ -586,6 +590,7 @@
 "Straighten" = "Выпрямление";
 "Strength" = "Сила";
 "Strikethrough" = "Зачеркнутый";
+"String length:" = "Длина нити:";
 "Stylize" = "Стилизация";
 "Subtract" = "Вычесть";
 "Supersampling" = "Суперсэмплинг";

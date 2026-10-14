@@ -332,6 +332,7 @@
 "Left click to set the primary color. Right click to set the secondary color." = "Lewy przycisk ustawia kolor główny, prawy – kolor dodatkowy.";
 "Left click to zoom in. Right click to zoom out. Click and drag to zoom in on a rectangle." = "Lewy przycisk powiększa, prawy pomniejsza. Kliknij i przeciągnij, aby powiększyć prostokąt.";
 "Left-click a swatch to set the primary color, right-click for the secondary color. Shift-click stores the current color." = "Kliknij próbkę lewym przyciskiem, aby ustawić kolor główny, prawym – kolor dodatkowy. Shift+kliknięcie zapamiętuje bieżący kolor.";
+"Length of the smoothing string, in points on screen" = "Długość sznurka stabilizacji, w punktach ekranu";
 "Less «" = "Mniej «";
 "Levels" = "Poziomy";
 "Light" = "Jasny";
@@ -349,6 +350,9 @@
 "Linked" = "Połączone";
 "Luminosity" = "Luminancja";
 "Magic Wand" = "Różdżka";
+"Magnetic Closing" = "Domykanie magnetyczne";
+"Magnetic closing disabled" = "Domykanie magnetyczne wyłączone";
+"Magnetic closing enabled: a stroke released near its start joins it" = "Domykanie magnetyczne włączone: pociągnięcie zwolnione blisko początku łączy się z nim";
 "Maintain aspect ratio" = "Zachowaj proporcje";
 "Mandelbrot Fractal" = "Fraktal Mandelbrota";
 "Manhattan" = "Manhattan";
@@ -586,6 +590,7 @@
 "Straighten" = "Prostowanie";
 "Strength" = "Siła";
 "Strikethrough" = "Przekreślenie";
+"String length:" = "Długość sznurka:";
 "Stylize" = "Stylizacja";
 "Subtract" = "Odejmij";
 "Supersampling" = "Nadpróbkowanie";

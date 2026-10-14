@@ -7,7 +7,8 @@ import Foundation
 ///
 /// Each call returns the next points of the painted path, to join with straight segments from the previous point. The
 /// path lags one spline segment behind the brush, since drawing a segment takes the position after it; the segment is
-/// finished early when the pointer stops pulling or pauses, and the stroke ends at the pointer.
+/// finished early when the pointer stops pulling or pauses. The stroke ends where the brush is, not at the pointer: the
+/// string's length would otherwise add a straight tail.
 public struct StrokeStabilizer {
     /// String length, in image pixels.
     public let length: Double
@@ -41,17 +42,9 @@ public struct StrokeStabilizer {
         return add(brush)
     }
 
-    /// The pointer has not moved for a moment: returns the path up to the brush.
+    /// The pointer has not moved for a moment, or the stroke ends: returns the path up to the brush.
     public mutating func pause() -> [CGPoint] {
         var points = distance(brush, next ?? start) > 0.01 ? add(brush) : []
-        points += flush()
-        return points
-    }
-
-    /// The stroke ends: returns the rest of the path, up to the pointer.
-    public mutating func finish(at pointer: CGPoint) -> [CGPoint] {
-        brush = pointer
-        var points = distance(pointer, next ?? start) > 0.01 ? add(pointer) : []
         points += flush()
         return points
     }
@@ -62,7 +55,7 @@ public struct StrokeStabilizer {
             next = knot
             return []
         }
-        let points = segment(previous, start, n, knot)
+        let points = Self.spline(previous, start, n, knot, spacing: spacing)
         previous = start
         start = n
         next = knot
@@ -72,15 +65,18 @@ public struct StrokeStabilizer {
     /// Paints the pending segment, as if the path went straight on after it.
     private mutating func flush() -> [CGPoint] {
         guard let n = next else { return [] }
-        let points = segment(previous, start, n, nil)
+        let points = Self.spline(previous, start, n, nil, spacing: spacing)
         previous = start
         start = n
         next = nil
         return points
     }
 
-    /// Points along the spline from p1 (excluded) to p2 (included). Missing outer knots continue the line p1-p2.
-    private func segment(_ p0: CGPoint?, _ p1: CGPoint, _ p2: CGPoint, _ p3: CGPoint?) -> [CGPoint] {
+    private func distance(_ p: CGPoint, _ q: CGPoint) -> Double { Self.distance(p, q) }
+
+    /// Points `spacing` apart along the spline from p1 (excluded) to p2 (included). Missing outer knots continue the
+    /// line p1-p2.
+    static func spline(_ p0: CGPoint?, _ p1: CGPoint, _ p2: CGPoint, _ p3: CGPoint?, spacing: Double) -> [CGPoint] {
         let a = p0 ?? CGPoint(x: 2 * p1.x - p2.x, y: 2 * p1.y - p2.y)
         let b = p3 ?? CGPoint(x: 2 * p2.x - p1.x, y: 2 * p2.y - p1.y)
         // Centripetal parametrization: no cusps or loops when knots are unevenly spaced.
@@ -104,7 +100,7 @@ public struct StrokeStabilizer {
         return points
     }
 
-    private func distance(_ p: CGPoint, _ q: CGPoint) -> Double {
+    static func distance(_ p: CGPoint, _ q: CGPoint) -> Double {
         let dx = Double(p.x - q.x), dy = Double(p.y - q.y)
         return (dx * dx + dy * dy).squareRoot()
     }

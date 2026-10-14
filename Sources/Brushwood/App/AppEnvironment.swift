@@ -293,6 +293,10 @@ final class ToolSettings {
     var antialiasing = true { didSet { changed() } }
     /// Brush smoothing (Brushwood Plus): Paintbrush, Eraser, Clone Stamp and Recolor follow the pointer on a string.
     var smoothing = false { didSet { changed() } }
+    /// Length of the smoothing string, in points on screen.
+    var smoothingLength: CGFloat = 15 { didSet { changed() } }
+    /// Magnetic closing (Brushwood Plus): the same tools join a stroke released near its start to it.
+    var magneticClosing = false { didSet { changed() } }
     var blendMode: BlendMode = .normal { didSet { changed() } }
     /// Paint.NET's "Overwrite" mode: replace pixels (including alpha) instead of blending.
     var overwrite = false { didSet { changed() } }
@@ -339,6 +343,8 @@ final class ToolSettings {
         if d.object(forKey: "hardness") != nil { hardness = d.double(forKey: "hardness") }
         if d.object(forKey: "antialiasing") != nil { antialiasing = d.bool(forKey: "antialiasing") }
         smoothing = d.bool(forKey: "smoothing")
+        if d.object(forKey: "smoothingLength") != nil { smoothingLength = CGFloat(d.double(forKey: "smoothingLength")) }
+        magneticClosing = d.bool(forKey: "magneticClosing")
         if d.object(forKey: "tolerance") != nil { tolerance = d.double(forKey: "tolerance") }
         if let f = d.string(forKey: "fontName") { fontName = f }
         if d.object(forKey: "fontSize") != nil { fontSize = CGFloat(d.double(forKey: "fontSize")) }
@@ -349,6 +355,8 @@ final class ToolSettings {
         d.set(hardness, forKey: "hardness")
         d.set(antialiasing, forKey: "antialiasing")
         d.set(smoothing, forKey: "smoothing")
+        d.set(Double(smoothingLength), forKey: "smoothingLength")
+        d.set(magneticClosing, forKey: "magneticClosing")
         d.set(tolerance, forKey: "tolerance")
         d.set(fontName, forKey: "fontName")
         d.set(Double(fontSize), forKey: "fontSize")

@@ -333,6 +333,7 @@ Left click to replace the secondary color with the primary color.|Clic gauche po
 Left click to set the primary color. Right click to set the secondary color.|Clic gauche pour définir la couleur principale, clic droit pour la couleur secondaire.
 Left click to zoom in. Right click to zoom out. Click and drag to zoom in on a rectangle.|Clic gauche pour zoomer, clic droit pour dézoomer. Cliquez et faites glisser pour zoomer sur un rectangle.
 Left-click a swatch to set the primary color, right-click for the secondary color. Shift-click stores the current color.|Clic gauche sur une case pour la couleur principale, clic droit pour la secondaire. Maj+clic mémorise la couleur courante.
+Length of the smoothing string, in points on screen|Longueur de la corde de stabilisation, en points à l'écran
 Less «|Moins «
 Levels|Niveaux
 Light|Clair
@@ -350,6 +351,9 @@ Linear (Reflected)|Linéaire (réfléchi)
 Linked|Liés
 Luminosity|Luminosité
 Magic Wand|Baguette magique
+Magnetic Closing|Fermeture magnétique
+Magnetic closing disabled|Fermeture magnétique désactivée
+Magnetic closing enabled: a stroke released near its start joins it|Fermeture magnétique activée : un trait relâché près de son début s'y raccorde
 Maintain aspect ratio|Conserver les proportions
 Mandelbrot Fractal|Fractale de Mandelbrot
 Manhattan|Manhattan
@@ -587,6 +591,7 @@ Start:|Début :
 Straighten|Redresser
 Strength|Force
 Strikethrough|Barré
+String length:|Longueur de corde :
 Stylize|Stylisation
 Subtract|Soustraire
 Supersampling|Suréchantillonnage

@@ -333,6 +333,7 @@ Left click to replace the secondary color with the primary color.|左クリッ�
 Left click to set the primary color. Right click to set the secondary color.|左クリックでプライマリカラー、右クリックでセカンダリカラーを設定します。
 Left click to zoom in. Right click to zoom out. Click and drag to zoom in on a rectangle.|左クリックで拡大、右クリックで縮小します。クリック＆ドラッグで長方形の範囲を拡大します。
 Left-click a swatch to set the primary color, right-click for the secondary color. Shift-click stores the current color.|スウォッチを左クリックでプライマリカラー、右クリックでセカンダリカラーに設定します。Shift＋クリックで現在の色を登録します。
+Length of the smoothing string, in points on screen|手ブレ補正のひもの長さ（画面上のポイント）
 Less «|詳細を隠す «
 Levels|レベル補正
 Light|ライト
@@ -350,6 +351,9 @@ Linear (Reflected)|線形（反射）
 Linked|連動
 Luminosity|輝度
 Magic Wand|自動選択
+Magnetic Closing|始点に吸着
+Magnetic closing disabled|始点に吸着：オフ
+Magnetic closing enabled: a stroke released near its start joins it|始点に吸着：オン（始点の近くで離すとストロークが始点につながります）
 Maintain aspect ratio|縦横比を保持
 Mandelbrot Fractal|マンデルブロ集合
 Manhattan|マンハッタン
@@ -587,6 +591,7 @@ Start:|始点：
 Straighten|傾き補正
 Strength|強度
 Strikethrough|取り消し線
+String length:|ひもの長さ：
 Stylize|表現手法
 Subtract|除外
 Supersampling|スーパーサンプリング

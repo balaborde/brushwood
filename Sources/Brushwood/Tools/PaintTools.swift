@@ -11,18 +11,23 @@ class StrokeTool: Tool {
     var button: ToolEvent.Button = .left
     /// Brush smoothing (Brushwood Plus) of the stroke being drawn, when it is on.
     var stabilizer: StrokeStabilizer?
-    /// Area of the string from the brush to the pointer, last drawn (image coordinates).
-    private var leash: CGRect?
+    /// Magnetic closing (Brushwood Plus) of the stroke being drawn, when it is on.
+    var closer: StrokeCloser?
+    /// Area of the string and of the closing target, last drawn (image coordinates).
+    private var overlayArea: CGRect?
     /// Paints the end of a smoothed stroke while the pointer rests.
     private var pauseTimer: Timer?
-    /// Length of the smoothing string in points on screen, so it feels the same at every zoom.
-    static let smoothingLength: CGFloat = 15
+    /// Distance from the start under which magnetic closing joins a stroke, in points on screen.
+    static let closingRadius: CGFloat = 30
 
     override var showsBrushOutline: Bool { true }
-    /// Whether the Smoothing option applies (the Pencil stays exact).
+    /// Whether the Smoothing and Magnetic Closing options apply (the Pencil stays exact).
     var smooths: Bool { true }
 
     var historyName: String { kind.name }
+
+    /// Distance between the points of smoothed and closing paths.
+    private var spacing: Double { max(0.5, Double(settings.brushWidth) / 8) }
 
     /// Return false to refuse starting a stroke.
     func beginStroke(_ e: ToolEvent) -> Bool { true }
@@ -35,8 +40,11 @@ class StrokeTool: Tool {
         clip = selectionClip
         lastPoint = e.point
         if smooths, settings.smoothing {
-            stabilizer = StrokeStabilizer(at: e.point, length: Double(Self.smoothingLength / canvas.zoom),
-                                          spacing: max(0.5, Double(settings.brushWidth) / 8))
+            // The string's length is set on screen, so it feels the same at every zoom.
+            stabilizer = StrokeStabilizer(at: e.point, length: Double(settings.smoothingLength / canvas.zoom), spacing: spacing)
+        }
+        if smooths, settings.magneticClosing {
+            closer = StrokeCloser(start: e.point, radius: Double(max(Self.closingRadius / canvas.zoom, settings.brushWidth / 2)))
         }
         stroke(from: e.point, to: e.point)
     }
@@ -52,7 +60,7 @@ class StrokeTool: Tool {
         } else if var s = stabilizer {
             stroke(through: s.move(to: p))
             stabilizer = s
-            leashChanged()
+            plusOverlayChanged()
             pauseTimer?.invalidate()
             let t = Timer(timeInterval: 0.06, repeats: false) { [weak self] _ in self?.smoothingPaused() }
             RunLoop.main.add(t, forMode: .common)
@@ -61,13 +69,15 @@ class StrokeTool: Tool {
         }
         stroke(from: last, to: p)
         lastPoint = p
-        leashChanged()
+        plusOverlayChanged()
     }
 
     override func mouseUp(_ e: ToolEvent) {
         guard let session else { return }
-        if var s = stabilizer, !e.shift { stroke(through: s.finish(at: e.point)) }
-        endSmoothing()
+        // A smoothed stroke ends at the brush: catching up with the pointer would add a straight tail.
+        if var s = stabilizer { stroke(through: s.pause()) }
+        if let c = closer { stroke(through: c.closingPath(spacing: spacing, pointer: e.point)) }
+        endPlusOptions()
         session.commit(doc, name: historyName, icon: kind.icon)
         self.session = nil
         mask = nil
@@ -76,13 +86,13 @@ class StrokeTool: Tool {
     }
 
     override func cancel() {
-        endSmoothing()
+        endPlusOptions()
         session?.cancel(doc)
         session = nil
     }
 
     override func deactivate() {
-        endSmoothing()
+        endPlusOptions()
         if let session {
             session.commit(doc, name: historyName, icon: kind.icon)
             self.session = nil
@@ -95,28 +105,54 @@ class StrokeTool: Tool {
         stabilizer = s
     }
 
-    private func endSmoothing() {
+    private func endPlusOptions() {
         pauseTimer?.invalidate()
         pauseTimer = nil
         stabilizer = nil
-        leashChanged()
+        closer = nil
+        plusOverlayChanged()
     }
 
-    /// Redraws the string after the brush or the pointer moved.
-    private func leashChanged() {
+    /// Redraws the string and the closing target after the brush or the pointer moved.
+    private func plusOverlayChanged() {
         var r: CGRect?
         if let s = stabilizer, let p = canvas.mouseImagePoint {
             r = CGRect(x: min(s.brush.x, p.x), y: min(s.brush.y, p.y), width: abs(s.brush.x - p.x), height: abs(s.brush.y - p.y))
         }
-        if let old = leash { canvas.overlayChanged(r.map { $0.union(old) } ?? old) } else if let r { canvas.overlayChanged(r) }
-        leash = r
+        if let c = closer, c.armed {
+            let target = CGRect(x: c.start.x, y: c.start.y, width: 0, height: 0).insetBy(dx: -c.radius, dy: -c.radius)
+            r = r.map { $0.union(target) } ?? target
+        }
+        if let old = overlayArea { canvas.overlayChanged(r.map { $0.union(old) } ?? old) } else if let r { canvas.overlayChanged(r) }
+        overlayArea = r
     }
 
-    /// The string from the pointer to the brush, with a dot where the brush paints.
+    /// Magnetic closing's target around the start once the stroke has gone away from it, filled when releasing would
+    /// close the stroke; and the smoothing string from the pointer to the brush, with a dot where the brush paints.
     override func drawOverlay(_ ctx: CGContext) {
+        ctx.saveGState()
+        defer { ctx.restoreGState() }
+        if let c = closer, c.armed {
+            let center = canvas.toView(c.start), r = CGFloat(c.radius) * canvas.zoom
+            let target = CGRect(x: center.x - r, y: center.y - r, width: 2 * r, height: 2 * r)
+            if c.joins(pointer: canvas.mouseImagePoint) {
+                ctx.setFillColor(NSColor.controlAccentColor.withAlphaComponent(0.25).cgColor)
+                ctx.fillEllipse(in: target)
+                ctx.setLineWidth(2)
+                ctx.setStrokeColor(NSColor.controlAccentColor.cgColor)
+                ctx.strokeEllipse(in: target)
+            } else {
+                ctx.setLineWidth(1)
+                ctx.setStrokeColor(NSColor.white.withAlphaComponent(0.8).cgColor)
+                ctx.strokeEllipse(in: target)
+                ctx.setLineDash(phase: 0, lengths: [3, 3])
+                ctx.setStrokeColor(NSColor.black.withAlphaComponent(0.7).cgColor)
+                ctx.strokeEllipse(in: target)
+                ctx.setLineDash(phase: 0, lengths: [])
+            }
+        }
         guard let s = stabilizer, let p = canvas.mouseImagePoint else { return }
         let a = canvas.toView(s.brush), b = canvas.toView(p)
-        ctx.saveGState()
         ctx.setLineCap(.round)
         ctx.setLineWidth(3)
         ctx.setStrokeColor(NSColor.white.withAlphaComponent(0.8).cgColor)
@@ -128,11 +164,11 @@ class StrokeTool: Tool {
         ctx.setFillColor(NSColor.white.cgColor)
         ctx.fillEllipse(in: dot)
         ctx.strokeEllipse(in: dot)
-        ctx.restoreGState()
     }
 
     func stroke(from a: CGPoint, to b: CGPoint) {
         guard let mask, let session else { return }
+        closer?.add([b])
         let dirty = rasterize(from: a, to: b, into: mask)
         if dirty.isEmpty { return }
         render(dirty, session: session, mask: mask)
@@ -140,9 +176,10 @@ class StrokeTool: Tool {
         doc.invalidate(dirty)
     }
 
-    /// Continues the stroke from `lastPoint` through the points of a smoothed path, rendering once.
+    /// Continues the stroke from `lastPoint` through the points of a smoothed or closing path, rendering once.
     func stroke(through points: [CGPoint]) {
         guard let mask, let session, var last = lastPoint, !points.isEmpty else { return }
+        closer?.add(points)
         var dirty = IntRect.zero
         for p in points {
             dirty = dirty.union(rasterize(from: last, to: p, into: mask))

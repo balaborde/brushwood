@@ -332,6 +332,7 @@
 "Left click to set the primary color. Right click to set the secondary color." = "왼쪽 클릭하면 기본 색상을, 오른쪽 클릭하면 보조 색상을 설정합니다.";
 "Left click to zoom in. Right click to zoom out. Click and drag to zoom in on a rectangle." = "왼쪽 클릭하면 확대, 오른쪽 클릭하면 축소합니다. 클릭하고 드래그하면 사각형 영역을 확대합니다.";
 "Left-click a swatch to set the primary color, right-click for the secondary color. Shift-click stores the current color." = "견본을 왼쪽 클릭하면 기본 색상, 오른쪽 클릭하면 보조 색상을 설정합니다. Shift-클릭하면 현재 색상을 저장합니다.";
+"Length of the smoothing string, in points on screen" = "손떨림 보정 끈의 길이(화면 포인트)";
 "Less «" = "간단히 «";
 "Levels" = "레벨";
 "Light" = "라이트";
@@ -349,6 +350,9 @@
 "Linked" = "연결됨";
 "Luminosity" = "광도";
 "Magic Wand" = "자동 선택 도구";
+"Magnetic Closing" = "자석 닫기";
+"Magnetic closing disabled" = "자석 닫기 끔";
+"Magnetic closing enabled: a stroke released near its start joins it" = "자석 닫기 켬: 시작점 근처에서 놓으면 획이 시작점에 이어집니다";
 "Maintain aspect ratio" = "가로세로 비율 유지";
 "Mandelbrot Fractal" = "망델브로 프랙탈";
 "Manhattan" = "맨해튼";
@@ -586,6 +590,7 @@
 "Straighten" = "똑바르게";
 "Strength" = "세기";
 "Strikethrough" = "취소선";
+"String length:" = "끈 길이:";
 "Stylize" = "스타일화";
 "Subtract" = "빼기";
 "Supersampling" = "슈퍼샘플링";

@@ -332,6 +332,7 @@
 "Left click to set the primary color. Right click to set the secondary color." = "左键单击设置主要颜色，右键单击设置次要颜色。";
 "Left click to zoom in. Right click to zoom out. Click and drag to zoom in on a rectangle." = "左键单击放大，右键单击缩小。单击并拖移可放大到矩形区域。";
 "Left-click a swatch to set the primary color, right-click for the secondary color. Shift-click stores the current color." = "左键单击色板设置主要颜色，右键单击设置次要颜色。按住 Shift 键单击可存储当前颜色。";
+"Length of the smoothing string, in points on screen" = "防抖拉绳的长度（屏幕点数）";
 "Less «" = "更少 «";
 "Levels" = "色阶";
 "Light" = "浅色";
@@ -349,6 +350,9 @@
 "Linked" = "关联";
 "Luminosity" = "明度";
 "Magic Wand" = "魔棒";
+"Magnetic Closing" = "磁性闭合";
+"Magnetic closing disabled" = "磁性闭合已关闭";
+"Magnetic closing enabled: a stroke released near its start joins it" = "磁性闭合已打开：在起点附近松开时，笔画会与起点相连";
 "Maintain aspect ratio" = "保持纵横比";
 "Mandelbrot Fractal" = "曼德博分形";
 "Manhattan" = "曼哈顿";
@@ -586,6 +590,7 @@
 "Straighten" = "拉直";
 "Strength" = "力度";
 "Strikethrough" = "删除线";
+"String length:" = "拉绳长度：";
 "Stylize" = "风格化";
 "Subtract" = "减去";
 "Supersampling" = "超采样";
