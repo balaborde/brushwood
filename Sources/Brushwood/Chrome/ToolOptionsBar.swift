@@ -30,9 +30,9 @@ final class ToolOptionsBar: NSView {
         toolPopup.controlSize = .small
         toolPopup.isBordered = true
         toolPopup.translatesAutoresizingMaskIntoConstraints = false
-        toolPopup.widthAnchor.constraint(lessThanOrEqualToConstant: 260).isActive = true
+        toolPopup.widthAnchor.constraint(lessThanOrEqualToConstant: 290).isActive = true
         for t in ToolKind.allCases {
-            let item = NSMenuItem(title: t.name, action: nil, keyEquivalent: "")
+            let item = NSMenuItem(title: t.nameWithShortcut, action: nil, keyEquivalent: "")
             item.image = Icons.image(t.icon, size: 16)
             item.tag = t.rawValue
             toolPopup.menu?.addItem(item)

@@ -12,6 +12,9 @@ if arguments.count >= 3, arguments[1] == "--render-icon" {
     }
 }
 
+// Tooltips (tool names and shortcuts, tool bar buttons) appear after 0.5 s instead of macOS's default of about 1 s.
+UserDefaults.standard.register(defaults: ["NSInitialToolTipDelay": 500])
+
 let app = NSApplication.shared
 let delegate = AppDelegate()
 app.delegate = delegate

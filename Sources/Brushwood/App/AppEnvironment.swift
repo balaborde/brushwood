@@ -49,6 +49,9 @@ enum ToolKind: Int, CaseIterable {
 
     var icon: String { "tool.\(self)" }
 
+    /// Name followed by the shortcut letter, as in the Tools window's tooltips: "Paintbrush (B)".
+    var nameWithShortcut: String { "\(name) (\(String(shortcutKey).uppercased()))" }
+
     /// Keyboard letter; pressing it repeatedly cycles tools sharing it (Paint.NET behaviour).
     var shortcutKey: Character {
         switch self {

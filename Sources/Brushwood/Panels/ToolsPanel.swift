@@ -15,7 +15,7 @@ final class ToolsPanel: FloatingPanel {
         grid.columnSpacing = 0
         var row: [NSView] = []
         for t in ToolKind.allCases {
-            let b = ToolbarButton(icon: t.icon, tooltip: "\(t.name) (\(String(t.shortcutKey).uppercased()))", target: nil, action: nil,
+            let b = ToolbarButton(icon: t.icon, tooltip: t.nameWithShortcut, target: nil, action: nil,
                                   size: size)
             b.onAction { [weak self] _ in self?.host?.selectTool(t) }
             buttons[t] = b

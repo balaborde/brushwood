@@ -298,7 +298,7 @@ final class HelpWindow: NSWindow {
             h(L("Welcome to Brushwood"))
             p(L("Brushwood is a free image editor for macOS whose workflow follows Paint.NET: one main window with image tabs, floating Tools, History, Layers and Colors windows, layers with blend modes, unlimited history, and a large set of adjustments and effects with live preview."))
             h(L("Tools"))
-            for t in ToolKind.allCases { p("\(t.name) (\(String(t.shortcutKey).uppercased())) — \(t.helpText)") }
+            for t in ToolKind.allCases { p("\(t.nameWithShortcut) — \(t.helpText)") }
             h(L("Selections"))
             p(L("Selection tools combine with the existing selection: ⌘ adds (union), ⌥ subtracts, right-click inverts (xor) and ⌥+right-click intersects. The mode can also be chosen in the tool bar."))
             h(L("Editable shapes"))
