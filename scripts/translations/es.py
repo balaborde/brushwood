@@ -235,7 +235,9 @@ End cap|Remate final
 End:|Fin:
 Enter Full Screen|Activar pantalla completa
 Erase Selection|Borrar selección
+Erase, or draw lines one pixel wide.|Borrar, o dibujar líneas de un píxel de ancho.
 Eraser|Borrador
+Eraser and Pencil|Borrador y Lápiz
 Erode|Erosionar
 Euclidean|Euclídea
 Every change is a step. Click a step to go back to it, and click it again to compare before and after. Undo and Redo are at the bottom.|Cada cambio es un paso. Haz clic en un paso para volver a él, y otra vez para comparar el antes y el después. Deshacer y Rehacer están abajo.
@@ -268,6 +270,7 @@ Flip Horizontal|Voltear horizontalmente
 Flip Layer Horizontal|Voltear capa horizontalmente
 Flip Layer Vertical|Voltear capa verticalmente
 Flip Vertical|Voltear verticalmente
+Floating Windows|Ventanas flotantes
 Flood mode:|Modo de relleno:
 Font:|Fuente:
 Format:|Formato:
@@ -284,7 +287,6 @@ Getting Started|Primeros pasos
 Global|Global
 Glow|Resplandor
 Go Back to This Snapshot|Volver a esta instantánea
-Go straight to 5, 10, 15… for the brush width.|Ir directamente a 5, 10, 15… para el ancho del pincel.
 Go to Bottom Layer|Ir a la capa más baja
 Go to Layer Above|Ir a la capa de arriba
 Go to Layer Below|Ir a la capa de abajo
@@ -313,7 +315,6 @@ Hint: For best results, first use the selection tools to select each eye.|Consej
 Hints for the current tool, the size of the selection, the pointer position, the units and the zoom.|Indicaciones sobre la herramienta actual, el tamaño de la selección, la posición del puntero, las unidades y el zoom.
 History|Historial
 History (F6)|Historial (F6)
-History Times and Snapshots|Horas e instantáneas del historial
 Hold to pan|Mantener pulsado para desplazar
 Horizontal|Horizontal
 Horizontal Brick|Ladrillo horizontal
@@ -474,9 +475,7 @@ Overwrite|Sobrescribir
 Paint Bucket|Bote de pintura
 Paint Bucket and Gradient|Bote de pintura y Degradado
 Paintbrush|Pincel
-Paintbrush, eraser and pencil, and their settings.|Pincel, borrador y lápiz, y sus ajustes.
 Painting|Pintura
-Painting Tools|Herramientas de pintura
 Palette|Paleta
 Pan|Mano
 Parallelogram|Paralelogramo
@@ -637,7 +636,6 @@ Sketch Blur|Desenfoque de boceto
 Small Checker Board|Tablero de ajedrez pequeño
 Small Grid|Cuadrícula pequeña
 Smoothing|Estabilización
-Smoothing and Magnetic Closing|Estabilización y cierre magnético
 Smoothing disabled|Estabilización desactivada
 Smoothing enabled|Estabilización activada
 Smoothness|Suavidad
@@ -661,7 +659,6 @@ Start cap|Remate inicial
 Start:|Inicio:
 Status bar|Barra de estado
 Stay on the Color Picker after picking, go back to the previous tool, or switch to the Pencil.|Quedarse en el Selector de color tras tomar el color, volver a la herramienta anterior o pasar al Lápiz.
-Steadier strokes, and outlines that close by themselves.|Trazos más firmes, y contornos que se cierran solos.
 Steadies strokes: the brush follows the pointer on a string. For the Paintbrush, Eraser, Clone Stamp and Recolor tools.|Estabiliza los trazos: el pincel sigue al puntero atado a una cuerda. Para las herramientas Pincel, Borrador, Tampón de clonar y Recolorear.
 Straighten|Enderezar
 Strength|Fuerza
@@ -695,8 +692,10 @@ The font, its size and its style: bold, italic, underline and strikethrough.|La 
 The image being pasted is larger than the canvas size. What would you like to do?|La imagen que se pega es más grande que el lienzo. ¿Qué quieres hacer?
 The image is a stack of layers. Add, delete, duplicate and move them with the buttons at the bottom; double-click a layer for its properties.|La imagen es una pila de capas. Añade, elimina, duplica y mueve capas con los botones de abajo; haz doble clic en una capa para ver sus propiedades.
 The left mouse button paints with the primary color, the right one with the secondary color. Click a color of the palette to pick it, or right-click it for the secondary color.|El botón izquierdo del ratón pinta con el color primario, el derecho con el secundario. Haz clic en un color de la paleta para elegirlo, o con el botón derecho para el color secundario.
+The paintbrush and all its settings.|El pincel y todos sus ajustes.
 The shape of the gradient: linear, reflected, diamond, radial, conical or spiral.|La forma del degradado: lineal, reflejado, diamante, radial, cónico o en espiral.
 The size of the brush, in pixels. The mouse wheel over the field and the [ and ] keys change it too.|El tamaño del pincel, en píxeles. La rueda del ratón sobre el campo y las teclas [ y ] también lo cambian.
+The toolbar, the tool options and the status bar.|La barra principal, las opciones de la herramienta y la barra de estado.
 The update could not be installed|No se ha podido instalar la actualización
 These blend modes will be saved as Normal in the .pdn file: %@. Save as OpenRaster (.ora) to keep them.|Estos modos de fusión se guardarán como Normal en el archivo .pdn: %@. Guarda en OpenRaster (.ora) para conservarlos.
 These buttons go up or down to the next multiple of 5: 1, 5, 10, 15…|Estos botones suben o bajan al siguiente múltiplo de 5: 1, 5, 10, 15…
@@ -719,6 +718,7 @@ Tool:|Herramienta:
 Toolbar|Barra principal
 Tools|Herramientas
 Tools (F5)|Herramientas (F5)
+Tools, History, Layers and Colors.|Herramientas, Historial, Capas y Colores.
 Tools, History, Layers, Colors windows|Ventanas Herramientas, Historial, Capas y Colores
 Transfer Map:|Curva de transferencia:
 Transparency Mode|Modo de transparencia
@@ -760,9 +760,7 @@ What happens past the ends of the gradient: nothing, or it repeats as a sawtooth
 What you draw with this tool keeps its handles, so you can still change it, until you click Finish or press Return.|Lo que dibujas con esta herramienta conserva sus tiradores, para poder cambiarlo, hasta que haces clic en Terminar o pulsas Retorno.
 What's New|Novedades
 What's New in Brushwood Plus|Novedades de Brushwood Plus
-When each step was made, and copies of the image to come back to.|Cuándo se hizo cada paso, y copias de la imagen a las que volver.
 When part of the image is selected, painting stays inside the selection. Antialiased softens its edge.|Cuando hay una parte de la imagen seleccionada, la pintura se queda dentro de la selección. Suavizado suaviza su borde.
-Where everything is: toolbar, floating windows and status bar.|Dónde está cada cosa: barra principal, ventanas flotantes y barra de estado.
 White|Blanco
 Width|Ancho
 Width:|Ancho:

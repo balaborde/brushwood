@@ -235,7 +235,9 @@ End cap|末端样式
 End:|末端：
 Enter Full Screen|进入全屏幕
 Erase Selection|抹除选区
+Erase, or draw lines one pixel wide.|擦除，或绘制一像素宽的线条。
 Eraser|橡皮擦
+Eraser and Pencil|橡皮擦与铅笔
 Erode|腐蚀
 Euclidean|欧几里得
 Every change is a step. Click a step to go back to it, and click it again to compare before and after. Undo and Redo are at the bottom.|每次更改都是一个步骤。点按某个步骤即可回到该步骤，再点按一次可比较前后效果。撤销和重做在底部。
@@ -268,6 +270,7 @@ Flip Horizontal|水平翻转
 Flip Layer Horizontal|水平翻转图层
 Flip Layer Vertical|垂直翻转图层
 Flip Vertical|垂直翻转
+Floating Windows|浮动窗口
 Flood mode:|填充模式：
 Font:|字体：
 Format:|格式：
@@ -284,7 +287,6 @@ Getting Started|入门
 Global|全局
 Glow|发光
 Go Back to This Snapshot|回到此快照
-Go straight to 5, 10, 15… for the brush width.|画笔宽度直接跳到 5、10、15…
 Go to Bottom Layer|转到最底层图层
 Go to Layer Above|转到上一图层
 Go to Layer Below|转到下一图层
@@ -313,7 +315,6 @@ Hint: For best results, first use the selection tools to select each eye.|提示
 Hints for the current tool, the size of the selection, the pointer position, the units and the zoom.|当前工具的提示、选区大小、指针位置、单位和缩放比例。
 History|历史记录
 History (F6)|历史记录 (F6)
-History Times and Snapshots|历史记录中的时间与快照
 Hold to pan|按住以平移
 Horizontal|水平
 Horizontal Brick|横砖
@@ -474,9 +475,7 @@ Overwrite|覆盖
 Paint Bucket|油漆桶
 Paint Bucket and Gradient|油漆桶与渐变
 Paintbrush|画笔
-Paintbrush, eraser and pencil, and their settings.|画笔、橡皮擦和铅笔，以及它们的设置。
 Painting|绘画
-Painting Tools|绘画工具
 Palette|调色板
 Pan|抓手
 Parallelogram|平行四边形
@@ -637,7 +636,6 @@ Sketch Blur|素描模糊
 Small Checker Board|小棋盘格
 Small Grid|小网格
 Smoothing|防抖
-Smoothing and Magnetic Closing|防抖与磁性闭合
 Smoothing disabled|防抖已关闭
 Smoothing enabled|防抖已打开
 Smoothness|平滑度
@@ -661,7 +659,6 @@ Start cap|起点样式
 Start:|起点：
 Status bar|状态栏
 Stay on the Color Picker after picking, go back to the previous tool, or switch to the Pencil.|取色后停留在颜色选择器、回到上一个工具，或切换到铅笔。
-Steadier strokes, and outlines that close by themselves.|更稳定的笔画，以及会自动闭合的轮廓。
 Steadies strokes: the brush follows the pointer on a string. For the Paintbrush, Eraser, Clone Stamp and Recolor tools.|让笔画更稳定：画笔像系着绳子一样跟随指针。适用于画笔、橡皮擦、仿制图章和重新着色工具。
 Straighten|拉直
 Strength|力度
@@ -695,8 +692,10 @@ The font, its size and its style: bold, italic, underline and strikethrough.|字
 The image being pasted is larger than the canvas size. What would you like to do?|粘贴的图像大于画布。你想怎么做？
 The image is a stack of layers. Add, delete, duplicate and move them with the buttons at the bottom; double-click a layer for its properties.|图像是一叠图层。使用底部的按钮添加、删除、复制和移动图层；连按图层可打开其属性。
 The left mouse button paints with the primary color, the right one with the secondary color. Click a color of the palette to pick it, or right-click it for the secondary color.|鼠标左键用主要颜色绘画，右键用次要颜色。点按调色板中的颜色即可选择，右键点按则设为次要颜色。
+The paintbrush and all its settings.|画笔及其全部设置。
 The shape of the gradient: linear, reflected, diamond, radial, conical or spiral.|渐变的形状：线性、反射、菱形、径向、锥形或螺旋。
 The size of the brush, in pixels. The mouse wheel over the field and the [ and ] keys change it too.|画笔的大小，单位为像素。在栏位上滚动鼠标滚轮或按 [ 和 ] 键也能更改。
+The toolbar, the tool options and the status bar.|主栏、工具选项和状态栏。
 The update could not be installed|无法安装更新
 These blend modes will be saved as Normal in the .pdn file: %@. Save as OpenRaster (.ora) to keep them.|这些混合模式在 .pdn 文件中将存储为“正常”：%@。若要保留它们，请存储为 OpenRaster (.ora)。
 These buttons go up or down to the next multiple of 5: 1, 5, 10, 15…|这些按钮会增加或减少到下一个 5 的倍数：1、5、10、15…
@@ -719,6 +718,7 @@ Tool:|工具：
 Toolbar|主栏
 Tools|工具
 Tools (F5)|工具 (F5)
+Tools, History, Layers and Colors.|工具、历史记录、图层和颜色。
 Tools, History, Layers, Colors windows|“工具”“历史记录”“图层”“颜色”窗口
 Transfer Map:|传递映射：
 Transparency Mode|透明模式
@@ -760,9 +760,7 @@ What happens past the ends of the gradient: nothing, or it repeats as a sawtooth
 What you draw with this tool keeps its handles, so you can still change it, until you click Finish or press Return.|用此工具绘制的内容会保留控制点，在你点按“完成”或按下 Return 键之前都可以修改。
 What's New|新功能
 What's New in Brushwood Plus|Brushwood Plus 新功能
-When each step was made, and copies of the image to come back to.|每个步骤的完成时间，以及可以回到的图像副本。
 When part of the image is selected, painting stays inside the selection. Antialiased softens its edge.|当图像的一部分被选中时，绘画只在选区内进行。“已消除锯齿”会柔化选区边缘。
-Where everything is: toolbar, floating windows and status bar.|各部分的位置：主栏、浮动窗口和状态栏。
 White|白色
 Width|宽度
 Width:|宽度：

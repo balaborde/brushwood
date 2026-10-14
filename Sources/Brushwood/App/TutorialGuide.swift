@@ -129,6 +129,9 @@ final class TutorialGuide: NSObject, NSPopoverDelegate {
         if !closingPopover, isRunning { end() }
     }
 
+    /// For UI tests: whether the current step is about a Brushwood Plus feature.
+    var currentStepIsPlus: Bool { isRunning && steps[index].requires != nil }
+
     /// For UI tests: whether the current step's part is on screen.
     var currentTargetFound: Bool {
         guard isRunning, let host else { return false }
@@ -142,6 +145,8 @@ private final class StepCard: NSViewController {
     var onNext: (() -> Void)?
     var onClose: (() -> Void)?
     private let titleLabel = NSTextField(labelWithString: "")
+    /// Shown on the steps about Brushwood Plus features.
+    private let plusTag = TagPill("PLUS")
     private let textLabel = NSTextField(wrappingLabelWithString: "")
     private let progress = NSTextField(labelWithString: "")
     private let backButton = NSButton(title: L("Back"), target: nil, action: nil)
@@ -153,7 +158,7 @@ private final class StepCard: NSViewController {
         titleLabel.font = .boldSystemFont(ofSize: NSFont.systemFontSize)
         titleLabel.lineBreakMode = .byWordWrapping
         titleLabel.maximumNumberOfLines = 0
-        titleLabel.preferredMaxLayoutWidth = width - 24
+        titleLabel.preferredMaxLayoutWidth = width - 80
         textLabel.preferredMaxLayoutWidth = width
         textLabel.textColor = .secondaryLabelColor
         progress.font = .systemFont(ofSize: NSFont.smallSystemFontSize)
@@ -172,7 +177,7 @@ private final class StepCard: NSViewController {
         nextButton.keyEquivalent = "\r"
 
         let view = NSView()
-        for v in [titleLabel, closeButton, textLabel, progress, backButton, nextButton] as [NSView] {
+        for v in [titleLabel, plusTag, closeButton, textLabel, progress, backButton, nextButton] as [NSView] {
             v.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview(v)
         }
@@ -180,7 +185,9 @@ private final class StepCard: NSViewController {
             view.widthAnchor.constraint(equalToConstant: width + 32),
             titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 14),
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            titleLabel.trailingAnchor.constraint(lessThanOrEqualTo: closeButton.leadingAnchor, constant: -8),
+            plusTag.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor, constant: 6),
+            plusTag.centerYAnchor.constraint(equalTo: titleLabel.firstBaselineAnchor, constant: -4),
+            plusTag.trailingAnchor.constraint(lessThanOrEqualTo: closeButton.leadingAnchor, constant: -8),
             closeButton.centerYAnchor.constraint(equalTo: titleLabel.firstBaselineAnchor, constant: -4),
             closeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
             textLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 6),
@@ -201,6 +208,7 @@ private final class StepCard: NSViewController {
     func show(_ step: TutorialStep, number: Int, of count: Int) {
         _ = view
         titleLabel.stringValue = step.title
+        plusTag.isHidden = step.requires == nil
         textLabel.stringValue = step.text
         progress.stringValue = LF("%d of %d", number, count)
         backButton.isEnabled = number > 1

@@ -235,7 +235,9 @@ End cap|Конец линии
 End:|Конец:
 Enter Full Screen|Включить полноэкранный режим
 Erase Selection|Стереть выделенное
+Erase, or draw lines one pixel wide.|Стирать или рисовать линии шириной в один пиксель.
 Eraser|Ластик
+Eraser and Pencil|Ластик и Карандаш
 Erode|Сужение
 Euclidean|Евклидова
 Every change is a step. Click a step to go back to it, and click it again to compare before and after. Undo and Redo are at the bottom.|Каждое изменение — это шаг. Щёлкните шаг, чтобы вернуться к нему, и ещё раз, чтобы сравнить до и после. «Отменить» и «Повторить» находятся внизу.
@@ -268,6 +270,7 @@ Flip Horizontal|Отразить по горизонтали
 Flip Layer Horizontal|Отразить слой по горизонтали
 Flip Layer Vertical|Отразить слой по вертикали
 Flip Vertical|Отразить по вертикали
+Floating Windows|Плавающие окна
 Flood mode:|Режим заливки:
 Font:|Шрифт:
 Format:|Формат:
@@ -284,7 +287,6 @@ Getting Started|Начало работы
 Global|Глобально
 Glow|Свечение
 Go Back to This Snapshot|Вернуться к этому снимку
-Go straight to 5, 10, 15… for the brush width.|Сразу переходить к 5, 10, 15… для ширины кисти.
 Go to Bottom Layer|Перейти к нижнему слою
 Go to Layer Above|Перейти к слою выше
 Go to Layer Below|Перейти к слою ниже
@@ -313,7 +315,6 @@ Hint: For best results, first use the selection tools to select each eye.|Сов
 Hints for the current tool, the size of the selection, the pointer position, the units and the zoom.|Подсказки для текущего инструмента, размер выделения, положение указателя, единицы и масштаб.
 History|Журнал
 History (F6)|Журнал (F6)
-History Times and Snapshots|Время и снимки в журнале
 Hold to pan|Удерживайте для перемещения
 Horizontal|Горизонтально
 Horizontal Brick|Горизонтальная кладка
@@ -474,9 +475,7 @@ Overwrite|Замена
 Paint Bucket|Заливка
 Paint Bucket and Gradient|Заливка и Градиент
 Paintbrush|Кисть
-Paintbrush, eraser and pencil, and their settings.|Кисть, ластик и карандаш и их настройки.
 Painting|Рисование
-Painting Tools|Инструменты рисования
 Palette|Палитра
 Pan|Рука
 Parallelogram|Параллелограмм
@@ -637,7 +636,6 @@ Sketch Blur|Эскизное размытие
 Small Checker Board|Мелкая шахматная доска
 Small Grid|Мелкая сетка
 Smoothing|Стабилизация
-Smoothing and Magnetic Closing|Стабилизация и магнитное замыкание
 Smoothing disabled|Стабилизация выключена
 Smoothing enabled|Стабилизация включена
 Smoothness|Плавность
@@ -661,7 +659,6 @@ Start cap|Начало линии
 Start:|Начало:
 Status bar|Строка состояния
 Stay on the Color Picker after picking, go back to the previous tool, or switch to the Pencil.|Остаться на пипетке после выбора цвета, вернуться к предыдущему инструменту или переключиться на карандаш.
-Steadier strokes, and outlines that close by themselves.|Более ровные штрихи и контуры, которые замыкаются сами.
 Steadies strokes: the brush follows the pointer on a string. For the Paintbrush, Eraser, Clone Stamp and Recolor tools.|Стабилизирует штрихи: кисть следует за указателем на нити. Для инструментов «Кисть», «Ластик», «Клонирующий штамп» и «Перекраска».
 Straighten|Выпрямление
 Strength|Сила
@@ -695,8 +692,10 @@ The font, its size and its style: bold, italic, underline and strikethrough.|Ш�
 The image being pasted is larger than the canvas size. What would you like to do?|Вставляемое изображение больше холста. Что вы хотите сделать?
 The image is a stack of layers. Add, delete, duplicate and move them with the buttons at the bottom; double-click a layer for its properties.|Изображение — это стопка слоёв. Добавляйте, удаляйте, дублируйте и перемещайте слои кнопками внизу; дважды щёлкните слой, чтобы открыть его свойства.
 The left mouse button paints with the primary color, the right one with the secondary color. Click a color of the palette to pick it, or right-click it for the secondary color.|Левая кнопка мыши рисует основным цветом, правая — вторичным. Щёлкните цвет палитры, чтобы выбрать его, или щёлкните правой кнопкой, чтобы задать вторичный цвет.
+The paintbrush and all its settings.|Кисть и все её настройки.
 The shape of the gradient: linear, reflected, diamond, radial, conical or spiral.|Форма градиента: линейный, отражённый, ромбовидный, радиальный, конический или спиральный.
 The size of the brush, in pixels. The mouse wheel over the field and the [ and ] keys change it too.|Размер кисти в пикселях. Его также меняют колесо мыши над полем и клавиши [ и ].
+The toolbar, the tool options and the status bar.|Главная панель, параметры инструмента и строка состояния.
 The update could not be installed|Не удалось установить обновление
 These blend modes will be saved as Normal in the .pdn file: %@. Save as OpenRaster (.ora) to keep them.|Эти режимы наложения будут сохранены в файле .pdn как обычные: %@. Сохраните в формате OpenRaster (.ora), чтобы они не потерялись.
 These buttons go up or down to the next multiple of 5: 1, 5, 10, 15…|Эти кнопки увеличивают или уменьшают значение до следующего числа, кратного 5: 1, 5, 10, 15…
@@ -719,6 +718,7 @@ Tool:|Инструмент:
 Toolbar|Главная панель
 Tools|Инструменты
 Tools (F5)|Инструменты (F5)
+Tools, History, Layers and Colors.|Инструменты, Журнал, Слои и Цвета.
 Tools, History, Layers, Colors windows|Окна «Инструменты», «Журнал», «Слои», «Цвета»
 Transfer Map:|Кривая переноса:
 Transparency Mode|Режим прозрачности
@@ -760,9 +760,7 @@ What happens past the ends of the gradient: nothing, or it repeats as a sawtooth
 What you draw with this tool keeps its handles, so you can still change it, until you click Finish or press Return.|Нарисованное этим инструментом сохраняет маркеры, и его можно изменить, пока вы не нажмёте «Завершить» или клавишу Return.
 What's New|Что нового
 What's New in Brushwood Plus|Что нового в Brushwood Plus
-When each step was made, and copies of the image to come back to.|Когда был сделан каждый шаг, и копии изображения, к которым можно вернуться.
 When part of the image is selected, painting stays inside the selection. Antialiased softens its edge.|Если часть изображения выделена, рисование остаётся внутри выделения. «Со сглаживанием» смягчает его край.
-Where everything is: toolbar, floating windows and status bar.|Где что находится: главная панель, плавающие окна и строка состояния.
 White|Белый
 Width|Ширина
 Width:|Ширина:

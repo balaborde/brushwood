@@ -234,7 +234,9 @@
 "End:" = "Ende:";
 "Enter Full Screen" = "Vollbildmodus aktivieren";
 "Erase Selection" = "Auswahl löschen";
+"Erase, or draw lines one pixel wide." = "Radieren oder Linien von einem Pixel Breite zeichnen.";
 "Eraser" = "Radiergummi";
+"Eraser and Pencil" = "Radiergummi und Stift";
 "Erode" = "Erosion";
 "Euclidean" = "Euklidisch";
 "Every change is a step. Click a step to go back to it, and click it again to compare before and after. Undo and Redo are at the bottom." = "Jede Änderung ist ein Schritt. Klicken Sie auf einen Schritt, um zu ihm zurückzukehren, und erneut, um vorher und nachher zu vergleichen. Widerrufen und Wiederholen finden Sie unten.";
@@ -267,6 +269,7 @@
 "Flip Layer Horizontal" = "Ebene horizontal spiegeln";
 "Flip Layer Vertical" = "Ebene vertikal spiegeln";
 "Flip Vertical" = "Vertikal spiegeln";
+"Floating Windows" = "Schwebende Fenster";
 "Flood mode:" = "Füllmodus:";
 "Font:" = "Schrift:";
 "Format:" = "Format:";
@@ -283,7 +286,6 @@
 "Global" = "Global";
 "Glow" = "Leuchten";
 "Go Back to This Snapshot" = "Zu diesem Schnappschuss zurückkehren";
-"Go straight to 5, 10, 15… for the brush width." = "Für die Pinselbreite direkt zu 5, 10, 15… springen.";
 "Go to Bottom Layer" = "Zur untersten Ebene";
 "Go to Layer Above" = "Zur Ebene darüber";
 "Go to Layer Below" = "Zur Ebene darunter";
@@ -312,7 +314,6 @@
 "Hints for the current tool, the size of the selection, the pointer position, the units and the zoom." = "Hinweise zum aktuellen Werkzeug, die Größe der Auswahl, die Zeigerposition, die Einheiten und der Zoom.";
 "History" = "Verlauf";
 "History (F6)" = "Verlauf (F6)";
-"History Times and Snapshots" = "Uhrzeiten und Schnappschüsse im Verlauf";
 "Hold to pan" = "Gedrückt halten zum Verschieben";
 "Horizontal" = "Horizontal";
 "Horizontal Brick" = "Horizontale Ziegel";
@@ -473,9 +474,7 @@
 "Paint Bucket" = "Farbeimer";
 "Paint Bucket and Gradient" = "Farbeimer und Farbverlauf";
 "Paintbrush" = "Pinsel";
-"Paintbrush, eraser and pencil, and their settings." = "Pinsel, Radiergummi und Stift mit ihren Einstellungen.";
 "Painting" = "Malen";
-"Painting Tools" = "Malwerkzeuge";
 "Palette" = "Palette";
 "Pan" = "Hand";
 "Parallelogram" = "Parallelogramm";
@@ -636,7 +635,6 @@
 "Small Checker Board" = "Kleines Schachbrett";
 "Small Grid" = "Kleines Raster";
 "Smoothing" = "Stabilisierung";
-"Smoothing and Magnetic Closing" = "Stabilisierung und magnetisches Schließen";
 "Smoothing disabled" = "Stabilisierung aus";
 "Smoothing enabled" = "Stabilisierung ein";
 "Smoothness" = "Glätte";
@@ -660,7 +658,6 @@
 "Start:" = "Anfang:";
 "Status bar" = "Statusleiste";
 "Stay on the Color Picker after picking, go back to the previous tool, or switch to the Pencil." = "Nach dem Aufnehmen bei der Pipette bleiben, zum vorigen Werkzeug zurückkehren oder zum Stift wechseln.";
-"Steadier strokes, and outlines that close by themselves." = "Ruhigere Striche und Umrisse, die sich von selbst schließen.";
 "Steadies strokes: the brush follows the pointer on a string. For the Paintbrush, Eraser, Clone Stamp and Recolor tools." = "Stabilisiert Striche: Der Pinsel folgt dem Zeiger an einer Schnur. Für Pinsel, Radiergummi, Kopierstempel und Umfärben.";
 "Straighten" = "Gerade ausrichten";
 "Strength" = "Stärke";
@@ -694,8 +691,10 @@
 "The image being pasted is larger than the canvas size. What would you like to do?" = "Das eingefügte Bild ist größer als die Arbeitsfläche. Was möchten Sie tun?";
 "The image is a stack of layers. Add, delete, duplicate and move them with the buttons at the bottom; double-click a layer for its properties." = "Das Bild ist ein Stapel von Ebenen. Mit den Tasten unten fügen Sie Ebenen hinzu, löschen, duplizieren und verschieben sie; ein Doppelklick auf eine Ebene öffnet ihre Eigenschaften.";
 "The left mouse button paints with the primary color, the right one with the secondary color. Click a color of the palette to pick it, or right-click it for the secondary color." = "Die linke Maustaste malt mit der Primärfarbe, die rechte mit der Sekundärfarbe. Klicken Sie auf eine Farbe der Palette, um sie zu wählen, oder klicken Sie mit der rechten Maustaste für die Sekundärfarbe.";
+"The paintbrush and all its settings." = "Der Pinsel und alle seine Einstellungen.";
 "The shape of the gradient: linear, reflected, diamond, radial, conical or spiral." = "Die Form des Farbverlaufs: linear, gespiegelt, Raute, radial, konisch oder spiralförmig.";
 "The size of the brush, in pixels. The mouse wheel over the field and the [ and ] keys change it too." = "Die Größe des Pinsels in Pixeln. Das Mausrad über dem Feld und die Tasten [ und ] ändern sie ebenfalls.";
+"The toolbar, the tool options and the status bar." = "Die Hauptleiste, die Werkzeugoptionen und die Statusleiste.";
 "The update could not be installed" = "Das Update konnte nicht installiert werden";
 "These blend modes will be saved as Normal in the .pdn file: %@. Save as OpenRaster (.ora) to keep them." = "Diese Mischmodi werden in der .pdn-Datei als Normal gesichert: %@. Sichern Sie im OpenRaster-Format (.ora), um sie zu erhalten.";
 "These buttons go up or down to the next multiple of 5: 1, 5, 10, 15…" = "Diese Tasten springen zum nächsten Vielfachen von 5 nach oben oder unten: 1, 5, 10, 15…";
@@ -718,6 +717,7 @@
 "Toolbar" = "Hauptleiste";
 "Tools" = "Werkzeuge";
 "Tools (F5)" = "Werkzeuge (F5)";
+"Tools, History, Layers and Colors." = "Werkzeuge, Verlauf, Ebenen und Farben.";
 "Tools, History, Layers, Colors windows" = "Fenster Werkzeuge, Verlauf, Ebenen, Farben";
 "Transfer Map:" = "Transferkurve:";
 "Transparency Mode" = "Transparenzmodus";
@@ -759,9 +759,7 @@
 "What you draw with this tool keeps its handles, so you can still change it, until you click Finish or press Return." = "Was Sie mit diesem Werkzeug zeichnen, behält seine Griffe und lässt sich noch ändern, bis Sie auf Fertigstellen klicken oder die Eingabetaste drücken.";
 "What's New" = "Neuerungen";
 "What's New in Brushwood Plus" = "Neu in Brushwood Plus";
-"When each step was made, and copies of the image to come back to." = "Wann jeder Schritt ausgeführt wurde, und Kopien des Bilds zum Zurückkehren.";
 "When part of the image is selected, painting stays inside the selection. Antialiased softens its edge." = "Ist ein Teil des Bilds ausgewählt, bleibt das Malen innerhalb der Auswahl. Geglättet macht ihren Rand weicher.";
-"Where everything is: toolbar, floating windows and status bar." = "Wo sich alles befindet: Hauptleiste, schwebende Fenster und Statusleiste.";
 "White" = "Weiß";
 "Width" = "Breite";
 "Width:" = "Breite:";

@@ -78,13 +78,17 @@ struct TutorialSection {
     let scenarios: [TutorialScenario]
 }
 
-/// Brushwood Plus's tutorial: short guided tours of the window, the tools and their settings (Brushwood's sections
-/// first, then Brushwood Plus's). Help › Tutorial… and Brushwood Plus › Tutorial… open it; it is offered at the first
-/// launch.
+/// Brushwood Plus's tutorial: short guided tours of the window, the tools and their settings. Brushwood Plus features
+/// are steps of the tour of the part they belong to (marked Plus in the popover); the last section has the rest.
+/// Help › Tutorial… and Brushwood Plus › Tutorial… open it; it is offered at the first launch.
 enum Tutorial {
     /// "Brush width:" → "Brush width", for titles taken from tool bar labels.
     private static func label(_ s: String) -> String {
         s.trimmingCharacters(in: CharacterSet(charactersIn: ":：").union(.whitespaces))
+    }
+
+    private static let showHistory: (MainWindowController) -> Void = { c in
+        if !c.historyPanel.isVisible { c.toggleHistoryWindow(nil) }
     }
 
     // Texts shared by several tours.
@@ -102,25 +106,31 @@ enum Tutorial {
         [
             TutorialSection(title: L("Getting Started"), scenarios: [
                 TutorialScenario(id: "window", title: L("The Brushwood Window"),
-                                 summary: L("Where everything is: toolbar, floating windows and status bar."), steps: [
+                                 summary: L("The toolbar, the tool options and the status bar."), steps: [
                     .part(L("Toolbar"), L("Everyday commands: new, open, save, cut, copy, paste, undo and redo. The thumbnails are your open images, and the buttons on the right show or hide the floating windows."),
                           side: .below, view: { $0.mainToolbar }),
+                    .part(L("Tool options"), L("The bar under the toolbar shows the settings of the current tool. They change with the tool and are kept for next time."),
+                          side: .below, view: { $0.optionsBar }),
+                    .part(L("Status bar"), L("Hints for the current tool, the size of the selection, the pointer position, the units and the zoom."),
+                          side: .above, view: { $0.statusBar }),
+                ]),
+                TutorialScenario(id: "floating", title: L("Floating Windows"),
+                                 summary: L("Tools, History, Layers and Colors."), steps: [
                     .part(L("Tools"), L("Pick a tool here, or press its letter on the keyboard (the tooltip shows it). Pressing the letter again switches between the tools that share it."),
                           side: .right, show: { if !$0.toolsPanel.isVisible { $0.toggleToolsWindow(nil) } },
                           view: { $0.toolsPanel.contentView }),
-                    .part(L("Tool options"), L("The bar under the toolbar shows the settings of the current tool. They change with the tool and are kept for next time."),
-                          side: .below, view: { $0.optionsBar }),
                     .part(L("History"), L("Every change is a step. Click a step to go back to it, and click it again to compare before and after. Undo and Redo are at the bottom."),
-                          side: .left, show: { if !$0.historyPanel.isVisible { $0.toggleHistoryWindow(nil) } },
-                          view: { $0.historyPanel.contentView }),
+                          side: .left, show: showHistory, view: { $0.historyPanel.contentView }),
+                    .part(L("Times in the History window"), L("Each step shows when it was made. Right-click in the History window to show how long ago instead, or to hide the times."),
+                          side: .left, show: showHistory, requires: .historyTimes, view: { $0.historyPanel.contentView }),
+                    .part(L("Snapshots"), L("This button keeps a full copy of the image, listed at the top of the History window. Click the snapshot to bring the image back to it at any time, even after undoing or new edits."),
+                          side: .left, show: showHistory, requires: .snapshots, view: { $0.historyPanel.snapshotButton }),
                     .part(L("Layers"), L("The image is a stack of layers. Add, delete, duplicate and move them with the buttons at the bottom; double-click a layer for its properties."),
                           side: .left, show: { if !$0.layersPanel.isVisible { $0.toggleLayersWindow(nil) } },
                           view: { $0.layersPanel.contentView }),
                     .part(L("Colors"), L("The left mouse button paints with the primary color, the right one with the secondary color. Click a color of the palette to pick it, or right-click it for the secondary color."),
                           side: .right, show: { if !$0.colorsPanel.isVisible { $0.toggleColorsWindow(nil) } },
                           view: { $0.colorsPanel.contentView }),
-                    .part(L("Status bar"), L("Hints for the current tool, the size of the selection, the pointer position, the units and the zoom."),
-                          side: .above, view: { $0.statusBar }),
                 ]),
             ]),
             TutorialSection(title: L("Selection"), scenarios: [
@@ -149,19 +159,29 @@ enum Tutorial {
                 ]),
             ]),
             TutorialSection(title: L("Painting"), scenarios: [
-                TutorialScenario(id: "paint", title: L("Painting Tools"),
-                                 summary: L("Paintbrush, eraser and pencil, and their settings."), steps: [
+                TutorialScenario(id: "paintbrush", title: L("Paintbrush"), summary: L("The paintbrush and all its settings."), steps: [
                     .tool(.paintbrush),
                     .option(.brushWidth, of: .paintbrush, title: label(L("Brush width:")),
                             text: L("The size of the brush, in pixels. The mouse wheel over the field and the [ and ] keys change it too.")),
+                    .option(.widthSnap, of: .paintbrush, title: L("Brush width by fives"),
+                            text: L("These buttons go up or down to the next multiple of 5: 1, 5, 10, 15…"), requires: .brushWidthSteps),
                     .option(.hardness, of: .paintbrush, title: label(L("Hardness:")),
                             text: L("At 100%, the brush has a hard edge; lower values make its edge softer.")),
                     .option(.antialiasing, of: .paintbrush, title: L("Antialiasing"),
                             text: L("On, edges are smooth. Off, they are hard and pixelated.")),
+                    .option(.smoothing, of: .paintbrush, title: L("Smoothing"),
+                            text: L("The brush follows the pointer on a string, which takes out hand tremor. While it is on, the length of the string can be set next to it."),
+                            requires: .smoothing),
+                    .option(.magneticClosing, of: .paintbrush, title: L("Magnetic Closing"),
+                            text: L("A stroke released near where it started is joined to its start, so circles and outlines close cleanly."),
+                            requires: .magneticClosing),
                     .option(.blendMode, of: .paintbrush, title: label(L("Blending:")),
                             text: L("How the paint mixes with the pixels below it. Overwrite replaces them, transparency included.")),
                     .option(.clipping, of: .paintbrush, title: label(L("Clipping:")),
                             text: L("When part of the image is selected, painting stays inside the selection. Antialiased softens its edge.")),
+                ]),
+                TutorialScenario(id: "eraserPencil", title: L("Eraser and Pencil"),
+                                 summary: L("Erase, or draw lines one pixel wide."), steps: [
                     .tool(.eraser),
                     .tool(.pencil),
                 ]),
@@ -232,30 +252,6 @@ enum Tutorial {
                     .part(L("Plus Features"), L("Each Brushwood Plus feature can be turned on or off here, one by one or by category. This window is also in Brushwood Plus › Plus Features…"),
                           side: .right, show: { _ in (NSApp.delegate as? AppDelegate)?.showPlusFeatures(nil) },
                           view: { _ in NSApp.windows.first { $0 is PlusFeaturesWindow && $0.isVisible }?.contentView }),
-                ]),
-                TutorialScenario(id: "plusHistory", title: L("History Times and Snapshots"),
-                                 summary: L("When each step was made, and copies of the image to come back to."), steps: [
-                    .part(L("Times in the History window"), L("Each step shows when it was made. Right-click in the History window to show how long ago instead, or to hide the times."),
-                          side: .left, show: { if !$0.historyPanel.isVisible { $0.toggleHistoryWindow(nil) } },
-                          requires: .historyTimes, view: { $0.historyPanel.contentView }),
-                    .part(L("Snapshots"), L("This button keeps a full copy of the image, listed at the top of the History window. Click the snapshot to bring the image back to it at any time, even after undoing or new edits."),
-                          side: .left, show: { if !$0.historyPanel.isVisible { $0.toggleHistoryWindow(nil) } },
-                          requires: .snapshots, view: { $0.historyPanel.snapshotButton }),
-                ]),
-                TutorialScenario(id: "plusStrokes", title: L("Smoothing and Magnetic Closing"),
-                                 summary: L("Steadier strokes, and outlines that close by themselves."), steps: [
-                    .option(.smoothing, of: .paintbrush, title: L("Smoothing"),
-                            text: L("The brush follows the pointer on a string, which takes out hand tremor. While it is on, the length of the string can be set next to it."),
-                            requires: .smoothing),
-                    .option(.magneticClosing, of: .paintbrush, title: L("Magnetic Closing"),
-                            text: L("A stroke released near where it started is joined to its start, so circles and outlines close cleanly."),
-                            requires: .magneticClosing),
-                ]),
-                TutorialScenario(id: "plusWidth", title: L("Brush width by fives"),
-                                 summary: L("Go straight to 5, 10, 15… for the brush width."), steps: [
-                    .option(.widthSnap, of: .paintbrush, title: L("Brush width by fives"),
-                            text: L("These buttons go up or down to the next multiple of 5: 1, 5, 10, 15…"),
-                            requires: .brushWidthSteps),
                 ]),
             ]),
         ]

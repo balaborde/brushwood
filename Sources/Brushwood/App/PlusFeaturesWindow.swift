@@ -64,7 +64,7 @@ final class PlusFeaturesWindow: NSWindow {
                 let check = NSButton(checkboxWithTitle: feature.name, target: nil, action: nil)
                 check.onAction { _ in PlusFeature.set([feature], enabled: check.state == .on) }
                 featureBoxes.append((feature, check))
-                let line = NSStackView(views: feature.isNew ? [check, NewBadge()] : [check])
+                let line = NSStackView(views: feature.isNew ? [check, TagPill(L("NEW"))] : [check])
                 line.spacing = 6
                 let details = NSTextField(wrappingLabelWithString: feature.details)
                 details.font = .systemFont(ofSize: NSFont.smallSystemFontSize)
@@ -181,11 +181,19 @@ final class PlusFeaturesWindow: NSWindow {
     }
 }
 
-/// "NEW" next to the features brought by the last update.
-private final class NewBadge: NSView {
-    private let text = NSAttributedString(string: L("NEW"), attributes: [
-        .font: NSFont.systemFont(ofSize: 9.5, weight: .bold), .foregroundColor: NSColor.white,
-    ])
+/// A small orange tag: "NEW" next to the features brought by the last update, "PLUS" on the tutorial's steps about
+/// Brushwood Plus features.
+final class TagPill: NSView {
+    private let text: NSAttributedString
+
+    init(_ string: String) {
+        text = NSAttributedString(string: string, attributes: [
+            .font: NSFont.systemFont(ofSize: 9.5, weight: .bold), .foregroundColor: NSColor.white,
+        ])
+        super.init(frame: .zero)
+    }
+
+    required init?(coder: NSCoder) { fatalError() }
 
     override var intrinsicContentSize: NSSize { NSSize(width: ceil(text.size().width) + 12, height: 16) }
 

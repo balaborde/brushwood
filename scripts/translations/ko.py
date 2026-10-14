@@ -235,7 +235,9 @@ End cap|끝 모양
 End:|끝:
 Enter Full Screen|전체 화면 시작
 Erase Selection|선택 영역 지우기
+Erase, or draw lines one pixel wide.|지우거나 너비 1픽셀의 선을 그립니다.
 Eraser|지우개
+Eraser and Pencil|지우개와 연필
 Erode|침식
 Euclidean|유클리드
 Every change is a step. Click a step to go back to it, and click it again to compare before and after. Undo and Redo are at the bottom.|모든 변경은 하나의 단계입니다. 단계를 클릭하면 그 단계로 돌아가고, 다시 클릭하면 전후를 비교할 수 있습니다. 실행 취소와 실행 복귀는 아래에 있습니다.
@@ -268,6 +270,7 @@ Flip Horizontal|수평으로 뒤집기
 Flip Layer Horizontal|레이어 수평으로 뒤집기
 Flip Layer Vertical|레이어 수직으로 뒤집기
 Flip Vertical|수직으로 뒤집기
+Floating Windows|플로팅 창
 Flood mode:|채우기 모드:
 Font:|서체:
 Format:|포맷:
@@ -284,7 +287,6 @@ Getting Started|시작하기
 Global|전역
 Glow|광선
 Go Back to This Snapshot|이 스냅샷으로 돌아가기
-Go straight to 5, 10, 15… for the brush width.|브러시 너비를 5, 10, 15…로 바로 바꿉니다.
 Go to Bottom Layer|맨 아래 레이어로 이동
 Go to Layer Above|위 레이어로 이동
 Go to Layer Below|아래 레이어로 이동
@@ -313,7 +315,6 @@ Hint: For best results, first use the selection tools to select each eye.|힌트
 Hints for the current tool, the size of the selection, the pointer position, the units and the zoom.|현재 도구에 대한 도움말, 선택 영역의 크기, 포인터 위치, 단위, 확대/축소 비율.
 History|기록
 History (F6)|기록(F6)
-History Times and Snapshots|기록의 시간과 스냅샷
 Hold to pan|누르고 있으면 이동
 Horizontal|가로
 Horizontal Brick|가로 벽돌
@@ -474,9 +475,7 @@ Overwrite|덮어쓰기
 Paint Bucket|페인트 통
 Paint Bucket and Gradient|페인트 통과 그라디언트
 Paintbrush|페인트 브러시
-Paintbrush, eraser and pencil, and their settings.|페인트 브러시, 지우개, 연필과 그 설정.
 Painting|그리기
-Painting Tools|그리기 도구
 Palette|팔레트
 Pan|손
 Parallelogram|평행사변형
@@ -637,7 +636,6 @@ Sketch Blur|스케치 흐림
 Small Checker Board|작은 바둑판
 Small Grid|작은 격자
 Smoothing|손떨림 보정
-Smoothing and Magnetic Closing|손떨림 보정과 자석 닫기
 Smoothing disabled|손떨림 보정 끔
 Smoothing enabled|손떨림 보정 켬
 Smoothness|매끄러움
@@ -661,7 +659,6 @@ Start cap|시작 모양
 Start:|시작:
 Status bar|상태 막대
 Stay on the Color Picker after picking, go back to the previous tool, or switch to the Pencil.|색을 고른 뒤 색상 선택에 머무르거나, 이전 도구로 돌아가거나, 연필로 바꿉니다.
-Steadier strokes, and outlines that close by themselves.|더 안정된 획과 저절로 닫히는 윤곽선.
 Steadies strokes: the brush follows the pointer on a string. For the Paintbrush, Eraser, Clone Stamp and Recolor tools.|획을 안정시킵니다. 브러시가 끈에 매달린 것처럼 포인터를 따라갑니다. 페인트 브러시, 지우개, 복제 도장, 색상 바꾸기 도구에서 사용할 수 있습니다.
 Straighten|똑바르게
 Strength|세기
@@ -695,8 +692,10 @@ The font, its size and its style: bold, italic, underline and strikethrough.|글
 The image being pasted is larger than the canvas size. What would you like to do?|붙여넣는 이미지가 캔버스보다 큽니다. 어떻게 하시겠습니까?
 The image is a stack of layers. Add, delete, duplicate and move them with the buttons at the bottom; double-click a layer for its properties.|이미지는 레이어를 쌓은 것입니다. 아래 버튼으로 레이어를 추가, 삭제, 복제, 이동하며, 레이어를 이중 클릭하면 속성이 열립니다.
 The left mouse button paints with the primary color, the right one with the secondary color. Click a color of the palette to pick it, or right-click it for the secondary color.|마우스 왼쪽 버튼은 기본 색상으로, 오른쪽 버튼은 보조 색상으로 칠합니다. 팔레트의 색을 클릭하면 선택되고, 오른쪽 클릭하면 보조 색상이 됩니다.
+The paintbrush and all its settings.|페인트 브러시와 모든 설정.
 The shape of the gradient: linear, reflected, diamond, radial, conical or spiral.|그라디언트의 모양: 선형, 반사, 다이아몬드, 방사형, 원뿔형, 나선형.
 The size of the brush, in pixels. The mouse wheel over the field and the [ and ] keys change it too.|브러시 크기(픽셀)입니다. 필드 위에서 마우스 휠을 굴리거나 [ 및 ] 키를 눌러도 바뀝니다.
+The toolbar, the tool options and the status bar.|기본 막대, 도구 옵션, 상태 막대.
 The update could not be installed|업데이트를 설치할 수 없음
 These blend modes will be saved as Normal in the .pdn file: %@. Save as OpenRaster (.ora) to keep them.|다음 혼합 모드는 .pdn 파일에 표준으로 저장됩니다: %@. 유지하려면 OpenRaster(.ora)로 저장하십시오.
 These buttons go up or down to the next multiple of 5: 1, 5, 10, 15…|이 버튼은 다음 5의 배수로 올리거나 내립니다: 1, 5, 10, 15…
@@ -719,6 +718,7 @@ Tool:|도구:
 Toolbar|기본 막대
 Tools|도구
 Tools (F5)|도구(F5)
+Tools, History, Layers and Colors.|도구, 기록, 레이어, 색상.
 Tools, History, Layers, Colors windows|도구, 기록, 레이어, 색상 윈도우
 Transfer Map:|전송 맵:
 Transparency Mode|투명도 모드
@@ -760,9 +760,7 @@ What happens past the ends of the gradient: nothing, or it repeats as a sawtooth
 What you draw with this tool keeps its handles, so you can still change it, until you click Finish or press Return.|이 도구로 그린 것은 완료를 클릭하거나 Return 키를 누를 때까지 핸들이 남아 있어 계속 바꿀 수 있습니다.
 What's New|새로운 기능
 What's New in Brushwood Plus|Brushwood Plus의 새로운 기능
-When each step was made, and copies of the image to come back to.|각 단계를 한 시각과 되돌아갈 수 있는 이미지 사본.
 When part of the image is selected, painting stays inside the selection. Antialiased softens its edge.|이미지의 일부가 선택되어 있으면 선택 영역 안에만 칠해집니다. 앤티앨리어싱 적용은 그 가장자리를 부드럽게 합니다.
-Where everything is: toolbar, floating windows and status bar.|각 항목의 위치: 기본 막대, 플로팅 창, 상태 막대.
 White|흰색
 Width|너비
 Width:|너비:

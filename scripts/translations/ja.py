@@ -235,7 +235,9 @@ End cap|終点の形状
 End:|終点：
 Enter Full Screen|フルスクリーンにする
 Erase Selection|選択範囲を消去
+Erase, or draw lines one pixel wide.|消したり、幅 1 ピクセルの線を描いたりします。
 Eraser|消しゴム
+Eraser and Pencil|消しゴムと鉛筆
 Erode|収縮
 Euclidean|ユークリッド
 Every change is a step. Click a step to go back to it, and click it again to compare before and after. Undo and Redo are at the bottom.|変更の 1 つ 1 つがステップになります。ステップをクリックするとそこに戻り、もう一度クリックすると前後を比べられます。「取り消す」と「やり直す」は下にあります。
@@ -268,6 +270,7 @@ Flip Horizontal|左右に反転
 Flip Layer Horizontal|レイヤーを左右に反転
 Flip Layer Vertical|レイヤーを上下に反転
 Flip Vertical|上下に反転
+Floating Windows|フローティングウインドウ
 Flood mode:|塗りつぶしモード：
 Font:|フォント：
 Format:|フォーマット：
@@ -284,7 +287,6 @@ Getting Started|はじめに
 Global|全体
 Glow|光彩
 Go Back to This Snapshot|このスナップショットに戻る
-Go straight to 5, 10, 15… for the brush width.|ブラシの幅を 5、10、15… へ一気に変えます。
 Go to Bottom Layer|最下位のレイヤーへ移動
 Go to Layer Above|上のレイヤーへ移動
 Go to Layer Below|下のレイヤーへ移動
@@ -313,7 +315,6 @@ Hint: For best results, first use the selection tools to select each eye.|ヒン
 Hints for the current tool, the size of the selection, the pointer position, the units and the zoom.|現在のツールのヒント、選択範囲のサイズ、ポインタの位置、単位、ズーム。
 History|ヒストリー
 History (F6)|ヒストリー (F6)
-History Times and Snapshots|ヒストリーの時刻とスナップショット
 Hold to pan|押したままドラッグで移動
 Horizontal|水平
 Horizontal Brick|横レンガ
@@ -474,9 +475,7 @@ Overwrite|上書き
 Paint Bucket|塗りつぶし
 Paint Bucket and Gradient|塗りつぶしとグラデーション
 Paintbrush|ブラシ
-Paintbrush, eraser and pencil, and their settings.|ブラシ、消しゴム、鉛筆とその設定。
 Painting|描画
-Painting Tools|描画ツール
 Palette|パレット
 Pan|手のひら
 Parallelogram|平行四辺形
@@ -637,7 +636,6 @@ Sketch Blur|ぼかし（スケッチ）
 Small Checker Board|小さな市松模様
 Small Grid|小さなグリッド
 Smoothing|手ブレ補正
-Smoothing and Magnetic Closing|手ブレ補正と始点に吸着
 Smoothing disabled|手ブレ補正：オフ
 Smoothing enabled|手ブレ補正：オン
 Smoothness|滑らかさ
@@ -661,7 +659,6 @@ Start cap|始点の形状
 Start:|始点：
 Status bar|ステータスバー
 Stay on the Color Picker after picking, go back to the previous tool, or switch to the Pencil.|色を取ったあともカラーピッカーのままにするか、前のツールに戻るか、鉛筆に切り替えるか。
-Steadier strokes, and outlines that close by themselves.|より安定したストロークと、ひとりでに閉じる輪郭。
 Steadies strokes: the brush follows the pointer on a string. For the Paintbrush, Eraser, Clone Stamp and Recolor tools.|ストロークを安定させます。ブラシはひもでつながれたようにポインタを追います。ブラシ、消しゴム、コピースタンプ、色の置き換えツールで使えます。
 Straighten|傾き補正
 Strength|強度
@@ -695,8 +692,10 @@ The font, its size and its style: bold, italic, underline and strikethrough.|フ
 The image being pasted is larger than the canvas size. What would you like to do?|ペーストする画像はキャンバスより大きいです。どうしますか？
 The image is a stack of layers. Add, delete, duplicate and move them with the buttons at the bottom; double-click a layer for its properties.|画像はレイヤーを重ねたものです。下のボタンでレイヤーを追加、削除、複製、移動し、レイヤーをダブルクリックするとプロパティが開きます。
 The left mouse button paints with the primary color, the right one with the secondary color. Click a color of the palette to pick it, or right-click it for the secondary color.|マウスの左ボタンはプライマリカラーで、右ボタンはセカンダリカラーで描きます。パレットの色をクリックすると選択でき、右クリックするとセカンダリカラーになります。
+The paintbrush and all its settings.|ブラシとそのすべての設定。
 The shape of the gradient: linear, reflected, diamond, radial, conical or spiral.|グラデーションの形：線形、反射、ダイヤモンド、円形、円錐形、らせん。
 The size of the brush, in pixels. The mouse wheel over the field and the [ and ] keys change it too.|ブラシのサイズ（ピクセル）。フィールド上のマウスホイールや [ と ] キーでも変えられます。
+The toolbar, the tool options and the status bar.|メインバー、ツールのオプション、ステータスバー。
 The update could not be installed|アップデートをインストールできませんでした
 These blend modes will be saved as Normal in the .pdn file: %@. Save as OpenRaster (.ora) to keep them.|これらの描画モードは .pdn ファイルでは「通常」として保存されます：%@。保持するには OpenRaster（.ora）で保存してください。
 These buttons go up or down to the next multiple of 5: 1, 5, 10, 15…|これらのボタンは、次の 5 の倍数へ上げ下げします：1、5、10、15…
@@ -719,6 +718,7 @@ Tool:|ツール：
 Toolbar|メインバー
 Tools|ツール
 Tools (F5)|ツール (F5)
+Tools, History, Layers and Colors.|ツール、ヒストリー、レイヤー、カラー。
 Tools, History, Layers, Colors windows|「ツール」「ヒストリー」「レイヤー」「カラー」ウインドウ
 Transfer Map:|変換マップ：
 Transparency Mode|透明モード
@@ -760,9 +760,7 @@ What happens past the ends of the gradient: nothing, or it repeats as a sawtooth
 What you draw with this tool keeps its handles, so you can still change it, until you click Finish or press Return.|このツールで描いたものは、「確定」をクリックするか Return キーを押すまでハンドルが残り、変更できます。
 What's New|新機能
 What's New in Brushwood Plus|Brushwood Plus の新機能
-When each step was made, and copies of the image to come back to.|各ステップを行った時刻と、戻れる画像のコピー。
 When part of the image is selected, painting stays inside the selection. Antialiased softens its edge.|画像の一部が選択されているときは、選択範囲の中だけに描かれます。アンチエイリアスありは選択範囲の縁を柔らかくします。
-Where everything is: toolbar, floating windows and status bar.|どこに何があるか：メインバー、フローティングウインドウ、ステータスバー。
 White|白
 Width|幅
 Width:|幅：

@@ -234,7 +234,9 @@
 "End:" = "Einde:";
 "Enter Full Screen" = "Activeer schermvullende weergave";
 "Erase Selection" = "Wis selectie";
+"Erase, or draw lines one pixel wide." = "Wissen, of lijnen van één pixel breed tekenen.";
 "Eraser" = "Gum";
+"Eraser and Pencil" = "Gum en Potlood";
 "Erode" = "Erosie";
 "Euclidean" = "Euclidisch";
 "Every change is a step. Click a step to go back to it, and click it again to compare before and after. Undo and Redo are at the bottom." = "Elke wijziging is een stap. Klik op een stap om ernaar terug te gaan, en nog eens om voor en na te vergelijken. Herstel en Opnieuw staan onderaan.";
@@ -267,6 +269,7 @@
 "Flip Layer Horizontal" = "Spiegel laag horizontaal";
 "Flip Layer Vertical" = "Spiegel laag verticaal";
 "Flip Vertical" = "Spiegel verticaal";
+"Floating Windows" = "Zwevende vensters";
 "Flood mode:" = "Vulmodus:";
 "Font:" = "Lettertype:";
 "Format:" = "Formaat:";
@@ -283,7 +286,6 @@
 "Global" = "Globaal";
 "Glow" = "Gloed";
 "Go Back to This Snapshot" = "Terug naar deze momentopname";
-"Go straight to 5, 10, 15… for the brush width." = "Ga voor de penseelbreedte meteen naar 5, 10, 15…";
 "Go to Bottom Layer" = "Ga naar onderste laag";
 "Go to Layer Above" = "Ga naar laag erboven";
 "Go to Layer Below" = "Ga naar laag eronder";
@@ -312,7 +314,6 @@
 "Hints for the current tool, the size of the selection, the pointer position, the units and the zoom." = "Tips voor het huidige gereedschap, de grootte van de selectie, de positie van de aanwijzer, de eenheden en de zoom.";
 "History" = "Geschiedenis";
 "History (F6)" = "Geschiedenis (F6)";
-"History Times and Snapshots" = "Tijden en momentopnamen in de geschiedenis";
 "Hold to pan" = "Ingedrukt houden om te pannen";
 "Horizontal" = "Horizontaal";
 "Horizontal Brick" = "Horizontale bakstenen";
@@ -473,9 +474,7 @@
 "Paint Bucket" = "Verfemmer";
 "Paint Bucket and Gradient" = "Verfemmer en Kleurverloop";
 "Paintbrush" = "Penseel";
-"Paintbrush, eraser and pencil, and their settings." = "Penseel, gum en potlood, en hun instellingen.";
 "Painting" = "Schilderen";
-"Painting Tools" = "Tekengereedschappen";
 "Palette" = "Palet";
 "Pan" = "Hand";
 "Parallelogram" = "Parallellogram";
@@ -636,7 +635,6 @@
 "Small Checker Board" = "Klein dambord";
 "Small Grid" = "Klein raster";
 "Smoothing" = "Stabilisatie";
-"Smoothing and Magnetic Closing" = "Stabilisatie en magnetisch sluiten";
 "Smoothing disabled" = "Stabilisatie uit";
 "Smoothing enabled" = "Stabilisatie aan";
 "Smoothness" = "Gladheid";
@@ -660,7 +658,6 @@
 "Start:" = "Begin:";
 "Status bar" = "Statusbalk";
 "Stay on the Color Picker after picking, go back to the previous tool, or switch to the Pencil." = "Na het opnemen bij de Pipet blijven, teruggaan naar het vorige gereedschap of naar het Potlood overschakelen.";
-"Steadier strokes, and outlines that close by themselves." = "Vastere streken, en contouren die vanzelf sluiten.";
 "Steadies strokes: the brush follows the pointer on a string. For the Paintbrush, Eraser, Clone Stamp and Recolor tools." = "Maakt streken stabieler: het penseel volgt de aanwijzer aan een touwtje. Voor Penseel, Gum, Kloonstempel en Herkleuren.";
 "Straighten" = "Rechtzetten";
 "Strength" = "Sterkte";
@@ -694,8 +691,10 @@
 "The image being pasted is larger than the canvas size. What would you like to do?" = "De geplakte afbeelding is groter dan het canvas. Wat wil je doen?";
 "The image is a stack of layers. Add, delete, duplicate and move them with the buttons at the bottom; double-click a layer for its properties." = "De afbeelding is een stapel lagen. Voeg lagen toe, verwijder, dupliceer en verplaats ze met de knoppen onderaan; dubbelklik op een laag voor de eigenschappen.";
 "The left mouse button paints with the primary color, the right one with the secondary color. Click a color of the palette to pick it, or right-click it for the secondary color." = "De linkermuisknop schildert met de primaire kleur, de rechter met de secundaire. Klik op een kleur van het palet om hem te kiezen, of klik er met de rechtermuisknop op voor de secundaire kleur.";
+"The paintbrush and all its settings." = "Het penseel en al zijn instellingen.";
 "The shape of the gradient: linear, reflected, diamond, radial, conical or spiral." = "De vorm van het kleurverloop: lineair, gespiegeld, ruit, radiaal, conisch of spiraal.";
 "The size of the brush, in pixels. The mouse wheel over the field and the [ and ] keys change it too." = "De grootte van het penseel in pixels. Het muiswiel boven het veld en de toetsen [ en ] veranderen hem ook.";
+"The toolbar, the tool options and the status bar." = "De hoofdbalk, de gereedschapsopties en de statusbalk.";
 "The update could not be installed" = "De update kan niet worden geïnstalleerd";
 "These blend modes will be saved as Normal in the .pdn file: %@. Save as OpenRaster (.ora) to keep them." = "Deze overvloeimodi worden in het .pdn-bestand als Normaal bewaard: %@. Bewaar als OpenRaster (.ora) om ze te behouden.";
 "These buttons go up or down to the next multiple of 5: 1, 5, 10, 15…" = "Deze knoppen gaan omhoog of omlaag naar het volgende veelvoud van 5: 1, 5, 10, 15…";
@@ -718,6 +717,7 @@
 "Toolbar" = "Hoofdbalk";
 "Tools" = "Gereedschappen";
 "Tools (F5)" = "Gereedschappen (F5)";
+"Tools, History, Layers and Colors." = "Gereedschappen, Geschiedenis, Lagen en Kleuren.";
 "Tools, History, Layers, Colors windows" = "Vensters Gereedschappen, Geschiedenis, Lagen, Kleuren";
 "Transfer Map:" = "Overdrachtscurve:";
 "Transparency Mode" = "Transparantiemodus";
@@ -759,9 +759,7 @@
 "What you draw with this tool keeps its handles, so you can still change it, until you click Finish or press Return." = "Wat je met dit gereedschap tekent, houdt zijn grepen zodat je het nog kunt aanpassen, tot je op Voltooi klikt of op Return drukt.";
 "What's New" = "Nieuw";
 "What's New in Brushwood Plus" = "Nieuw in Brushwood Plus";
-"When each step was made, and copies of the image to come back to." = "Wanneer elke stap is gedaan, en kopieën van de afbeelding om naar terug te gaan.";
 "When part of the image is selected, painting stays inside the selection. Antialiased softens its edge." = "Als een deel van de afbeelding geselecteerd is, blijft het schilderen binnen de selectie. Vloeiend maakt de rand ervan zachter.";
-"Where everything is: toolbar, floating windows and status bar." = "Waar alles zit: hoofdbalk, zwevende vensters en statusbalk.";
 "White" = "Wit";
 "Width" = "Breedte";
 "Width:" = "Breedte:";

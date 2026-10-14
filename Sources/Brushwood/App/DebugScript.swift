@@ -145,6 +145,12 @@ enum DebugScript {
                 let got = g.scenario.map { "\($0.id),\(g.index + 1)" } ?? "none"
                 report(got == arg, "tutorial at \(got), expected \(arg)")
                 if g.isRunning { report(g.currentTargetFound, "tutorial step \(got) points at a part on screen") }
+            case "expecttutorialsteps":
+                report(TutorialGuide.shared.stepCount == Int(nums.first ?? -1),
+                       "tutorial tour has \(TutorialGuide.shared.stepCount) steps, expected \(arg)")
+            case "expecttutorialplus":
+                // expecttutorialplus:0|1, whether the current step is about a Brushwood Plus feature (tagged PLUS).
+                report(TutorialGuide.shared.currentStepIsPlus == (arg == "1"), "tutorial step tagged Plus: \(TutorialGuide.shared.currentStepIsPlus)")
             case "tutorialcheck":
                 // Every step of every tour finds its part (steps of Plus features that are off are skipped).
                 for tour in Tutorial.sections.flatMap(\.scenarios) {
