@@ -268,6 +268,7 @@ Hex:|Hex:
 Hexagon|Шестиугольник
 Hide Brushwood|Скрыть Brushwood
 Hide Others|Скрыть остальные
+Hide Times|Не показывать время
 Highlight boost|Усиление светов
 Highlights|Света
 Highlights / Shadows|Света / Тени
@@ -546,6 +547,8 @@ Shapes, lines, gradients, text and paint bucket fills stay editable after you dr
 Sharpen|Резкость
 Shingle|Черепица
 Show All|Показать все
+Show Time Elapsed|Показывать, сколько прошло
+Show Time of Day|Показывать время
 Show in Finder|Показать в Finder
 Show points|Показывать точки
 Single Pixel|Один пиксель

@@ -268,6 +268,7 @@ Hex:|16進：
 Hexagon|六角形
 Hide Brushwood|Brushwood を隠す
 Hide Others|ほかを隠す
+Hide Times|時刻を隠す
 Highlight boost|ハイライト強調
 Highlights|ハイライト
 Highlights / Shadows|ハイライト / シャドウ
@@ -546,6 +547,8 @@ Shapes, lines, gradients, text and paint bucket fills stay editable after you dr
 Sharpen|シャープ
 Shingle|屋根板
 Show All|すべてを表示
+Show Time Elapsed|経過時間を表示
+Show Time of Day|時刻を表示
 Show in Finder|Finder に表示
 Show points|点を表示
 Single Pixel|1 ピクセル

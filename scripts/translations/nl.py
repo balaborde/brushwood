@@ -268,6 +268,7 @@ Hex:|Hex:
 Hexagon|Zeshoek
 Hide Brushwood|Verberg Brushwood
 Hide Others|Verberg andere
+Hide Times|Verberg tijden
 Highlight boost|Versterking hooglichten
 Highlights|Hooglichten
 Highlights / Shadows|Hooglichten / Schaduwen
@@ -546,6 +547,8 @@ Shapes, lines, gradients, text and paint bucket fills stay editable after you dr
 Sharpen|Verscherpen
 Shingle|Dakpannen
 Show All|Toon alles
+Show Time Elapsed|Toon verstreken tijd
+Show Time of Day|Toon tijdstip
 Show in Finder|Toon in Finder
 Show points|Toon punten
 Single Pixel|Enkele pixel

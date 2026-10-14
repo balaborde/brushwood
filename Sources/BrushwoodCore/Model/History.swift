@@ -5,6 +5,8 @@ open class HistoryItem {
     public let name: String
     /// Icon identifier resolved by the UI (tool or menu command icon).
     public let icon: String
+    /// When the step was made (shown in the History window).
+    public let date = Date()
 
     public init(name: String, icon: String) {
         self.name = name

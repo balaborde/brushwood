@@ -268,6 +268,7 @@ Hex:|十六进制：
 Hexagon|六边形
 Hide Brushwood|隐藏 Brushwood
 Hide Others|隐藏其他
+Hide Times|隐藏时间
 Highlight boost|高光增强
 Highlights|高光
 Highlights / Shadows|高光 / 阴影
@@ -546,6 +547,8 @@ Shapes, lines, gradients, text and paint bucket fills stay editable after you dr
 Sharpen|锐化
 Shingle|瓦片
 Show All|全部显示
+Show Time Elapsed|显示经过时间
+Show Time of Day|显示时刻
 Show in Finder|在访达中显示
 Show points|显示点
 Single Pixel|单个像素

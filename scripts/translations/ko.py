@@ -268,6 +268,7 @@ Hex:|16진수:
 Hexagon|육각형
 Hide Brushwood|Brushwood 가리기
 Hide Others|기타 가리기
+Hide Times|시간 가리기
 Highlight boost|하이라이트 증폭
 Highlights|하이라이트
 Highlights / Shadows|하이라이트 / 그림자
@@ -546,6 +547,8 @@ Shapes, lines, gradients, text and paint bucket fills stay editable after you dr
 Sharpen|선명하게
 Shingle|지붕널
 Show All|모두 보기
+Show Time Elapsed|경과 시간 보기
+Show Time of Day|시각 보기
 Show in Finder|Finder에서 보기
 Show points|점 보기
 Single Pixel|단일 픽셀

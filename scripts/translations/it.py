@@ -268,6 +268,7 @@ Hex:|Hex:
 Hexagon|Esagono
 Hide Brushwood|Nascondi Brushwood
 Hide Others|Nascondi altre
+Hide Times|Nascondi gli orari
 Highlight boost|Aumento luci
 Highlights|Luci
 Highlights / Shadows|Luci / Ombre
@@ -546,6 +547,8 @@ Shapes, lines, gradients, text and paint bucket fills stay editable after you dr
 Sharpen|Nitidezza
 Shingle|Scandole
 Show All|Mostra tutte
+Show Time Elapsed|Mostra il tempo trascorso
+Show Time of Day|Mostra l'ora
 Show in Finder|Mostra nel Finder
 Show points|Mostra punti
 Single Pixel|Pixel singolo

@@ -127,6 +127,17 @@ final class SettingsWindow: NSWindow {
         units.onAction { _ in env.units = MeasurementUnit(rawValue: units.indexOfSelectedItem) ?? .pixels }
         stack.addArrangedSubview(units)
 
+        stack.addArrangedSubview(header(L("History")))
+        let times = NSPopUpButton(frame: .zero, pullsDown: false)
+        times.addItems(withTitles: HistoryTimeDisplay.allCases.map(\.title))
+        times.selectItem(at: HistoryTimeDisplay.current.rawValue)
+        times.onAction { _ in HistoryTimeDisplay.current = HistoryTimeDisplay(rawValue: times.indexOfSelectedItem) ?? .timeOfDay }
+        // Also chosen from the History window's shortcut menu.
+        NotificationCenter.default.addObserver(forName: .historyTimeDisplayChanged, object: nil, queue: .main) { [weak times] _ in
+            times?.selectItem(at: HistoryTimeDisplay.current.rawValue)
+        }
+        stack.addArrangedSubview(times)
+
         stack.addArrangedSubview(header(L("Reset")))
         let resetPalette = NSButton(title: L("Reset Palette to Default"), target: nil, action: nil)
         resetPalette.bezelStyle = .rounded
