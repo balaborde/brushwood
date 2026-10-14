@@ -44,6 +44,15 @@ enum DebugScript {
                     send(c, .drag, CGPoint(x: a.x + (b.x - a.x) * t, y: a.y + (b.y - a.y) * t), right, mods)
                 }
                 send(c, .up, b, right, mods)
+            case "path" where nums.count >= 4:
+                // path:x,y,x,y,…[,hold] drags through image points with real mouse events (the canvas tracks the pointer,
+                // as for a hand-drawn stroke); hold leaves the button down.
+                let points = stride(from: 0, to: nums.count - 1, by: 2).map { CGPoint(x: nums[$0], y: nums[$0 + 1]) }
+                for (i, p) in points.enumerated() {
+                    let type: NSEvent.EventType = i == 0 ? .leftMouseDown : .leftMouseDragged
+                    if let e = mouseEvent(c, type, p) { i == 0 ? c.canvas.mouseDown(with: e) : c.canvas.mouseDragged(with: e) }
+                }
+                if !flags.contains("hold"), let last = points.last, let e = mouseEvent(c, .leftMouseUp, last) { c.canvas.mouseUp(with: e) }
             case "type":
                 (c.canvas.tool as? TextTool)?.insert(arg.replacingOccurrences(of: "\\n", with: "\n"))
             case "key":
@@ -198,6 +207,7 @@ enum DebugScript {
                 switch kv[0] {
                 case "tolerance": t.tolerance = Double(kv[1]) ?? 0.5
                 case "antialias": t.antialiasing = kv[1] == "1"
+                case "smoothing": t.smoothing = kv[1] == "1"
                 case "fill": t.fillStyle = FillStyle(rawValue: Int(kv[1]) ?? 0) ?? .solid
                 case "flood": t.floodMode = FloodMode(rawValue: Int(kv[1]) ?? 0) ?? .contiguous
                 case "blend": t.blendMode = BlendMode(rawValue: Int(kv[1]) ?? 0) ?? .normal
@@ -358,6 +368,12 @@ enum DebugScript {
     private static func report(_ ok: Bool, _ message: String) {
         print("\(ok ? "PASS" : "FAIL") \(message)")
         fflush(stdout)
+    }
+
+    private static func mouseEvent(_ c: MainWindowController, _ type: NSEvent.EventType, _ p: CGPoint) -> NSEvent? {
+        NSEvent.mouseEvent(with: type, location: c.canvas.convert(c.canvas.toView(p), to: nil), modifierFlags: [],
+                           timestamp: ProcessInfo.processInfo.systemUptime, windowNumber: c.window?.windowNumber ?? 0,
+                           context: nil, eventNumber: 0, clickCount: 1, pressure: 1)
     }
 
     private static func send(_ c: MainWindowController, _ phase: Phase, _ p: CGPoint, _ right: Bool,

@@ -564,6 +564,9 @@ Size|大小
 Sketch Blur|素描模糊
 Small Checker Board|小棋盘格
 Small Grid|小网格
+Smoothing|防抖
+Smoothing disabled|防抖已关闭
+Smoothing enabled|防抖已打开
 Smoothness|平滑度
 Snapshot %d|快照 %d
 Soft Light|柔光

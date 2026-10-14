@@ -564,6 +564,9 @@ Size|Taille
 Sketch Blur|Flou esquisse
 Small Checker Board|Petit damier
 Small Grid|Petite grille
+Smoothing|Stabilisation
+Smoothing disabled|Stabilisation désactivée
+Smoothing enabled|Stabilisation activée
 Smoothness|Douceur
 Snapshot %d|Instantané %d
 Soft Light|Lumière tamisée

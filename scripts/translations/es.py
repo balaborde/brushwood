@@ -564,6 +564,9 @@ Size|Tamaño
 Sketch Blur|Desenfoque de boceto
 Small Checker Board|Tablero de ajedrez pequeño
 Small Grid|Cuadrícula pequeña
+Smoothing|Estabilización
+Smoothing disabled|Estabilización desactivada
+Smoothing enabled|Estabilización activada
 Smoothness|Suavidad
 Snapshot %d|Instantánea %d
 Soft Light|Luz suave

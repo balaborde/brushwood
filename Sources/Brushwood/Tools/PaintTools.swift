@@ -9,8 +9,18 @@ class StrokeTool: Tool {
     var clip: MaskSurface?
     var lastPoint: CGPoint?
     var button: ToolEvent.Button = .left
+    /// Brush smoothing (Brushwood Plus) of the stroke being drawn, when it is on.
+    var stabilizer: StrokeStabilizer?
+    /// Area of the string from the brush to the pointer, last drawn (image coordinates).
+    private var leash: CGRect?
+    /// Paints the end of a smoothed stroke while the pointer rests.
+    private var pauseTimer: Timer?
+    /// Length of the smoothing string in points on screen, so it feels the same at every zoom.
+    static let smoothingLength: CGFloat = 15
 
     override var showsBrushOutline: Bool { true }
+    /// Whether the Smoothing option applies (the Pencil stays exact).
+    var smooths: Bool { true }
 
     var historyName: String { kind.name }
 
@@ -24,6 +34,10 @@ class StrokeTool: Tool {
         mask = MaskSurface(width: doc.width, height: doc.height)
         clip = selectionClip
         lastPoint = e.point
+        if smooths, settings.smoothing {
+            stabilizer = StrokeStabilizer(at: e.point, length: Double(Self.smoothingLength / canvas.zoom),
+                                          spacing: max(0.5, Double(settings.brushWidth) / 8))
+        }
         stroke(from: e.point, to: e.point)
     }
 
@@ -33,13 +47,27 @@ class StrokeTool: Tool {
         if e.shift {
             // Shift constrains to horizontal/vertical from the stroke start.
             if abs(p.x - last.x) > abs(p.y - last.y) { p.y = last.y } else { p.x = last.x }
+            // Straight lines are not smoothed; the string starts again from their end.
+            if let s = stabilizer { stabilizer = StrokeStabilizer(at: p, length: s.length, spacing: s.spacing) }
+        } else if var s = stabilizer {
+            stroke(through: s.move(to: p))
+            stabilizer = s
+            leashChanged()
+            pauseTimer?.invalidate()
+            let t = Timer(timeInterval: 0.06, repeats: false) { [weak self] _ in self?.smoothingPaused() }
+            RunLoop.main.add(t, forMode: .common)
+            pauseTimer = t
+            return
         }
         stroke(from: last, to: p)
         lastPoint = p
+        leashChanged()
     }
 
     override func mouseUp(_ e: ToolEvent) {
         guard let session else { return }
+        if var s = stabilizer, !e.shift { stroke(through: s.finish(at: e.point)) }
+        endSmoothing()
         session.commit(doc, name: historyName, icon: kind.icon)
         self.session = nil
         mask = nil
@@ -48,20 +76,79 @@ class StrokeTool: Tool {
     }
 
     override func cancel() {
+        endSmoothing()
         session?.cancel(doc)
         session = nil
     }
 
     override func deactivate() {
+        endSmoothing()
         if let session {
             session.commit(doc, name: historyName, icon: kind.icon)
             self.session = nil
         }
     }
 
+    private func smoothingPaused() {
+        guard var s = stabilizer else { return }
+        stroke(through: s.pause())
+        stabilizer = s
+    }
+
+    private func endSmoothing() {
+        pauseTimer?.invalidate()
+        pauseTimer = nil
+        stabilizer = nil
+        leashChanged()
+    }
+
+    /// Redraws the string after the brush or the pointer moved.
+    private func leashChanged() {
+        var r: CGRect?
+        if let s = stabilizer, let p = canvas.mouseImagePoint {
+            r = CGRect(x: min(s.brush.x, p.x), y: min(s.brush.y, p.y), width: abs(s.brush.x - p.x), height: abs(s.brush.y - p.y))
+        }
+        if let old = leash { canvas.overlayChanged(r.map { $0.union(old) } ?? old) } else if let r { canvas.overlayChanged(r) }
+        leash = r
+    }
+
+    /// The string from the pointer to the brush, with a dot where the brush paints.
+    override func drawOverlay(_ ctx: CGContext) {
+        guard let s = stabilizer, let p = canvas.mouseImagePoint else { return }
+        let a = canvas.toView(s.brush), b = canvas.toView(p)
+        ctx.saveGState()
+        ctx.setLineCap(.round)
+        ctx.setLineWidth(3)
+        ctx.setStrokeColor(NSColor.white.withAlphaComponent(0.8).cgColor)
+        ctx.strokeLineSegments(between: [a, b])
+        ctx.setLineWidth(1)
+        ctx.setStrokeColor(NSColor.black.withAlphaComponent(0.8).cgColor)
+        ctx.strokeLineSegments(between: [a, b])
+        let dot = CGRect(x: a.x - 3, y: a.y - 3, width: 6, height: 6)
+        ctx.setFillColor(NSColor.white.cgColor)
+        ctx.fillEllipse(in: dot)
+        ctx.strokeEllipse(in: dot)
+        ctx.restoreGState()
+    }
+
     func stroke(from a: CGPoint, to b: CGPoint) {
         guard let mask, let session else { return }
         let dirty = rasterize(from: a, to: b, into: mask)
+        if dirty.isEmpty { return }
+        render(dirty, session: session, mask: mask)
+        session.touch(dirty)
+        doc.invalidate(dirty)
+    }
+
+    /// Continues the stroke from `lastPoint` through the points of a smoothed path, rendering once.
+    func stroke(through points: [CGPoint]) {
+        guard let mask, let session, var last = lastPoint, !points.isEmpty else { return }
+        var dirty = IntRect.zero
+        for p in points {
+            dirty = dirty.union(rasterize(from: last, to: p, into: mask))
+            last = p
+        }
+        lastPoint = last
         if dirty.isEmpty { return }
         render(dirty, session: session, mask: mask)
         session.touch(dirty)
@@ -143,6 +230,7 @@ final class EraserTool: StrokeTool {
 
 final class PencilTool: StrokeTool {
     override var showsBrushOutline: Bool { false }
+    override var smooths: Bool { false }
 
     override func rasterize(from a: CGPoint, to b: CGPoint, into mask: MaskSurface) -> IntRect {
         // Bresenham one-pixel line, aliased.
@@ -213,6 +301,7 @@ final class CloneStampTool: StrokeTool {
     }
 
     override func drawOverlay(_ ctx: CGContext) {
+        super.drawOverlay(ctx)
         guard let source else { return }
         var p = source
         if session != nil, let m = canvas.mouseImagePoint {

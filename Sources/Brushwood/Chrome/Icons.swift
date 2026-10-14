@@ -432,6 +432,36 @@ enum Icons {
                     }
                 }
             }
+        case "opt.smoothing", "opt.unsmoothed":
+            // Brushwood Plus's brush smoothing: a steady curve pulled on a string, or a shaky line.
+            let on = name == "opt.smoothing"
+            return drawn(size) { r in
+                let w = r.width, h = r.height
+                let p = NSBezierPath()
+                p.move(to: NSPoint(x: w * 0.12, y: h * 0.28))
+                if on {
+                    p.curve(to: NSPoint(x: w * 0.6, y: h * 0.5), controlPoint1: NSPoint(x: w * 0.28, y: h * 0.72),
+                            controlPoint2: NSPoint(x: w * 0.42, y: h * 0.18))
+                } else {
+                    for (x, y) in [(0.22, 0.5), (0.3, 0.38), (0.4, 0.62), (0.5, 0.36), (0.6, 0.58), (0.7, 0.44), (0.8, 0.68), (0.88, 0.58)] {
+                        p.line(to: NSPoint(x: w * x, y: h * y))
+                    }
+                    p.lineJoinStyle = .round
+                }
+                p.lineWidth = w * 0.12
+                p.lineCapStyle = .round
+                dark.setStroke()
+                p.stroke()
+                guard on else { return }
+                let string = NSBezierPath()
+                string.move(to: NSPoint(x: w * 0.6, y: h * 0.5))
+                string.line(to: NSPoint(x: w * 0.8, y: h * 0.76))
+                string.lineWidth = max(1, w * 0.06)
+                blue.setStroke()
+                string.stroke()
+                blue.setFill()
+                NSBezierPath(ovalIn: NSRect(x: w * 0.71, y: h * 0.67, width: w * 0.2, height: h * 0.2)).fill()
+            }
         case "gradient.colorMode":
             return vector(size) {
                 NSGradient(starting: red, ending: blue)?.draw(in: NSRect(x: 1.5, y: 3, width: 13, height: 10), angle: 0)

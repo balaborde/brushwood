@@ -564,6 +564,9 @@ Size|Размер
 Sketch Blur|Эскизное размытие
 Small Checker Board|Мелкая шахматная доска
 Small Grid|Мелкая сетка
+Smoothing|Стабилизация
+Smoothing disabled|Стабилизация выключена
+Smoothing enabled|Стабилизация включена
 Smoothness|Плавность
 Snapshot %d|Снимок %d
 Soft Light|Мягкий свет

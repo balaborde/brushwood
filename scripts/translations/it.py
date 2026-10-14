@@ -564,6 +564,9 @@ Size|Dimensione
 Sketch Blur|Sfocatura schizzo
 Small Checker Board|Scacchiera piccola
 Small Grid|Griglia piccola
+Smoothing|Stabilizzazione
+Smoothing disabled|Stabilizzazione disattivata
+Smoothing enabled|Stabilizzazione attivata
 Smoothness|Uniformità
 Snapshot %d|Istantanea %d
 Soft Light|Luce soffusa

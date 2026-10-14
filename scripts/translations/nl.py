@@ -564,6 +564,9 @@ Size|Grootte
 Sketch Blur|Schetsvervaging
 Small Checker Board|Klein dambord
 Small Grid|Klein raster
+Smoothing|Stabilisatie
+Smoothing disabled|Stabilisatie uit
+Smoothing enabled|Stabilisatie aan
 Smoothness|Gladheid
 Snapshot %d|Momentopname %d
 Soft Light|Zacht licht

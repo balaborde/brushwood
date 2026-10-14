@@ -305,6 +305,55 @@ struct SnapshotTests {
     }
 }
 
+struct StabilizerTests {
+    func takesOutJitterAndEndsAtThePointer() {
+        var s = StrokeStabilizer(at: .zero, length: 8, spacing: 1)
+        var path: [CGPoint] = []
+        for i in 1...100 { path += s.move(to: CGPoint(x: Double(i) * 3, y: i % 2 == 0 ? 2 : -2)) }
+        let maxY = path.map { abs($0.y) }.max() ?? 99
+        expect(!path.isEmpty && maxY < 0.6, "±2 px of wobble is down to \(maxY)")
+        path += s.finish(at: CGPoint(x: 303, y: 1))
+        expect(path.last == CGPoint(x: 303, y: 1), "the stroke ends at the pointer")
+    }
+
+    func slackStringPaintsNothing() {
+        var s = StrokeStabilizer(at: CGPoint(x: 50, y: 50), length: 10, spacing: 1)
+        var path: [CGPoint] = []
+        for p in [CGPoint(x: 55, y: 50), CGPoint(x: 50, y: 58), CGPoint(x: 43, y: 45)] { path += s.move(to: p) }
+        expect(path.isEmpty && s.brush == CGPoint(x: 50, y: 50), "moving inside the string leaves the brush in place")
+        expect(s.finish(at: CGPoint(x: 50, y: 50)).isEmpty, "a click paints no path")
+    }
+
+    func pausePaintsUpToTheBrush() {
+        var s = StrokeStabilizer(at: .zero, length: 10, spacing: 1)
+        var path: [CGPoint] = []
+        for x in [20.0, 40, 60] { path += s.move(to: CGPoint(x: x, y: 0)) }
+        expect(path.last != s.brush, "the last segment waits for the next position")
+        path += s.pause()
+        expect(path.last == s.brush && s.brush == CGPoint(x: 50, y: 0), "a pause paints up to the brush")
+        expect(s.pause().isEmpty, "nothing left to paint")
+        path += s.move(to: CGPoint(x: 80, y: 0)) + s.finish(at: CGPoint(x: 80, y: 0))
+        expect(path.last == CGPoint(x: 80, y: 0) && zip(path, path.dropFirst()).allSatisfy { $0.x < $1.x }, "goes on from there")
+    }
+
+    func fastCurvesStayRound() {
+        // Half a circle in 12 pointer events, with no string: only the spline smooths.
+        let r = 100.0
+        func onCircle(_ i: Int) -> CGPoint { CGPoint(x: r * cos(Double(i) * .pi / 12), y: r * sin(Double(i) * .pi / 12)) }
+        var s = StrokeStabilizer(at: onCircle(0), length: 0, spacing: 1)
+        var path: [CGPoint] = []
+        for i in 1...12 { path += s.move(to: onCircle(i)) }
+        path += s.finish(at: onCircle(12))
+        // The first and last segments (27 points each) start and end straight, as any stroke does.
+        let inner = path.dropFirst(27).dropLast(27)
+        let worst = inner.map { abs(($0.x * $0.x + $0.y * $0.y).squareRoot() - r) }.max() ?? 99
+        let chord = r * (1 - cos(.pi / 24))
+        expect(worst < chord / 4, "off the circle by \(worst), straight segments would be off by \(chord)")
+        let gaps = zip(path, path.dropFirst()).map { hypot($0.x - $1.x, $0.y - $1.y) }
+        expect((gaps.max() ?? 99) <= 1.5, "points are about `spacing` apart")
+    }
+}
+
 struct VersionTests {
     func ordering() {
         func v(_ s: String) -> AppVersion { AppVersion(s)! }
@@ -565,6 +614,10 @@ run("SnapshotTests.editsAfterRestoreLeaveTheSnapshotAlone") { SnapshotTests().ed
 run("SnapshotTests.snapshotRestoresDeletedAndAddedLayers") { SnapshotTests().snapshotRestoresDeletedAndAddedLayers() }
 run("SnapshotTests.goingBackToTheCurrentStateAddsNothing") { SnapshotTests().goingBackToTheCurrentStateAddsNothing() }
 run("SnapshotTests.snapshotsCountInMemoryAndNamesAndReset") { SnapshotTests().snapshotsCountInMemoryAndNamesAndReset() }
+run("StabilizerTests.takesOutJitterAndEndsAtThePointer") { StabilizerTests().takesOutJitterAndEndsAtThePointer() }
+run("StabilizerTests.slackStringPaintsNothing") { StabilizerTests().slackStringPaintsNothing() }
+run("StabilizerTests.pausePaintsUpToTheBrush") { StabilizerTests().pausePaintsUpToTheBrush() }
+run("StabilizerTests.fastCurvesStayRound") { StabilizerTests().fastCurvesStayRound() }
 run("VersionTests.ordering") { VersionTests().ordering() }
 run("VersionTests.editions") { VersionTests().editions() }
 run("FileFormatTests.zipRoundTrip") { try FileFormatTests().zipRoundTrip() }

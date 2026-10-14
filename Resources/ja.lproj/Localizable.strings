@@ -563,6 +563,9 @@
 "Sketch Blur" = "ぼかし（スケッチ）";
 "Small Checker Board" = "小さな市松模様";
 "Small Grid" = "小さなグリッド";
+"Smoothing" = "手ブレ補正";
+"Smoothing disabled" = "手ブレ補正：オフ";
+"Smoothing enabled" = "手ブレ補正：オン";
 "Smoothness" = "滑らかさ";
 "Snapshot %d" = "スナップショット %d";
 "Soft Light" = "ソフトライト";

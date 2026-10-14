@@ -564,6 +564,9 @@ Size|Größe
 Sketch Blur|Skizzen-Weichzeichner
 Small Checker Board|Kleines Schachbrett
 Small Grid|Kleines Raster
+Smoothing|Stabilisierung
+Smoothing disabled|Stabilisierung aus
+Smoothing enabled|Stabilisierung ein
 Smoothness|Glätte
 Snapshot %d|Schnappschuss %d
 Soft Light|Weiches Licht

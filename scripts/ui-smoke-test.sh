@@ -40,6 +40,12 @@ run snapshots "tool:paintBucket; color:FF0000; click:10,10; key:return; snapshot
  color:00FF00; drag:400,10,400,50; expecthistory:1; gobacktosnapshot:0; expect:10,10,FF0000; expect:400,30,FF0000;
  expecthistory:2; menu:brushwoodUndo:; expect:10,10,FFFFFF; expect:400,30,00FF00; snapshot; expectsnapshots:2"
 
+# Brushwood Plus smoothing: a zigzag drawn without smoothing keeps its corners; with it, the stroke runs straight
+# through the middle and still ends at the pointer.
+run smoothing "tool:paintbrush; color:0000FF; width:6; setting:smoothing=0; path:100,300,110,292,120,308,130,292,140,308,150,292,160,308,170,292,180,308,190,292,200,308,210,292,220,308,230,292,240,308,250,292,260,308,270,292,280,308,290,292,300,308,310,300; expect:120,308,0000FF;
+ setting:smoothing=1; path:100,400,110,392,120,408,130,392,140,408,150,392,160,408,170,392,180,408,190,392,200,408,210,392,220,408,230,392,240,408,250,392,260,408,270,392,280,408,290,392,300,408,310,400; expect:120,408,FFFFFF; expect:200,400,0000FF; expect:310,400,0000FF; expecthistory:2;
+ setting:smoothing=0"
+
 # Floating windows follow their corner of the canvas when the main window is resized.
 run panels "showpanels; expectpanels; panel:1400,900; expectpanels; panel:820,560; expectpanels;
  panel:1280,820; expectpanels"

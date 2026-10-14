@@ -291,6 +291,8 @@ final class ToolSettings {
     var brushWidth: CGFloat = 2 { didSet { changed() } }
     var hardness: Double = 75 { didSet { changed() } }
     var antialiasing = true { didSet { changed() } }
+    /// Brush smoothing (Brushwood Plus): Paintbrush, Eraser, Clone Stamp and Recolor follow the pointer on a string.
+    var smoothing = false { didSet { changed() } }
     var blendMode: BlendMode = .normal { didSet { changed() } }
     /// Paint.NET's "Overwrite" mode: replace pixels (including alpha) instead of blending.
     var overwrite = false { didSet { changed() } }
@@ -336,6 +338,7 @@ final class ToolSettings {
         if d.object(forKey: "brushWidth") != nil { brushWidth = CGFloat(d.double(forKey: "brushWidth")) }
         if d.object(forKey: "hardness") != nil { hardness = d.double(forKey: "hardness") }
         if d.object(forKey: "antialiasing") != nil { antialiasing = d.bool(forKey: "antialiasing") }
+        smoothing = d.bool(forKey: "smoothing")
         if d.object(forKey: "tolerance") != nil { tolerance = d.double(forKey: "tolerance") }
         if let f = d.string(forKey: "fontName") { fontName = f }
         if d.object(forKey: "fontSize") != nil { fontSize = CGFloat(d.double(forKey: "fontSize")) }
@@ -345,6 +348,7 @@ final class ToolSettings {
         d.set(Double(brushWidth), forKey: "brushWidth")
         d.set(hardness, forKey: "hardness")
         d.set(antialiasing, forKey: "antialiasing")
+        d.set(smoothing, forKey: "smoothing")
         d.set(tolerance, forKey: "tolerance")
         d.set(fontName, forKey: "fontName")
         d.set(Double(fontSize), forKey: "fontSize")

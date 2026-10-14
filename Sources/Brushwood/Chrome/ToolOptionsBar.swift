@@ -117,12 +117,14 @@ final class ToolOptionsBar: NSView {
             hardness()
             add(ToolbarSeparator())
             antialiasing()
+            smoothing()
             blendMode()
         case .eraser:
             brushWidth()
             hardness()
             add(ToolbarSeparator())
             antialiasing()
+            smoothing()
         case .pencil:
             blendMode()
         case .colorPicker:
@@ -132,6 +134,7 @@ final class ToolOptionsBar: NSView {
             hardness()
             add(ToolbarSeparator())
             antialiasing()
+            smoothing()
             blendMode()
         case .recolor:
             brushWidth()
@@ -139,6 +142,7 @@ final class ToolOptionsBar: NSView {
             tolerance()
             add(ToolbarSeparator())
             antialiasing()
+            smoothing()
         case .text:
             fontOptions()
             add(ToolbarSeparator())
@@ -296,6 +300,19 @@ final class ToolOptionsBar: NSView {
             b.isToggled = on
             b.image = Icons.image(on ? "opt.antialias" : "opt.aliased", size: 16)
             b.toolTip = on ? L("Antialiasing enabled") : L("Antialiasing disabled")
+        }
+        add(b)
+    }
+
+    private func smoothing() {
+        // Brushwood Plus's brush smoothing, toggled like Antialiasing.
+        let b = ToolbarButton(icon: "opt.smoothing", tooltip: L("Smoothing"), target: nil, action: nil, size: 24)
+        b.onAction { [weak self] _ in self?.s.smoothing.toggle() }
+        refreshers.append { [weak self] in
+            let on = self?.s.smoothing == true
+            b.isToggled = on
+            b.image = Icons.image(on ? "opt.smoothing" : "opt.unsmoothed", size: 16)
+            b.toolTip = on ? L("Smoothing enabled") : L("Smoothing disabled")
         }
         add(b)
     }

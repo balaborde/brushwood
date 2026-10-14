@@ -564,6 +564,9 @@ Size|크기
 Sketch Blur|스케치 흐림
 Small Checker Board|작은 바둑판
 Small Grid|작은 격자
+Smoothing|손떨림 보정
+Smoothing disabled|손떨림 보정 끔
+Smoothing enabled|손떨림 보정 켬
 Smoothness|매끄러움
 Snapshot %d|스냅샷 %d
 Soft Light|소프트 라이트
