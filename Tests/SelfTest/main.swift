@@ -210,6 +210,18 @@ struct VersionTests {
         expect(v("1.0.1").description == "1.0.1")
         expect(AppVersion("") == nil && AppVersion("1.0-beta") == nil && AppVersion("1..2") == nil, "rejects malformed versions")
     }
+
+    func editions() {
+        func v(_ s: String) -> AppVersion { AppVersion(s)! }
+        expect(v("v1.0.3-plus.1").edition == "plus" && v("1.0.3-plus.1").revision == 1, "reads the edition suffix")
+        expect(v("1.0.3").edition == nil && v("1.0.3").revision == 0)
+        expect(v("1.0.3-plus.2") > v("1.0.3-plus.1"), "a later revision is newer")
+        expect(v("1.0.3-plus.1") > v("1.0.3"), "an edition comes after its base release")
+        expect(v("1.0.4-plus.1") > v("1.0.3-plus.9"), "a newer base wins over the revision")
+        expect(v("1.0.3-plus.1").description == "1.0.3-plus.1")
+        expect(AppVersion("1.0.3-plus") == nil && AppVersion("1.0.3-plus.0") == nil && AppVersion("1.0.3-.1") == nil
+               && AppVersion("1.0.3-plus.1.2") == nil && AppVersion("x-plus.1") == nil, "rejects malformed edition versions")
+    }
 }
 
 struct FileFormatTests {
@@ -443,6 +455,7 @@ run("DocumentTests.historyUndoRedoPixels") { DocumentTests().historyUndoRedoPixe
 run("DocumentTests.historyMemoryLimitDropsOldestSteps") { DocumentTests().historyMemoryLimitDropsOldestSteps() }
 run("DocumentTests.structuralHistoryRestoresLayers") { DocumentTests().structuralHistoryRestoresLayers() }
 run("VersionTests.ordering") { VersionTests().ordering() }
+run("VersionTests.editions") { VersionTests().editions() }
 run("FileFormatTests.zipRoundTrip") { try FileFormatTests().zipRoundTrip() }
 run("FileFormatTests.openRasterRoundTrip") { try FileFormatTests().openRasterRoundTrip() }
 run("FileFormatTests.gzipDecode") { try FileFormatTests().gzipDecode() }

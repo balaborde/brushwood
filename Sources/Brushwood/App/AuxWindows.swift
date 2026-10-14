@@ -60,6 +60,7 @@ enum AppIcon {
             NSColor.black.withAlphaComponent(0.12).setStroke()
             shape.lineWidth = 3 * s
             shape.stroke()
+            Edition.drawBadge(scale: s)
             return true
         }
     }

@@ -10,7 +10,7 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 
 OUT="docs/images"
-DOMAIN="app.brushwood.Brushwood"
+DOMAIN="app.brushwood.Brushwood.Plus"
 WORK="$(mktemp -d)"
 mkdir -p "$OUT"
 
@@ -68,13 +68,13 @@ shot dark-french.png fr fr_FR 2 "$DONE tool:text; color:FFFFFF; setting:fontsize
 
 # Install window of the disk image, when it has been built.
 DMG="$(ls -t build/Brushwood-*.dmg 2>/dev/null | head -1 || true)"
-if [ -n "$DMG" ] && [ ! -e /Volumes/Brushwood ]; then
+if [ -n "$DMG" ] && [ ! -e "/Volumes/Brushwood Plus" ]; then
     hdiutil attach "$DMG" -quiet
-    osascript -e 'tell application "Finder" to open disk "Brushwood"' -e 'tell application "Finder" to activate' >/dev/null
+    osascript -e 'tell application "Finder" to open disk "Brushwood Plus"' -e 'tell application "Finder" to activate' >/dev/null
     sleep 2
-    "$HELPER" capture-finder Brushwood "$OUT/install.png" 1000
-    osascript -e 'tell application "Finder" to close window "Brushwood"' >/dev/null
-    hdiutil detach /Volumes/Brushwood -quiet
+    "$HELPER" capture-finder "Brushwood Plus" "$OUT/install.png" 1000
+    osascript -e 'tell application "Finder" to close window "Brushwood Plus"' >/dev/null
+    hdiutil detach "/Volumes/Brushwood Plus" -quiet
     echo "Captured $OUT/install.png"
 fi
 du -h "$OUT"/*.png

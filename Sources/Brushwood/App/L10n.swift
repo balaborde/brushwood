@@ -2,7 +2,7 @@ import Foundation
 
 /// Localized UI string. Keys are the English text; translations live in `<lang>.lproj/Localizable.strings`.
 @inline(__always) func L(_ key: String) -> String {
-    Bundle.main.localizedString(forKey: key, value: key, table: nil)
+    Edition.brand(Bundle.main.localizedString(forKey: key, value: key, table: nil))
 }
 
 /// Localized format string.

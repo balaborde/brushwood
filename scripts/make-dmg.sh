@@ -1,6 +1,7 @@
 #!/bin/bash
-# Builds a universal Brushwood.app (Apple silicon + Intel) and packages it as build/Brushwood-<version>.dmg,
-# which opens on a window where the app is dragged onto the Applications folder.
+# Builds a universal Brushwood.app (Apple silicon + Intel) and packages it as "Brushwood Plus.app" in
+# build/Brushwood-<version>.dmg, which opens on a window where the app is dragged onto the Applications folder.
+# Publish the disk image as a pre-release (or untick "Set as the latest release"): Brushwood updates to the latest one.
 #
 # By default the app is only ad-hoc signed: it works, but the first time it is opened macOS asks people to
 # allow it in System Settings › Privacy & Security (see README › Installing). With a paid Apple Developer
@@ -13,7 +14,7 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 
 VERSION="$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" Resources/Info.plist)"
-VOLUME="Brushwood"
+VOLUME="Brushwood Plus"
 MOUNT="/Volumes/$VOLUME"
 APP="build/Brushwood.app"
 DMG="build/Brushwood-$VERSION.dmg"
@@ -40,7 +41,7 @@ trap cleanup EXIT
 # Contents: the app, a link to /Applications, the background picture and the volume icon.
 STAGE="$WORK/stage"
 mkdir -p "$STAGE/.background"
-ditto "$APP" "$STAGE/Brushwood.app"
+ditto "$APP" "$STAGE/$VOLUME.app"
 ln -s /Applications "$STAGE/Applications"
 swift scripts/dmg-background.swift "$WORK/background.png" "$WORK/background@2x.png"
 tiffutil -cathidpicheck "$WORK/background.png" "$WORK/background@2x.png" -out "$STAGE/.background/background.tiff" >/dev/null 2>&1
@@ -71,7 +72,7 @@ tell application "Finder"
         set icon size of viewOptions to 128
         set text size of viewOptions to 13
         set background picture of viewOptions to file ".background:background.tiff"
-        set position of item "Brushwood.app" of container window to {170, 190}
+        set position of item "$VOLUME.app" of container window to {170, 190}
         set position of item "Applications" of container window to {470, 190}
         close
         open

@@ -29,7 +29,7 @@ final class MainWindowController: NSWindowController, NSWindowDelegate, NSMenuIt
         let window = DropWindow(contentRect: NSRect(x: 0, y: 0, width: 1280, height: 820),
                               styleMask: [.titled, .closable, .miniaturizable, .resizable], backing: .buffered, defer: false)
         window.minSize = NSSize(width: 760, height: 480)
-        window.title = "Brushwood"
+        window.title = Edition.name
         window.setFrameAutosaveName("BrushwoodMainWindow")
         window.tabbingMode = .disallowed
         window.collectionBehavior = [.fullScreenPrimary]
@@ -330,7 +330,7 @@ final class MainWindowController: NSWindowController, NSWindowDelegate, NSMenuIt
             window.isDocumentEdited = ws.document.isDirty
             window.subtitle = "\(ws.document.width) × \(ws.document.height)"
         } else {
-            window.title = "Brushwood"
+            window.title = Edition.name
             window.subtitle = ""
             window.representedURL = nil
             window.isDocumentEdited = false

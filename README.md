@@ -24,6 +24,15 @@ editable shapes and selections, and the full set of Adjustments and Effects with
 Brushwood is an independent project. It is not affiliated with or endorsed by dotPDN LLC; "Paint.NET" is a trademark of its
 owner. No Paint.NET code, icons or other assets are used — every icon is drawn in code.
 
+## Brushwood Plus
+
+This branch, `plus`, builds **Brushwood Plus**: Brushwood with extra features that Paint.NET does not have but that make
+everyday editing easier. Each Brushwood release is merged into it.
+
+Brushwood Plus is a separate app that installs next to Brushwood, with its own name, its own settings and a "+" on its
+icon. **Check for Updates…** only offers Plus versions. A Plus version is the Brushwood version it is based on followed
+by a revision: `1.0.3-plus.1`, `1.0.3-plus.2`, then `1.0.4-plus.1` once Brushwood 1.0.4 is merged.
+
 ## Installing
 
 1. Download **Brushwood-<version>.dmg** from the [latest release](https://github.com/balaborde/brushwood/releases/latest).
@@ -169,13 +178,15 @@ Finder. Attach the .dmg to a GitHub release.
 
 For **Check for Updates…** to find a release, publish it on GitHub with:
 
-- a tag `v<version>`, where `<version>` is the app's `CFBundleShortVersionString` (for example `v1.0.2`);
+- a tag `v<version>`, where `<version>` is the app's `CFBundleShortVersionString` (for example `v1.0.3-plus.1`);
+- **Brushwood Plus only:** the release marked as a pre-release, or with "Set as the latest release" unticked. Brushwood
+  offers the latest release to its users, while Brushwood Plus looks through all releases for its own tags;
 - the disk image attached (the first `.dmg` file of the release is the one installed);
 - release notes in Markdown: Brushwood shows them in its update window, up to a heading that starts with "Install"
   (download instructions are not needed there).
 
 Increase `CFBundleVersion` (the build number) by one for each release as well. To try the updater without publishing,
-point it at a local copy of the GitHub API's answer: `BRUSHWOOD_UPDATE_FEED=file:///path/to/release.json`.
+point it at a local copy of the GitHub API's list of releases: `BRUSHWOOD_UPDATE_FEED=file:///path/to/releases.json`.
 
 With a paid Apple Developer account, the app and the disk image can be signed with a Developer ID and notarized, so
 macOS opens Brushwood without the first-launch warning:
