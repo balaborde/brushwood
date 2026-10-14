@@ -50,6 +50,7 @@ enum MainMenu {
         let m = NSMenu(title: Edition.name)
         add(m, L("About Brushwood"), #selector(AppDelegate.showAbout(_:)), target: d)
         add(m, L("Plus Features…"), #selector(AppDelegate.showPlusFeatures(_:)), target: d)
+        add(m, L("Tutorial…"), #selector(AppDelegate.showTutorial(_:)), target: d)
         add(m, L("Check for Updates…"), #selector(AppDelegate.checkForUpdates(_:)), target: d)
         add(m, L("Support Brushwood…"), #selector(AppDelegate.showSupport(_:)), target: d)
         m.addItem(.separator())
@@ -270,6 +271,8 @@ enum MainMenu {
         f1.isHidden = true
         f1.allowsKeyEquivalentWhenHidden = true
         add(m, L("Keyboard Shortcuts"), #selector(AppDelegate.showShortcuts(_:)), target: d)
+        m.addItem(.separator())
+        add(m, L("Tutorial…"), #selector(AppDelegate.showTutorial(_:)), target: d)
         return m
     }
 }

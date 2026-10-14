@@ -3,6 +3,7 @@
 T = dict(line.split('|', 1) for line in r"""
 %@ copy|Cópia de %@
 %@ of %@|%@ de %@
+%d of %d|%d de %d
 %d x %d Region|Região de %d x %d
 10 Percent|10 por cento
 20 Percent|20 por cento
@@ -19,7 +20,9 @@ T = dict(line.split('|', 1) for line in r"""
 90 Percent|90 por cento
 A free, open-source image editor for macOS, modeled on the workflow of Paint.NET.\n\nLicensed under the MIT License.\nNot affiliated with or endorsed by dotPDN LLC. Paint.NET is a trademark of its respective owner.|Um editor de imagens gratuito e de código aberto para macOS, inspirado no fluxo de trabalho do Paint.NET.\n\nDistribuído sob a licença MIT.\nSem afiliação nem endosso da dotPDN LLC. Paint.NET é uma marca registrada de seu proprietário.
 A new version of Brushwood is available|Uma nova versão do Brushwood está disponível
+A solid line, or one of the dash patterns.|Uma linha contínua ou um dos padrões tracejados.
 A star on GitHub also helps more people find Brushwood, and it means a lot.|Uma estrela no GitHub também ajuda mais pessoas a encontrar o Brushwood, e significa muito.
+A stroke released near where it started is joined to its start, so circles and outlines close cleanly.|Um traço solto perto de onde começou se une ao início, para que círculos e contornos fechem direitinho.
 About Brushwood|Sobre o Brushwood
 Actual Size|Tamanho real
 Add (union)|Adicionar (união)
@@ -32,6 +35,7 @@ After click|Após o clique
 After click:|Após o clique:
 Algorithm|Algoritmo
 Aliased|Serrilhado
+Alignment|Alinhamento
 Amount|Quantidade
 Anchor|Âncora
 Angle|Ângulo
@@ -44,10 +48,12 @@ Appearance|Aparência
 Arrow|Seta
 Arrows|Setas
 Artistic|Artístico
+At 100%, the brush has a hard edge; lower values make its edge softer.|Em 100%, o pincel tem uma borda dura; valores menores deixam a borda mais suave.
 Auto|Auto
 Auto-Level|Nível automático
 Auto-Level, Black and White, Brightness / Contrast, Curves|Nível automático, Preto e branco, Brilho / Contraste, Curvas
 Auto-detect|Detectar automaticamente
+Back|Voltar
 Back to %@|Voltar a %@
 Background|Plano de fundo
 Backward Diagonal|Diagonal para trás
@@ -55,6 +61,7 @@ Basic|Básicas
 Best Quality|Melhor qualidade
 Bicubic|Bicúbico
 Bilinear|Bilinear
+Bilinear gives smooth results when scaling or rotating; Nearest Neighbor keeps hard pixel edges.|Bilinear dá resultados suaves ao redimensionar ou girar; Vizinho mais próximo mantém nítidas as bordas dos pixels.
 Bit Depth|Profundidade de bits
 Black and White|Preto e branco
 Blend|Mesclar
@@ -118,6 +125,7 @@ Click to go back to this snapshot. Snapshots are not saved in the file.|Clique p
 Click to select a region of similar color. ⌘ adds, ⌥ subtracts, right-click inverts. Shift-click for global selection.|Clique para selecionar uma região de cor semelhante. ⌘ adiciona, ⌥ subtrai, o clique direito inverte. Shift+clique para seleção global.
 Clipping:|Recorte:
 Clone Stamp|Carimbo de clonagem
+Clone Stamp and Recolor|Carimbo de clonagem e Recolorir
 Clone source set at %d, %d|Origem da clonagem definida em %d, %d
 Close|Fechar
 Close Others|Fechar outras
@@ -131,6 +139,8 @@ Color Mode|Modo de cor
 Color Picker|Seletor de cores
 Color Saturation|Saturação de cor
 Color count|Número de cores
+Color mode goes from the primary to the secondary color. Transparency mode fades the layer out instead.|O modo de cor vai da cor primária à secundária. O modo de transparência, em vez disso, faz a camada sumir aos poucos.
+Color or transparency|Cor ou transparência
 Color range|Intervalo de cores
 Coloring|Coloração
 Colors|Cores
@@ -138,12 +148,14 @@ Colors (F8)|Cores (F8)
 Commands|Comandos
 Conical|Cônico
 Contiguous|Contíguo
+Contiguous only reaches the similar pixels that touch the one you click; Global reaches them everywhere in the image.|Contíguo alcança só os pixels parecidos que tocam aquele em que você clica; Global os alcança em toda a imagem.
 Contrast|Contraste
 Copy|Copiar
 Copy (⌘C)|Copiar (⌘C)
 Copy / paste the selection outline|Copiar / colar o contorno da seleção
 Copy Merged|Copiar mesclado
 Copy Selection|Copiar seleção
+Copy part of the image elsewhere, or replace one color with another.|Copiar parte da imagem para outro lugar, ou trocar uma cor por outra.
 Could not check for updates|Não foi possível buscar atualizações
 Could not open \"%@\"|Não foi possível abrir “%@”
 Could not save \"%@\"|Não foi possível salvar “%@”
@@ -203,8 +215,12 @@ Drag the selection to move it. Drag the handles to scale. Drag with the right mo
 Draw Filled Shape|Forma preenchida
 Draw Filled Shape With Outline|Forma preenchida com contorno
 Draw Shape Outline|Contorno da forma
+Draw lines and curves, and choose among 31 shapes.|Desenhar linhas e curvas, e escolher entre 31 formas.
+Draw the outline, the inside, or both. The primary color draws; with both, the inside takes the secondary color.|Desenhe o contorno, o interior ou ambos. A cor primária desenha; com ambos, o interior fica com a cor secundária.
 Drop Shadow|Sombra projetada
 Duplicate Layer|Duplicar camada
+Each Brushwood Plus feature can be turned on or off here, one by one or by category. This window is also in Brushwood Plus › Plus Features…|Aqui você ativa ou desativa cada recurso do Brushwood Plus, um a um ou por categoria. Esta janela também está em Brushwood Plus › Recursos Plus…
+Each step shows when it was made. Right-click in the History window to show how long ago instead, or to hide the times.|Cada etapa mostra quando foi feita. Clique com o botão direito na janela Histórico para mostrar há quanto tempo, ou para ocultar os horários.
 Edge Behavior|Comportamento das bordas
 Edge Detect|Detecção de bordas
 Edit|Editar
@@ -214,6 +230,7 @@ Ellipse|Elipse
 Ellipse Callout|Balão elíptico
 Ellipse Select|Seleção elíptica
 Emboss|Entalhe
+End Tutorial|Encerrar tutorial
 End cap|Terminação final
 End:|Fim:
 Enter Full Screen|Entrar em tela cheia
@@ -221,6 +238,8 @@ Erase Selection|Apagar seleção
 Eraser|Borracha
 Erode|Erodir
 Euclidean|Euclidiana
+Every change is a step. Click a step to go back to it, and click it again to compare before and after. Undo and Redo are at the bottom.|Cada alteração é uma etapa. Clique em uma etapa para voltar a ela, e de novo para comparar o antes e o depois. Desfazer e Refazer ficam embaixo.
+Everyday commands: new, open, save, cut, copy, paste, undo and redo. The thumbnails are your open images, and the buttons on the right show or hide the floating windows.|Os comandos do dia a dia: novo, abrir, salvar, recortar, copiar, colar, desfazer e refazer. As miniaturas são as suas imagens abertas, e os botões à direita mostram ou ocultam as janelas flutuantes.
 Expand canvas|Expandir a tela
 Explosion|Explosão
 Exposure|Exposição
@@ -231,7 +250,10 @@ File|Arquivo
 File size: %@|Tamanho do arquivo: %@
 Files|Arquivos
 Fill Selection|Preencher seleção
+Fill an area with a color, a pattern or a gradient.|Preencher uma área com uma cor, um padrão ou um gradiente.
+Fill and Color|Preenchimento e cor
 Fill style|Estilo de preenchimento
+Fill with the plain color, or with a pattern of the primary and secondary colors.|Preencha com a cor lisa, ou com um padrão das cores primária e secundária.
 Fill:|Preenchimento:
 Filled Arrow|Seta preenchida
 Finish|Concluir
@@ -258,9 +280,11 @@ Gamma|Gama
 Gamma Boost|Reforço de gama
 Gaussian Blur|Desfoque gaussiano
 General|Geral
+Getting Started|Primeiros passos
 Global|Global
 Glow|Fulgor
 Go Back to This Snapshot|Voltar a este instantâneo
+Go straight to 5, 10, 15… for the brush width.|Ir direto para 5, 10, 15… na largura do pincel.
 Go to Bottom Layer|Ir para a camada mais baixa
 Go to Layer Above|Ir para a camada acima
 Go to Layer Below|Ir para a camada abaixo
@@ -286,11 +310,17 @@ Highlight boost|Reforço de realces
 Highlights|Realces
 Highlights / Shadows|Realces / Sombras
 Hint: For best results, first use the selection tools to select each eye.|Dica: para obter melhores resultados, selecione primeiro cada olho com as ferramentas de seleção.
+Hints for the current tool, the size of the selection, the pointer position, the units and the zoom.|Dicas da ferramenta atual, o tamanho da seleção, a posição do ponteiro, as unidades e o zoom.
 History|Histórico
 History (F6)|Histórico (F6)
+History Times and Snapshots|Horários e instantâneos do histórico
 Hold to pan|Segure para mover a vista
 Horizontal|Horizontal
 Horizontal Brick|Tijolos horizontais
+How a new selection combines with the current one: replace it, add to it, subtract from it, keep only where they overlap, or invert where they overlap.|Como uma nova seleção se combina com a atual: substituí-la, somar, subtrair, manter só a parte em comum ou inverter a parte em comum.
+How different a color can be and still count as similar. At 0%, only the exact same color counts.|Quanto uma cor pode ser diferente e ainda contar como parecida. Em 0%, só conta exatamente a mesma cor.
+How the line starts and ends: flat, rounded, or with an arrow.|Como a linha começa e termina: reta, arredondada ou com uma seta.
+How the paint mixes with the pixels below it. Overwrite replaces them, transparency included.|Como a tinta se mistura com os pixels de baixo. Sobrescrever os substitui, transparência incluída.
 Hue|Matiz
 Hue / Saturation|Matiz / Saturação
 Hue / Saturation, Invert Alpha, Invert Colors, Levels|Matiz / Saturação, Inverter alfa, Inverter cores, Níveis
@@ -356,10 +386,15 @@ Lightness|Luminosidade
 Lightning|Relâmpago
 Line|Linha
 Line / Curve|Linha / Curva
+Line ends|Pontas da linha
 Linear|Linear
 Linear (Diamond)|Linear (losango)
 Linear (Reflected)|Linear (refletido)
+Lines and Shapes|Linhas e formas
+Lines of text line up on the left, in the center or on the right.|As linhas do texto se alinham à esquerda, ao centro ou à direita.
 Linked|Vinculados
+Look at the colors of the current layer only, or of the whole image.|Olhar as cores só da camada atual, ou da imagem inteira.
+Look closer, and move around the image.|Ver mais de perto e se mover pela imagem.
 Luminosity|Luminosidade
 Magic Wand|Varinha mágica
 Magnetic Closing|Fechamento magnético
@@ -387,6 +422,8 @@ Move Layer to Bottom|Mover camada para o fundo
 Move Layer to Top|Mover camada para o topo
 Move Selected Pixels|Mover pixels selecionados
 Move Selection|Mover seleção
+Move, scale and rotate a selection or what it contains.|Mover, redimensionar e girar uma seleção ou o que ela contém.
+Moving Pixels and Selections|Mover pixels e seleções
 Multiply|Multiplicar
 NEW|NOVO
 Name:|Nome:
@@ -399,12 +436,15 @@ New Snapshot|Novo instantâneo
 New size: %@|Novo tamanho: %@
 New size: %d × %d (%@)|Novo tamanho: %d × %d (%@)
 New…|Novo…
+Next|Avançar
 Next Image|Próxima imagem
 Next image|Próxima imagem
 No Repeat|Sem repetição
 No download is available for this version yet.|Ainda não há download disponível para esta versão.
 Noise|Ruído
 Normal|Normal
+Normal, or a fixed ratio or a fixed size, for a selection with exact proportions or dimensions.|Normal, ou proporção fixa ou tamanho fixo, para uma seleção com proporções ou medidas exatas.
+Not Now|Agora não
 Number of cells|Número de células
 OK|OK
 Object|Objeto
@@ -413,6 +453,7 @@ Octaves|Oitavas
 Octree|Octree
 Offset|Deslocamento
 Oil Painting|Pintura a óleo
+On, edges are smooth. Off, they are hard and pixelated.|Ativado, as bordas ficam suaves. Desativado, ficam duras e pixeladas.
 Opacity|Opacidade
 Opacity:|Opacidade:
 Open|Abrir
@@ -424,14 +465,18 @@ Open…|Abrir…
 Original|Original
 Outline|Contorno
 Outline Object|Contornar objeto
+Outline or fill|Contorno ou preenchimento
 Outlined Diamond|Losangos contornados
 Output black|Preto de saída
 Output white|Branco de saída
 Overlay|Sobreposição
 Overwrite|Sobrescrever
 Paint Bucket|Balde de tinta
+Paint Bucket and Gradient|Balde de tinta e Gradiente
 Paintbrush|Pincel
+Paintbrush, eraser and pencil, and their settings.|Pincel, borracha e lápis, e seus ajustes.
 Painting|Pintura
+Painting Tools|Ferramentas de pintura
 Palette|Paleta
 Pan|Mão
 Parallelogram|Paralelogramo
@@ -448,6 +493,8 @@ Pentagon|Pentágono
 Percentile|Percentil
 Period|Período
 Photo|Foto
+Pick a tool here, or press its letter on the keyboard (the tooltip shows it). Pressing the letter again switches between the tools that share it.|Escolha aqui uma ferramenta, ou pressione a letra dela no teclado (a dica mostra qual é). Pressionar a letra de novo alterna entre as ferramentas que a compartilham.
+Pick a tour and click Start. Each one points at the parts of the window it explains.|Escolha um tour e clique em Começar. Cada um aponta as partes da janela que explica.
 Pixel Grid|Grade de pixels
 Pixel Grid (⌘')|Grade de pixels (⌘')
 Pixel size|Tamanho do pixel
@@ -484,6 +531,8 @@ Recolor|Recolorir
 Rectangle|Retângulo
 Rectangle Callout|Balão retangular
 Rectangle Select|Seleção retangular
+Rectangle, lasso, ellipse and magic wand, and how selections combine.|Retângulo, laço, elipse e varinha mágica, e como as seleções se combinam.
+Rectangles, ellipses, polygons, stars, arrows, callouts and symbols.|Retângulos, elipses, polígonos, estrelas, setas, balões e símbolos.
 Red|Vermelho
 Red Eye Removal|Remoção de olhos vermelhos
 Redo|Refazer
@@ -556,6 +605,7 @@ Seed|Semente
 Select All|Selecionar tudo
 Select All / Deselect|Selecionar tudo / Desmarcar
 Selection|Seleção
+Selection Tools|Ferramentas de seleção
 Selection clipping|Recorte pela seleção
 Selection drawing mode|Modo de desenho da seleção
 Selection mode:|Modo de seleção:
@@ -574,6 +624,7 @@ Shapes|Formas
 Shapes, lines, gradients, text and paint bucket fills stay editable after you draw them: drag their handles or change options in the tool bar. Press Return or switch tools to finish, Escape or ⌘Z to cancel.|Formas, linhas, gradientes, textos e preenchimentos com o balde continuam editáveis depois de desenhados: arraste as alças ou altere as opções na barra de ferramentas. Pressione Return ou troque de ferramenta para concluir, Esc ou ⌘Z para cancelar.
 Sharpen|Nitidez
 Shingle|Telhas
+Short guided tours show where things are and what each tool and its settings do. Pick one to start; the others stay in Help › Tutorial…|Tours guiados curtos mostram onde fica cada coisa e para que servem cada ferramenta e seus ajustes. Escolha um para começar; os outros continuam em Ajuda › Tutorial…
 Show All|Mostrar tudo
 Show Time Elapsed|Mostrar o tempo decorrido
 Show Time of Day|Mostrar a hora
@@ -586,6 +637,7 @@ Sketch Blur|Desfoque de esboço
 Small Checker Board|Tabuleiro de xadrez pequeno
 Small Grid|Grade pequena
 Smoothing|Estabilização
+Smoothing and Magnetic Closing|Estabilização e fechamento magnético
 Smoothing disabled|Estabilização desativada
 Smoothing enabled|Estabilização ativada
 Smoothness|Suavidade
@@ -604,8 +656,12 @@ Spiral (Clockwise)|Espiral (horário)
 Spiral (Counter-clockwise)|Espiral (anti-horário)
 Square Blur|Desfoque quadrado
 Stars|Estrelas
+Start|Começar
 Start cap|Terminação inicial
 Start:|Início:
+Status bar|Barra de status
+Stay on the Color Picker after picking, go back to the previous tool, or switch to the Pencil.|Continuar no Seletor de cores depois de pegar a cor, voltar à ferramenta anterior ou passar para o Lápis.
+Steadier strokes, and outlines that close by themselves.|Traços mais firmes, e contornos que se fecham sozinhos.
 Steadies strokes: the brush follows the pointer on a string. For the Paintbrush, Eraser, Clone Stamp and Recolor tools.|Estabiliza os traços: o pincel segue o ponteiro preso a um cordão. Para as ferramentas Pincel, Borracha, Carimbo de clonagem e Recolorir.
 Straighten|Endireitar
 Strength|Força
@@ -622,16 +678,30 @@ Swap primary and secondary colors|Trocar as cores primária e secundária
 Switch to Pencil tool|Mudar para o lápis
 Switch to previous tool|Voltar à ferramenta anterior
 Symbols|Símbolos
+Take a Quick Tour?|Que tal um tour rápido?
+Take a color from the image.|Pegar uma cor da imagem.
+Take a single pixel or the average of a square around it, from the current layer or the whole image.|Pegue um único pixel ou a média de um quadrado em volta dele, da camada atual ou da imagem inteira.
 Temperature|Temperatura
 Temperature and Tint|Temperatura e tonalidade
 Tension|Tensão
 Text|Texto
+Text and Shapes|Texto e formas
 Thank you for being here.|Obrigado por estar aqui.
+The Brushwood Window|A janela do Brushwood
+The bar under the toolbar shows the settings of the current tool. They change with the tool and are kept for next time.|A barra sob a barra principal mostra os ajustes da ferramenta atual. Eles mudam com a ferramenta e ficam guardados para a próxima vez.
+The brush follows the pointer on a string, which takes out hand tremor. While it is on, the length of the string can be set next to it.|O pincel segue o ponteiro preso a um cordão, o que elimina o tremor da mão. Enquanto ela estiver ativada, o comprimento do cordão se ajusta ao lado.
 The downloaded file is damaged. Try again later.|O arquivo baixado está danificado. Tente novamente mais tarde.
+The font, its size and its style: bold, italic, underline and strikethrough.|A fonte, o tamanho e o estilo: negrito, itálico, sublinhado e tachado.
 The image being pasted is larger than the canvas size. What would you like to do?|A imagem colada é maior que a tela. O que você deseja fazer?
+The image is a stack of layers. Add, delete, duplicate and move them with the buttons at the bottom; double-click a layer for its properties.|A imagem é uma pilha de camadas. Adicione, exclua, duplique e mova camadas com os botões embaixo; clique duas vezes em uma camada para ver suas propriedades.
+The left mouse button paints with the primary color, the right one with the secondary color. Click a color of the palette to pick it, or right-click it for the secondary color.|O botão esquerdo do mouse pinta com a cor primária, o direito com a secundária. Clique em uma cor da paleta para escolhê-la, ou clique com o botão direito para a cor secundária.
+The shape of the gradient: linear, reflected, diamond, radial, conical or spiral.|A forma do gradiente: linear, refletido, losango, radial, cônico ou espiral.
+The size of the brush, in pixels. The mouse wheel over the field and the [ and ] keys change it too.|O tamanho do pincel, em pixels. A roda do mouse sobre o campo e as teclas [ e ] também mudam o tamanho.
 The update could not be installed|Não foi possível instalar a atualização
 These blend modes will be saved as Normal in the .pdn file: %@. Save as OpenRaster (.ora) to keep them.|Estes modos de mesclagem serão salvos como Normal no arquivo .pdn: %@. Salve como OpenRaster (.ora) para mantê-los.
+These buttons go up or down to the next multiple of 5: 1, 5, 10, 15…|Estes botões sobem ou descem para o próximo múltiplo de 5: 1, 5, 10, 15…
 Thickness|Espessura
+This button keeps a full copy of the image, listed at the top of the History window. Click the snapshot to bring the image back to it at any time, even after undoing or new edits.|Este botão guarda uma cópia completa da imagem, listada no topo da janela Histórico. Clique no instantâneo para voltar a essa imagem a qualquer momento, mesmo depois de desfazer ou de novas edições.
 This file format does not support layers. The saved file will contain a flattened copy of the image; your layers are kept in Brushwood.|Este formato de arquivo não suporta camadas. O arquivo salvo conterá uma cópia achatada da imagem; suas camadas são mantidas no Brushwood.
 This is not a Paint.NET (.pdn) file.|Este não é um arquivo do Paint.NET (.pdn).
 Threshold|Limiar
@@ -644,7 +714,9 @@ Toggle Layer Visibility|Mostrar/ocultar camada
 Tolerance|Tolerância
 Tolerance:|Tolerância:
 Tool Bar|Barra de ferramentas
+Tool options|Opções da ferramenta
 Tool:|Ferramenta:
+Toolbar|Barra principal
 Tools|Ferramentas
 Tools (F5)|Ferramentas (F5)
 Tools, History, Layers, Colors windows|Janelas Ferramentas, Histórico, Camadas, Cores
@@ -656,7 +728,12 @@ Trellis|Treliça
 Triangle|Triângulo
 Triangle Repeat|Repetição triangular
 Turbulence|Turbulência
+Turn each Brushwood Plus feature on or off.|Ativar ou desativar cada recurso do Brushwood Plus.
+Turn its features on in Plus Features to follow this tour.|Ative os recursos dele em Recursos Plus para seguir este tour.
+Tutorial|Tutorial
+Tutorial…|Tutorial…
 Twist|Torção
+Type text, and choose its font.|Digitar texto e escolher a fonte.
 Underline|Sublinhado
 Undo|Desfazer
 Undo %@|Desfazer “%@”
@@ -679,8 +756,13 @@ Warmth|Calor
 Wave|Onda
 Weave|Trama
 Welcome to Brushwood|Bem-vindo ao Brushwood
+What happens past the ends of the gradient: nothing, or it repeats as a sawtooth or a triangle.|O que acontece além das pontas do gradiente: nada, ou ele se repete como dente de serra ou triângulo.
+What you draw with this tool keeps its handles, so you can still change it, until you click Finish or press Return.|O que você desenha com esta ferramenta mantém as alças, para ainda poder mudar, até você clicar em Concluir ou pressionar Return.
 What's New|Novidades
 What's New in Brushwood Plus|Novidades do Brushwood Plus
+When each step was made, and copies of the image to come back to.|Quando cada etapa foi feita, e cópias da imagem para onde voltar.
+When part of the image is selected, painting stays inside the selection. Antialiased softens its edge.|Quando parte da imagem está selecionada, a pintura fica dentro da seleção. Suavizado suaviza a borda dela.
+Where everything is: toolbar, floating windows and status bar.|Onde fica cada coisa: barra principal, janelas flutuantes e barra de status.
 White|Branco
 Width|Largura
 Width:|Largura:
@@ -694,6 +776,7 @@ Zoom Blur|Desfoque de zoom
 Zoom In|Ampliar
 Zoom In / Out|Ampliar / Reduzir
 Zoom Out|Reduzir
+Zoom and Pan|Zoom e mão
 Zoom to Selection|Zoom na seleção
 Zoom to Window|Ajustar à janela
 centimeters|centímetros

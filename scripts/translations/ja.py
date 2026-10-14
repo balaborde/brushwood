@@ -3,6 +3,7 @@
 T = dict(line.split('|', 1) for line in r"""
 %@ copy|%@のコピー
 %@ of %@|%@ / %@
+%d of %d|%d / %d
 %d x %d Region|%d x %d の領域
 10 Percent|10 パーセント
 20 Percent|20 パーセント
@@ -19,7 +20,9 @@ T = dict(line.split('|', 1) for line in r"""
 90 Percent|90 パーセント
 A free, open-source image editor for macOS, modeled on the workflow of Paint.NET.\n\nLicensed under the MIT License.\nNot affiliated with or endorsed by dotPDN LLC. Paint.NET is a trademark of its respective owner.|Paint.NET のワークフローをモデルにした、macOS 用の無料でオープンソースの画像エディタです。\n\nMIT ライセンスで提供されています。\ndotPDN LLC とは提携しておらず、承認も受けていません。Paint.NET は各所有者の商標です。
 A new version of Brushwood is available|Brushwood の新しいバージョンがあります
+A solid line, or one of the dash patterns.|実線、または破線のパターンのいずれか。
 A star on GitHub also helps more people find Brushwood, and it means a lot.|GitHub でスターを付けていただくと、より多くの人が Brushwood を見つけやすくなります。とても励みになります。
+A stroke released near where it started is joined to its start, so circles and outlines close cleanly.|始点の近くで離したストロークが始点につながり、円や輪郭がきれいに閉じます。
 About Brushwood|Brushwood について
 Actual Size|実際のサイズ
 Add (union)|追加（和集合）
@@ -32,6 +35,7 @@ After click|クリック後
 After click:|クリック後：
 Algorithm|アルゴリズム
 Aliased|アンチエイリアスなし
+Alignment|揃え
 Amount|量
 Anchor|基準点
 Angle|角度
@@ -44,10 +48,12 @@ Appearance|外観
 Arrow|矢印
 Arrows|矢印
 Artistic|アート
+At 100%, the brush has a hard edge; lower values make its edge softer.|100% ではブラシの縁がくっきりし、値を下げるほど柔らかくなります。
 Auto|自動
 Auto-Level|自動レベル補正
 Auto-Level, Black and White, Brightness / Contrast, Curves|自動レベル補正、白黒、明るさ / コントラスト、トーンカーブ
 Auto-detect|自動検出
+Back|戻る
 Back to %@|%@ に戻る
 Background|背景
 Backward Diagonal|逆斜線
@@ -55,6 +61,7 @@ Basic|基本
 Best Quality|最高品質
 Bicubic|バイキュービック
 Bilinear|バイリニア
+Bilinear gives smooth results when scaling or rotating; Nearest Neighbor keeps hard pixel edges.|バイリニアは拡大縮小や回転の結果がなめらかになり、ニアレストネイバーはピクセルの縁をくっきり保ちます。
 Bit Depth|ビット深度
 Black and White|白黒
 Blend|ブレンド
@@ -118,6 +125,7 @@ Click to go back to this snapshot. Snapshots are not saved in the file.|クリ�
 Click to select a region of similar color. ⌘ adds, ⌥ subtracts, right-click inverts. Shift-click for global selection.|クリックして似た色の領域を選択します。⌘で追加、⌥で除外、右クリックで反転します。Shift＋クリックで画像全体から選択します。
 Clipping:|クリッピング：
 Clone Stamp|コピースタンプ
+Clone Stamp and Recolor|コピースタンプと色の置き換え
 Clone source set at %d, %d|複製元を %d, %d に設定しました
 Close|閉じる
 Close Others|ほかを閉じる
@@ -131,6 +139,8 @@ Color Mode|カラーモード
 Color Picker|カラーピッカー
 Color Saturation|色の彩度
 Color count|色数
+Color mode goes from the primary to the secondary color. Transparency mode fades the layer out instead.|カラーモードはプライマリカラーからセカンダリカラーへ変化します。透明モードは代わりにレイヤーを徐々に透明にします。
+Color or transparency|カラーか透明か
 Color range|色の範囲
 Coloring|着色
 Colors|カラー
@@ -138,12 +148,14 @@ Colors (F8)|カラー (F8)
 Commands|コマンド
 Conical|円錐形
 Contiguous|隣接
+Contiguous only reaches the similar pixels that touch the one you click; Global reaches them everywhere in the image.|隣接はクリックしたピクセルにつながる似た色のピクセルだけに、全体は画像全体の似た色のピクセルに届きます。
 Contrast|コントラスト
 Copy|コピー
 Copy (⌘C)|コピー (⌘C)
 Copy / paste the selection outline|選択範囲の輪郭をコピー / ペースト
 Copy Merged|結合部分をコピー
 Copy Selection|選択範囲をコピー
+Copy part of the image elsewhere, or replace one color with another.|画像の一部を別の場所にコピーしたり、ある色を別の色に置き換えたりします。
 Could not check for updates|アップデートを確認できませんでした
 Could not open \"%@\"|「%@」を開けませんでした
 Could not save \"%@\"|「%@」を保存できませんでした
@@ -203,8 +215,12 @@ Drag the selection to move it. Drag the handles to scale. Drag with the right mo
 Draw Filled Shape|塗りつぶし図形
 Draw Filled Shape With Outline|輪郭付き塗りつぶし図形
 Draw Shape Outline|図形の輪郭
+Draw lines and curves, and choose among 31 shapes.|直線や曲線を描き、31 種類の図形から選びます。
+Draw the outline, the inside, or both. The primary color draws; with both, the inside takes the secondary color.|輪郭、内側、またはその両方を描きます。プライマリカラーで描き、両方の場合は内側がセカンダリカラーになります。
 Drop Shadow|ドロップシャドウ
 Duplicate Layer|レイヤーを複製
+Each Brushwood Plus feature can be turned on or off here, one by one or by category. This window is also in Brushwood Plus › Plus Features…|Brushwood Plus の各機能を、1 つずつまたはカテゴリごとに、ここでオン・オフできます。このウインドウは Brushwood Plus › Plus の機能… にもあります。
+Each step shows when it was made. Right-click in the History window to show how long ago instead, or to hide the times.|各ステップに、それを行った時刻が表示されます。ヒストリーウインドウを右クリックすると、代わりに経過時間を表示したり、時刻を隠したりできます。
 Edge Behavior|端の処理
 Edge Detect|輪郭検出
 Edit|編集
@@ -214,6 +230,7 @@ Ellipse|楕円
 Ellipse Callout|楕円の吹き出し
 Ellipse Select|楕円形選択
 Emboss|エンボス
+End Tutorial|チュートリアルを終了
 End cap|終点の形状
 End:|終点：
 Enter Full Screen|フルスクリーンにする
@@ -221,6 +238,8 @@ Erase Selection|選択範囲を消去
 Eraser|消しゴム
 Erode|収縮
 Euclidean|ユークリッド
+Every change is a step. Click a step to go back to it, and click it again to compare before and after. Undo and Redo are at the bottom.|変更の 1 つ 1 つがステップになります。ステップをクリックするとそこに戻り、もう一度クリックすると前後を比べられます。「取り消す」と「やり直す」は下にあります。
+Everyday commands: new, open, save, cut, copy, paste, undo and redo. The thumbnails are your open images, and the buttons on the right show or hide the floating windows.|よく使うコマンド：新規、開く、保存、カット、コピー、ペースト、取り消し、やり直し。サムネールは開いている画像で、右側のボタンでフローティングウインドウを表示・非表示にします。
 Expand canvas|キャンバスを拡大
 Explosion|爆発
 Exposure|露光量
@@ -231,7 +250,10 @@ File|ファイル
 File size: %@|ファイルサイズ：%@
 Files|ファイル
 Fill Selection|選択範囲を塗りつぶす
+Fill an area with a color, a pattern or a gradient.|範囲をカラー、パターン、グラデーションで塗りつぶします。
+Fill and Color|塗りつぶしとカラー
 Fill style|塗りのスタイル
+Fill with the plain color, or with a pattern of the primary and secondary colors.|単色で塗るか、プライマリカラーとセカンダリカラーのパターンで塗ります。
 Fill:|塗り：
 Filled Arrow|塗りつぶし矢印
 Finish|確定
@@ -258,9 +280,11 @@ Gamma|ガンマ
 Gamma Boost|ガンマ強調
 Gaussian Blur|ぼかし（ガウス）
 General|一般
+Getting Started|はじめに
 Global|全体
 Glow|光彩
 Go Back to This Snapshot|このスナップショットに戻る
+Go straight to 5, 10, 15… for the brush width.|ブラシの幅を 5、10、15… へ一気に変えます。
 Go to Bottom Layer|最下位のレイヤーへ移動
 Go to Layer Above|上のレイヤーへ移動
 Go to Layer Below|下のレイヤーへ移動
@@ -286,11 +310,17 @@ Highlight boost|ハイライト強調
 Highlights|ハイライト
 Highlights / Shadows|ハイライト / シャドウ
 Hint: For best results, first use the selection tools to select each eye.|ヒント：最良の結果を得るには、まず選択ツールでそれぞれの目を選択してください。
+Hints for the current tool, the size of the selection, the pointer position, the units and the zoom.|現在のツールのヒント、選択範囲のサイズ、ポインタの位置、単位、ズーム。
 History|ヒストリー
 History (F6)|ヒストリー (F6)
+History Times and Snapshots|ヒストリーの時刻とスナップショット
 Hold to pan|押したままドラッグで移動
 Horizontal|水平
 Horizontal Brick|横レンガ
+How a new selection combines with the current one: replace it, add to it, subtract from it, keep only where they overlap, or invert where they overlap.|新しい選択範囲を現在の選択範囲とどう組み合わせるか：置き換える、追加する、取り除く、重なった部分だけ残す、重なった部分を反転する。
+How different a color can be and still count as similar. At 0%, only the exact same color counts.|どこまで違う色を似た色とみなすか。0% では完全に同じ色だけが対象になります。
+How the line starts and ends: flat, rounded, or with an arrow.|線の始まりと終わりの形：平ら、丸み、または矢印。
+How the paint mixes with the pixels below it. Overwrite replaces them, transparency included.|塗った色を下のピクセルとどう混ぜるか。上書きは透明度も含めて置き換えます。
 Hue|色相
 Hue / Saturation|色相 / 彩度
 Hue / Saturation, Invert Alpha, Invert Colors, Levels|色相 / 彩度、アルファを反転、色を反転、レベル補正
@@ -356,10 +386,15 @@ Lightness|明度
 Lightning|稲妻
 Line|直線
 Line / Curve|直線 / 曲線
+Line ends|線端
 Linear|線形
 Linear (Diamond)|線形（ひし形）
 Linear (Reflected)|線形（反射）
+Lines and Shapes|直線と図形
+Lines of text line up on the left, in the center or on the right.|テキストの行を左、中央、右に揃えます。
 Linked|連動
+Look at the colors of the current layer only, or of the whole image.|現在のレイヤーの色だけを見るか、画像全体の色を見るか。
+Look closer, and move around the image.|近づいて見たり、画像の中を移動したりします。
 Luminosity|輝度
 Magic Wand|自動選択
 Magnetic Closing|始点に吸着
@@ -387,6 +422,8 @@ Move Layer to Bottom|レイヤーを最背面へ移動
 Move Layer to Top|レイヤーを最前面へ移動
 Move Selected Pixels|選択したピクセルを移動
 Move Selection|選択範囲を移動
+Move, scale and rotate a selection or what it contains.|選択範囲またはその中身を移動、拡大縮小、回転します。
+Moving Pixels and Selections|ピクセルと選択範囲の移動
 Multiply|乗算
 NEW|新機能
 Name:|名前：
@@ -399,12 +436,15 @@ New Snapshot|新規スナップショット
 New size: %@|新しいサイズ：%@
 New size: %d × %d (%@)|新しいサイズ：%d × %d（%@）
 New…|新規…
+Next|次へ
 Next Image|次の画像
 Next image|次の画像
 No Repeat|繰り返しなし
 No download is available for this version yet.|このバージョンのダウンロードはまだありません。
 Noise|ノイズ
 Normal|通常
+Normal, or a fixed ratio or a fixed size, for a selection with exact proportions or dimensions.|通常、または縦横比やサイズを固定して、正確な比率や寸法の選択範囲を作ります。
+Not Now|あとで
 Number of cells|セルの数
 OK|OK
 Object|オブジェクト
@@ -413,6 +453,7 @@ Octaves|オクターブ
 Octree|八分木
 Offset|オフセット
 Oil Painting|油彩
+On, edges are smooth. Off, they are hard and pixelated.|オンでは縁がなめらかに、オフではくっきりとしたピクセル状になります。
 Opacity|不透明度
 Opacity:|不透明度：
 Open|開く
@@ -424,14 +465,18 @@ Open…|開く…
 Original|元のピクセル
 Outline|輪郭
 Outline Object|オブジェクトの輪郭
+Outline or fill|輪郭か塗りか
 Outlined Diamond|ひし形の輪郭
 Output black|出力の黒
 Output white|出力の白
 Overlay|オーバーレイ
 Overwrite|上書き
 Paint Bucket|塗りつぶし
+Paint Bucket and Gradient|塗りつぶしとグラデーション
 Paintbrush|ブラシ
+Paintbrush, eraser and pencil, and their settings.|ブラシ、消しゴム、鉛筆とその設定。
 Painting|描画
+Painting Tools|描画ツール
 Palette|パレット
 Pan|手のひら
 Parallelogram|平行四辺形
@@ -448,6 +493,8 @@ Pentagon|五角形
 Percentile|パーセンタイル
 Period|周期
 Photo|写真
+Pick a tool here, or press its letter on the keyboard (the tooltip shows it). Pressing the letter again switches between the tools that share it.|ここでツールを選ぶか、キーボードでその文字を押します（ツールヒントに表示されます）。同じ文字をもう一度押すと、その文字を共有するツールが切り替わります。
+Pick a tour and click Start. Each one points at the parts of the window it explains.|ツアーを選んで「開始」をクリックします。各ツアーは、説明するウインドウの部分を示します。
 Pixel Grid|ピクセルグリッド
 Pixel Grid (⌘')|ピクセルグリッド (⌘')
 Pixel size|ピクセルサイズ
@@ -484,6 +531,8 @@ Recolor|色の置き換え
 Rectangle|長方形
 Rectangle Callout|長方形の吹き出し
 Rectangle Select|長方形選択
+Rectangle, lasso, ellipse and magic wand, and how selections combine.|長方形、なげなわ、楕円形、自動選択と、選択範囲の組み合わせ方。
+Rectangles, ellipses, polygons, stars, arrows, callouts and symbols.|長方形、楕円、多角形、星、矢印、吹き出し、記号。
 Red|赤
 Red Eye Removal|赤目修正
 Redo|やり直す
@@ -556,6 +605,7 @@ Seed|シード
 Select All|すべてを選択
 Select All / Deselect|すべてを選択 / 選択を解除
 Selection|選択範囲
+Selection Tools|選択ツール
 Selection clipping|選択範囲でクリッピング
 Selection drawing mode|選択範囲の描画モード
 Selection mode:|選択モード：
@@ -574,6 +624,7 @@ Shapes|図形
 Shapes, lines, gradients, text and paint bucket fills stay editable after you draw them: drag their handles or change options in the tool bar. Press Return or switch tools to finish, Escape or ⌘Z to cancel.|図形、直線、グラデーション、テキスト、塗りつぶしは描いた後も編集できます。ハンドルをドラッグするか、ツールバーでオプションを変更してください。Return キーまたはツールの切り替えで確定、Esc キーまたは ⌘Z でキャンセルします。
 Sharpen|シャープ
 Shingle|屋根板
+Short guided tours show where things are and what each tool and its settings do. Pick one to start; the others stay in Help › Tutorial…|短いガイドツアーで、どこに何があるか、各ツールとその設定が何をするかを紹介します。1 つ選んで始めてください。ほかのツアーはヘルプ › チュートリアル… にあります。
 Show All|すべてを表示
 Show Time Elapsed|経過時間を表示
 Show Time of Day|時刻を表示
@@ -586,6 +637,7 @@ Sketch Blur|ぼかし（スケッチ）
 Small Checker Board|小さな市松模様
 Small Grid|小さなグリッド
 Smoothing|手ブレ補正
+Smoothing and Magnetic Closing|手ブレ補正と始点に吸着
 Smoothing disabled|手ブレ補正：オフ
 Smoothing enabled|手ブレ補正：オン
 Smoothness|滑らかさ
@@ -604,8 +656,12 @@ Spiral (Clockwise)|らせん（時計回り）
 Spiral (Counter-clockwise)|らせん（反時計回り）
 Square Blur|ぼかし（正方形）
 Stars|星
+Start|開始
 Start cap|始点の形状
 Start:|始点：
+Status bar|ステータスバー
+Stay on the Color Picker after picking, go back to the previous tool, or switch to the Pencil.|色を取ったあともカラーピッカーのままにするか、前のツールに戻るか、鉛筆に切り替えるか。
+Steadier strokes, and outlines that close by themselves.|より安定したストロークと、ひとりでに閉じる輪郭。
 Steadies strokes: the brush follows the pointer on a string. For the Paintbrush, Eraser, Clone Stamp and Recolor tools.|ストロークを安定させます。ブラシはひもでつながれたようにポインタを追います。ブラシ、消しゴム、コピースタンプ、色の置き換えツールで使えます。
 Straighten|傾き補正
 Strength|強度
@@ -622,16 +678,30 @@ Swap primary and secondary colors|プライマリカラーとセカンダリカ�
 Switch to Pencil tool|鉛筆ツールに切り替え
 Switch to previous tool|前のツールに切り替え
 Symbols|記号
+Take a Quick Tour?|簡単なツアーを始めますか？
+Take a color from the image.|画像から色を取ります。
+Take a single pixel or the average of a square around it, from the current layer or the whole image.|1 ピクセル、またはその周りの正方形の平均を、現在のレイヤーまたは画像全体から取ります。
 Temperature|色温度
 Temperature and Tint|色温度と色かぶり補正
 Tension|張力
 Text|テキスト
+Text and Shapes|テキストと図形
 Thank you for being here.|いつもありがとうございます。
+The Brushwood Window|Brushwood のウインドウ
+The bar under the toolbar shows the settings of the current tool. They change with the tool and are kept for next time.|メインバーの下のバーには、現在のツールの設定が表示されます。設定はツールごとに変わり、次回のために保存されます。
+The brush follows the pointer on a string, which takes out hand tremor. While it is on, the length of the string can be set next to it.|ブラシがひもでつながれたようにポインタを追い、手の震えを取り除きます。オンのときは、横でひもの長さを設定できます。
 The downloaded file is damaged. Try again later.|ダウンロードしたファイルが破損しています。しばらくしてからもう一度お試しください。
+The font, its size and its style: bold, italic, underline and strikethrough.|フォント、サイズ、スタイル（太字、斜体、下線、取り消し線）。
 The image being pasted is larger than the canvas size. What would you like to do?|ペーストする画像はキャンバスより大きいです。どうしますか？
+The image is a stack of layers. Add, delete, duplicate and move them with the buttons at the bottom; double-click a layer for its properties.|画像はレイヤーを重ねたものです。下のボタンでレイヤーを追加、削除、複製、移動し、レイヤーをダブルクリックするとプロパティが開きます。
+The left mouse button paints with the primary color, the right one with the secondary color. Click a color of the palette to pick it, or right-click it for the secondary color.|マウスの左ボタンはプライマリカラーで、右ボタンはセカンダリカラーで描きます。パレットの色をクリックすると選択でき、右クリックするとセカンダリカラーになります。
+The shape of the gradient: linear, reflected, diamond, radial, conical or spiral.|グラデーションの形：線形、反射、ダイヤモンド、円形、円錐形、らせん。
+The size of the brush, in pixels. The mouse wheel over the field and the [ and ] keys change it too.|ブラシのサイズ（ピクセル）。フィールド上のマウスホイールや [ と ] キーでも変えられます。
 The update could not be installed|アップデートをインストールできませんでした
 These blend modes will be saved as Normal in the .pdn file: %@. Save as OpenRaster (.ora) to keep them.|これらの描画モードは .pdn ファイルでは「通常」として保存されます：%@。保持するには OpenRaster（.ora）で保存してください。
+These buttons go up or down to the next multiple of 5: 1, 5, 10, 15…|これらのボタンは、次の 5 の倍数へ上げ下げします：1、5、10、15…
 Thickness|太さ
+This button keeps a full copy of the image, listed at the top of the History window. Click the snapshot to bring the image back to it at any time, even after undoing or new edits.|このボタンは画像の完全なコピーを保存し、ヒストリーウインドウの上部に一覧表示します。スナップショットをクリックすると、取り消しや新しい編集のあとでも、いつでもその画像に戻れます。
 This file format does not support layers. The saved file will contain a flattened copy of the image; your layers are kept in Brushwood.|このファイル形式はレイヤーに対応していません。保存されるファイルには画像を統合したコピーが含まれます。レイヤーは Brushwood 内に残ります。
 This is not a Paint.NET (.pdn) file.|Paint.NET（.pdn）ファイルではありません。
 Threshold|しきい値
@@ -644,7 +714,9 @@ Toggle Layer Visibility|レイヤーの表示 / 非表示
 Tolerance|許容値
 Tolerance:|許容値：
 Tool Bar|ツールバー
+Tool options|ツールのオプション
 Tool:|ツール：
+Toolbar|メインバー
 Tools|ツール
 Tools (F5)|ツール (F5)
 Tools, History, Layers, Colors windows|「ツール」「ヒストリー」「レイヤー」「カラー」ウインドウ
@@ -656,7 +728,12 @@ Trellis|格子垣
 Triangle|三角形
 Triangle Repeat|三角波の繰り返し
 Turbulence|乱流
+Turn each Brushwood Plus feature on or off.|Brushwood Plus の各機能をオン・オフします。
+Turn its features on in Plus Features to follow this tour.|このツアーを見るには、Plus の機能でその機能をオンにしてください。
+Tutorial|チュートリアル
+Tutorial…|チュートリアル…
 Twist|ねじれ
+Type text, and choose its font.|テキストを入力し、フォントを選びます。
 Underline|下線
 Undo|取り消す
 Undo %@|「%@」を取り消す
@@ -679,8 +756,13 @@ Warmth|暖かさ
 Wave|波
 Weave|織物
 Welcome to Brushwood|Brushwood へようこそ
+What happens past the ends of the gradient: nothing, or it repeats as a sawtooth or a triangle.|グラデーションの端より先がどうなるか：何もしないか、のこぎり波または三角波で繰り返します。
+What you draw with this tool keeps its handles, so you can still change it, until you click Finish or press Return.|このツールで描いたものは、「確定」をクリックするか Return キーを押すまでハンドルが残り、変更できます。
 What's New|新機能
 What's New in Brushwood Plus|Brushwood Plus の新機能
+When each step was made, and copies of the image to come back to.|各ステップを行った時刻と、戻れる画像のコピー。
+When part of the image is selected, painting stays inside the selection. Antialiased softens its edge.|画像の一部が選択されているときは、選択範囲の中だけに描かれます。アンチエイリアスありは選択範囲の縁を柔らかくします。
+Where everything is: toolbar, floating windows and status bar.|どこに何があるか：メインバー、フローティングウインドウ、ステータスバー。
 White|白
 Width|幅
 Width:|幅：
@@ -694,6 +776,7 @@ Zoom Blur|ぼかし（ズーム）
 Zoom In|拡大
 Zoom In / Out|拡大 / 縮小
 Zoom Out|縮小
+Zoom and Pan|ズームと手のひら
 Zoom to Selection|選択範囲にズーム
 Zoom to Window|ウインドウに合わせる
 centimeters|センチメートル

@@ -6,6 +6,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     private var pendingURLs: [URL] = []
     private var settingsWindow: SettingsWindow?
     private var plusFeaturesWindow: PlusFeaturesWindow?
+    private var tutorialWindow: TutorialWindow?
     private var launched = false
 
     func applicationWillFinishLaunching(_ notification: Notification) {
@@ -43,8 +44,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
             DebugSnapshot.schedule(path: snapshot, controller: main)
         } else if Bundle.main.bundleURL.pathExtension == "app" {
             let support = { [weak self] in if SupportPrompt.due { SupportSheet.present(over: self?.main.window) } }
-            // After an update, the support sheet waits for the Plus Features window to close.
-            if let occasion = PlusFeaturesPrompt.due { showPlusFeatures(occasion, then: support) } else { support() }
+            // After the Plus Features window: at the first launch the tutorial is offered; after an update, the
+            // support sheet shows.
+            switch PlusFeaturesPrompt.due {
+            case .firstLaunch?: showPlusFeatures(.firstLaunch) { [weak self] in self?.showTutorial(welcome: true) }
+            case let occasion?: showPlusFeatures(occasion, then: support)
+            case nil: support()
+            }
             UpdateController.shared.checkInBackgroundIfDue()
         }
     }
@@ -123,6 +129,29 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         w.center()
         w.makeKeyAndOrderFront(nil)
         plusFeaturesWindow = w
+    }
+
+    @objc func showTutorial(_ sender: Any?) {
+        showTutorial(welcome: false)
+    }
+
+    /// The list of tours; `welcome` makes it the offer of the first launch. Each finished tour brings it back with the
+    /// next one selected.
+    func showTutorial(welcome: Bool, selecting id: String? = nil) {
+        let w = tutorialWindow ?? TutorialWindow()
+        tutorialWindow = w
+        w.configure(welcome: welcome)
+        w.reload(selecting: id)
+        w.onStart = { [weak self, weak w] tour in
+            guard let self, let main = self.main else { return }
+            w?.orderOut(nil)
+            TutorialGuide.shared.onFinish = { [weak self] done in
+                self?.showTutorial(welcome: false, selecting: TutorialWindow.tour(after: done.id))
+            }
+            TutorialGuide.shared.start(tour, host: main)
+        }
+        if !w.isVisible { w.center() }
+        w.makeKeyAndOrderFront(nil)
     }
 
     @objc func showAbout(_ sender: Any?) {

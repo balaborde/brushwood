@@ -68,6 +68,16 @@ run widthsnap "plusfeature:brushWidthSteps=1; tool:paintbrush; width:1; widthsna
  tool:shapes; expectwidthsnap:1; tool:pencil; expectwidthsnap:0; tool:paintbrush; plusfeature:brushWidthSteps=0;
  expectwidthsnap:0; plusfeature:brushWidthSteps=1; expectwidthsnap:1; width:2"
 
+# Brushwood Plus tutorial: every step of every tour points at a part on screen; a tour goes forward and back, ends,
+# and does not start while all its Plus features are off.
+run tutorial "showpanels; plusfeature:historyTimes=1; plusfeature:snapshots=1; plusfeature:smoothing=1;
+ plusfeature:magneticClosing=1; plusfeature:brushWidthSteps=1; tutorialcheck; tutorialstart:paint; expecttutorial:paint,1;
+ tutorialnext; expecttutorial:paint,2; expecttool:paintbrush; tutorialback; expecttutorial:paint,1; tutorialend;
+ expecttutorial:none; tutorialstart:shapes; tutorialnext; tutorialnext; tutorialnext; expecttutorial:shapes,4;
+ expecttool:shapes; tutorialend; plusfeature:smoothing=0; plusfeature:magneticClosing=0; tutorialstart:plusStrokes;
+ expecttutorial:none; plusfeature:smoothing=1; plusfeature:magneticClosing=1; tutorialstart:plusStrokes; tutorialnext;
+ expecttutorial:plusStrokes,2; tutorialnext; expecttutorial:none"
+
 # Floating windows follow their corner of the canvas when the main window is resized.
 run panels "showpanels; expectpanels; panel:1400,900; expectpanels; panel:820,560; expectpanels;
  panel:1280,820; expectpanels"

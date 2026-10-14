@@ -129,6 +129,33 @@ enum DebugScript {
                 let kv = arg.split(separator: "=").map(String.init)
                 let f = PlusFeature(rawValue: kv.first ?? "")
                 report(f?.isEnabled == (kv.last == "1"), "Plus feature \(arg): it is \(f.map { $0.isEnabled ? "on" : "off" } ?? "unknown")")
+            case "tutorial":
+                // tutorial:welcome|menu opens the Tutorial window.
+                (NSApp.delegate as? AppDelegate)?.showTutorial(welcome: arg == "welcome")
+            case "tutorialstart":
+                if let tour = Tutorial.sections.flatMap(\.scenarios).first(where: { $0.id == arg }) {
+                    TutorialGuide.shared.start(tour, host: c)
+                } else { report(false, "no tour \(arg)") }
+            case "tutorialnext": TutorialGuide.shared.next()
+            case "tutorialback": TutorialGuide.shared.back()
+            case "tutorialend": TutorialGuide.shared.end()
+            case "expecttutorial":
+                // expecttutorial:tour,step (from 1), or expecttutorial:none
+                let g = TutorialGuide.shared
+                let got = g.scenario.map { "\($0.id),\(g.index + 1)" } ?? "none"
+                report(got == arg, "tutorial at \(got), expected \(arg)")
+                if g.isRunning { report(g.currentTargetFound, "tutorial step \(got) points at a part on screen") }
+            case "tutorialcheck":
+                // Every step of every tour finds its part (steps of Plus features that are off are skipped).
+                for tour in Tutorial.sections.flatMap(\.scenarios) {
+                    for (i, step) in tour.availableSteps.enumerated() {
+                        step.prepare(c)
+                        c.window?.layoutIfNeeded()
+                        let found = step.target(c).map { $0.view.window?.isVisible == true && !$0.rect.isEmpty } ?? false
+                        report(found, "tour \(tour.id), step \(i + 1) (\(step.title)) points at its part")
+                    }
+                }
+                NSApp.windows.filter { $0 is PlusFeaturesWindow }.forEach { $0.close() }
             case "snapshot": c.historyPanel.takeSnapshot()
             case "gobacktosnapshot":
                 // gobacktosnapshot:i, as clicking the i-th snapshot (from 0) in the History window.

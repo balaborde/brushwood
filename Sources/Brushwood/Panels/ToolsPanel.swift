@@ -47,6 +47,9 @@ final class ToolsPanel: FloatingPanel {
         if let observer { NotificationCenter.default.removeObserver(observer) }
     }
 
+    /// A tool's button (the Brushwood Plus tutorial points at it).
+    func button(for kind: ToolKind) -> NSView? { buttons[kind] }
+
     func refresh() {
         let active = AppEnvironment.shared.activeTool
         for (k, b) in buttons { b.isToggled = k == active }

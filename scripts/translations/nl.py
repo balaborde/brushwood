@@ -3,6 +3,7 @@
 T = dict(line.split('|', 1) for line in r"""
 %@ copy|%@ kopie
 %@ of %@|%@ van %@
+%d of %d|%d van %d
 %d x %d Region|Gebied van %d x %d
 10 Percent|10 procent
 20 Percent|20 procent
@@ -19,7 +20,9 @@ T = dict(line.split('|', 1) for line in r"""
 90 Percent|90 procent
 A free, open-source image editor for macOS, modeled on the workflow of Paint.NET.\n\nLicensed under the MIT License.\nNot affiliated with or endorsed by dotPDN LLC. Paint.NET is a trademark of its respective owner.|Een gratis opensource-beeldbewerker voor macOS, naar het voorbeeld van de werkwijze van Paint.NET.\n\nUitgebracht onder de MIT-licentie.\nNiet gelieerd aan of goedgekeurd door dotPDN LLC. Paint.NET is een handelsmerk van de betreffende eigenaar.
 A new version of Brushwood is available|Er is een nieuwe versie van Brushwood beschikbaar
+A solid line, or one of the dash patterns.|Een doorgetrokken lijn of een van de streepjespatronen.
 A star on GitHub also helps more people find Brushwood, and it means a lot.|Een ster op GitHub helpt ook meer mensen Brushwood te vinden, en het betekent veel.
+A stroke released near where it started is joined to its start, so circles and outlines close cleanly.|Een streek die je loslaat bij waar hij begon, sluit aan op zijn begin, zodat cirkels en contouren netjes sluiten.
 About Brushwood|Over Brushwood
 Actual Size|Ware grootte
 Add (union)|Toevoegen (vereniging)
@@ -32,6 +35,7 @@ After click|Na klikken
 After click:|Na klikken:
 Algorithm|Algoritme
 Aliased|Gekarteld
+Alignment|Uitlijning
 Amount|Hoeveelheid
 Anchor|Anker
 Angle|Hoek
@@ -44,10 +48,12 @@ Appearance|Uiterlijk
 Arrow|Pijl
 Arrows|Pijlen
 Artistic|Artistiek
+At 100%, the brush has a hard edge; lower values make its edge softer.|Is de waarde 100%, dan heeft het penseel een harde rand; lagere waarden maken die zachter.
 Auto|Auto
 Auto-Level|Automatisch niveau
 Auto-Level, Black and White, Brightness / Contrast, Curves|Automatisch niveau, Zwart-wit, Helderheid / Contrast, Curven
 Auto-detect|Automatisch detecteren
+Back|Vorige
 Back to %@|Terug naar %@
 Background|Achtergrond
 Backward Diagonal|Diagonaal achteruit
@@ -55,6 +61,7 @@ Basic|Basis
 Best Quality|Beste kwaliteit
 Bicubic|Bicubisch
 Bilinear|Bilineair
+Bilinear gives smooth results when scaling or rotating; Nearest Neighbor keeps hard pixel edges.|Bilineair geeft vloeiende resultaten bij schalen of draaien; Naaste buur houdt harde pixelranden.
 Bit Depth|Bitdiepte
 Black and White|Zwart-wit
 Blend|Mengen
@@ -118,6 +125,7 @@ Click to go back to this snapshot. Snapshots are not saved in the file.|Klik om 
 Click to select a region of similar color. ⌘ adds, ⌥ subtracts, right-click inverts. Shift-click for global selection.|Klik om een gebied met een vergelijkbare kleur te selecteren. ⌘ voegt toe, ⌥ trekt af, rechtsklikken keert om. Shift-klik voor een globale selectie.
 Clipping:|Bijsnijden:
 Clone Stamp|Kloonstempel
+Clone Stamp and Recolor|Kloonstempel en Herkleuren
 Clone source set at %d, %d|Kloonbron ingesteld op %d, %d
 Close|Sluit
 Close Others|Sluit andere
@@ -131,6 +139,8 @@ Color Mode|Kleurmodus
 Color Picker|Pipet
 Color Saturation|Kleurverzadiging
 Color count|Aantal kleuren
+Color mode goes from the primary to the secondary color. Transparency mode fades the layer out instead.|Kleurmodus gaat van de primaire naar de secundaire kleur. Transparantiemodus laat de laag in plaats daarvan vervagen.
+Color or transparency|Kleur of transparantie
 Color range|Kleurbereik
 Coloring|Inkleuring
 Colors|Kleuren
@@ -138,12 +148,14 @@ Colors (F8)|Kleuren (F8)
 Commands|Opdrachten
 Conical|Conisch
 Contiguous|Aaneengesloten
+Contiguous only reaches the similar pixels that touch the one you click; Global reaches them everywhere in the image.|Aaneengesloten bereikt alleen de vergelijkbare pixels die grenzen aan de pixel waarop je klikt; Globaal bereikt ze overal in de afbeelding.
 Contrast|Contrast
 Copy|Kopieer
 Copy (⌘C)|Kopieer (⌘C)
 Copy / paste the selection outline|Selectieomtrek kopiëren / plakken
 Copy Merged|Kopieer samengevoegd
 Copy Selection|Kopieer selectie
+Copy part of the image elsewhere, or replace one color with another.|Een deel van de afbeelding ergens anders kopiëren, of een kleur door een andere vervangen.
 Could not check for updates|Kan niet controleren op updates
 Could not open \"%@\"|Kan ‘%@’ niet openen
 Could not save \"%@\"|Kan ‘%@’ niet bewaren
@@ -203,8 +215,12 @@ Drag the selection to move it. Drag the handles to scale. Drag with the right mo
 Draw Filled Shape|Gevulde vorm
 Draw Filled Shape With Outline|Gevulde vorm met omtrek
 Draw Shape Outline|Omtrek van vorm
+Draw lines and curves, and choose among 31 shapes.|Lijnen en curven tekenen, en kiezen uit 31 vormen.
+Draw the outline, the inside, or both. The primary color draws; with both, the inside takes the secondary color.|Teken de omtrek, de binnenkant of beide. De primaire kleur tekent; bij beide krijgt de binnenkant de secundaire kleur.
 Drop Shadow|Slagschaduw
 Duplicate Layer|Dupliceer laag
+Each Brushwood Plus feature can be turned on or off here, one by one or by category. This window is also in Brushwood Plus › Plus Features…|Hier zet je elke functie van Brushwood Plus aan of uit, een voor een of per categorie. Dit venster staat ook in Brushwood Plus › Plus-functies…
+Each step shows when it was made. Right-click in the History window to show how long ago instead, or to hide the times.|Elke stap toont wanneer hij is gedaan. Klik met de rechtermuisknop in het venster Geschiedenis om in plaats daarvan te tonen hoe lang geleden, of om de tijden te verbergen.
 Edge Behavior|Randgedrag
 Edge Detect|Randdetectie
 Edit|Wijzig
@@ -214,6 +230,7 @@ Ellipse|Ellips
 Ellipse Callout|Ovale tekstballon
 Ellipse Select|Ovale selectie
 Emboss|Embossing
+End Tutorial|Stop tutorial
 End cap|Eindkap
 End:|Einde:
 Enter Full Screen|Activeer schermvullende weergave
@@ -221,6 +238,8 @@ Erase Selection|Wis selectie
 Eraser|Gum
 Erode|Erosie
 Euclidean|Euclidisch
+Every change is a step. Click a step to go back to it, and click it again to compare before and after. Undo and Redo are at the bottom.|Elke wijziging is een stap. Klik op een stap om ernaar terug te gaan, en nog eens om voor en na te vergelijken. Herstel en Opnieuw staan onderaan.
+Everyday commands: new, open, save, cut, copy, paste, undo and redo. The thumbnails are your open images, and the buttons on the right show or hide the floating windows.|De dagelijkse opdrachten: nieuw, open, bewaar, knip, kopieer, plak, herstel en opnieuw. De miniaturen zijn je geopende afbeeldingen, en de knoppen rechts tonen of verbergen de zwevende vensters.
 Expand canvas|Canvas vergroten
 Explosion|Explosie
 Exposure|Belichting
@@ -231,7 +250,10 @@ File|Archief
 File size: %@|Bestandsgrootte: %@
 Files|Bestanden
 Fill Selection|Vul selectie
+Fill an area with a color, a pattern or a gradient.|Een gebied vullen met een kleur, een patroon of een kleurverloop.
+Fill and Color|Vullen en kleur
 Fill style|Vulstijl
+Fill with the plain color, or with a pattern of the primary and secondary colors.|Vul met de effen kleur, of met een patroon van de primaire en secundaire kleur.
 Fill:|Vulling:
 Filled Arrow|Gevulde pijl
 Finish|Voltooi
@@ -258,9 +280,11 @@ Gamma|Gamma
 Gamma Boost|Gammaversterking
 Gaussian Blur|Gaussiaanse vervaging
 General|Algemeen
+Getting Started|Aan de slag
 Global|Globaal
 Glow|Gloed
 Go Back to This Snapshot|Terug naar deze momentopname
+Go straight to 5, 10, 15… for the brush width.|Ga voor de penseelbreedte meteen naar 5, 10, 15…
 Go to Bottom Layer|Ga naar onderste laag
 Go to Layer Above|Ga naar laag erboven
 Go to Layer Below|Ga naar laag eronder
@@ -286,11 +310,17 @@ Highlight boost|Versterking hooglichten
 Highlights|Hooglichten
 Highlights / Shadows|Hooglichten / Schaduwen
 Hint: For best results, first use the selection tools to select each eye.|Tip: selecteer voor het beste resultaat eerst elk oog met de selectiegereedschappen.
+Hints for the current tool, the size of the selection, the pointer position, the units and the zoom.|Tips voor het huidige gereedschap, de grootte van de selectie, de positie van de aanwijzer, de eenheden en de zoom.
 History|Geschiedenis
 History (F6)|Geschiedenis (F6)
+History Times and Snapshots|Tijden en momentopnamen in de geschiedenis
 Hold to pan|Ingedrukt houden om te pannen
 Horizontal|Horizontaal
 Horizontal Brick|Horizontale bakstenen
+How a new selection combines with the current one: replace it, add to it, subtract from it, keep only where they overlap, or invert where they overlap.|Hoe een nieuwe selectie samengaat met de huidige: die vervangen, eraan toevoegen, ervan aftrekken, alleen de overlap houden of de overlap omkeren.
+How different a color can be and still count as similar. At 0%, only the exact same color counts.|Hoeveel een kleur mag afwijken om nog als vergelijkbaar te tellen. Bij 0% telt alleen precies dezelfde kleur.
+How the line starts and ends: flat, rounded, or with an arrow.|Hoe de lijn begint en eindigt: plat, afgerond of met een pijl.
+How the paint mixes with the pixels below it. Overwrite replaces them, transparency included.|Hoe de verf mengt met de pixels eronder. Overschrijven vervangt ze, transparantie inbegrepen.
 Hue|Kleurtoon
 Hue / Saturation|Kleurtoon / Verzadiging
 Hue / Saturation, Invert Alpha, Invert Colors, Levels|Kleurtoon / Verzadiging, Alfa omkeren, Kleuren omkeren, Niveaus
@@ -356,10 +386,15 @@ Lightness|Lichtheid
 Lightning|Bliksem
 Line|Lijn
 Line / Curve|Lijn / Curve
+Line ends|Lijnuiteinden
 Linear|Lineair
 Linear (Diamond)|Lineair (ruit)
 Linear (Reflected)|Lineair (gespiegeld)
+Lines and Shapes|Lijnen en vormen
+Lines of text line up on the left, in the center or on the right.|Tekstregels worden links, gecentreerd of rechts uitgelijnd.
 Linked|Gekoppeld
+Look at the colors of the current layer only, or of the whole image.|Kijk alleen naar de kleuren van de huidige laag, of naar die van de hele afbeelding.
+Look closer, and move around the image.|Van dichterbij kijken, en je door de afbeelding bewegen.
 Luminosity|Lichtsterkte
 Magic Wand|Toverstaf
 Magnetic Closing|Magnetisch sluiten
@@ -387,6 +422,8 @@ Move Layer to Bottom|Laag naar onderen
 Move Layer to Top|Laag naar boven
 Move Selected Pixels|Verplaats geselecteerde pixels
 Move Selection|Verplaats selectie
+Move, scale and rotate a selection or what it contains.|Een selectie of wat erin zit verplaatsen, schalen en draaien.
+Moving Pixels and Selections|Pixels en selecties verplaatsen
 Multiply|Vermenigvuldigen
 NEW|NIEUW
 Name:|Naam:
@@ -399,12 +436,15 @@ New Snapshot|Nieuwe momentopname
 New size: %@|Nieuwe grootte: %@
 New size: %d × %d (%@)|Nieuwe grootte: %d × %d (%@)
 New…|Nieuw…
+Next|Volgende
 Next Image|Volgende afbeelding
 Next image|Volgende afbeelding
 No Repeat|Geen herhaling
 No download is available for this version yet.|Er is nog geen download beschikbaar voor deze versie.
 Noise|Ruis
 Normal|Normaal
+Normal, or a fixed ratio or a fixed size, for a selection with exact proportions or dimensions.|Normaal, of een vaste verhouding of een vaste grootte, voor een selectie met exacte verhoudingen of afmetingen.
+Not Now|Niet nu
 Number of cells|Aantal cellen
 OK|OK
 Object|Object
@@ -413,6 +453,7 @@ Octaves|Octaven
 Octree|Octree
 Offset|Verschuiving
 Oil Painting|Olieverf
+On, edges are smooth. Off, they are hard and pixelated.|Aan: vloeiende randen. Uit: harde, gepixelde randen.
 Opacity|Dekking
 Opacity:|Dekking:
 Open|Open
@@ -424,14 +465,18 @@ Open…|Open…
 Original|Origineel
 Outline|Omtrek
 Outline Object|Objectomtrek
+Outline or fill|Omtrek of vulling
 Outlined Diamond|Ruiten met omtrek
 Output black|Uitvoer zwart
 Output white|Uitvoer wit
 Overlay|Bedekken
 Overwrite|Overschrijven
 Paint Bucket|Verfemmer
+Paint Bucket and Gradient|Verfemmer en Kleurverloop
 Paintbrush|Penseel
+Paintbrush, eraser and pencil, and their settings.|Penseel, gum en potlood, en hun instellingen.
 Painting|Schilderen
+Painting Tools|Tekengereedschappen
 Palette|Palet
 Pan|Hand
 Parallelogram|Parallellogram
@@ -448,6 +493,8 @@ Pentagon|Vijfhoek
 Percentile|Percentiel
 Period|Periode
 Photo|Foto
+Pick a tool here, or press its letter on the keyboard (the tooltip shows it). Pressing the letter again switches between the tools that share it.|Kies hier een gereedschap, of druk op zijn letter op het toetsenbord (de tip toont die). Druk je de letter nog eens in, dan wissel je tussen de gereedschappen die hem delen.
+Pick a tour and click Start. Each one points at the parts of the window it explains.|Kies een rondleiding en klik op Start. Elke rondleiding wijst de delen van het venster aan die ze uitlegt.
 Pixel Grid|Pixelraster
 Pixel Grid (⌘')|Pixelraster (⌘')
 Pixel size|Pixelgrootte
@@ -484,6 +531,8 @@ Recolor|Herkleuren
 Rectangle|Rechthoek
 Rectangle Callout|Rechthoekige tekstballon
 Rectangle Select|Rechthoekselectie
+Rectangle, lasso, ellipse and magic wand, and how selections combine.|Rechthoek, lasso, ovaal en toverstaf, en hoe selecties samengaan.
+Rectangles, ellipses, polygons, stars, arrows, callouts and symbols.|Rechthoeken, ovalen, veelhoeken, sterren, pijlen, tekstballonnen en symbolen.
 Red|Rood
 Red Eye Removal|Rode ogen verwijderen
 Redo|Opnieuw
@@ -556,6 +605,7 @@ Seed|Seed
 Select All|Selecteer alles
 Select All / Deselect|Selecteer alles / Deselecteer
 Selection|Selectie
+Selection Tools|Selectiegereedschappen
 Selection clipping|Bijsnijden tot selectie
 Selection drawing mode|Tekenmodus selectie
 Selection mode:|Selectiemodus:
@@ -574,6 +624,7 @@ Shapes|Vormen
 Shapes, lines, gradients, text and paint bucket fills stay editable after you draw them: drag their handles or change options in the tool bar. Press Return or switch tools to finish, Escape or ⌘Z to cancel.|Vormen, lijnen, kleurverlopen, tekst en vullingen met de verfemmer blijven na het tekenen bewerkbaar: sleep aan hun grepen of wijzig de opties in de gereedschapsbalk. Druk op Return of wissel van gereedschap om te voltooien, Esc of ⌘Z om te annuleren.
 Sharpen|Verscherpen
 Shingle|Dakpannen
+Short guided tours show where things are and what each tool and its settings do. Pick one to start; the others stay in Help › Tutorial…|Korte rondleidingen laten zien waar alles zit en wat elk gereedschap en zijn instellingen doen. Kies er een om te beginnen; de andere vind je later in Help › Tutorial…
 Show All|Toon alles
 Show Time Elapsed|Toon verstreken tijd
 Show Time of Day|Toon tijdstip
@@ -586,6 +637,7 @@ Sketch Blur|Schetsvervaging
 Small Checker Board|Klein dambord
 Small Grid|Klein raster
 Smoothing|Stabilisatie
+Smoothing and Magnetic Closing|Stabilisatie en magnetisch sluiten
 Smoothing disabled|Stabilisatie uit
 Smoothing enabled|Stabilisatie aan
 Smoothness|Gladheid
@@ -604,8 +656,12 @@ Spiral (Clockwise)|Spiraal (rechtsom)
 Spiral (Counter-clockwise)|Spiraal (linksom)
 Square Blur|Vierkante vervaging
 Stars|Sterren
+Start|Start
 Start cap|Beginkap
 Start:|Begin:
+Status bar|Statusbalk
+Stay on the Color Picker after picking, go back to the previous tool, or switch to the Pencil.|Na het opnemen bij de Pipet blijven, teruggaan naar het vorige gereedschap of naar het Potlood overschakelen.
+Steadier strokes, and outlines that close by themselves.|Vastere streken, en contouren die vanzelf sluiten.
 Steadies strokes: the brush follows the pointer on a string. For the Paintbrush, Eraser, Clone Stamp and Recolor tools.|Maakt streken stabieler: het penseel volgt de aanwijzer aan een touwtje. Voor Penseel, Gum, Kloonstempel en Herkleuren.
 Straighten|Rechtzetten
 Strength|Sterkte
@@ -622,16 +678,30 @@ Swap primary and secondary colors|Primaire en secundaire kleur verwisselen
 Switch to Pencil tool|Wissel naar potlood
 Switch to previous tool|Terug naar vorig gereedschap
 Symbols|Symbolen
+Take a Quick Tour?|Een korte rondleiding?
+Take a color from the image.|Een kleur uit de afbeelding opnemen.
+Take a single pixel or the average of a square around it, from the current layer or the whole image.|Neem één pixel of het gemiddelde van een vierkant eromheen, van de huidige laag of de hele afbeelding.
 Temperature|Temperatuur
 Temperature and Tint|Temperatuur en tint
 Tension|Spanning
 Text|Tekst
+Text and Shapes|Tekst en vormen
 Thank you for being here.|Bedankt dat je er bent.
+The Brushwood Window|Het venster van Brushwood
+The bar under the toolbar shows the settings of the current tool. They change with the tool and are kept for next time.|De balk onder de hoofdbalk toont de instellingen van het huidige gereedschap. Ze veranderen mee met het gereedschap en blijven bewaard voor de volgende keer.
+The brush follows the pointer on a string, which takes out hand tremor. While it is on, the length of the string can be set next to it.|Het penseel volgt de aanwijzer aan een touwtje, wat het trillen van je hand wegneemt. Staat de stabilisatie aan, dan stel je ernaast de lengte van het touwtje in.
 The downloaded file is damaged. Try again later.|Het gedownloade bestand is beschadigd. Probeer het later opnieuw.
+The font, its size and its style: bold, italic, underline and strikethrough.|Het lettertype, de grootte en de stijl: vet, cursief, onderstreept en doorgehaald.
 The image being pasted is larger than the canvas size. What would you like to do?|De geplakte afbeelding is groter dan het canvas. Wat wil je doen?
+The image is a stack of layers. Add, delete, duplicate and move them with the buttons at the bottom; double-click a layer for its properties.|De afbeelding is een stapel lagen. Voeg lagen toe, verwijder, dupliceer en verplaats ze met de knoppen onderaan; dubbelklik op een laag voor de eigenschappen.
+The left mouse button paints with the primary color, the right one with the secondary color. Click a color of the palette to pick it, or right-click it for the secondary color.|De linkermuisknop schildert met de primaire kleur, de rechter met de secundaire. Klik op een kleur van het palet om hem te kiezen, of klik er met de rechtermuisknop op voor de secundaire kleur.
+The shape of the gradient: linear, reflected, diamond, radial, conical or spiral.|De vorm van het kleurverloop: lineair, gespiegeld, ruit, radiaal, conisch of spiraal.
+The size of the brush, in pixels. The mouse wheel over the field and the [ and ] keys change it too.|De grootte van het penseel in pixels. Het muiswiel boven het veld en de toetsen [ en ] veranderen hem ook.
 The update could not be installed|De update kan niet worden geïnstalleerd
 These blend modes will be saved as Normal in the .pdn file: %@. Save as OpenRaster (.ora) to keep them.|Deze overvloeimodi worden in het .pdn-bestand als Normaal bewaard: %@. Bewaar als OpenRaster (.ora) om ze te behouden.
+These buttons go up or down to the next multiple of 5: 1, 5, 10, 15…|Deze knoppen gaan omhoog of omlaag naar het volgende veelvoud van 5: 1, 5, 10, 15…
 Thickness|Dikte
+This button keeps a full copy of the image, listed at the top of the History window. Click the snapshot to bring the image back to it at any time, even after undoing or new edits.|Deze knop bewaart een volledige kopie van de afbeelding, bovenaan het venster Geschiedenis. Klik op de momentopname om op elk moment naar die afbeelding terug te gaan, ook na herstellen of nieuwe wijzigingen.
 This file format does not support layers. The saved file will contain a flattened copy of the image; your layers are kept in Brushwood.|Dit bestandsformaat ondersteunt geen lagen. Het bewaarde bestand bevat een afgevlakte kopie van de afbeelding; je lagen blijven in Brushwood behouden.
 This is not a Paint.NET (.pdn) file.|Dit is geen Paint.NET-bestand (.pdn).
 Threshold|Drempel
@@ -644,7 +714,9 @@ Toggle Layer Visibility|Toon/verberg laag
 Tolerance|Tolerantie
 Tolerance:|Tolerantie:
 Tool Bar|Gereedschapsbalk
+Tool options|Gereedschapsopties
 Tool:|Gereedschap:
+Toolbar|Hoofdbalk
 Tools|Gereedschappen
 Tools (F5)|Gereedschappen (F5)
 Tools, History, Layers, Colors windows|Vensters Gereedschappen, Geschiedenis, Lagen, Kleuren
@@ -656,7 +728,12 @@ Trellis|Latwerk
 Triangle|Driehoek
 Triangle Repeat|Driehoekherhaling
 Turbulence|Turbulentie
+Turn each Brushwood Plus feature on or off.|Zet elke functie van Brushwood Plus aan of uit.
+Turn its features on in Plus Features to follow this tour.|Zet de functies ervan aan in Plus-functies om deze rondleiding te volgen.
+Tutorial|Tutorial
+Tutorial…|Tutorial…
 Twist|Draaiing
+Type text, and choose its font.|Tekst typen en het lettertype kiezen.
 Underline|Onderstreept
 Undo|Herstel
 Undo %@|Herstel ‘%@’
@@ -679,8 +756,13 @@ Warmth|Warmte
 Wave|Golf
 Weave|Weefsel
 Welcome to Brushwood|Welkom bij Brushwood
+What happens past the ends of the gradient: nothing, or it repeats as a sawtooth or a triangle.|Wat er voorbij de uiteinden van het kleurverloop gebeurt: niets, of het herhaalt zich als zaagtand of driehoek.
+What you draw with this tool keeps its handles, so you can still change it, until you click Finish or press Return.|Wat je met dit gereedschap tekent, houdt zijn grepen zodat je het nog kunt aanpassen, tot je op Voltooi klikt of op Return drukt.
 What's New|Nieuw
 What's New in Brushwood Plus|Nieuw in Brushwood Plus
+When each step was made, and copies of the image to come back to.|Wanneer elke stap is gedaan, en kopieën van de afbeelding om naar terug te gaan.
+When part of the image is selected, painting stays inside the selection. Antialiased softens its edge.|Als een deel van de afbeelding geselecteerd is, blijft het schilderen binnen de selectie. Vloeiend maakt de rand ervan zachter.
+Where everything is: toolbar, floating windows and status bar.|Waar alles zit: hoofdbalk, zwevende vensters en statusbalk.
 White|Wit
 Width|Breedte
 Width:|Breedte:
@@ -694,6 +776,7 @@ Zoom Blur|Zoomvervaging
 Zoom In|Zoom in
 Zoom In / Out|Zoom in / uit
 Zoom Out|Zoom uit
+Zoom and Pan|Zoomen en verschuiven
 Zoom to Selection|Zoom in op selectie
 Zoom to Window|Pas aan venster aan
 centimeters|centimeter

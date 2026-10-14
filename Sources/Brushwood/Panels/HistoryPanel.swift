@@ -161,7 +161,7 @@ final class HistoryPanel: FloatingPanel, NSTableViewDataSource, NSTableViewDeleg
     private var redoButton: ToolbarButton!
     private var rewindButton: ToolbarButton!
     private var forwardButton: ToolbarButton!
-    private var snapshotButton: ToolbarButton!
+    private(set) var snapshotButton: ToolbarButton!
     private var reloading = false
     /// Snapshots are listed first, then the steps (none while the Plus feature is off; they are kept for when it is
     /// turned back on).

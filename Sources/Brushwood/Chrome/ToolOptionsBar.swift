@@ -1,6 +1,15 @@
 import AppKit
 import BrushwoodCore
 
+/// The tool bar's options, as the Brushwood Plus tutorial points at them: each option's views (label, control, unit)
+/// carry its name as their identifier.
+enum ToolOption: String {
+    case selectionMode, selectionDrawMode, floodMode, tolerance, sampling, antialiasing, smoothing, magneticClosing,
+         stringLength, blendMode, brushWidth, widthSnap, hardness, fillStyle, gradientType, gradientColorMode,
+         gradientRepeat, resampling, colorSampling, afterClick, font, alignment, dashStyle, caps, shape, shapeDrawType,
+         clipping, finish
+}
+
 /// The second toolbar row: tool chooser plus the options of the active tool (Paint.NET's tool bar).
 /// Like Paint.NET's, it wraps onto more rows when the window is too narrow for all the options.
 final class ToolOptionsBar: NSView {
@@ -72,7 +81,21 @@ final class ToolOptionsBar: NSView {
         updating = false
     }
 
-    private func add(_ v: NSView) { flow.append(v) }
+    /// The option whose views are being added (tutorial).
+    private var option: ToolOption?
+
+    private func add(_ v: NSView) {
+        if let option, !(v is ToolbarSeparator) { v.identifier = NSUserInterfaceItemIdentifier(option.rawValue) }
+        flow.append(v)
+    }
+
+    /// Where an option of the current tool is, laid out, for the tutorial: nil when the tool has no such option.
+    func area(of option: ToolOption) -> (view: NSView, rect: NSRect)? {
+        layoutSubtreeIfNeeded()
+        let views = flow.subviews.filter { $0.identifier?.rawValue == option.rawValue && !$0.isHidden }
+        guard let first = views.first else { return nil }
+        return (flow, views.dropFirst().reduce(first.frame) { $0.union($1.frame) })
+    }
 
     func rebuild() {
         flow.removeAll()
@@ -190,7 +213,9 @@ final class ToolOptionsBar: NSView {
             finish.bezelStyle = .rounded
             finish.toolTip = L("Finish (Return)")
             finish.onAction { [weak self] _ in self?.host?.commitPendingTool() }
+            option = .finish
             add(finish)
+            option = nil
         }
         refresh()
     }
@@ -198,6 +223,8 @@ final class ToolOptionsBar: NSView {
     // MARK: - Option builders
 
     private func selectionClipping() {
+        option = .clipping
+        defer { option = nil }
         add(toolbarLabel(L("Clipping:")))
         add(popup([(L("Antialiased"), nil), (L("Aliased"), nil)], get: { self.s.selectionClippingAntialiased ? 0 : 1 },
                   set: { self.s.selectionClippingAntialiased = $0 == 0 }, tooltip: L("Selection clipping")))
@@ -246,6 +273,8 @@ final class ToolOptionsBar: NSView {
     }
 
     private func selectionMode() {
+        option = .selectionMode
+        defer { option = nil }
         add(toolbarLabel(L("Selection mode:")))
         let icons = SelectionCombineMode.allCases.map { ("selmode.\($0)", L($0.displayName)) }
         add(segmented(icons, get: { self.s.selectionMode.rawValue },
@@ -253,6 +282,8 @@ final class ToolOptionsBar: NSView {
     }
 
     private func selectionDrawMode() {
+        option = .selectionDrawMode
+        defer { option = nil }
         add(toolbarLabel(L("Mode:")))
         let p = popup(SelectionDrawMode.allCases.map { ($0.name, nil) }, get: { self.s.selectionDrawMode.rawValue },
                                      set: { self.s.selectionDrawMode = SelectionDrawMode(rawValue: $0) ?? .normal; self.rebuild() },
@@ -274,12 +305,16 @@ final class ToolOptionsBar: NSView {
     }
 
     private func floodMode() {
+        option = .floodMode
+        defer { option = nil }
         add(toolbarLabel(L("Flood mode:")))
         add(segmented([("flood.contiguous", L("Contiguous")), ("flood.global", L("Global"))],
                       get: { self.s.floodMode.rawValue }, set: { self.s.floodMode = FloodMode(rawValue: $0) ?? .contiguous }))
     }
 
     private func tolerance() {
+        option = .tolerance
+        defer { option = nil }
         add(toolbarLabel(L("Tolerance:")))
         let c = NumericSliderControl(range: 0...100, value: s.tolerance * 100, showReset: false, sliderWidth: 110)
         c.onChange = { [weak self] v in self?.s.tolerance = v / 100 }
@@ -289,12 +324,16 @@ final class ToolOptionsBar: NSView {
     }
 
     private func sampling(_ kp: ReferenceWritableKeyPath<ToolSettings, SamplingSource>) {
+        option = .sampling
+        defer { option = nil }
         add(toolbarLabel(L("Sampling:")))
         add(popup(SamplingSource.allCases.map { ($0.name, nil) }, get: { self.s[keyPath: kp].rawValue },
                   set: { self.s[keyPath: kp] = SamplingSource(rawValue: $0) ?? .layer }, tooltip: L("Sampling")))
     }
 
     private func antialiasing() {
+        option = .antialiasing
+        defer { option = nil }
         // Paint.NET's "Rasterization" toggle: smooth vs. jagged edges.
         let b = ToolbarButton(icon: "opt.antialias", tooltip: L("Antialiasing"), target: nil, action: nil, size: 24)
         b.onAction { [weak self] _ in self?.s.antialiasing.toggle() }
@@ -313,6 +352,7 @@ final class ToolOptionsBar: NSView {
         let smoothingShown = PlusFeature.smoothing.isEnabled
         let builtWithSmoothing = smoothingShown && s.smoothing
         if smoothingShown {
+            option = .smoothing
             let smoothing = ToolbarButton(icon: "opt.smoothing", tooltip: L("Smoothing"), target: nil, action: nil, size: 24)
             smoothing.onAction { [weak self] _ in self?.s.smoothing.toggle() }
             refreshers.append { [weak self] in
@@ -327,6 +367,7 @@ final class ToolOptionsBar: NSView {
             add(smoothing)
         }
         if PlusFeature.magneticClosing.isEnabled {
+            option = .magneticClosing
             let closing = ToolbarButton(icon: "opt.closing", tooltip: L("Magnetic Closing"), target: nil, action: nil, size: 24)
             closing.onAction { [weak self] _ in self?.s.magneticClosing.toggle() }
             refreshers.append { [weak self] in
@@ -338,7 +379,10 @@ final class ToolOptionsBar: NSView {
             }
             add(closing)
         }
+        option = nil
         guard builtWithSmoothing else { return }
+        option = .stringLength
+        defer { option = nil }
         add(toolbarLabel(L("String length:")))
         let length = NumericSliderControl(range: 2...100, value: Double(s.smoothingLength), showReset: false, sliderWidth: 70)
         length.toolTip = L("Length of the smoothing string, in points on screen")
@@ -348,6 +392,8 @@ final class ToolOptionsBar: NSView {
     }
 
     private func blendMode() {
+        option = .blendMode
+        defer { option = nil }
         add(toolbarLabel(L("Blending:")))
         // Last entry is Paint.NET's "Overwrite" (alpha blending off).
         let overwriteTag = BlendMode.allCases.count
@@ -364,6 +410,8 @@ final class ToolOptionsBar: NSView {
     }
 
     private func brushWidth() {
+        option = .brushWidth
+        defer { option = nil }
         add(toolbarLabel(L("Brush width:")))
         let combo = NumberComboBox(presets: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60,
                                              65, 70, 75, 80, 85, 90, 95, 100, 125, 150, 175, 200, 225, 250, 275, 300, 350, 400,
@@ -388,6 +436,7 @@ final class ToolOptionsBar: NSView {
         refreshers.append { [weak self, weak stepper] in stepper?.doubleValue = Double(self?.s.brushWidth ?? 2) }
         add(stepper)
         guard PlusFeature.brushWidthSteps.isEnabled else { return }
+        option = .widthSnap
         let snap = SnapStepper(upTooltip: L("Up to the next multiple of 5"), downTooltip: L("Down to the previous multiple of 5"))
         snap.onStep = { [weak self] up in
             guard let self else { return }
@@ -398,6 +447,8 @@ final class ToolOptionsBar: NSView {
     }
 
     private func hardness() {
+        option = .hardness
+        defer { option = nil }
         add(toolbarLabel(L("Hardness:")))
         let c = NumericSliderControl(range: 0...100, value: s.hardness, showReset: false, sliderWidth: 90)
         c.onChange = { [weak self] v in self?.s.hardness = v }
@@ -407,6 +458,8 @@ final class ToolOptionsBar: NSView {
     }
 
     private func fillStyle() {
+        option = .fillStyle
+        defer { option = nil }
         add(toolbarLabel(L("Fill:")))
         add(popup(FillStyle.allCases.map { (L($0.displayName), Self.patternSwatch($0)) }, get: { self.s.fillStyle.rawValue },
                   set: { self.s.fillStyle = FillStyle(rawValue: $0) ?? .solid }, tooltip: L("Fill style"), imageOnly: true))
@@ -430,29 +483,39 @@ final class ToolOptionsBar: NSView {
     }
 
     private func gradientTypes() {
+        option = .gradientType
+        defer { option = nil }
         add(toolbarLabel(L("Gradient:")))
         let icons = GradientType.allCases.map { ("gradient.\($0)", $0.name) }
         add(segmented(icons, get: { self.s.gradientType.rawValue }, set: { self.s.gradientType = GradientType(rawValue: $0) ?? .linear }))
     }
 
     private func gradientColorMode() {
+        option = .gradientColorMode
+        defer { option = nil }
         add(toolbarLabel(L("Mode:")))
         add(segmented([("gradient.colorMode", L("Color Mode")), ("gradient.transparencyMode", L("Transparency Mode"))],
                       get: { self.s.gradientTransparencyMode ? 1 : 0 }, set: { self.s.gradientTransparencyMode = $0 == 1 }))
     }
 
     private func gradientRepeat() {
+        option = .gradientRepeat
+        defer { option = nil }
         add(popup(GradientRepeat.allCases.map { ($0.name, nil) }, get: { self.s.gradientRepeat.rawValue },
                   set: { self.s.gradientRepeat = GradientRepeat(rawValue: $0) ?? .none }, tooltip: L("Repeat"), maxWidth: 230))
     }
 
     private func resampling() {
+        option = .resampling
+        defer { option = nil }
         add(toolbarLabel(L("Quality:")))
         add(popup([(L("Bilinear"), nil), (L("Nearest Neighbor"), nil)], get: { self.s.bilinearResampling ? 0 : 1 },
                   set: { self.s.bilinearResampling = $0 == 0 }, tooltip: L("Resampling")))
     }
 
     private func colorPickerOptions() {
+        option = .colorSampling
+        defer { option = nil }
         add(toolbarLabel(L("Sampling:")))
         add(popup(ColorPickerSampleSize.allCases.map { ($0.name, nil) },
                   get: { ColorPickerSampleSize.allCases.firstIndex(of: self.s.colorPickerSampleSize) ?? 0 },
@@ -460,6 +523,7 @@ final class ToolOptionsBar: NSView {
         add(popup(SamplingSource.allCases.map { ($0.name, nil) }, get: { self.s.colorPickerSampling.rawValue },
                   set: { self.s.colorPickerSampling = SamplingSource(rawValue: $0) ?? .layer }, tooltip: L("Sampling")))
         add(ToolbarSeparator())
+        option = .afterClick
         add(toolbarLabel(L("After click:")))
         add(popup(ColorPickerAfterClick.allCases.map { ($0.name, nil) }, get: { self.s.colorPickerAfterClick.rawValue },
                   set: { self.s.colorPickerAfterClick = ColorPickerAfterClick(rawValue: $0) ?? .doNotSwitch },
@@ -467,6 +531,8 @@ final class ToolOptionsBar: NSView {
     }
 
     private func fontOptions() {
+        option = .font
+        defer { option = nil }
         add(toolbarLabel(L("Font:")))
         let families = NSFontManager.shared.availableFontFamilies
         let fontPopup = NSPopUpButton(frame: .zero, pullsDown: false)
@@ -504,12 +570,15 @@ final class ToolOptionsBar: NSView {
             add(b)
         }
         add(ToolbarSeparator())
+        option = .alignment
         add(segmented([("sym.text.alignleft", L("Left")), ("sym.text.aligncenter", L("Center")),
                        ("sym.text.alignright", L("Right"))],
                       get: { self.s.textAlignment.rawValue }, set: { self.s.textAlignment = TextAlignmentOption(rawValue: $0) ?? .left }))
     }
 
     private func dashStyle() {
+        option = .dashStyle
+        defer { option = nil }
         add(toolbarLabel(L("Dash:")))
         add(popup(LineDashStyle.allCases.map { ($0.name, Self.dashSwatch($0)) }, get: { self.s.dashStyle.rawValue },
                   set: { self.s.dashStyle = LineDashStyle(rawValue: $0) ?? .solid }, tooltip: L("Dash style"), imageOnly: true))
@@ -530,6 +599,8 @@ final class ToolOptionsBar: NSView {
     }
 
     private func caps() {
+        option = .caps
+        defer { option = nil }
         add(toolbarLabel(L("Start:")))
         add(popup(LineCap.allCases.map { ($0.name, nil) }, get: { self.s.startCap.rawValue },
                   set: { self.s.startCap = LineCap(rawValue: $0) ?? .flat }, tooltip: L("Start cap")))
@@ -539,6 +610,8 @@ final class ToolOptionsBar: NSView {
     }
 
     private func shapePicker() {
+        option = .shape
+        defer { option = nil }
         add(toolbarLabel(L("Shape:")))
         let p = NSPopUpButton(frame: .zero, pullsDown: false)
         p.controlSize = .small
@@ -586,6 +659,8 @@ final class ToolOptionsBar: NSView {
     }
 
     private func shapeDrawType() {
+        option = .shapeDrawType
+        defer { option = nil }
         add(segmented(ShapeDrawType.allCases.map { ("drawtype.\($0)", $0.name) }, get: { self.s.shapeDrawType.rawValue },
                       set: { self.s.shapeDrawType = ShapeDrawType(rawValue: $0) ?? .outline }))
     }

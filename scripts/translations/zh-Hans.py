@@ -3,6 +3,7 @@
 T = dict(line.split('|', 1) for line in r"""
 %@ copy|%@ 副本
 %@ of %@|%@ / %@
+%d of %d|%d/%d
 %d x %d Region|%d x %d 区域
 10 Percent|10%
 20 Percent|20%
@@ -19,7 +20,9 @@ T = dict(line.split('|', 1) for line in r"""
 90 Percent|90%
 A free, open-source image editor for macOS, modeled on the workflow of Paint.NET.\n\nLicensed under the MIT License.\nNot affiliated with or endorsed by dotPDN LLC. Paint.NET is a trademark of its respective owner.|一款免费、开源的 macOS 图像编辑器，以 Paint.NET 的工作方式为蓝本。\n\n基于 MIT 许可证发布。\n与 dotPDN LLC 无关联，也未获其认可。Paint.NET 是其所有者的商标。
 A new version of Brushwood is available|Brushwood 有新版本可用
+A solid line, or one of the dash patterns.|实线，或其中一种虚线样式。
 A star on GitHub also helps more people find Brushwood, and it means a lot.|在 GitHub 上点个星标也能帮助更多人发现 Brushwood，这对我们意义重大。
+A stroke released near where it started is joined to its start, so circles and outlines close cleanly.|在起点附近松开的笔画会与起点相连，让圆形和轮廓干净地闭合。
 About Brushwood|关于 Brushwood
 Actual Size|实际大小
 Add (union)|添加（并集）
@@ -32,6 +35,7 @@ After click|单击后
 After click:|单击后：
 Algorithm|算法
 Aliased|锯齿
+Alignment|对齐
 Amount|数量
 Anchor|锚点
 Angle|角度
@@ -44,10 +48,12 @@ Appearance|外观
 Arrow|箭头
 Arrows|箭头
 Artistic|艺术
+At 100%, the brush has a hard edge; lower values make its edge softer.|为 100% 时画笔边缘清晰；数值越低边缘越柔和。
 Auto|自动
 Auto-Level|自动色阶
 Auto-Level, Black and White, Brightness / Contrast, Curves|自动色阶、黑白、亮度 / 对比度、曲线
 Auto-detect|自动检测
+Back|上一步
 Back to %@|回到 %@
 Background|背景
 Backward Diagonal|反向对角线
@@ -55,6 +61,7 @@ Basic|基本
 Best Quality|最佳质量
 Bicubic|双三次
 Bilinear|双线性
+Bilinear gives smooth results when scaling or rotating; Nearest Neighbor keeps hard pixel edges.|“双线性”在缩放或旋转时效果平滑；“邻近”保持清晰的像素边缘。
 Bit Depth|位深度
 Black and White|黑白
 Blend|混合
@@ -118,6 +125,7 @@ Click to go back to this snapshot. Snapshots are not saved in the file.|单击�
 Click to select a region of similar color. ⌘ adds, ⌥ subtracts, right-click inverts. Shift-click for global selection.|单击以选择颜色相近的区域。⌘ 添加，⌥ 减去，右键反转。按住 Shift 键单击进行全局选择。
 Clipping:|裁剪：
 Clone Stamp|仿制图章
+Clone Stamp and Recolor|仿制图章与重新着色
 Clone source set at %d, %d|仿制源已设为 %d, %d
 Close|关闭
 Close Others|关闭其他
@@ -131,6 +139,8 @@ Color Mode|颜色模式
 Color Picker|颜色选择器
 Color Saturation|色彩饱和度
 Color count|颜色数
+Color mode goes from the primary to the secondary color. Transparency mode fades the layer out instead.|颜色模式从主要颜色过渡到次要颜色。透明模式则让图层逐渐变透明。
+Color or transparency|颜色或透明
 Color range|颜色范围
 Coloring|着色
 Colors|颜色
@@ -138,12 +148,14 @@ Colors (F8)|颜色 (F8)
 Commands|命令
 Conical|圆锥
 Contiguous|连续
+Contiguous only reaches the similar pixels that touch the one you click; Global reaches them everywhere in the image.|“连续”只作用于与所点像素相连的相似像素；“全局”作用于整个图像中的相似像素。
 Contrast|对比度
 Copy|拷贝
 Copy (⌘C)|拷贝 (⌘C)
 Copy / paste the selection outline|拷贝 / 粘贴选区轮廓
 Copy Merged|合并拷贝
 Copy Selection|拷贝选区
+Copy part of the image elsewhere, or replace one color with another.|把图像的一部分复制到别处，或把一种颜色换成另一种。
 Could not check for updates|无法检查更新
 Could not open \"%@\"|无法打开“%@”
 Could not save \"%@\"|无法存储“%@”
@@ -203,8 +215,12 @@ Drag the selection to move it. Drag the handles to scale. Drag with the right mo
 Draw Filled Shape|填充形状
 Draw Filled Shape With Outline|带轮廓的填充形状
 Draw Shape Outline|形状轮廓
+Draw lines and curves, and choose among 31 shapes.|绘制直线和曲线，并从 31 种形状中选择。
+Draw the outline, the inside, or both. The primary color draws; with both, the inside takes the secondary color.|绘制轮廓、内部或两者。用主要颜色绘制；两者兼有时，内部使用次要颜色。
 Drop Shadow|投影
 Duplicate Layer|复制图层
+Each Brushwood Plus feature can be turned on or off here, one by one or by category. This window is also in Brushwood Plus › Plus Features…|可在这里逐个或按类别打开或关闭 Brushwood Plus 的各项功能。此窗口也位于“Brushwood Plus › Plus 功能…”。
+Each step shows when it was made. Right-click in the History window to show how long ago instead, or to hide the times.|每个步骤都会显示完成的时间。在历史记录窗口中右键点按，可改为显示经过的时间，或隐藏时间。
 Edge Behavior|边缘行为
 Edge Detect|边缘检测
 Edit|编辑
@@ -214,6 +230,7 @@ Ellipse|椭圆
 Ellipse Callout|椭圆标注
 Ellipse Select|椭圆选择
 Emboss|浮雕
+End Tutorial|结束教程
 End cap|末端样式
 End:|末端：
 Enter Full Screen|进入全屏幕
@@ -221,6 +238,8 @@ Erase Selection|抹除选区
 Eraser|橡皮擦
 Erode|腐蚀
 Euclidean|欧几里得
+Every change is a step. Click a step to go back to it, and click it again to compare before and after. Undo and Redo are at the bottom.|每次更改都是一个步骤。点按某个步骤即可回到该步骤，再点按一次可比较前后效果。撤销和重做在底部。
+Everyday commands: new, open, save, cut, copy, paste, undo and redo. The thumbnails are your open images, and the buttons on the right show or hide the floating windows.|常用命令：新建、打开、存储、剪切、拷贝、粘贴、撤销和重做。缩略图是已打开的图像，右侧按钮用于显示或隐藏浮动窗口。
 Expand canvas|扩大画布
 Explosion|爆炸
 Exposure|曝光
@@ -231,7 +250,10 @@ File|文件
 File size: %@|文件大小：%@
 Files|文件
 Fill Selection|填充选区
+Fill an area with a color, a pattern or a gradient.|用颜色、图案或渐变填充区域。
+Fill and Color|填充与颜色
 Fill style|填充样式
+Fill with the plain color, or with a pattern of the primary and secondary colors.|用纯色填充，或用主要颜色和次要颜色组成的图案填充。
 Fill:|填充：
 Filled Arrow|实心箭头
 Finish|完成
@@ -258,9 +280,11 @@ Gamma|伽马
 Gamma Boost|伽马增强
 Gaussian Blur|高斯模糊
 General|通用
+Getting Started|入门
 Global|全局
 Glow|发光
 Go Back to This Snapshot|回到此快照
+Go straight to 5, 10, 15… for the brush width.|画笔宽度直接跳到 5、10、15…
 Go to Bottom Layer|转到最底层图层
 Go to Layer Above|转到上一图层
 Go to Layer Below|转到下一图层
@@ -286,11 +310,17 @@ Highlight boost|高光增强
 Highlights|高光
 Highlights / Shadows|高光 / 阴影
 Hint: For best results, first use the selection tools to select each eye.|提示：为获得最佳效果，请先用选择工具选中每只眼睛。
+Hints for the current tool, the size of the selection, the pointer position, the units and the zoom.|当前工具的提示、选区大小、指针位置、单位和缩放比例。
 History|历史记录
 History (F6)|历史记录 (F6)
+History Times and Snapshots|历史记录中的时间与快照
 Hold to pan|按住以平移
 Horizontal|水平
 Horizontal Brick|横砖
+How a new selection combines with the current one: replace it, add to it, subtract from it, keep only where they overlap, or invert where they overlap.|新选区如何与当前选区组合：替换、添加、减去、只保留重叠部分，或反转重叠部分。
+How different a color can be and still count as similar. At 0%, only the exact same color counts.|颜色相差多少仍算相似。为 0% 时，只有完全相同的颜色才算。
+How the line starts and ends: flat, rounded, or with an arrow.|线条的开头和结尾：平头、圆头或箭头。
+How the paint mixes with the pixels below it. Overwrite replaces them, transparency included.|颜料如何与下方像素混合。“覆盖”会替换它们，包括透明度。
 Hue|色相
 Hue / Saturation|色相 / 饱和度
 Hue / Saturation, Invert Alpha, Invert Colors, Levels|色相 / 饱和度、反相 Alpha、反相颜色、色阶
@@ -356,10 +386,15 @@ Lightness|明度
 Lightning|闪电
 Line|直线
 Line / Curve|直线 / 曲线
+Line ends|线端
 Linear|线性
 Linear (Diamond)|线性（菱形）
 Linear (Reflected)|线性（反射）
+Lines and Shapes|线条与形状
+Lines of text line up on the left, in the center or on the right.|文本行左对齐、居中或右对齐。
 Linked|关联
+Look at the colors of the current layer only, or of the whole image.|只看当前图层的颜色，或整个图像的颜色。
+Look closer, and move around the image.|放大查看，并在图像中移动。
 Luminosity|明度
 Magic Wand|魔棒
 Magnetic Closing|磁性闭合
@@ -387,6 +422,8 @@ Move Layer to Bottom|将图层移到底部
 Move Layer to Top|将图层移到顶部
 Move Selected Pixels|移动所选像素
 Move Selection|移动选区
+Move, scale and rotate a selection or what it contains.|移动、缩放和旋转选区或其中的内容。
+Moving Pixels and Selections|移动像素和选区
 Multiply|正片叠底
 NEW|新功能
 Name:|名称：
@@ -399,12 +436,15 @@ New Snapshot|新建快照
 New size: %@|新大小：%@
 New size: %d × %d (%@)|新大小：%d × %d（%@）
 New…|新建…
+Next|下一步
 Next Image|下一个图像
 Next image|下一个图像
 No Repeat|不重复
 No download is available for this version yet.|此版本暂无可下载的文件。
 Noise|杂色
 Normal|正常
+Normal, or a fixed ratio or a fixed size, for a selection with exact proportions or dimensions.|正常，或固定比例、固定大小，用于绘制比例或尺寸精确的选区。
+Not Now|以后再说
 Number of cells|单元格数量
 OK|好
 Object|对象
@@ -413,6 +453,7 @@ Octaves|八度
 Octree|八叉树
 Offset|偏移
 Oil Painting|油画
+On, edges are smooth. Off, they are hard and pixelated.|打开时边缘平滑；关闭时边缘生硬、呈像素状。
 Opacity|不透明度
 Opacity:|不透明度：
 Open|打开
@@ -424,14 +465,18 @@ Open…|打开…
 Original|原始
 Outline|轮廓
 Outline Object|对象轮廓
+Outline or fill|轮廓或填充
 Outlined Diamond|空心菱形
 Output black|输出黑场
 Output white|输出白场
 Overlay|叠加
 Overwrite|覆盖
 Paint Bucket|油漆桶
+Paint Bucket and Gradient|油漆桶与渐变
 Paintbrush|画笔
+Paintbrush, eraser and pencil, and their settings.|画笔、橡皮擦和铅笔，以及它们的设置。
 Painting|绘画
+Painting Tools|绘画工具
 Palette|调色板
 Pan|抓手
 Parallelogram|平行四边形
@@ -448,6 +493,8 @@ Pentagon|五边形
 Percentile|百分位数
 Period|周期
 Photo|照片
+Pick a tool here, or press its letter on the keyboard (the tooltip shows it). Pressing the letter again switches between the tools that share it.|在这里选择工具，或按键盘上对应的字母（工具提示中会显示）。再次按该字母可在共用此字母的工具之间切换。
+Pick a tour and click Start. Each one points at the parts of the window it explains.|选择一个导览并点按“开始”。每个导览都会指出它讲解的窗口部分。
 Pixel Grid|像素网格
 Pixel Grid (⌘')|像素网格 (⌘')
 Pixel size|像素大小
@@ -484,6 +531,8 @@ Recolor|重新着色
 Rectangle|矩形
 Rectangle Callout|矩形标注
 Rectangle Select|矩形选择
+Rectangle, lasso, ellipse and magic wand, and how selections combine.|矩形、套索、椭圆和魔棒，以及选区如何组合。
+Rectangles, ellipses, polygons, stars, arrows, callouts and symbols.|矩形、椭圆、多边形、星形、箭头、标注和符号。
 Red|红
 Red Eye Removal|消除红眼
 Redo|重做
@@ -556,6 +605,7 @@ Seed|种子
 Select All|全选
 Select All / Deselect|全选 / 取消选择
 Selection|选区
+Selection Tools|选择工具
 Selection clipping|选区裁剪
 Selection drawing mode|选区绘制模式
 Selection mode:|选择模式：
@@ -574,6 +624,7 @@ Shapes|形状
 Shapes, lines, gradients, text and paint bucket fills stay editable after you draw them: drag their handles or change options in the tool bar. Press Return or switch tools to finish, Escape or ⌘Z to cancel.|形状、直线、渐变、文本和油漆桶填充在绘制后仍可编辑：拖移控制点或在工具栏中更改选项。按 Return 键或切换工具以完成，按 Esc 键或 ⌘Z 取消。
 Sharpen|锐化
 Shingle|瓦片
+Short guided tours show where things are and what each tool and its settings do. Pick one to start; the others stay in Help › Tutorial…|简短的导览会告诉你各部分的位置，以及各个工具和设置的作用。选择一个开始吧；其他导览以后可在“帮助 › 教程…”中找到。
 Show All|全部显示
 Show Time Elapsed|显示经过时间
 Show Time of Day|显示时刻
@@ -586,6 +637,7 @@ Sketch Blur|素描模糊
 Small Checker Board|小棋盘格
 Small Grid|小网格
 Smoothing|防抖
+Smoothing and Magnetic Closing|防抖与磁性闭合
 Smoothing disabled|防抖已关闭
 Smoothing enabled|防抖已打开
 Smoothness|平滑度
@@ -604,8 +656,12 @@ Spiral (Clockwise)|螺旋（顺时针）
 Spiral (Counter-clockwise)|螺旋（逆时针）
 Square Blur|方块模糊
 Stars|星形
+Start|开始
 Start cap|起点样式
 Start:|起点：
+Status bar|状态栏
+Stay on the Color Picker after picking, go back to the previous tool, or switch to the Pencil.|取色后停留在颜色选择器、回到上一个工具，或切换到铅笔。
+Steadier strokes, and outlines that close by themselves.|更稳定的笔画，以及会自动闭合的轮廓。
 Steadies strokes: the brush follows the pointer on a string. For the Paintbrush, Eraser, Clone Stamp and Recolor tools.|让笔画更稳定：画笔像系着绳子一样跟随指针。适用于画笔、橡皮擦、仿制图章和重新着色工具。
 Straighten|拉直
 Strength|力度
@@ -622,16 +678,30 @@ Swap primary and secondary colors|交换主要颜色和次要颜色
 Switch to Pencil tool|切换到铅笔工具
 Switch to previous tool|切换到上一个工具
 Symbols|符号
+Take a Quick Tour?|来个快速导览吗？
+Take a color from the image.|从图像中取色。
+Take a single pixel or the average of a square around it, from the current layer or the whole image.|取单个像素，或其周围方形区域的平均值，取自当前图层或整个图像。
 Temperature|色温
 Temperature and Tint|色温和色调
 Tension|张力
 Text|文本
+Text and Shapes|文本与形状
 Thank you for being here.|感谢有你。
+The Brushwood Window|Brushwood 窗口
+The bar under the toolbar shows the settings of the current tool. They change with the tool and are kept for next time.|主栏下方的栏显示当前工具的设置。设置随工具变化，并会保留到下次使用。
+The brush follows the pointer on a string, which takes out hand tremor. While it is on, the length of the string can be set next to it.|画笔像系着绳子一样跟随指针，可消除手的抖动。打开时，可在旁边设置拉绳的长度。
 The downloaded file is damaged. Try again later.|下载的文件已损坏。请稍后再试。
+The font, its size and its style: bold, italic, underline and strikethrough.|字体、字号和样式：粗体、斜体、下划线和删除线。
 The image being pasted is larger than the canvas size. What would you like to do?|粘贴的图像大于画布。你想怎么做？
+The image is a stack of layers. Add, delete, duplicate and move them with the buttons at the bottom; double-click a layer for its properties.|图像是一叠图层。使用底部的按钮添加、删除、复制和移动图层；连按图层可打开其属性。
+The left mouse button paints with the primary color, the right one with the secondary color. Click a color of the palette to pick it, or right-click it for the secondary color.|鼠标左键用主要颜色绘画，右键用次要颜色。点按调色板中的颜色即可选择，右键点按则设为次要颜色。
+The shape of the gradient: linear, reflected, diamond, radial, conical or spiral.|渐变的形状：线性、反射、菱形、径向、锥形或螺旋。
+The size of the brush, in pixels. The mouse wheel over the field and the [ and ] keys change it too.|画笔的大小，单位为像素。在栏位上滚动鼠标滚轮或按 [ 和 ] 键也能更改。
 The update could not be installed|无法安装更新
 These blend modes will be saved as Normal in the .pdn file: %@. Save as OpenRaster (.ora) to keep them.|这些混合模式在 .pdn 文件中将存储为“正常”：%@。若要保留它们，请存储为 OpenRaster (.ora)。
+These buttons go up or down to the next multiple of 5: 1, 5, 10, 15…|这些按钮会增加或减少到下一个 5 的倍数：1、5、10、15…
 Thickness|粗细
+This button keeps a full copy of the image, listed at the top of the History window. Click the snapshot to bring the image back to it at any time, even after undoing or new edits.|此按钮会保留图像的完整副本，列在历史记录窗口顶部。点按快照即可随时回到该图像，即使撤销或进行了新的编辑之后也可以。
 This file format does not support layers. The saved file will contain a flattened copy of the image; your layers are kept in Brushwood.|此文件格式不支持图层。存储的文件将包含图像的拼合副本；你的图层仍保留在 Brushwood 中。
 This is not a Paint.NET (.pdn) file.|这不是 Paint.NET (.pdn) 文件。
 Threshold|阈值
@@ -644,7 +714,9 @@ Toggle Layer Visibility|显示/隐藏图层
 Tolerance|容差
 Tolerance:|容差：
 Tool Bar|工具栏
+Tool options|工具选项
 Tool:|工具：
+Toolbar|主栏
 Tools|工具
 Tools (F5)|工具 (F5)
 Tools, History, Layers, Colors windows|“工具”“历史记录”“图层”“颜色”窗口
@@ -656,7 +728,12 @@ Trellis|格架
 Triangle|三角形
 Triangle Repeat|三角波重复
 Turbulence|湍流
+Turn each Brushwood Plus feature on or off.|打开或关闭 Brushwood Plus 的各项功能。
+Turn its features on in Plus Features to follow this tour.|请在“Plus 功能”中打开相关功能以跟随此导览。
+Tutorial|教程
+Tutorial…|教程…
 Twist|扭转
+Type text, and choose its font.|输入文本并选择字体。
 Underline|下划线
 Undo|撤销
 Undo %@|撤销“%@”
@@ -679,8 +756,13 @@ Warmth|暖度
 Wave|波浪
 Weave|编织
 Welcome to Brushwood|欢迎使用 Brushwood
+What happens past the ends of the gradient: nothing, or it repeats as a sawtooth or a triangle.|渐变两端之外如何处理：不重复，或以锯齿或三角形方式重复。
+What you draw with this tool keeps its handles, so you can still change it, until you click Finish or press Return.|用此工具绘制的内容会保留控制点，在你点按“完成”或按下 Return 键之前都可以修改。
 What's New|新功能
 What's New in Brushwood Plus|Brushwood Plus 新功能
+When each step was made, and copies of the image to come back to.|每个步骤的完成时间，以及可以回到的图像副本。
+When part of the image is selected, painting stays inside the selection. Antialiased softens its edge.|当图像的一部分被选中时，绘画只在选区内进行。“已消除锯齿”会柔化选区边缘。
+Where everything is: toolbar, floating windows and status bar.|各部分的位置：主栏、浮动窗口和状态栏。
 White|白色
 Width|宽度
 Width:|宽度：
@@ -694,6 +776,7 @@ Zoom Blur|缩放模糊
 Zoom In|放大
 Zoom In / Out|放大 / 缩小
 Zoom Out|缩小
+Zoom and Pan|缩放与抓手
 Zoom to Selection|缩放到选区
 Zoom to Window|缩放到窗口
 centimeters|厘米
