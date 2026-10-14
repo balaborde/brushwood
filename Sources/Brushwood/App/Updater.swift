@@ -20,8 +20,9 @@ struct Release {
 }
 
 /// Reads the newest release of this edition from GitHub. Brushwood and Brushwood Plus share the repository, so the
-/// whole list is read and only tags such as v1.0.3-plus.1 count (Plus releases are never marked "Latest", which
-/// Brushwood follows). `BRUSHWOOD_UPDATE_FEED` points elsewhere for testing (a file:// URL works).
+/// whole list is read and only tags such as v1.0.3-plus.1 count, pre-releases (betas of either app) left out. Plus
+/// releases carry no label: Brushwood follows the one marked "Latest". `BRUSHWOOD_UPDATE_FEED` points elsewhere for
+/// testing (a file:// URL works).
 enum UpdateFeed {
     static let url = URL(string: ProcessInfo.processInfo.environment["BRUSHWOOD_UPDATE_FEED"]
         ?? "https://api.github.com/repos/balaborde/brushwood/releases?per_page=50")!
@@ -35,6 +36,7 @@ enum UpdateFeed {
         let tagName: String
         let htmlUrl: URL
         let body: String?
+        let prerelease: Bool?
         let assets: [Asset]
     }
 
@@ -48,7 +50,8 @@ enum UpdateFeed {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
                 let releases = try decoder.decode([GitHubRelease].self, from: data ?? Data())
-                let editions = releases.compactMap { r in AppVersion(r.tagName).map { (r, $0) } }.filter { $0.1.edition == Edition.tag }
+                let editions = releases.filter { $0.prerelease != true }
+                    .compactMap { r in AppVersion(r.tagName).map { (r, $0) } }.filter { $0.1.edition == Edition.tag }
                 guard let (r, version) = editions.max(by: { $0.1 < $1.1 }) else { throw URLError(.cannotParseResponse) }
                 let dmg = r.assets.first { $0.name.lowercased().hasSuffix(".dmg") }
                 let sha = dmg?.digest.flatMap { $0.hasPrefix("sha256:") ? String($0.dropFirst(7)) : nil }

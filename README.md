@@ -195,8 +195,15 @@ Finder. Attach the .dmg to a GitHub release.
 For **Check for Updates…** to find a release, publish it on GitHub with:
 
 - a tag `v<version>`, where `<version>` is the app's `CFBundleShortVersionString` (for example `v1.0.3-plus.1`);
-- **Brushwood Plus only:** the release marked as a pre-release, or with "Set as the latest release" unticked. Brushwood
-  offers the latest release to its users, while Brushwood Plus looks through all releases for its own tags;
+- the right label. GitHub's "Latest" release is the one Brushwood offers, and the one the download link above opens,
+  so it must always be a Brushwood release. Brushwood Plus looks through all releases for its own tags instead:
+
+  | Release | Tag | Label |
+  |---|---|---|
+  | Brushwood | `v1.0.4` | Latest |
+  | Brushwood Plus | `v1.0.4-plus.1` | none: untick "Set as the latest release" (ticked by default) |
+  | Beta of either app | `v1.1.0-beta.1`, `v1.0.4-plus.2-beta.1` | Pre-release (neither app offers it) |
+
 - the disk image attached (the first `.dmg` file of the release is the one installed);
 - release notes in Markdown: Brushwood shows them in its update window, up to a heading that starts with "Install"
   (download instructions are not needed there).

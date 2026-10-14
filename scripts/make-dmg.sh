@@ -1,7 +1,8 @@
 #!/bin/bash
 # Builds a universal Brushwood.app (Apple silicon + Intel) and packages it as "Brushwood Plus.app" in
 # build/Brushwood-<version>.dmg, which opens on a window where the app is dragged onto the Applications folder.
-# Publish the disk image as a pre-release (or untick "Set as the latest release"): Brushwood updates to the latest one.
+# Publish it as a release with no label: untick "Set as the latest release" (that one stays Brushwood's) and leave
+# "Set as a pre-release" for betas, which neither app offers.
 #
 # By default the app is only ad-hoc signed: it works, but the first time it is opened macOS asks people to
 # allow it in System Settings › Privacy & Security (see README › Installing). With a paid Apple Developer
