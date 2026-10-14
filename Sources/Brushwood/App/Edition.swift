@@ -13,22 +13,24 @@ enum Edition {
     }
 
     /// The "+" badge at the top right of the app icon (`scale` = icon size / 1024), so the two apps differ in the Dock.
+    /// It stays inside the icon's rounded square, shadow included: macOS 26 shrinks an icon whose drawing goes past
+    /// that shape onto a gray plate.
     static func drawBadge(scale s: CGFloat) {
-        let badge = NSBezierPath(ovalIn: NSRect(x: 690 * s, y: 690 * s, width: 250 * s, height: 250 * s))
+        let c = 765 * s
+        func circle(_ r: CGFloat) -> NSBezierPath { NSBezierPath(ovalIn: NSRect(x: c - r * s, y: c - r * s, width: 2 * r * s, height: 2 * r * s)) }
         NSGraphicsContext.saveGraphicsState()
         let shadow = NSShadow()
         shadow.shadowColor = NSColor.black.withAlphaComponent(0.3)
-        shadow.shadowBlurRadius = 16 * s
-        shadow.shadowOffset = NSSize(width: 0, height: -6 * s)
+        shadow.shadowBlurRadius = 14 * s
+        shadow.shadowOffset = NSSize(width: 0, height: -5 * s)
         shadow.set()
         NSColor.white.setFill()
-        badge.fill()
+        circle(110).fill()
         NSGraphicsContext.restoreGraphicsState()
-        let inner = NSBezierPath(ovalIn: NSRect(x: 708 * s, y: 708 * s, width: 214 * s, height: 214 * s))
         NSGradient(starting: NSColor(srgbRed: 1, green: 0.62, blue: 0.2, alpha: 1),
-                   ending: NSColor(srgbRed: 0.93, green: 0.38, blue: 0.1, alpha: 1))?.draw(in: inner, angle: -90)
+                   ending: NSColor(srgbRed: 0.93, green: 0.38, blue: 0.1, alpha: 1))?.draw(in: circle(94), angle: -90)
         NSColor.white.setFill()
-        let bar = 48 * s, arm = 136 * s, c = 815 * s
+        let bar = 44 * s, arm = 120 * s
         NSBezierPath(roundedRect: NSRect(x: c - arm / 2, y: c - bar / 2, width: arm, height: bar), xRadius: bar / 2, yRadius: bar / 2).fill()
         NSBezierPath(roundedRect: NSRect(x: c - bar / 2, y: c - arm / 2, width: bar, height: arm), xRadius: bar / 2, yRadius: bar / 2).fill()
     }
