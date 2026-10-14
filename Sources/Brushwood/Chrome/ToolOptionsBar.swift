@@ -43,6 +43,7 @@ final class ToolOptionsBar: NSView {
         }
         let nc = NotificationCenter.default
         observers.append(nc.addObserver(forName: .toolChanged, object: nil, queue: .main) { [weak self] _ in self?.rebuild() })
+        observers.append(nc.addObserver(forName: .plusFeaturesChanged, object: nil, queue: .main) { [weak self] _ in self?.rebuild() })
         observers.append(nc.addObserver(forName: .toolSettingsChanged, object: nil, queue: .main) { [weak self] _ in
             self?.refresh()
         })
@@ -305,31 +306,36 @@ final class ToolOptionsBar: NSView {
     }
 
     /// Brushwood Plus's stroke options, toggled like Antialiasing: Smoothing (with the string's length while it is on)
-    /// and Magnetic Closing.
+    /// and Magnetic Closing, each shown while its Plus feature is on.
     private func strokeOptions() {
-        let smoothing = ToolbarButton(icon: "opt.smoothing", tooltip: L("Smoothing"), target: nil, action: nil, size: 24)
-        smoothing.onAction { [weak self] _ in self?.s.smoothing.toggle() }
-        let builtWithSmoothing = s.smoothing
-        refreshers.append { [weak self] in
-            guard let self else { return }
-            let on = s.smoothing
-            smoothing.isToggled = on
-            smoothing.image = Icons.image(on ? "opt.smoothing" : "opt.unsmoothed", size: 16)
-            smoothing.toolTip = on ? L("Smoothing enabled") : L("Smoothing disabled")
-            // Shows or hides the string length.
-            if on != builtWithSmoothing { DispatchQueue.main.async { self.rebuild() } }
+        let smoothingShown = PlusFeature.smoothing.isEnabled
+        let builtWithSmoothing = smoothingShown && s.smoothing
+        if smoothingShown {
+            let smoothing = ToolbarButton(icon: "opt.smoothing", tooltip: L("Smoothing"), target: nil, action: nil, size: 24)
+            smoothing.onAction { [weak self] _ in self?.s.smoothing.toggle() }
+            refreshers.append { [weak self] in
+                guard let self else { return }
+                let on = s.smoothing
+                smoothing.isToggled = on
+                smoothing.image = Icons.image(on ? "opt.smoothing" : "opt.unsmoothed", size: 16)
+                smoothing.toolTip = on ? L("Smoothing enabled") : L("Smoothing disabled")
+                // Shows or hides the string length.
+                if on != builtWithSmoothing { DispatchQueue.main.async { self.rebuild() } }
+            }
+            add(smoothing)
         }
-        add(smoothing)
-        let closing = ToolbarButton(icon: "opt.closing", tooltip: L("Magnetic Closing"), target: nil, action: nil, size: 24)
-        closing.onAction { [weak self] _ in self?.s.magneticClosing.toggle() }
-        refreshers.append { [weak self] in
-            let on = self?.s.magneticClosing == true
-            closing.isToggled = on
-            closing.image = Icons.image(on ? "opt.closing" : "opt.open", size: 16)
-            closing.toolTip = on ? L("Magnetic closing enabled: a stroke released near its start joins it")
-                : L("Magnetic closing disabled")
+        if PlusFeature.magneticClosing.isEnabled {
+            let closing = ToolbarButton(icon: "opt.closing", tooltip: L("Magnetic Closing"), target: nil, action: nil, size: 24)
+            closing.onAction { [weak self] _ in self?.s.magneticClosing.toggle() }
+            refreshers.append { [weak self] in
+                let on = self?.s.magneticClosing == true
+                closing.isToggled = on
+                closing.image = Icons.image(on ? "opt.closing" : "opt.open", size: 16)
+                closing.toolTip = on ? L("Magnetic closing enabled: a stroke released near its start joins it")
+                    : L("Magnetic closing disabled")
+            }
+            add(closing)
         }
-        add(closing)
         guard builtWithSmoothing else { return }
         add(toolbarLabel(L("String length:")))
         let length = NumericSliderControl(range: 2...100, value: Double(s.smoothingLength), showReset: false, sliderWidth: 70)

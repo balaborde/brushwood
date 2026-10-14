@@ -39,11 +39,11 @@ class StrokeTool: Tool {
         mask = MaskSurface(width: doc.width, height: doc.height)
         clip = selectionClip
         lastPoint = e.point
-        if smooths, settings.smoothing {
+        if smooths, settings.smoothing, PlusFeature.smoothing.isEnabled {
             // The string's length is set on screen, so it feels the same at every zoom.
             stabilizer = StrokeStabilizer(at: e.point, length: Double(settings.smoothingLength / canvas.zoom), spacing: spacing)
         }
-        if smooths, settings.magneticClosing {
+        if smooths, settings.magneticClosing, PlusFeature.magneticClosing.isEnabled {
             closer = StrokeCloser(start: e.point, radius: Double(max(Self.closingRadius / canvas.zoom, settings.brushWidth / 2)))
         }
         stroke(from: e.point, to: e.point)

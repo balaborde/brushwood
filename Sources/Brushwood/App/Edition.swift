@@ -7,9 +7,10 @@ enum Edition {
     /// The edition part of release tags.
     static let tag = "plus"
 
-    /// Puts the edition's name in interface text, which says "Brushwood" in every language.
+    /// Puts the edition's name in interface text, which says "Brushwood" in every language (text written for the
+    /// edition already says "Brushwood Plus").
     static func brand(_ s: String) -> String {
-        s.replacingOccurrences(of: "Brushwood", with: name)
+        s.replacingOccurrences(of: "Brushwood(?! Plus)", with: name, options: .regularExpression)
     }
 
     /// The "+" badge at the top right of the app icon (`scale` = icon size / 1024), so the two apps differ in the Dock.

@@ -69,10 +69,14 @@ Bold|Gras
 Brightness|Luminosité
 Brightness / Contrast|Luminosité / Contraste
 Brush size|Taille de la brosse
+Brush smoothing|Stabilisation du pinceau
 Brush width (mouse wheel, [ and ] also change it)|Largeur du pinceau (la molette, [ et ] la modifient aussi)
 Brush width:|Largeur du pinceau :
 Brushwood %@ is available. You have version %@.|Brushwood %@ est disponible. Vous avez la version %@.
 Brushwood Help|Aide de Brushwood
+Brushwood Plus|Brushwood Plus
+Brushwood Plus adds features that Paint.NET does not have. Choose the ones you want to use.|Brushwood Plus ajoute des fonctionnalités que Paint.NET n'a pas. Choisissez celles que vous voulez utiliser.
+Brushwood Plus has been updated to version %@. What this update brings is marked New. Choose the features you want to use.|Brushwood Plus a été mis à jour en version %@. Ce qu'apporte cette mise à jour est marqué Nouveau. Choisissez les fonctionnalités que vous voulez utiliser.
 Brushwood cannot replace itself in its current folder. Download the new version from GitHub and install it by hand.|Brushwood ne peut pas se remplacer dans son dossier actuel. Téléchargez la nouvelle version sur GitHub et installez-la vous-même.
 Brushwood is a free image editor for macOS whose workflow follows Paint.NET: one main window with image tabs, floating Tools, History, Layers and Colors windows, layers with blend modes, unlimited history, and a large set of adjustments and effects with live preview.|Brushwood est un éditeur d'images gratuit pour macOS qui reprend le fonctionnement de Paint.NET : une fenêtre principale avec des onglets d'images, des fenêtres flottantes Outils, Historique, Calques et Couleurs, des calques avec modes de fusion, un historique illimité et un large choix de réglages et d'effets avec aperçu en direct.
 Brushwood is running from the disk image or the Downloads folder. Move it to the Applications folder, then try again.|Brushwood est ouvert depuis l'image disque ou le dossier Téléchargements. Placez-le dans le dossier Applications, puis réessayez.
@@ -89,12 +93,14 @@ Cell size|Taille des cellules
 Center|Centre
 Centered|Centré
 Centimeters|Centimètres
+Changes apply right away. To come back here later, choose Brushwood Plus › Plus Features…|Les changements s'appliquent tout de suite. Pour revenir ici plus tard : Brushwood Plus › Fonctionnalités Plus…
 Chebyshev|Tchebychev
 Check for Updates…|Rechercher les mises à jour…
 Check for updates automatically|Rechercher les mises à jour automatiquement
 Check your internet connection and try again.|Vérifiez votre connexion à Internet et réessayez.
 Checking for updates…|Recherche de mises à jour…
 Chevron|Chevron
+Choose the Brushwood Plus features you want to use.|Choisissez les fonctionnalités de Brushwood Plus que vous voulez utiliser.
 Clamp|Bloquer
 Clear Menu|Effacer le menu
 Click and drag to draw a gradient from the primary to the secondary color. Right mouse button reverses the colors.|Cliquez et faites glisser pour tracer un dégradé de la couleur principale vers la couleur secondaire. Le bouton droit inverse les couleurs.
@@ -305,8 +311,10 @@ Invert Alpha|Inverser l'alpha
 Invert Colors|Inverser les couleurs
 Invert Selection|Inverser la sélection
 Italic|Italique
+Joins a stroke released near its start to it, so circles and outlines close cleanly. For the same tools.|Raccorde un trait relâché près de son début, pour que cercles et contours se ferment proprement. Pour les mêmes outils.
 Julia Fractal|Fractale de Julia
 Keep canvas size|Conserver la taille du canevas
+Keeps copies of the image that you can always go back to, from the History window.|Garde des copies de l'image auxquelles vous pouvez toujours revenir, depuis la fenêtre Historique.
 Keyboard Shortcuts|Raccourcis clavier
 Lanczos 3|Lanczos 3
 Language|Langue
@@ -352,6 +360,7 @@ Linked|Liés
 Luminosity|Luminosité
 Magic Wand|Baguette magique
 Magnetic Closing|Fermeture magnétique
+Magnetic closing|Fermeture magnétique
 Magnetic closing disabled|Fermeture magnétique désactivée
 Magnetic closing enabled: a stroke released near its start joins it|Fermeture magnétique activée : un trait relâché près de son début s'y raccorde
 Maintain aspect ratio|Conserver les proportions
@@ -376,6 +385,7 @@ Move Layer to Top|Placer le calque en haut
 Move Selected Pixels|Déplacer les pixels sélectionnés
 Move Selection|Déplacer la sélection
 Multiply|Produit
+NEW|NOUVEAU
 Name:|Nom :
 Nearest Neighbor|Plus proche voisin
 Negation|Négation
@@ -418,6 +428,7 @@ Overlay|Incrustation
 Overwrite|Écraser
 Paint Bucket|Pot de peinture
 Paintbrush|Pinceau
+Painting|Dessin
 Palette|Palette
 Pan|Main
 Parallelogram|Parallélogramme
@@ -441,6 +452,8 @@ Pixelate|Pixeliser
 Pixels|Pixels
 Plaid|Écossais
 Plus|Plus
+Plus Features|Fonctionnalités Plus
+Plus Features…|Fonctionnalités Plus…
 Polar Inversion|Inversion polaire
 Polygons|Polygones
 Posterize|Postériser
@@ -563,6 +576,7 @@ Show Time Elapsed|Afficher le temps écoulé
 Show Time of Day|Afficher l'heure
 Show in Finder|Afficher dans le Finder
 Show points|Afficher les points
+Shows when each step was made, or how long ago.|Affiche quand chaque étape a été faite, ou il y a combien de temps.
 Single Pixel|Pixel unique
 Size|Taille
 Sketch Blur|Flou esquisse
@@ -573,6 +587,7 @@ Smoothing disabled|Stabilisation désactivée
 Smoothing enabled|Stabilisation activée
 Smoothness|Douceur
 Snapshot %d|Instantané %d
+Snapshots|Instantanés
 Soft Light|Lumière tamisée
 Soften Portrait|Adoucir le portrait
 Softness|Douceur
@@ -588,6 +603,7 @@ Square Blur|Flou carré
 Stars|Étoiles
 Start cap|Extrémité de début
 Start:|Début :
+Steadies strokes: the brush follows the pointer on a string. For the Paintbrush, Eraser, Clone Stamp and Recolor tools.|Stabilise les traits : le pinceau suit le pointeur au bout d'une corde. Pour le Pinceau, la Gomme, le Tampon de duplication et la Recoloration.
 Straighten|Redresser
 Strength|Force
 Strikethrough|Barré
@@ -619,6 +635,7 @@ Threshold|Seuil
 Tile Reflection|Réflexion en mosaïque
 Tile Size|Taille des carreaux
 Tiling|Mosaïque
+Times in the History window|Heure dans la fenêtre Historique
 Tint|Teinte (vert/magenta)
 Toggle Layer Visibility|Afficher/masquer le calque
 Tolerance|Tolérance
@@ -658,6 +675,7 @@ Wave|Vagues
 Weave|Tissage
 Welcome to Brushwood|Bienvenue dans Brushwood
 What's New|Nouveautés
+What's New in Brushwood Plus|Nouveautés de Brushwood Plus
 White|Blanc
 Width|Largeur
 Width:|Largeur :

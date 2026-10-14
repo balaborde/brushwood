@@ -35,21 +35,30 @@ run layers "menu:addLayer:; expectlayers:2; tool:paintBucket; color:FF0000; clic
  menu:brushwoodUndo:; expectlayers:2; menu:moveLayerDown:; expect:10,10,FFFFFF; menu:moveLayerUp:; expect:10,10,FF0000"
 
 # Brushwood Plus snapshots: going back survives undo and new edits, and is itself a step that can be undone.
-run snapshots "tool:paintBucket; color:FF0000; click:10,10; key:return; snapshot; expectsnapshots:1; gobacktosnapshot:0;
+run snapshots "plusfeature:smoothing=1; plusfeature:magneticClosing=1; plusfeature:snapshots=1; tool:paintBucket; color:FF0000; click:10,10; key:return; snapshot; expectsnapshots:1; gobacktosnapshot:0;
  expecthistory:1; color:0000FF; click:10,10; key:return; menu:brushwoodUndo:; menu:brushwoodUndo:; tool:pencil;
  color:00FF00; drag:400,10,400,50; expecthistory:1; gobacktosnapshot:0; expect:10,10,FF0000; expect:400,30,FF0000;
  expecthistory:2; menu:brushwoodUndo:; expect:10,10,FFFFFF; expect:400,30,00FF00; snapshot; expectsnapshots:2"
 
 # Brushwood Plus smoothing: a zigzag drawn without smoothing keeps its corners; with it, the stroke runs straight
 # through the middle and ends at the brush, a string's length before the pointer (no straight tail to it).
-run smoothing "tool:paintbrush; color:0000FF; width:6; setting:smoothing=0; path:100,300,110,292,120,308,130,292,140,308,150,292,160,308,170,292,180,308,190,292,200,308,210,292,220,308,230,292,240,308,250,292,260,308,270,292,280,308,290,292,300,308,310,300; expect:120,308,0000FF;
+run smoothing "plusfeature:smoothing=1; plusfeature:magneticClosing=1; plusfeature:snapshots=1; tool:paintbrush; color:0000FF; width:6; setting:smoothing=0; path:100,300,110,292,120,308,130,292,140,308,150,292,160,308,170,292,180,308,190,292,200,308,210,292,220,308,230,292,240,308,250,292,260,308,270,292,280,308,290,292,300,308,310,300; expect:120,308,0000FF;
  setting:smoothing=1; path:100,400,110,392,120,408,130,392,140,408,150,392,160,408,170,392,180,408,190,392,200,408,210,392,220,408,230,392,240,408,250,392,260,408,270,392,280,408,290,392,300,408,310,400; expect:120,408,FFFFFF; expect:200,400,0000FF; expect:285,400,0000FF; expect:308,400,FFFFFF; expecthistory:2;
  setting:smoothing=0"
 
 # Magnetic closing: a circle released near its start is joined to it; without the option the gap stays.
-run closing "tool:paintbrush; color:0000FF; width:8; setting:closing=0; path:560,300,559,283,557,267,552,251,546,235,539,220,529,206,519,193,507,181,494,171,480,161,465,154,449,148,433,143,417,141,400,140,383,141,367,143,351,148,335,154,320,161,306,171,293,181,281,193,271,206,261,220,254,235,248,251,243,267,241,283,240,300,241,317,243,333,248,349,254,365,261,380,271,394,281,407,293,419,306,429,320,439,335,446,351,452,367,457,383,459,400,460,417,459,433,457,449,452,465,446,480,439,494,429,507,419,519,407,529,394,539,380,546,365,552,349,557,333,558,322; expect:560,311,FFFFFF;
+run closing "plusfeature:smoothing=1; plusfeature:magneticClosing=1; plusfeature:snapshots=1; tool:paintbrush; color:0000FF; width:8; setting:closing=0; path:560,300,559,283,557,267,552,251,546,235,539,220,529,206,519,193,507,181,494,171,480,161,465,154,449,148,433,143,417,141,400,140,383,141,367,143,351,148,335,154,320,161,306,171,293,181,281,193,271,206,261,220,254,235,248,251,243,267,241,283,240,300,241,317,243,333,248,349,254,365,261,380,271,394,281,407,293,419,306,429,320,439,335,446,351,452,367,457,383,459,400,460,417,459,433,457,449,452,465,446,480,439,494,429,507,419,519,407,529,394,539,380,546,365,552,349,557,333,558,322; expect:560,311,FFFFFF;
  menu:brushwoodUndo:; setting:closing=1; path:560,300,559,283,557,267,552,251,546,235,539,220,529,206,519,193,507,181,494,171,480,161,465,154,449,148,433,143,417,141,400,140,383,141,367,143,351,148,335,154,320,161,306,171,293,181,281,193,271,206,261,220,254,235,248,251,243,267,241,283,240,300,241,317,243,333,248,349,254,365,261,380,271,394,281,407,293,419,306,429,320,439,335,446,351,452,367,457,383,459,400,460,417,459,433,457,449,452,465,446,480,439,494,429,507,419,519,407,529,394,539,380,546,365,552,349,557,333,558,322; expect:560,311,0000FF; expect:400,140,0000FF; expecthistory:1;
  setting:closing=0"
+
+# Brushwood Plus features turned off have no effect, alone or by category from the Plus Features window.
+run plusfeatures "plusfeature:historyTimes=1; plusfeature:snapshots=1; plusfeature:smoothing=1; plusfeature:magneticClosing=1; tool:paintbrush; color:0000FF; width:6;
+ setting:smoothing=1; plusfeature:smoothing=0; path:100,300,110,292,120,308,130,292,140,308,150,292,160,308,170,292,180,308,190,292,200,308,210,292,220,308,230,292,240,308,250,292,260,308,270,292,280,308,290,292,300,308,310,300; expect:120,308,0000FF; plusfeature:smoothing=1;
+ plusfeature:snapshots=0; snapshot; expectsnapshots:0; plusfeature:snapshots=1; snapshot; expectsnapshots:1;
+ plusfeatures:menu; plusclick:painting; expectplus:smoothing=0; expectplus:magneticClosing=0; expectplus:snapshots=1;
+ plusclick:smoothing; expectplus:smoothing=1; plusclick:painting; expectplus:magneticClosing=1; plusclick:painting;
+ expectplus:smoothing=0; expectplus:magneticClosing=0; plusclick:painting; expectplus:smoothing=1; plusclick:history;
+ expectplus:historyTimes=0; expectplus:snapshots=0; plusfeature:historyTimes=1; plusfeature:snapshots=1; plusfeature:smoothing=1; plusfeature:magneticClosing=1; setting:smoothing=0"
 
 # Floating windows follow their corner of the canvas when the main window is resized.
 run panels "showpanels; expectpanels; panel:1400,900; expectpanels; panel:820,560; expectpanels;

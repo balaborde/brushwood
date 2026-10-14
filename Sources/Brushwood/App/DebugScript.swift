@@ -110,6 +110,25 @@ enum DebugScript {
                     report(b == IntRect(x: Int(nums[0]), y: Int(nums[1]), width: Int(nums[2]), height: Int(nums[3])),
                            "selection = \(b.map { "\($0)" } ?? "none"), expected \(arg)")
                 }
+            case "plusfeature":
+                // plusfeature:id=0|1 turns a Brushwood Plus feature off or on.
+                let kv = arg.split(separator: "=").map(String.init)
+                if kv.count == 2, let f = PlusFeature(rawValue: kv[0]) { PlusFeature.set([f], enabled: kv[1] == "1") }
+                else { report(false, "unknown Plus feature \(arg)") }
+            case "plusfeatures":
+                // plusfeatures:firstLaunch|update|menu opens the Plus Features window as on that occasion.
+                let occasion: PlusFeaturesPrompt.Occasion = arg == "firstLaunch" ? .firstLaunch : arg == "update" ? .update : .menu
+                (NSApp.delegate as? AppDelegate)?.showPlusFeatures(occasion)
+            case "plusclick":
+                // plusclick:painting|smoothing… clicks that checkbox in the open Plus Features window.
+                if let w = NSApp.windows.lazy.compactMap({ $0 as? PlusFeaturesWindow }).first(where: \.isVisible) {
+                    w.debugClick(arg)
+                } else { report(false, "the Plus Features window is not open") }
+            case "expectplus":
+                // expectplus:id=0|1, whether a Brushwood Plus feature is on.
+                let kv = arg.split(separator: "=").map(String.init)
+                let f = PlusFeature(rawValue: kv.first ?? "")
+                report(f?.isEnabled == (kv.last == "1"), "Plus feature \(arg): it is \(f.map { $0.isEnabled ? "on" : "off" } ?? "unknown")")
             case "snapshot": c.historyPanel.takeSnapshot()
             case "gobacktosnapshot":
                 // gobacktosnapshot:i, as clicking the i-th snapshot (from 0) in the History window.

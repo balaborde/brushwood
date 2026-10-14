@@ -69,10 +69,14 @@ Bold|Vet
 Brightness|Helderheid
 Brightness / Contrast|Helderheid / Contrast
 Brush size|Penseelgrootte
+Brush smoothing|Penseelstabilisatie
 Brush width (mouse wheel, [ and ] also change it)|Penseelbreedte (ook te wijzigen met het muiswiel, [ en ])
 Brush width:|Penseelbreedte:
 Brushwood %@ is available. You have version %@.|Brushwood %@ is beschikbaar. Je hebt versie %@.
 Brushwood Help|Brushwood-help
+Brushwood Plus|Brushwood Plus
+Brushwood Plus adds features that Paint.NET does not have. Choose the ones you want to use.|Brushwood Plus voegt functies toe die Paint.NET niet heeft. Kies de functies die je wilt gebruiken.
+Brushwood Plus has been updated to version %@. What this update brings is marked New. Choose the features you want to use.|Brushwood Plus is bijgewerkt naar versie %@. Wat deze update brengt, is gemarkeerd als Nieuw. Kies de functies die je wilt gebruiken.
 Brushwood cannot replace itself in its current folder. Download the new version from GitHub and install it by hand.|Brushwood kan zichzelf niet vervangen in de huidige map. Download de nieuwe versie van GitHub en installeer deze handmatig.
 Brushwood is a free image editor for macOS whose workflow follows Paint.NET: one main window with image tabs, floating Tools, History, Layers and Colors windows, layers with blend modes, unlimited history, and a large set of adjustments and effects with live preview.|Brushwood is een gratis beeldbewerker voor macOS die de werkwijze van Paint.NET volgt: één hoofdvenster met tabbladen voor afbeeldingen, zwevende vensters voor Gereedschappen, Geschiedenis, Lagen en Kleuren, lagen met overvloeimodi, onbeperkte geschiedenis en een groot aantal aanpassingen en effecten met live voorvertoning.
 Brushwood is running from the disk image or the Downloads folder. Move it to the Applications folder, then try again.|Brushwood wordt uitgevoerd vanaf de schijfkopie of uit de map Downloads. Verplaats het naar de map Apps en probeer het opnieuw.
@@ -89,12 +93,14 @@ Cell size|Celgrootte
 Center|Midden
 Centered|Gecentreerd
 Centimeters|Centimeter
+Changes apply right away. To come back here later, choose Brushwood Plus › Plus Features…|Wijzigingen gelden meteen. Kies later Brushwood Plus › Plus-functies… om hier terug te komen.
 Chebyshev|Chebyshev
 Check for Updates…|Controleer op updates…
 Check for updates automatically|Controleer automatisch op updates
 Check your internet connection and try again.|Controleer je internetverbinding en probeer het opnieuw.
 Checking for updates…|Zoeken naar updates…
 Chevron|Chevron
+Choose the Brushwood Plus features you want to use.|Kies de functies van Brushwood Plus die je wilt gebruiken.
 Clamp|Begrenzen
 Clear Menu|Wis menu
 Click and drag to draw a gradient from the primary to the secondary color. Right mouse button reverses the colors.|Klik en sleep om een kleurverloop van de primaire naar de secundaire kleur te tekenen. De rechtermuisknop keert de kleuren om.
@@ -305,8 +311,10 @@ Invert Alpha|Alfa omkeren
 Invert Colors|Kleuren omkeren
 Invert Selection|Keer selectie om
 Italic|Cursief
+Joins a stroke released near its start to it, so circles and outlines close cleanly. For the same tools.|Sluit een streek die bij zijn begin wordt losgelaten daarop aan, zodat cirkels en contouren netjes sluiten. Voor dezelfde gereedschappen.
 Julia Fractal|Julia-fractal
 Keep canvas size|Canvasgrootte behouden
+Keeps copies of the image that you can always go back to, from the History window.|Bewaart kopieën van de afbeelding waar je vanuit het venster Geschiedenis altijd naar terug kunt.
 Keyboard Shortcuts|Toetscombinaties
 Lanczos 3|Lanczos 3
 Language|Taal
@@ -352,6 +360,7 @@ Linked|Gekoppeld
 Luminosity|Lichtsterkte
 Magic Wand|Toverstaf
 Magnetic Closing|Magnetisch sluiten
+Magnetic closing|Magnetisch sluiten
 Magnetic closing disabled|Magnetisch sluiten uit
 Magnetic closing enabled: a stroke released near its start joins it|Magnetisch sluiten aan: een streek die bij zijn begin wordt losgelaten, sluit daarop aan
 Maintain aspect ratio|Beeldverhouding behouden
@@ -376,6 +385,7 @@ Move Layer to Top|Laag naar boven
 Move Selected Pixels|Verplaats geselecteerde pixels
 Move Selection|Verplaats selectie
 Multiply|Vermenigvuldigen
+NEW|NIEUW
 Name:|Naam:
 Nearest Neighbor|Naaste buur
 Negation|Negatie
@@ -418,6 +428,7 @@ Overlay|Bedekken
 Overwrite|Overschrijven
 Paint Bucket|Verfemmer
 Paintbrush|Penseel
+Painting|Schilderen
 Palette|Palet
 Pan|Hand
 Parallelogram|Parallellogram
@@ -441,6 +452,8 @@ Pixelate|Pixeleren
 Pixels|Pixels
 Plaid|Schotse ruit
 Plus|Plus
+Plus Features|Plus-functies
+Plus Features…|Plus-functies…
 Polar Inversion|Polaire inversie
 Polygons|Veelhoeken
 Posterize|Posteriseren
@@ -563,6 +576,7 @@ Show Time Elapsed|Toon verstreken tijd
 Show Time of Day|Toon tijdstip
 Show in Finder|Toon in Finder
 Show points|Toon punten
+Shows when each step was made, or how long ago.|Toont wanneer elke stap is gedaan, of hoe lang geleden.
 Single Pixel|Enkele pixel
 Size|Grootte
 Sketch Blur|Schetsvervaging
@@ -573,6 +587,7 @@ Smoothing disabled|Stabilisatie uit
 Smoothing enabled|Stabilisatie aan
 Smoothness|Gladheid
 Snapshot %d|Momentopname %d
+Snapshots|Momentopnamen
 Soft Light|Zacht licht
 Soften Portrait|Portret verzachten
 Softness|Zachtheid
@@ -588,6 +603,7 @@ Square Blur|Vierkante vervaging
 Stars|Sterren
 Start cap|Beginkap
 Start:|Begin:
+Steadies strokes: the brush follows the pointer on a string. For the Paintbrush, Eraser, Clone Stamp and Recolor tools.|Maakt streken stabieler: het penseel volgt de aanwijzer aan een touwtje. Voor Penseel, Gum, Kloonstempel en Herkleuren.
 Straighten|Rechtzetten
 Strength|Sterkte
 Strikethrough|Doorgehaald
@@ -619,6 +635,7 @@ Threshold|Drempel
 Tile Reflection|Tegelweerspiegeling
 Tile Size|Tegelgrootte
 Tiling|Tegels
+Times in the History window|Tijden in het venster Geschiedenis
 Tint|Tint
 Toggle Layer Visibility|Toon/verberg laag
 Tolerance|Tolerantie
@@ -658,6 +675,7 @@ Wave|Golf
 Weave|Weefsel
 Welcome to Brushwood|Welkom bij Brushwood
 What's New|Nieuw
+What's New in Brushwood Plus|Nieuw in Brushwood Plus
 White|Wit
 Width|Breedte
 Width:|Breedte:

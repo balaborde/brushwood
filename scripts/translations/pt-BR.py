@@ -69,10 +69,14 @@ Bold|Negrito
 Brightness|Brilho
 Brightness / Contrast|Brilho / Contraste
 Brush size|Tamanho do pincel
+Brush smoothing|Estabilização do pincel
 Brush width (mouse wheel, [ and ] also change it)|Largura do pincel (a roda do mouse, [ e ] também a alteram)
 Brush width:|Largura do pincel:
 Brushwood %@ is available. You have version %@.|O Brushwood %@ está disponível. Você tem a versão %@.
 Brushwood Help|Ajuda do Brushwood
+Brushwood Plus|Brushwood Plus
+Brushwood Plus adds features that Paint.NET does not have. Choose the ones you want to use.|O Brushwood Plus adiciona recursos que o Paint.NET não tem. Escolha os que você quer usar.
+Brushwood Plus has been updated to version %@. What this update brings is marked New. Choose the features you want to use.|O Brushwood Plus foi atualizado para a versão %@. O que esta atualização traz está marcado como Novo. Escolha os recursos que você quer usar.
 Brushwood cannot replace itself in its current folder. Download the new version from GitHub and install it by hand.|O Brushwood não pode se substituir na pasta atual. Baixe a nova versão no GitHub e instale-a manualmente.
 Brushwood is a free image editor for macOS whose workflow follows Paint.NET: one main window with image tabs, floating Tools, History, Layers and Colors windows, layers with blend modes, unlimited history, and a large set of adjustments and effects with live preview.|O Brushwood é um editor de imagens gratuito para macOS cujo fluxo de trabalho segue o do Paint.NET: uma janela principal com abas de imagens, janelas flutuantes de Ferramentas, Histórico, Camadas e Cores, camadas com modos de mesclagem, histórico ilimitado e um amplo conjunto de ajustes e efeitos com pré-visualização ao vivo.
 Brushwood is running from the disk image or the Downloads folder. Move it to the Applications folder, then try again.|O Brushwood está sendo executado da imagem de disco ou da pasta Downloads. Mova-o para a pasta Aplicativos e tente novamente.
@@ -89,12 +93,14 @@ Cell size|Tamanho da célula
 Center|Centro
 Centered|Centralizado
 Centimeters|Centímetros
+Changes apply right away. To come back here later, choose Brushwood Plus › Plus Features…|As alterações valem na hora. Para voltar aqui depois, escolha Brushwood Plus › Recursos Plus…
 Chebyshev|Chebyshev
 Check for Updates…|Buscar atualizações…
 Check for updates automatically|Buscar atualizações automaticamente
 Check your internet connection and try again.|Verifique sua conexão com a internet e tente novamente.
 Checking for updates…|Buscando atualizações…
 Chevron|Divisa
+Choose the Brushwood Plus features you want to use.|Escolha os recursos do Brushwood Plus que você quer usar.
 Clamp|Limitar
 Clear Menu|Limpar menu
 Click and drag to draw a gradient from the primary to the secondary color. Right mouse button reverses the colors.|Clique e arraste para desenhar um gradiente da cor primária para a secundária. O botão direito inverte as cores.
@@ -305,8 +311,10 @@ Invert Alpha|Inverter alfa
 Invert Colors|Inverter cores
 Invert Selection|Inverter seleção
 Italic|Itálico
+Joins a stroke released near its start to it, so circles and outlines close cleanly. For the same tools.|Une um traço solto perto do início a ele, para que círculos e contornos fechem direitinho. Para as mesmas ferramentas.
 Julia Fractal|Fractal de Julia
 Keep canvas size|Manter o tamanho da tela
+Keeps copies of the image that you can always go back to, from the History window.|Guarda cópias da imagem às quais você sempre pode voltar pela janela Histórico.
 Keyboard Shortcuts|Atalhos de teclado
 Lanczos 3|Lanczos 3
 Language|Idioma
@@ -352,6 +360,7 @@ Linked|Vinculados
 Luminosity|Luminosidade
 Magic Wand|Varinha mágica
 Magnetic Closing|Fechamento magnético
+Magnetic closing|Fechamento magnético
 Magnetic closing disabled|Fechamento magnético desativado
 Magnetic closing enabled: a stroke released near its start joins it|Fechamento magnético ativado: um traço solto perto do início se une a ele
 Maintain aspect ratio|Manter a proporção
@@ -376,6 +385,7 @@ Move Layer to Top|Mover camada para o topo
 Move Selected Pixels|Mover pixels selecionados
 Move Selection|Mover seleção
 Multiply|Multiplicar
+NEW|NOVO
 Name:|Nome:
 Nearest Neighbor|Vizinho mais próximo
 Negation|Negação
@@ -418,6 +428,7 @@ Overlay|Sobreposição
 Overwrite|Sobrescrever
 Paint Bucket|Balde de tinta
 Paintbrush|Pincel
+Painting|Pintura
 Palette|Paleta
 Pan|Mão
 Parallelogram|Paralelogramo
@@ -441,6 +452,8 @@ Pixelate|Pixelizar
 Pixels|Pixels
 Plaid|Xadrez escocês
 Plus|Mais
+Plus Features|Recursos Plus
+Plus Features…|Recursos Plus…
 Polar Inversion|Inversão polar
 Polygons|Polígonos
 Posterize|Posterizar
@@ -563,6 +576,7 @@ Show Time Elapsed|Mostrar o tempo decorrido
 Show Time of Day|Mostrar a hora
 Show in Finder|Mostrar no Finder
 Show points|Mostrar pontos
+Shows when each step was made, or how long ago.|Mostra quando cada etapa foi feita, ou há quanto tempo.
 Single Pixel|Pixel único
 Size|Tamanho
 Sketch Blur|Desfoque de esboço
@@ -573,6 +587,7 @@ Smoothing disabled|Estabilização desativada
 Smoothing enabled|Estabilização ativada
 Smoothness|Suavidade
 Snapshot %d|Instantâneo %d
+Snapshots|Instantâneos
 Soft Light|Luz suave
 Soften Portrait|Suavizar retrato
 Softness|Maciez
@@ -588,6 +603,7 @@ Square Blur|Desfoque quadrado
 Stars|Estrelas
 Start cap|Terminação inicial
 Start:|Início:
+Steadies strokes: the brush follows the pointer on a string. For the Paintbrush, Eraser, Clone Stamp and Recolor tools.|Estabiliza os traços: o pincel segue o ponteiro preso a um cordão. Para as ferramentas Pincel, Borracha, Carimbo de clonagem e Recolorir.
 Straighten|Endireitar
 Strength|Força
 Strikethrough|Tachado
@@ -619,6 +635,7 @@ Threshold|Limiar
 Tile Reflection|Reflexão em mosaico
 Tile Size|Tamanho do ladrilho
 Tiling|Ladrilhamento
+Times in the History window|Horários na janela Histórico
 Tint|Tonalidade
 Toggle Layer Visibility|Mostrar/ocultar camada
 Tolerance|Tolerância
@@ -658,6 +675,7 @@ Wave|Onda
 Weave|Trama
 Welcome to Brushwood|Bem-vindo ao Brushwood
 What's New|Novidades
+What's New in Brushwood Plus|Novidades do Brushwood Plus
 White|Branco
 Width|Largura
 Width:|Largura:

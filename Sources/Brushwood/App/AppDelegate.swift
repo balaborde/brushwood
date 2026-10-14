@@ -5,10 +5,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     private(set) var main: MainWindowController!
     private var pendingURLs: [URL] = []
     private var settingsWindow: SettingsWindow?
+    private var plusFeaturesWindow: PlusFeaturesWindow?
     private var launched = false
 
     func applicationWillFinishLaunching(_ notification: Notification) {
         SupportPrompt.noteLaunch()
+        PlusFeaturesPrompt.noteLaunch()
         NSApp.mainMenu = MainMenu.build(delegate: self)
         UserDefaults.standard.register(defaults: ["NSApplicationCrashOnExceptions": true, UpdateController.automaticKey: true])
     }
@@ -40,7 +42,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         if let snapshot = ProcessInfo.processInfo.environment["BRUSHWOOD_SNAPSHOT"] {
             DebugSnapshot.schedule(path: snapshot, controller: main)
         } else if Bundle.main.bundleURL.pathExtension == "app" {
-            if SupportPrompt.due { SupportSheet.present(over: main.window) }
+            let support = { [weak self] in if SupportPrompt.due { SupportSheet.present(over: self?.main.window) } }
+            // After an update, the support sheet waits for the Plus Features window to close.
+            if let occasion = PlusFeaturesPrompt.due { showPlusFeatures(occasion, then: support) } else { support() }
             UpdateController.shared.checkInBackgroundIfDue()
         }
     }
@@ -103,6 +107,22 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         if settingsWindow == nil { settingsWindow = SettingsWindow() }
         settingsWindow?.center()
         settingsWindow?.makeKeyAndOrderFront(nil)
+    }
+
+    @objc func showPlusFeatures(_ sender: Any?) {
+        showPlusFeatures(.menu)
+    }
+
+    func showPlusFeatures(_ occasion: PlusFeaturesPrompt.Occasion, then: (() -> Void)? = nil) {
+        if let w = plusFeaturesWindow, w.isVisible {
+            w.makeKeyAndOrderFront(nil)
+            return
+        }
+        let w = PlusFeaturesWindow(occasion: occasion)
+        w.onClose = then
+        w.center()
+        w.makeKeyAndOrderFront(nil)
+        plusFeaturesWindow = w
     }
 
     @objc func showAbout(_ sender: Any?) {

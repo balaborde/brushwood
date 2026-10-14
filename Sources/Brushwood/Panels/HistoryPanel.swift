@@ -19,6 +19,9 @@ enum HistoryTimeDisplay: Int, CaseIterable {
         }
     }
 
+    /// What is shown: nothing while the Plus feature is off.
+    static var effective: HistoryTimeDisplay { PlusFeature.historyTimes.isEnabled ? current : .hidden }
+
     var title: String {
         switch self {
         case .timeOfDay: return L("Show Time of Day")
@@ -160,8 +163,9 @@ final class HistoryPanel: FloatingPanel, NSTableViewDataSource, NSTableViewDeleg
     private var forwardButton: ToolbarButton!
     private var snapshotButton: ToolbarButton!
     private var reloading = false
-    /// Snapshots are listed first, then the steps.
-    private var snapshotCount: Int { document?.history.snapshots.count ?? 0 }
+    /// Snapshots are listed first, then the steps (none while the Plus feature is off; they are kept for when it is
+    /// turned back on).
+    private var snapshotCount: Int { PlusFeature.snapshots.isEnabled ? document?.history.snapshots.count ?? 0 : 0 }
 
     init() {
         super.init(title: L("History"), size: NSSize(width: 210, height: 240), resizable: true)
@@ -225,13 +229,17 @@ final class HistoryPanel: FloatingPanel, NSTableViewDataSource, NSTableViewDeleg
             self?.startClock()
             self?.refreshTimes()
         }
+        NotificationCenter.default.addObserver(forName: .plusFeaturesChanged, object: nil, queue: .main) { [weak self] _ in
+            self?.startClock()
+            self?.reload()
+        }
         startClock()
     }
 
     private func startClock() {
         clock?.invalidate()
         clock = nil
-        guard HistoryTimeDisplay.current == .elapsed else { return }
+        guard HistoryTimeDisplay.effective == .elapsed else { return }
         let t = Timer(timeInterval: 10, repeats: true) { [weak self] _ in
             if self?.isVisible == true { self?.refreshTimes() }
         }
@@ -240,7 +248,7 @@ final class HistoryPanel: FloatingPanel, NSTableViewDataSource, NSTableViewDeleg
     }
 
     private func refreshTimes() {
-        let display = HistoryTimeDisplay.current, now = Date()
+        let display = HistoryTimeDisplay.effective, now = Date()
         table.enumerateAvailableRowViews { row, _ in (row.view(atColumn: 0) as? HistoryCell)?.showTime(display, now: now) }
     }
 
@@ -259,8 +267,11 @@ final class HistoryPanel: FloatingPanel, NSTableViewDataSource, NSTableViewDeleg
             add(L("Delete Snapshot")) { [weak self] in self?.document?.history.removeSnapshot(s) }
             menu.addItem(.separator())
         }
-        add(L("New Snapshot")) { [weak self] in self?.takeSnapshot() }
-        menu.addItem(.separator())
+        if PlusFeature.snapshots.isEnabled {
+            add(L("New Snapshot")) { [weak self] in self?.takeSnapshot() }
+            menu.addItem(.separator())
+        }
+        guard PlusFeature.historyTimes.isEnabled else { return }
         for d in HistoryTimeDisplay.allCases {
             let item = NSMenuItem(title: d.title, action: nil, keyEquivalent: "")
             item.state = d == .current ? .on : .off
@@ -274,13 +285,13 @@ final class HistoryPanel: FloatingPanel, NSTableViewDataSource, NSTableViewDeleg
     private func name(of s: HistorySnapshot) -> String { s.customName ?? LF("Snapshot %d", s.number) }
 
     func takeSnapshot() {
-        guard let h = document?.history else { return }
+        guard PlusFeature.snapshots.isEnabled, let h = document?.history else { return }
         host?.commitPendingTool()
         h.takeSnapshot()
     }
 
     func goBack(to s: HistorySnapshot) {
-        guard let h = document?.history else { return }
+        guard PlusFeature.snapshots.isEnabled, let h = document?.history else { return }
         host?.commitPendingTool()
         h.restore(s, name: LF("Back to %@", name(of: s)), icon: "history.snapshot")
     }
@@ -324,6 +335,7 @@ final class HistoryPanel: FloatingPanel, NSTableViewDataSource, NSTableViewDeleg
         reloading = false
         let h = document?.history
         snapshotButton.isEnabled = h != nil
+        snapshotButton.isHidden = !PlusFeature.snapshots.isEnabled
         undoButton.isEnabled = h?.canUndo ?? false
         redoButton.isEnabled = h?.canRedo ?? false
         rewindButton.isEnabled = h?.canUndo ?? false
@@ -348,7 +360,7 @@ final class HistoryPanel: FloatingPanel, NSTableViewDataSource, NSTableViewDeleg
             cell.time.textColor = .secondaryLabelColor
             cell.date = s.date
             cell.note = L("Click to go back to this snapshot. Snapshots are not saved in the file.")
-            cell.showTime(.current, now: Date())
+            cell.showTime(.effective, now: Date())
             return cell
         }
         let index = row - snapshotCount
@@ -362,7 +374,7 @@ final class HistoryPanel: FloatingPanel, NSTableViewDataSource, NSTableViewDeleg
         cell.name.textColor = undone ? .tertiaryLabelColor : .labelColor
         cell.time.textColor = undone ? .tertiaryLabelColor : .secondaryLabelColor
         cell.icon.alphaValue = undone ? 0.4 : 1
-        cell.showTime(.current, now: Date())
+        cell.showTime(.effective, now: Date())
         return cell
     }
 

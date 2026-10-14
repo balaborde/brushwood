@@ -69,10 +69,14 @@ Bold|太字
 Brightness|明るさ
 Brightness / Contrast|明るさ / コントラスト
 Brush size|ブラシサイズ
+Brush smoothing|ブラシの手ブレ補正
 Brush width (mouse wheel, [ and ] also change it)|ブラシの幅（マウスホイールや [ ] キーでも変更できます）
 Brush width:|ブラシの幅：
 Brushwood %@ is available. You have version %@.|Brushwood %@ が利用できます。現在のバージョンは %@ です。
 Brushwood Help|Brushwood ヘルプ
+Brushwood Plus|Brushwood Plus
+Brushwood Plus adds features that Paint.NET does not have. Choose the ones you want to use.|Brushwood Plus には Paint.NET にない機能があります。使う機能を選んでください。
+Brushwood Plus has been updated to version %@. What this update brings is marked New. Choose the features you want to use.|Brushwood Plus がバージョン %@ にアップデートされました。このアップデートで追加されたものには「新機能」と表示されています。使う機能を選んでください。
 Brushwood cannot replace itself in its current folder. Download the new version from GitHub and install it by hand.|Brushwood は現在のフォルダで自身を置き換えられません。GitHub から新しいバージョンをダウンロードして、手動でインストールしてください。
 Brushwood is a free image editor for macOS whose workflow follows Paint.NET: one main window with image tabs, floating Tools, History, Layers and Colors windows, layers with blend modes, unlimited history, and a large set of adjustments and effects with live preview.|Brushwood は Paint.NET のワークフローに沿った macOS 用の無料画像エディタです。画像タブ付きのメインウインドウ、フローティングの「ツール」「ヒストリー」「レイヤー」「カラー」ウインドウ、描画モード付きのレイヤー、無制限のヒストリー、ライブプレビュー付きの豊富な色調補正とエフェクトを備えています。
 Brushwood is running from the disk image or the Downloads folder. Move it to the Applications folder, then try again.|Brushwood がディスクイメージまたは“ダウンロード”フォルダから実行されています。“アプリケーション”フォルダに移動してから、もう一度お試しください。
@@ -89,12 +93,14 @@ Cell size|セルサイズ
 Center|中央
 Centered|中央
 Centimeters|センチメートル
+Changes apply right away. To come back here later, choose Brushwood Plus › Plus Features…|変更はすぐに反映されます。あとでここに戻るには、Brushwood Plus › Plus の機能… を選んでください。
 Chebyshev|チェビシェフ
 Check for Updates…|アップデートを確認…
 Check for updates automatically|アップデートを自動的に確認
 Check your internet connection and try again.|インターネット接続を確認して、もう一度お試しください。
 Checking for updates…|アップデートを確認中…
 Chevron|シェブロン
+Choose the Brushwood Plus features you want to use.|使う Brushwood Plus の機能を選んでください。
 Clamp|端を延長
 Clear Menu|メニューを消去
 Click and drag to draw a gradient from the primary to the secondary color. Right mouse button reverses the colors.|クリック＆ドラッグして、プライマリカラーからセカンダリカラーへのグラデーションを描きます。右ボタンで色が逆になります。
@@ -305,8 +311,10 @@ Invert Alpha|アルファを反転
 Invert Colors|色を反転
 Invert Selection|選択範囲を反転
 Italic|斜体
+Joins a stroke released near its start to it, so circles and outlines close cleanly. For the same tools.|始点の近くで離したストロークを始点につなぎ、円や輪郭をきれいに閉じます。同じツールで使えます。
 Julia Fractal|ジュリア集合
 Keep canvas size|キャンバスサイズを維持
+Keeps copies of the image that you can always go back to, from the History window.|いつでも戻れる画像のコピーをヒストリーウインドウに保存します。
 Keyboard Shortcuts|キーボードショートカット
 Lanczos 3|Lanczos 3
 Language|言語
@@ -352,6 +360,7 @@ Linked|連動
 Luminosity|輝度
 Magic Wand|自動選択
 Magnetic Closing|始点に吸着
+Magnetic closing|始点に吸着
 Magnetic closing disabled|始点に吸着：オフ
 Magnetic closing enabled: a stroke released near its start joins it|始点に吸着：オン（始点の近くで離すとストロークが始点につながります）
 Maintain aspect ratio|縦横比を保持
@@ -376,6 +385,7 @@ Move Layer to Top|レイヤーを最前面へ移動
 Move Selected Pixels|選択したピクセルを移動
 Move Selection|選択範囲を移動
 Multiply|乗算
+NEW|新機能
 Name:|名前：
 Nearest Neighbor|ニアレストネイバー
 Negation|否定
@@ -418,6 +428,7 @@ Overlay|オーバーレイ
 Overwrite|上書き
 Paint Bucket|塗りつぶし
 Paintbrush|ブラシ
+Painting|描画
 Palette|パレット
 Pan|手のひら
 Parallelogram|平行四辺形
@@ -441,6 +452,8 @@ Pixelate|モザイク
 Pixels|ピクセル
 Plaid|チェック柄
 Plus|プラス
+Plus Features|Plus の機能
+Plus Features…|Plus の機能…
 Polar Inversion|極座標反転
 Polygons|多角形
 Posterize|ポスタリゼーション
@@ -563,6 +576,7 @@ Show Time Elapsed|経過時間を表示
 Show Time of Day|時刻を表示
 Show in Finder|Finder に表示
 Show points|点を表示
+Shows when each step was made, or how long ago.|各ステップを行った時刻、または経過時間を表示します。
 Single Pixel|1 ピクセル
 Size|サイズ
 Sketch Blur|ぼかし（スケッチ）
@@ -573,6 +587,7 @@ Smoothing disabled|手ブレ補正：オフ
 Smoothing enabled|手ブレ補正：オン
 Smoothness|滑らかさ
 Snapshot %d|スナップショット %d
+Snapshots|スナップショット
 Soft Light|ソフトライト
 Soften Portrait|ポートレートをソフトに
 Softness|柔らかさ
@@ -588,6 +603,7 @@ Square Blur|ぼかし（正方形）
 Stars|星
 Start cap|始点の形状
 Start:|始点：
+Steadies strokes: the brush follows the pointer on a string. For the Paintbrush, Eraser, Clone Stamp and Recolor tools.|ストロークを安定させます。ブラシはひもでつながれたようにポインタを追います。ブラシ、消しゴム、コピースタンプ、色の置き換えツールで使えます。
 Straighten|傾き補正
 Strength|強度
 Strikethrough|取り消し線
@@ -619,6 +635,7 @@ Threshold|しきい値
 Tile Reflection|タイル反射
 Tile Size|タイルサイズ
 Tiling|タイル状
+Times in the History window|ヒストリーウインドウの時刻
 Tint|色かぶり補正
 Toggle Layer Visibility|レイヤーの表示 / 非表示
 Tolerance|許容値
@@ -658,6 +675,7 @@ Wave|波
 Weave|織物
 Welcome to Brushwood|Brushwood へようこそ
 What's New|新機能
+What's New in Brushwood Plus|Brushwood Plus の新機能
 White|白
 Width|幅
 Width:|幅：

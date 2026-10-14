@@ -127,7 +127,14 @@ final class SettingsWindow: NSWindow {
         units.onAction { _ in env.units = MeasurementUnit(rawValue: units.indexOfSelectedItem) ?? .pixels }
         stack.addArrangedSubview(units)
 
-        stack.addArrangedSubview(header(L("History")))
+        stack.addArrangedSubview(header(L("Brushwood Plus")))
+        let plusFeatures = NSButton(title: L("Plus Features…"), target: nil, action: nil)
+        plusFeatures.bezelStyle = .rounded
+        plusFeatures.onAction { _ in (NSApp.delegate as? AppDelegate)?.showPlusFeatures(nil) }
+        stack.addArrangedSubview(plusFeatures)
+
+        let historyHeader = header(L("History"))
+        stack.addArrangedSubview(historyHeader)
         let times = NSPopUpButton(frame: .zero, pullsDown: false)
         times.addItems(withTitles: HistoryTimeDisplay.allCases.map(\.title))
         times.selectItem(at: HistoryTimeDisplay.current.rawValue)
@@ -137,6 +144,13 @@ final class SettingsWindow: NSWindow {
             times?.selectItem(at: HistoryTimeDisplay.current.rawValue)
         }
         stack.addArrangedSubview(times)
+        // History times is a Plus feature that can be turned off.
+        let showHistory = { [weak self] in
+            historyHeader.isHidden = !PlusFeature.historyTimes.isEnabled
+            times.isHidden = historyHeader.isHidden
+            self?.fitContent()
+        }
+        NotificationCenter.default.addObserver(forName: .plusFeaturesChanged, object: nil, queue: .main) { _ in showHistory() }
 
         stack.addArrangedSubview(header(L("Reset")))
         let resetPalette = NSButton(title: L("Reset Palette to Default"), target: nil, action: nil)
@@ -188,7 +202,7 @@ final class SettingsWindow: NSWindow {
         check.onAction { _ in UpdateController.shared.checkNow() }
         stack.addArrangedSubview(check)
         contentView = stack
-        fitContent()
+        showHistory()
     }
 
     /// Sizes the window to its content, which depends on the interface language.

@@ -45,6 +45,12 @@ everyday editing easier. Each Brushwood release is merged into it. It adds:
   gone away from its start, a circle marks the area there, and fills when releasing would close the stroke. Works with
   or without Smoothing.
 
+Each feature can be turned off in the **Plus Features** window, alone or by category; it then disappears entirely
+(buttons, options, menu items). The window opens by itself at the first launch and after each update, with what the
+update brings marked **New**, and later from **Brushwood Plus › Plus Features…** or **Settings**. To add a feature,
+list it in `Sources/Brushwood/App/PlusFeatures.swift` with the version that brings it, and check `isEnabled` wherever
+it shows.
+
 Brushwood Plus is a separate app that installs next to Brushwood, with its own name, its own settings and a "+" on its
 icon. **Check for Updates…** only offers Plus versions. A Plus version is the Brushwood version it is based on followed
 by a revision: `1.0.3-plus.1`, `1.0.3-plus.2`, then `1.0.4-plus.1` once Brushwood 1.0.4 is merged.

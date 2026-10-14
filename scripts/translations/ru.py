@@ -69,10 +69,14 @@ Bold|Жирный
 Brightness|Яркость
 Brightness / Contrast|Яркость / Контраст
 Brush size|Размер кисти
+Brush smoothing|Стабилизация кисти
 Brush width (mouse wheel, [ and ] also change it)|Ширина кисти (также меняется колесиком мыши и клавишами [ и ])
 Brush width:|Ширина кисти:
 Brushwood %@ is available. You have version %@.|Доступна версия Brushwood %@. У вас версия %@.
 Brushwood Help|Справка Brushwood
+Brushwood Plus|Brushwood Plus
+Brushwood Plus adds features that Paint.NET does not have. Choose the ones you want to use.|Brushwood Plus добавляет функции, которых нет в Paint.NET. Выберите те, которыми хотите пользоваться.
+Brushwood Plus has been updated to version %@. What this update brings is marked New. Choose the features you want to use.|Brushwood Plus обновлён до версии %@. То, что принесло это обновление, отмечено как «Новое». Выберите функции, которыми хотите пользоваться.
 Brushwood cannot replace itself in its current folder. Download the new version from GitHub and install it by hand.|Brushwood не может заменить себя в текущей папке. Загрузите новую версию с GitHub и установите её вручную.
 Brushwood is a free image editor for macOS whose workflow follows Paint.NET: one main window with image tabs, floating Tools, History, Layers and Colors windows, layers with blend modes, unlimited history, and a large set of adjustments and effects with live preview.|Brushwood — бесплатный графический редактор для macOS, работающий как Paint.NET: одно главное окно с вкладками изображений, плавающие окна «Инструменты», «Журнал», «Слои» и «Цвета», слои с режимами наложения, неограниченный журнал действий и большой набор коррекций и эффектов с предварительным просмотром.
 Brushwood is running from the disk image or the Downloads folder. Move it to the Applications folder, then try again.|Brushwood запущен с образа диска или из папки «Загрузки». Переместите его в папку «Программы» и повторите попытку.
@@ -89,12 +93,14 @@ Cell size|Размер ячейки
 Center|По центру
 Centered|По центру
 Centimeters|Сантиметры
+Changes apply right away. To come back here later, choose Brushwood Plus › Plus Features…|Изменения применяются сразу. Чтобы вернуться сюда позже, выберите Brushwood Plus › Функции Plus…
 Chebyshev|Чебышёва
 Check for Updates…|Проверить обновления…
 Check for updates automatically|Автоматически проверять обновления
 Check your internet connection and try again.|Проверьте подключение к интернету и повторите попытку.
 Checking for updates…|Проверка обновлений…
 Chevron|Шеврон
+Choose the Brushwood Plus features you want to use.|Выберите функции Brushwood Plus, которыми хотите пользоваться.
 Clamp|Ограничить
 Clear Menu|Очистить меню
 Click and drag to draw a gradient from the primary to the secondary color. Right mouse button reverses the colors.|Щелкните и перетащите, чтобы нарисовать градиент от основного цвета к вторичному. Правая кнопка мыши меняет цвета местами.
@@ -305,8 +311,10 @@ Invert Alpha|Инверсия альфа-канала
 Invert Colors|Инверсия цветов
 Invert Selection|Инвертировать выделение
 Italic|Курсив
+Joins a stroke released near its start to it, so circles and outlines close cleanly. For the same tools.|Соединяет штрих, отпущенный рядом с началом, с этим началом, чтобы круги и контуры замыкались аккуратно. Для тех же инструментов.
 Julia Fractal|Фрактал Жюлиа
 Keep canvas size|Сохранить размер холста
+Keeps copies of the image that you can always go back to, from the History window.|Хранит копии изображения, к которым всегда можно вернуться из окна журнала.
 Keyboard Shortcuts|Сочетания клавиш
 Lanczos 3|Lanczos 3
 Language|Язык
@@ -352,6 +360,7 @@ Linked|Связаны
 Luminosity|Яркость
 Magic Wand|Волшебная палочка
 Magnetic Closing|Магнитное замыкание
+Magnetic closing|Магнитное замыкание
 Magnetic closing disabled|Магнитное замыкание выключено
 Magnetic closing enabled: a stroke released near its start joins it|Магнитное замыкание включено: штрих, отпущенный рядом с началом, соединяется с ним
 Maintain aspect ratio|Сохранять пропорции
@@ -376,6 +385,7 @@ Move Layer to Top|Переместить слой в самый верх
 Move Selected Pixels|Перемещение пикселей
 Move Selection|Перемещение выделения
 Multiply|Умножение
+NEW|НОВОЕ
 Name:|Имя:
 Nearest Neighbor|Ближайший сосед
 Negation|Отрицание
@@ -418,6 +428,7 @@ Overlay|Перекрытие
 Overwrite|Замена
 Paint Bucket|Заливка
 Paintbrush|Кисть
+Painting|Рисование
 Palette|Палитра
 Pan|Рука
 Parallelogram|Параллелограмм
@@ -441,6 +452,8 @@ Pixelate|Пикселизация
 Pixels|Пиксели
 Plaid|Шотландка
 Plus|Плюс
+Plus Features|Функции Plus
+Plus Features…|Функции Plus…
 Polar Inversion|Полярная инверсия
 Polygons|Многоугольники
 Posterize|Постеризация
@@ -563,6 +576,7 @@ Show Time Elapsed|Показывать, сколько прошло
 Show Time of Day|Показывать время
 Show in Finder|Показать в Finder
 Show points|Показывать точки
+Shows when each step was made, or how long ago.|Показывает, когда был сделан каждый шаг или сколько времени прошло.
 Single Pixel|Один пиксель
 Size|Размер
 Sketch Blur|Эскизное размытие
@@ -573,6 +587,7 @@ Smoothing disabled|Стабилизация выключена
 Smoothing enabled|Стабилизация включена
 Smoothness|Плавность
 Snapshot %d|Снимок %d
+Snapshots|Снимки
 Soft Light|Мягкий свет
 Soften Portrait|Смягчение портрета
 Softness|Мягкость
@@ -588,6 +603,7 @@ Square Blur|Квадратное размытие
 Stars|Звезды
 Start cap|Начало линии
 Start:|Начало:
+Steadies strokes: the brush follows the pointer on a string. For the Paintbrush, Eraser, Clone Stamp and Recolor tools.|Стабилизирует штрихи: кисть следует за указателем на нити. Для инструментов «Кисть», «Ластик», «Клонирующий штамп» и «Перекраска».
 Straighten|Выпрямление
 Strength|Сила
 Strikethrough|Зачеркнутый
@@ -619,6 +635,7 @@ Threshold|Порог
 Tile Reflection|Мозаичное отражение
 Tile Size|Размер плитки
 Tiling|Мозаика
+Times in the History window|Время в окне журнала
 Tint|Оттенок
 Toggle Layer Visibility|Показать/скрыть слой
 Tolerance|Допуск
@@ -658,6 +675,7 @@ Wave|Волна
 Weave|Плетение
 Welcome to Brushwood|Добро пожаловать в Brushwood
 What's New|Что нового
+What's New in Brushwood Plus|Что нового в Brushwood Plus
 White|Белый
 Width|Ширина
 Width:|Ширина:

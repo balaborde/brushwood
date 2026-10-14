@@ -68,10 +68,14 @@
 "Brightness" = "亮度";
 "Brightness / Contrast" = "亮度 / 对比度";
 "Brush size" = "画笔大小";
+"Brush smoothing" = "画笔防抖";
 "Brush width (mouse wheel, [ and ] also change it)" = "画笔宽度（也可用鼠标滚轮、[ 和 ] 更改）";
 "Brush width:" = "画笔宽度：";
 "Brushwood %@ is available. You have version %@." = "Brushwood %@ 现已推出。你的版本是 %@。";
 "Brushwood Help" = "Brushwood 帮助";
+"Brushwood Plus" = "Brushwood Plus";
+"Brushwood Plus adds features that Paint.NET does not have. Choose the ones you want to use." = "Brushwood Plus 增加了 Paint.NET 没有的功能。请选择要使用的功能。";
+"Brushwood Plus has been updated to version %@. What this update brings is marked New. Choose the features you want to use." = "Brushwood Plus 已更新到 %@ 版。此次更新带来的内容标有“新功能”。请选择要使用的功能。";
 "Brushwood cannot replace itself in its current folder. Download the new version from GitHub and install it by hand." = "Brushwood 无法在当前文件夹中替换自身。请从 GitHub 下载新版本并手动安装。";
 "Brushwood is a free image editor for macOS whose workflow follows Paint.NET: one main window with image tabs, floating Tools, History, Layers and Colors windows, layers with blend modes, unlimited history, and a large set of adjustments and effects with live preview." = "Brushwood 是一款免费的 macOS 图像编辑器，其工作方式与 Paint.NET 一致：一个带图像标签页的主窗口，浮动的“工具”“历史记录”“图层”“颜色”窗口，支持混合模式的图层，无限历史记录，以及大量带实时预览的调整和效果。";
 "Brushwood is running from the disk image or the Downloads folder. Move it to the Applications folder, then try again." = "Brushwood 正从磁盘映像或“下载”文件夹中运行。请将它移到“应用程序”文件夹，然后再试一次。";
@@ -88,12 +92,14 @@
 "Center" = "居中";
 "Centered" = "居中";
 "Centimeters" = "厘米";
+"Changes apply right away. To come back here later, choose Brushwood Plus › Plus Features…" = "更改会立即生效。以后要回到这里，请选取 Brushwood Plus › Plus 功能…";
 "Chebyshev" = "切比雪夫";
 "Check for Updates…" = "检查更新…";
 "Check for updates automatically" = "自动检查更新";
 "Check your internet connection and try again." = "请检查你的互联网连接，然后再试一次。";
 "Checking for updates…" = "正在检查更新…";
 "Chevron" = "V 形";
+"Choose the Brushwood Plus features you want to use." = "请选择要使用的 Brushwood Plus 功能。";
 "Clamp" = "钳制";
 "Clear Menu" = "清除菜单";
 "Click and drag to draw a gradient from the primary to the secondary color. Right mouse button reverses the colors." = "单击并拖移以绘制从主要颜色到次要颜色的渐变。使用右键会交换颜色。";
@@ -304,8 +310,10 @@
 "Invert Colors" = "反相颜色";
 "Invert Selection" = "反选";
 "Italic" = "斜体";
+"Joins a stroke released near its start to it, so circles and outlines close cleanly. For the same tools." = "在起点附近松开的笔画会与起点相连，让圆形和轮廓干净地闭合。适用于相同的工具。";
 "Julia Fractal" = "朱利亚分形";
 "Keep canvas size" = "保持画布大小";
+"Keeps copies of the image that you can always go back to, from the History window." = "保留图像的副本，可随时从历史记录窗口回到这些副本。";
 "Keyboard Shortcuts" = "键盘快捷键";
 "Lanczos 3" = "Lanczos 3";
 "Language" = "语言";
@@ -351,6 +359,7 @@
 "Luminosity" = "明度";
 "Magic Wand" = "魔棒";
 "Magnetic Closing" = "磁性闭合";
+"Magnetic closing" = "磁性闭合";
 "Magnetic closing disabled" = "磁性闭合已关闭";
 "Magnetic closing enabled: a stroke released near its start joins it" = "磁性闭合已打开：在起点附近松开时，笔画会与起点相连";
 "Maintain aspect ratio" = "保持纵横比";
@@ -375,6 +384,7 @@
 "Move Selected Pixels" = "移动所选像素";
 "Move Selection" = "移动选区";
 "Multiply" = "正片叠底";
+"NEW" = "新功能";
 "Name:" = "名称：";
 "Nearest Neighbor" = "邻近";
 "Negation" = "求反";
@@ -417,6 +427,7 @@
 "Overwrite" = "覆盖";
 "Paint Bucket" = "油漆桶";
 "Paintbrush" = "画笔";
+"Painting" = "绘画";
 "Palette" = "调色板";
 "Pan" = "抓手";
 "Parallelogram" = "平行四边形";
@@ -440,6 +451,8 @@
 "Pixels" = "像素";
 "Plaid" = "格子呢";
 "Plus" = "加号";
+"Plus Features" = "Plus 功能";
+"Plus Features…" = "Plus 功能…";
 "Polar Inversion" = "极坐标反转";
 "Polygons" = "多边形";
 "Posterize" = "色调分离";
@@ -562,6 +575,7 @@
 "Show Time of Day" = "显示时刻";
 "Show in Finder" = "在访达中显示";
 "Show points" = "显示点";
+"Shows when each step was made, or how long ago." = "显示每个步骤的完成时间，或距今多久。";
 "Single Pixel" = "单个像素";
 "Size" = "大小";
 "Sketch Blur" = "素描模糊";
@@ -572,6 +586,7 @@
 "Smoothing enabled" = "防抖已打开";
 "Smoothness" = "平滑度";
 "Snapshot %d" = "快照 %d";
+"Snapshots" = "快照";
 "Soft Light" = "柔光";
 "Soften Portrait" = "柔化人像";
 "Softness" = "柔和度";
@@ -587,6 +602,7 @@
 "Stars" = "星形";
 "Start cap" = "起点样式";
 "Start:" = "起点：";
+"Steadies strokes: the brush follows the pointer on a string. For the Paintbrush, Eraser, Clone Stamp and Recolor tools." = "让笔画更稳定：画笔像系着绳子一样跟随指针。适用于画笔、橡皮擦、仿制图章和重新着色工具。";
 "Straighten" = "拉直";
 "Strength" = "力度";
 "Strikethrough" = "删除线";
@@ -618,6 +634,7 @@
 "Tile Reflection" = "拼贴反射";
 "Tile Size" = "拼贴大小";
 "Tiling" = "拼贴";
+"Times in the History window" = "历史记录窗口中的时间";
 "Tint" = "色调";
 "Toggle Layer Visibility" = "显示/隐藏图层";
 "Tolerance" = "容差";
@@ -657,6 +674,7 @@
 "Weave" = "编织";
 "Welcome to Brushwood" = "欢迎使用 Brushwood";
 "What's New" = "新功能";
+"What's New in Brushwood Plus" = "Brushwood Plus 新功能";
 "White" = "白色";
 "Width" = "宽度";
 "Width:" = "宽度：";
