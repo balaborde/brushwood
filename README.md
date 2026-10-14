@@ -26,40 +26,32 @@ owner. No Paint.NET code, icons or other assets are used — every icon is drawn
 
 ## Brushwood Plus
 
-This branch, `plus`, builds **Brushwood Plus**: Brushwood with extra features that Paint.NET does not have but that make
-everyday editing easier. Each Brushwood release is merged into it. It adds:
+**Brushwood Plus** is an edition of Brushwood with extra features that Paint.NET does not have but that make everyday
+editing easier, such as snapshots in the History window or brush smoothing. Brushwood itself stays faithful to
+Paint.NET; Brushwood Plus is built from the `plus` branch, follows every Brushwood release and adds its features on top.
 
-- **Times in the History window:** each step shows when it was made (14:32) or how long ago (12 min ago), or nothing.
-  Choose with a right-click in the History window or in **Settings › History**; the tooltip gives the full date.
-- **Snapshots:** the camera button of the History window keeps a full copy of the image, listed at the top of the
-  window. Clicking a snapshot brings the image back to it as a new step, so a snapshot is never lost to undo or to new
-  edits, and going back can itself be undone. Right-click a snapshot to rename or delete it. Snapshots count in the
-  history's memory budget and are not saved in the file.
-- **Brush smoothing:** the Smoothing button, next to Antialiasing in the tool bar of the Paintbrush, Eraser, Clone
-  Stamp and Recolor tools, steadies strokes like Photoshop's Smoothing. The brush follows the pointer at the end of a
-  string, shown while painting, which takes out hand tremor, and fast curves stay round. While Smoothing is on, the
-  tool bar sets the **string length** (in points on screen, so it feels the same at every zoom). A stroke ends where
-  the brush is, without a straight tail to the pointer; Shift still draws straight lines.
-- **Magnetic closing:** the button after Smoothing joins a stroke to its start when it is released near it, with a
-  curve that carries on from both ends, so a circle or any outline drawn by hand closes cleanly. Once the stroke has
-  gone away from its start, a circle marks the area there, and fills when releasing would close the stroke. Works with
-  or without Smoothing.
+- Each feature can be turned on or off, one by one or by category, in the **Plus Features** window
+  (**Brushwood Plus › Plus Features…**), which also describes them. The window opens by itself at the first launch and
+  after each update, with what the update brings tagged **NEW**. With every feature off, Brushwood Plus works like
+  Brushwood.
+- It is a separate app, **Brushwood Plus.app**, with its own settings and a "+" on its icon: it can be installed next
+  to Brushwood (see [Installing](#installing)).
+- Its versions are the Brushwood version they are based on, followed by a revision: `1.0.3-plus.1`, `1.0.3-plus.2`,
+  then `1.0.4-plus.1` once Brushwood 1.0.4 is merged.
 
-Each feature can be turned off in the **Plus Features** window, alone or by category; it then disappears entirely
-(buttons, options, menu items). The window opens by itself at the first launch and after each update, with what the
-update brings marked **New**, and later from **Brushwood Plus › Plus Features…** or **Settings**. To add a feature,
-list it in `Sources/Brushwood/App/PlusFeatures.swift` with the version that brings it, and check `isEnabled` wherever
-it shows.
-
-Brushwood Plus is a separate app that installs next to Brushwood, with its own name, its own settings and a "+" on its
-icon. **Check for Updates…** only offers Plus versions. A Plus version is the Brushwood version it is based on followed
-by a revision: `1.0.3-plus.1`, `1.0.3-plus.2`, then `1.0.4-plus.1` once Brushwood 1.0.4 is merged.
+> *En bref (FR) :* Brushwood Plus est une édition de Brushwood avec des fonctionnalités absentes de Paint.NET, comme
+> les instantanés dans l'historique ou la stabilisation du pinceau. Chacune s'active ou se désactive dans la fenêtre
+> **Fonctionnalités Plus**. C'est une app à part, qui s'installe à côté de Brushwood avec ses propres réglages.
 
 ## Installing
 
-1. Download **Brushwood-<version>.dmg** from the [latest release](https://github.com/balaborde/brushwood/releases/latest).
-2. Open it and drag **Brushwood** onto the **Applications** folder.
-3. Eject the disk image, then open Brushwood from Applications or Launchpad.
+1. Download the disk image of the app you want:
+   - **Brushwood:** **Brushwood-<version>.dmg** from the [latest release](https://github.com/balaborde/brushwood/releases/latest);
+   - **Brushwood Plus:** the most recent **Brushwood-<version>-plus.<n>.dmg** on the
+     [Releases](https://github.com/balaborde/brushwood/releases) page (Plus releases are never the one marked Latest).
+2. Open it and drag the app (**Brushwood** or **Brushwood Plus**) onto the **Applications** folder. The two apps can be
+   installed side by side.
+3. Eject the disk image, then open the app from Applications or Launchpad.
 
 <p align="center">
   <img src="docs/images/install.png" width="460" alt="The disk image window: drag Brushwood onto the Applications folder">
@@ -71,14 +63,19 @@ Brushwood runs on macOS 13 Ventura or later, on Apple silicon and Intel Macs.
 Apple Developer ID. To allow it, once:
 
 - **macOS 15 Sequoia and later:** click **Done**, open **System Settings › Privacy & Security**, scroll down to the
-  message about Brushwood, click **Open Anyway** and confirm.
+  message about the app, click **Open Anyway** and confirm.
 - **macOS 13 Ventura and 14 Sonoma:** Control-click Brushwood in Applications, choose **Open**, then click **Open**.
 
-Alternatively, run `xattr -dr com.apple.quarantine /Applications/Brushwood.app` in Terminal.
+Alternatively, run `xattr -dr com.apple.quarantine /Applications/Brushwood.app` in Terminal (for Brushwood Plus:
+`xattr -dr com.apple.quarantine "/Applications/Brushwood Plus.app"`).
 
 **Updating:** choose **Brushwood › Check for Updates…** (or **Settings › Updates**). Brushwood shows what's new, then
 downloads the new version, installs it and relaunches. It also checks once a day at launch; this can be turned off in
 Settings. Versions without this menu item are updated by installing the new disk image the same way as above.
+
+Each app only updates to its own edition. Brushwood offers the release marked Latest, which is always a Brushwood
+version. Brushwood Plus looks through all releases for the newest Brushwood Plus version, so it never switches to
+Brushwood, and it opens the Plus Features window after updating. Neither offers betas (pre-releases).
 
 ## Features
 
@@ -200,22 +197,13 @@ Finder. Attach the .dmg to a GitHub release.
 
 For **Check for Updates…** to find a release, publish it on GitHub with:
 
-- a tag `v<version>`, where `<version>` is the app's `CFBundleShortVersionString` (for example `v1.0.3-plus.1`);
-- the right label. GitHub's "Latest" release is the one Brushwood offers, and the one the download link above opens,
-  so it must always be a Brushwood release. Brushwood Plus looks through all releases for its own tags instead:
-
-  | Release | Tag | Label |
-  |---|---|---|
-  | Brushwood | `v1.0.4` | Latest |
-  | Brushwood Plus | `v1.0.4-plus.1` | none: untick "Set as the latest release" (ticked by default) |
-  | Beta of either app | `v1.1.0-beta.1`, `v1.0.4-plus.2-beta.1` | Pre-release (neither app offers it) |
-
+- a tag `v<version>`, where `<version>` is the app's `CFBundleShortVersionString` (for example `v1.0.2`);
 - the disk image attached (the first `.dmg` file of the release is the one installed);
 - release notes in Markdown: Brushwood shows them in its update window, up to a heading that starts with "Install"
   (download instructions are not needed there).
 
 Increase `CFBundleVersion` (the build number) by one for each release as well. To try the updater without publishing,
-point it at a local copy of the GitHub API's list of releases: `BRUSHWOOD_UPDATE_FEED=file:///path/to/releases.json`.
+point it at a local copy of the GitHub API's answer: `BRUSHWOOD_UPDATE_FEED=file:///path/to/release.json`.
 
 With a paid Apple Developer account, the app and the disk image can be signed with a Developer ID and notarized, so
 macOS opens Brushwood without the first-launch warning:

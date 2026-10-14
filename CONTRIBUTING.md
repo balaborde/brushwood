@@ -83,6 +83,23 @@ When you fix a bug, add a test that fails without your fix:
 - **App** (tools, menus, windows): add a scenario to `scripts/ui-smoke-test.sh`. Scenarios are written with the commands
   of `Sources/Brushwood/App/DebugScript.swift`, such as `tool:paintbrush; drag:10,10,50,50; expect:30,30,FF0000`.
 
+## Working on Brushwood Plus
+
+Features that depart from Paint.NET go to [Brushwood Plus](README.md#brushwood-plus), on the `plus` branch: branch from
+`plus` and open the pull request against it.
+
+- Merge `main` into `plus` for each Brushwood release, never the other way.
+- **To add a feature**, list it in `Sources/Brushwood/App/PlusFeatures.swift` with its category, name, description and
+  the version that brings it (it is tagged NEW after updating to that version). Then check
+  `PlusFeature.<name>.isEnabled` wherever it shows (buttons, menu items, shortcuts, settings, behavior); interface that
+  stays on screen follows `.plusFeaturesChanged`. Translate its text and add tests as for any other change.
+- **To publish a release**, tag it like `v1.0.4-plus.1` and give it no label: untick "Set as the latest release"
+  (ticked by default), since Latest must stay a Brushwood release. Betas of either app are published as pre-releases.
+  To try the updater, `BRUSHWOOD_UPDATE_FEED` takes a local copy of the GitHub API's list of releases.
+- **Where the Plus code is:** `Edition.swift` (name, icon badge, release tags), `PlusFeatures.swift` and
+  `PlusFeaturesWindow.swift` in `Sources/Brushwood/App`; `Snapshots.swift`, `StrokeStabilizer.swift` and
+  `StrokeCloser.swift` in `Sources/BrushwoodCore/Model`.
+
 ## Pull requests
 
 - Keep each pull request to one topic, branched from `main`.
