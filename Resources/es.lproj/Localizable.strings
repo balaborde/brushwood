@@ -25,6 +25,7 @@
 "Add New Layer" = "Añadir capa nueva";
 "Add Noise" = "Añadir ruido";
 "Additive" = "Aditivo";
+"Adds buttons next to the brush width that go up or down to the next multiple of 5: 1, 5, 10, 15…" = "Añade junto al ancho del pincel botones que suben o bajan al siguiente múltiplo de 5: 1, 5, 10, 15…";
 "Adjustments" = "Ajustes";
 "After click" = "Después del clic";
 "After click:" = "Después del clic:";
@@ -70,6 +71,7 @@
 "Brush size" = "Tamaño del pincel";
 "Brush smoothing" = "Estabilización del pincel";
 "Brush width (mouse wheel, [ and ] also change it)" = "Ancho del pincel (también se cambia con la rueda del ratón, [ y ])";
+"Brush width by fives" = "Ancho del pincel de 5 en 5";
 "Brush width:" = "Ancho del pincel:";
 "Brushwood %@ is available. You have version %@." = "Brushwood %@ está disponible. Tienes la versión %@.";
 "Brushwood Help" = "Ayuda de Brushwood";
@@ -192,6 +194,7 @@
 "Dotted Grid" = "Cuadrícula punteada";
 "Double Arrow" = "Flecha doble";
 "Down Arrow" = "Flecha abajo";
+"Down to the previous multiple of 5" = "Bajar al múltiplo de 5 anterior";
 "Download from GitHub" = "Descargar desde GitHub";
 "Downloading…" = "Descargando…";
 "Drag the selection outline to move it. Drag the handles to scale. Drag with the right mouse button to rotate." = "Arrastra el contorno de la selección para moverlo, los tiradores para escalarlo y con el botón derecho para girarlo.";
@@ -639,6 +642,7 @@
 "Toggle Layer Visibility" = "Mostrar u ocultar capa";
 "Tolerance" = "Tolerancia";
 "Tolerance:" = "Tolerancia:";
+"Tool Bar" = "Barra de herramientas";
 "Tool:" = "Herramienta:";
 "Tools" = "Herramientas";
 "Tools (F5)" = "Herramientas (F5)";
@@ -659,6 +663,7 @@
 "Units" = "Unidades";
 "Untitled" = "Sin título";
 "Up Arrow" = "Flecha arriba";
+"Up to the next multiple of 5" = "Subir al siguiente múltiplo de 5";
 "Updates" = "Actualizaciones";
 "Use System Setting" = "Usar el ajuste del sistema";
 "Value" = "Valor";

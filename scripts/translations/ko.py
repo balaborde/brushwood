@@ -26,6 +26,7 @@ Add (union)|추가(합집합)
 Add New Layer|새 레이어 추가
 Add Noise|노이즈 추가
 Additive|더하기
+Adds buttons next to the brush width that go up or down to the next multiple of 5: 1, 5, 10, 15…|브러시 너비 옆에 다음 5의 배수로 올리거나 내리는 버튼을 추가합니다: 1, 5, 10, 15…
 Adjustments|조정
 After click|클릭 후
 After click:|클릭 후:
@@ -71,6 +72,7 @@ Brightness / Contrast|밝기 / 대비
 Brush size|브러시 크기
 Brush smoothing|브러시 손떨림 보정
 Brush width (mouse wheel, [ and ] also change it)|브러시 너비(마우스 휠, [ 및 ] 키로도 변경 가능)
+Brush width by fives|브러시 너비 5 단위 조절
 Brush width:|브러시 너비:
 Brushwood %@ is available. You have version %@.|Brushwood %@을(를) 사용할 수 있습니다. 현재 버전은 %@입니다.
 Brushwood Help|Brushwood 도움말
@@ -193,6 +195,7 @@ Dotted Diamond|점선 다이아몬드
 Dotted Grid|점선 격자
 Double Arrow|양방향 화살표
 Down Arrow|아래쪽 화살표
+Down to the previous multiple of 5|이전 5의 배수로 내리기
 Download from GitHub|GitHub에서 다운로드
 Downloading…|다운로드 중…
 Drag the selection outline to move it. Drag the handles to scale. Drag with the right mouse button to rotate.|선택 영역 윤곽을 드래그하여 이동하고, 핸들을 드래그하여 크기를 조절하고, 오른쪽 버튼으로 드래그하여 회전합니다.
@@ -640,6 +643,7 @@ Tint|틴트
 Toggle Layer Visibility|레이어 표시/숨기기
 Tolerance|허용치
 Tolerance:|허용치:
+Tool Bar|도구 막대
 Tool:|도구:
 Tools|도구
 Tools (F5)|도구(F5)
@@ -660,6 +664,7 @@ Undo (⌘Z)|실행 취소(⌘Z)
 Units|단위
 Untitled|제목 없음
 Up Arrow|위쪽 화살표
+Up to the next multiple of 5|다음 5의 배수로 올리기
 Updates|업데이트
 Use System Setting|시스템 설정 사용
 Value|값

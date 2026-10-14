@@ -12,6 +12,7 @@ final class ToolOptionsBar: NSView {
     private var refreshers: [() -> Void] = []
     /// Exposed for the scripted UI tests.
     private(set) weak var brushWidthCombo: NumberComboBox?
+    private(set) weak var brushWidthSnap: SnapStepper?
 
     var env: AppEnvironment { .shared }
     var s: ToolSettings { env.tools }
@@ -76,6 +77,7 @@ final class ToolOptionsBar: NSView {
     func rebuild() {
         flow.removeAll()
         refreshers.removeAll()
+        brushWidthSnap = nil
         let tool = env.activeTool
         add(toolbarLabel(L("Tool:")))
         toolPopup.selectItem(withTag: tool.rawValue)
@@ -385,6 +387,14 @@ final class ToolOptionsBar: NSView {
         }
         refreshers.append { [weak self, weak stepper] in stepper?.doubleValue = Double(self?.s.brushWidth ?? 2) }
         add(stepper)
+        guard PlusFeature.brushWidthSteps.isEnabled else { return }
+        let snap = SnapStepper(upTooltip: L("Up to the next multiple of 5"), downTooltip: L("Down to the previous multiple of 5"))
+        snap.onStep = { [weak self] up in
+            guard let self else { return }
+            s.brushWidth = CGFloat(SnapStepper.snapped(Double(s.brushWidth), step: 5, up: up, range: 1...2000))
+        }
+        add(snap)
+        brushWidthSnap = snap
     }
 
     private func hardness() {

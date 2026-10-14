@@ -26,6 +26,7 @@ Add (union)|Добавить (объединение)
 Add New Layer|Добавить новый слой
 Add Noise|Добавить шум
 Additive|Сложение
+Adds buttons next to the brush width that go up or down to the next multiple of 5: 1, 5, 10, 15…|Добавляет рядом с шириной кисти кнопки, которые увеличивают или уменьшают её до следующего числа, кратного 5: 1, 5, 10, 15…
 Adjustments|Коррекция
 After click|После щелчка
 After click:|После щелчка:
@@ -71,6 +72,7 @@ Brightness / Contrast|Яркость / Контраст
 Brush size|Размер кисти
 Brush smoothing|Стабилизация кисти
 Brush width (mouse wheel, [ and ] also change it)|Ширина кисти (также меняется колесиком мыши и клавишами [ и ])
+Brush width by fives|Ширина кисти с шагом 5
 Brush width:|Ширина кисти:
 Brushwood %@ is available. You have version %@.|Доступна версия Brushwood %@. У вас версия %@.
 Brushwood Help|Справка Brushwood
@@ -193,6 +195,7 @@ Dotted Diamond|Пунктирные ромбы
 Dotted Grid|Точечная сетка
 Double Arrow|Двойная стрелка
 Down Arrow|Стрелка вниз
+Down to the previous multiple of 5|Уменьшить до предыдущего кратного 5
 Download from GitHub|Загрузить с GitHub
 Downloading…|Загрузка…
 Drag the selection outline to move it. Drag the handles to scale. Drag with the right mouse button to rotate.|Перетащите контур выделения, чтобы переместить его, маркеры — чтобы масштабировать, правой кнопкой мыши — чтобы повернуть.
@@ -640,6 +643,7 @@ Tint|Оттенок
 Toggle Layer Visibility|Показать/скрыть слой
 Tolerance|Допуск
 Tolerance:|Допуск:
+Tool Bar|Панель инструментов
 Tool:|Инструмент:
 Tools|Инструменты
 Tools (F5)|Инструменты (F5)
@@ -660,6 +664,7 @@ Undo (⌘Z)|Отменить (⌘Z)
 Units|Единицы
 Untitled|Без названия
 Up Arrow|Стрелка вверх
+Up to the next multiple of 5|Увеличить до следующего кратного 5
 Updates|Обновления
 Use System Setting|Как в системе
 Value|Значение

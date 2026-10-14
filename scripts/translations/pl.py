@@ -26,6 +26,7 @@ Add (union)|Dodaj (suma)
 Add New Layer|Dodaj nową warstwę
 Add Noise|Dodaj szum
 Additive|Dodawanie
+Adds buttons next to the brush width that go up or down to the next multiple of 5: 1, 5, 10, 15…|Dodaje obok szerokości pędzla przyciski, które zwiększają lub zmniejszają ją do następnej wielokrotności 5: 1, 5, 10, 15…
 Adjustments|Korekty
 After click|Po kliknięciu
 After click:|Po kliknięciu:
@@ -71,6 +72,7 @@ Brightness / Contrast|Jasność / Kontrast
 Brush size|Rozmiar pędzla
 Brush smoothing|Stabilizacja pędzla
 Brush width (mouse wheel, [ and ] also change it)|Szerokość pędzla (można ją też zmieniać kółkiem myszy oraz klawiszami [ i ])
+Brush width by fives|Szerokość pędzla co 5
 Brush width:|Szerokość pędzla:
 Brushwood %@ is available. You have version %@.|Brushwood %@ jest dostępny. Masz wersję %@.
 Brushwood Help|Pomoc Brushwood
@@ -193,6 +195,7 @@ Dotted Diamond|Romby kropkowane
 Dotted Grid|Siatka kropkowana
 Double Arrow|Podwójna strzałka
 Down Arrow|Strzałka w dół
+Down to the previous multiple of 5|W dół do poprzedniej wielokrotności 5
 Download from GitHub|Pobierz z GitHuba
 Downloading…|Pobieranie…
 Drag the selection outline to move it. Drag the handles to scale. Drag with the right mouse button to rotate.|Przeciągnij kontur zaznaczenia, aby go przesunąć, uchwyty, aby go skalować, a prawym przyciskiem myszy, aby go obrócić.
@@ -640,6 +643,7 @@ Tint|Odcień
 Toggle Layer Visibility|Pokaż/ukryj warstwę
 Tolerance|Tolerancja
 Tolerance:|Tolerancja:
+Tool Bar|Pasek narzędzi
 Tool:|Narzędzie:
 Tools|Narzędzia
 Tools (F5)|Narzędzia (F5)
@@ -660,6 +664,7 @@ Undo (⌘Z)|Cofnij (⌘Z)
 Units|Jednostki
 Untitled|Bez tytułu
 Up Arrow|Strzałka w górę
+Up to the next multiple of 5|W górę do następnej wielokrotności 5
 Updates|Uaktualnienia
 Use System Setting|Użyj ustawienia systemowego
 Value|Wartość

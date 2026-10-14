@@ -10,12 +10,13 @@ extension Notification.Name {
 /// leaves the app as Brushwood is without it: its buttons, menu items and options are gone and it has no effect.
 /// Add new features here, with the version that brings them, and check `isEnabled` wherever they show.
 enum PlusFeature: String, CaseIterable {
-    case historyTimes, snapshots, smoothing, magneticClosing
+    case historyTimes, snapshots, smoothing, magneticClosing, brushWidthSteps
 
     var category: PlusCategory {
         switch self {
         case .historyTimes, .snapshots: return .history
         case .smoothing, .magneticClosing: return .painting
+        case .brushWidthSteps: return .toolBar
         }
     }
 
@@ -25,6 +26,7 @@ enum PlusFeature: String, CaseIterable {
         case .snapshots: return L("Snapshots")
         case .smoothing: return L("Brush smoothing")
         case .magneticClosing: return L("Magnetic closing")
+        case .brushWidthSteps: return L("Brush width by fives")
         }
     }
 
@@ -36,6 +38,8 @@ enum PlusFeature: String, CaseIterable {
             return L("Steadies strokes: the brush follows the pointer on a string. For the Paintbrush, Eraser, Clone Stamp and Recolor tools.")
         case .magneticClosing:
             return L("Joins a stroke released near its start to it, so circles and outlines close cleanly. For the same tools.")
+        case .brushWidthSteps:
+            return L("Adds buttons next to the brush width that go up or down to the next multiple of 5: 1, 5, 10, 15…")
         }
     }
 
@@ -43,6 +47,7 @@ enum PlusFeature: String, CaseIterable {
     var since: AppVersion {
         switch self {
         case .historyTimes, .snapshots, .smoothing, .magneticClosing: return AppVersion("1.0.3-plus.1")!
+        case .brushWidthSteps: return AppVersion("1.0.3-plus.2")!
         }
     }
 
@@ -66,12 +71,13 @@ enum PlusFeature: String, CaseIterable {
 
 /// Groups of features in the Plus Features window.
 enum PlusCategory: CaseIterable {
-    case history, painting
+    case history, painting, toolBar
 
     var title: String {
         switch self {
         case .history: return L("History")
         case .painting: return L("Painting")
+        case .toolBar: return L("Tool Bar")
         }
     }
 

@@ -26,6 +26,7 @@ Add (union)|Toevoegen (vereniging)
 Add New Layer|Nieuwe laag toevoegen
 Add Noise|Ruis toevoegen
 Additive|Additief
+Adds buttons next to the brush width that go up or down to the next multiple of 5: 1, 5, 10, 15…|Voegt naast de penseelbreedte knoppen toe die naar het volgende veelvoud van 5 omhoog of omlaag gaan: 1, 5, 10, 15…
 Adjustments|Aanpassingen
 After click|Na klikken
 After click:|Na klikken:
@@ -71,6 +72,7 @@ Brightness / Contrast|Helderheid / Contrast
 Brush size|Penseelgrootte
 Brush smoothing|Penseelstabilisatie
 Brush width (mouse wheel, [ and ] also change it)|Penseelbreedte (ook te wijzigen met het muiswiel, [ en ])
+Brush width by fives|Penseelbreedte per 5
 Brush width:|Penseelbreedte:
 Brushwood %@ is available. You have version %@.|Brushwood %@ is beschikbaar. Je hebt versie %@.
 Brushwood Help|Brushwood-help
@@ -193,6 +195,7 @@ Dotted Diamond|Gestippelde ruiten
 Dotted Grid|Gestippeld raster
 Double Arrow|Dubbele pijl
 Down Arrow|Pijl omlaag
+Down to the previous multiple of 5|Omlaag naar het vorige veelvoud van 5
 Download from GitHub|Download van GitHub
 Downloading…|Downloaden…
 Drag the selection outline to move it. Drag the handles to scale. Drag with the right mouse button to rotate.|Sleep de selectieomtrek om hem te verplaatsen, de grepen om te schalen en met de rechtermuisknop om te roteren.
@@ -640,6 +643,7 @@ Tint|Tint
 Toggle Layer Visibility|Toon/verberg laag
 Tolerance|Tolerantie
 Tolerance:|Tolerantie:
+Tool Bar|Gereedschapsbalk
 Tool:|Gereedschap:
 Tools|Gereedschappen
 Tools (F5)|Gereedschappen (F5)
@@ -660,6 +664,7 @@ Undo (⌘Z)|Herstel (⌘Z)
 Units|Eenheden
 Untitled|Naamloos
 Up Arrow|Pijl omhoog
+Up to the next multiple of 5|Omhoog naar het volgende veelvoud van 5
 Updates|Updates
 Use System Setting|Gebruik systeeminstelling
 Value|Waarde

@@ -194,6 +194,17 @@ enum DebugScript {
                 c.canvas.centerImage()
                 r = c.canvas.imageRectInView.offsetBy(dx: -clip.bounds.minX, dy: -clip.bounds.minY)
                 report(abs(r.midX - clip.bounds.width / 2) <= 1 && abs(r.midY - clip.bounds.height / 2) <= 1, "re-centered")
+            case "widthsnap":
+                // widthsnap:up|down clicks a half of the brush width's Brushwood Plus multiple-of-5 stepper.
+                if let snap = c.optionsBar.brushWidthSnap {
+                    // Sends the button's action as a click does, without performClick's 0.1 s of highlighting.
+                    let b = arg == "up" ? snap.up : snap.down
+                    b.sendAction(b.action, to: b.target)
+                } else {
+                    report(false, "no multiple-of-5 stepper in the tool bar")
+                }
+            case "expectwidthsnap":
+                report((c.optionsBar.brushWidthSnap != nil) == (arg == "1"), "multiple-of-5 stepper shown: \(c.optionsBar.brushWidthSnap != nil)")
             case "expectwidth":
                 let w = AppEnvironment.shared.tools.brushWidth
                 report(abs(w - CGFloat(nums.first ?? -1)) < 0.01, "brush width = \(w), expected \(arg)")

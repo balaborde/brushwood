@@ -26,6 +26,7 @@ Add (union)|追加（和集合）
 Add New Layer|新規レイヤーを追加
 Add Noise|ノイズを加える
 Additive|加算
+Adds buttons next to the brush width that go up or down to the next multiple of 5: 1, 5, 10, 15…|ブラシの幅の横に、次の 5 の倍数へ上げ下げするボタンを追加します：1、5、10、15…
 Adjustments|色調補正
 After click|クリック後
 After click:|クリック後：
@@ -71,6 +72,7 @@ Brightness / Contrast|明るさ / コントラスト
 Brush size|ブラシサイズ
 Brush smoothing|ブラシの手ブレ補正
 Brush width (mouse wheel, [ and ] also change it)|ブラシの幅（マウスホイールや [ ] キーでも変更できます）
+Brush width by fives|ブラシの幅を 5 刻みで
 Brush width:|ブラシの幅：
 Brushwood %@ is available. You have version %@.|Brushwood %@ が利用できます。現在のバージョンは %@ です。
 Brushwood Help|Brushwood ヘルプ
@@ -193,6 +195,7 @@ Dotted Diamond|点線のひし形
 Dotted Grid|点線のグリッド
 Double Arrow|両矢印
 Down Arrow|下矢印
+Down to the previous multiple of 5|前の 5 の倍数に下げる
 Download from GitHub|GitHub からダウンロード
 Downloading…|ダウンロード中…
 Drag the selection outline to move it. Drag the handles to scale. Drag with the right mouse button to rotate.|選択範囲の輪郭をドラッグして移動、ハンドルをドラッグして拡大・縮小、右ボタンでドラッグして回転します。
@@ -640,6 +643,7 @@ Tint|色かぶり補正
 Toggle Layer Visibility|レイヤーの表示 / 非表示
 Tolerance|許容値
 Tolerance:|許容値：
+Tool Bar|ツールバー
 Tool:|ツール：
 Tools|ツール
 Tools (F5)|ツール (F5)
@@ -660,6 +664,7 @@ Undo (⌘Z)|取り消す (⌘Z)
 Units|単位
 Untitled|名称未設定
 Up Arrow|上矢印
+Up to the next multiple of 5|次の 5 の倍数に上げる
 Updates|アップデート
 Use System Setting|システム設定に従う
 Value|値

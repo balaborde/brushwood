@@ -60,6 +60,14 @@ run plusfeatures "plusfeature:historyTimes=1; plusfeature:snapshots=1; plusfeatu
  expectplus:smoothing=0; expectplus:magneticClosing=0; plusclick:painting; expectplus:smoothing=1; plusclick:history;
  expectplus:historyTimes=0; expectplus:snapshots=0; plusfeature:historyTimes=1; plusfeature:snapshots=1; plusfeature:smoothing=1; plusfeature:magneticClosing=1; setting:smoothing=0"
 
+# Brushwood Plus: the brush width's double-chevron stepper goes to the next multiple of 5, within 1…2000, for the tools
+# that have a brush width, and is gone while its Plus feature is off.
+run widthsnap "plusfeature:brushWidthSteps=1; tool:paintbrush; width:1; widthsnap:up; expectwidth:5; widthsnap:up;
+ expectwidth:10; width:7; widthsnap:up; expectwidth:10; width:12; widthsnap:down; expectwidth:10; widthsnap:down;
+ expectwidth:5; widthsnap:down; expectwidth:1; widthsnap:down; expectwidth:1; width:1999; widthsnap:up; expectwidth:2000;
+ tool:shapes; expectwidthsnap:1; tool:pencil; expectwidthsnap:0; tool:paintbrush; plusfeature:brushWidthSteps=0;
+ expectwidthsnap:0; plusfeature:brushWidthSteps=1; expectwidthsnap:1; width:2"
+
 # Floating windows follow their corner of the canvas when the main window is resized.
 run panels "showpanels; expectpanels; panel:1400,900; expectpanels; panel:820,560; expectpanels;
  panel:1280,820; expectpanels"

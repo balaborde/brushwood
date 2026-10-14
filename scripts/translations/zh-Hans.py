@@ -26,6 +26,7 @@ Add (union)|添加（并集）
 Add New Layer|添加新图层
 Add Noise|添加杂色
 Additive|相加
+Adds buttons next to the brush width that go up or down to the next multiple of 5: 1, 5, 10, 15…|在画笔宽度旁添加按钮，可增加或减少到下一个 5 的倍数：1、5、10、15…
 Adjustments|调整
 After click|单击后
 After click:|单击后：
@@ -71,6 +72,7 @@ Brightness / Contrast|亮度 / 对比度
 Brush size|画笔大小
 Brush smoothing|画笔防抖
 Brush width (mouse wheel, [ and ] also change it)|画笔宽度（也可用鼠标滚轮、[ 和 ] 更改）
+Brush width by fives|画笔宽度按 5 调整
 Brush width:|画笔宽度：
 Brushwood %@ is available. You have version %@.|Brushwood %@ 现已推出。你的版本是 %@。
 Brushwood Help|Brushwood 帮助
@@ -193,6 +195,7 @@ Dotted Diamond|点线菱形
 Dotted Grid|点线网格
 Double Arrow|双箭头
 Down Arrow|下箭头
+Down to the previous multiple of 5|减少到上一个 5 的倍数
 Download from GitHub|从 GitHub 下载
 Downloading…|正在下载…
 Drag the selection outline to move it. Drag the handles to scale. Drag with the right mouse button to rotate.|拖移选区轮廓可移动，拖移控制点可缩放，按住右键拖移可旋转。
@@ -640,6 +643,7 @@ Tint|色调
 Toggle Layer Visibility|显示/隐藏图层
 Tolerance|容差
 Tolerance:|容差：
+Tool Bar|工具栏
 Tool:|工具：
 Tools|工具
 Tools (F5)|工具 (F5)
@@ -660,6 +664,7 @@ Undo (⌘Z)|撤销 (⌘Z)
 Units|单位
 Untitled|未命名
 Up Arrow|上箭头
+Up to the next multiple of 5|增加到下一个 5 的倍数
 Updates|更新
 Use System Setting|使用系统设置
 Value|值
