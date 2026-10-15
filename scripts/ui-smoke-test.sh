@@ -82,6 +82,40 @@ run tutorial "showpanels; plusfeature:historyTimes=1; plusfeature:snapshots=1; p
  tutorialstart:shapes; tutorialnext; tutorialnext; tutorialnext; expecttutorial:shapes,4; expecttool:shapes; tutorialnext;
  tutorialnext; tutorialnext; expecttutorial:shapes,7; tutorialnext; expecttutorial:none"
 
+# Brushwood Plus guided project "Evening Lake": every step, carried out with the tools as a user would, is not done
+# before its action and done after it; the image is saved with its layers at the end.
+run project "plusfeature:snapshots=1; plusfeature:magneticClosing=1; plusfeature:brushWidthSteps=1;
+ project:eveningLake; expectproject:1,done; projectnext;
+ expectproject:2,waiting; layername:Sky; expectproject:2,done; projectnext;
+ expectproject:3,waiting; projectcolors; expectproject:3,done; projectnext;
+ expectproject:4,waiting; tool:gradient; drag:600,0,600,560; key:return; expectproject:4,done; projectnext;
+ expectproject:5,waiting; projectcolors; tool:paintbrush; width:3; click:80,40; click:200,90; click:330,30; click:470,120; click:560,60; click:690,150; click:820,40; click:950,110; click:1080,70; click:1150,160; click:260,200; click:640,230; expectproject:5,done; projectnext;
+ expectproject:6,waiting; menu:addLayer:; expectproject:6,waiting; layername:Sun; expectproject:6,done; projectnext;
+ expectproject:7,waiting; tool:ellipseSelect; drag:740,400,860,520; key:return; expectproject:7,done; projectnext;
+ expectproject:8,waiting; projectcolors; menu:fillSelection:; expectproject:8,done; projectnext;
+ expectproject:9,waiting; menu:deselect:; expectproject:9,waiting; effectvalues:Gaussian Blur|radius=30; expectproject:9,done; projectnext;
+ expectproject:10,waiting; layerprops:255,12,1; expectproject:10,done; projectnext;
+ menu:addLayer:; layername:Mountains; expectproject:11,done; projectnext;
+ expectproject:12,waiting; tool:lassoSelect; path:0,560,0,440,160,360,330,430,520,320,700,450,810,500,960,410,1100,370,1200,430,1200,560,0,560; key:return; expectproject:12,done; projectnext;
+ expectproject:13,waiting; projectcolors; menu:fillSelection:; expectproject:13,waiting; menu:deselect:; expectproject:13,done; projectnext;
+ menu:addLayer:; layername:Lake; expectproject:14,done; projectnext;
+ expectproject:15,waiting; tool:rectangleSelect; drag:0,560,1200,800; key:return; expectproject:15,done; projectnext;
+ expectproject:16,waiting; projectcolors; tool:gradient; drag:600,560,600,800; key:return; expectproject:16,done; projectnext;
+ expectproject:17,waiting; menu:deselect:; menu:selectLayerBelow:; menu:duplicateLayer:; expectproject:17,done; projectnext;
+ expectproject:18,waiting; menu:flipLayerVertical:; expectproject:18,done; projectnext;
+ expectproject:19,waiting; menu:selectAll:; tool:moveSelectedPixels; drag:600,300,600,620; key:return; menu:deselect:; expectproject:19,done; projectnext;
+ expectproject:20,waiting; menu:moveLayerUp:; expectproject:20,waiting; layerprops:100,0,1; expectproject:20,done; projectnext;
+ menu:addLayer:; layername:Forest; expectproject:21,done; projectnext;
+ expectproject:22,waiting; projectcolors; tool:paintbrush; width:6; path:0,590,150,598,300,630,400,690,450,760,470,799,0,799,0,590; expectproject:22,done; projectnext;
+ expectproject:23,waiting; tool:paintBucket; click:100,720; key:return; expectproject:23,done; projectnext;
+ expectproject:24,waiting; tool:shapes; shape:3; drawtype:1; drag:40,330,110,600; key:return; drag:140,380,200,610; key:return; drag:240,420,300,640; key:return; expectproject:24,done; projectnext;
+ expectproject:25,waiting; menu:addLayer:; layername:Birds; projectcolors; tool:paintbrush; width:4; path:310,180,330,192,350,180; path:360,210,372,218,384,210; path:290,230,300,237,310,230; expectproject:25,done; projectnext;
+ expectproject:26,waiting; snapshot; expectproject:26,done; projectnext;
+ expectproject:27,waiting; menu:selectBottomLayer:; effectvalues:Clouds|blendMode=15|scale=320|power=0.6; expectproject:27,done; projectnext;
+ expectproject:28,waiting; menu:selectTopLayer:; menu:addLayer:; layername:Title; projectcolors; tool:text; setting:fontsize=64; click:420,60; type:Evening Lake; key:return; expectproject:28,done; projectnext;
+ expectproject:29,waiting; saveas:$OUT/lake.ora; expectproject:29,done; projectnext;
+ expectproject:30,done; projectnext; expectproject:none"
+
 # Floating windows follow their corner of the canvas when the main window is resized.
 run panels "showpanels; expectpanels; panel:1400,900; expectpanels; panel:820,560; expectpanels;
  panel:1280,820; expectpanels"

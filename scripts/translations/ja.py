@@ -19,6 +19,10 @@ T = dict(line.split('|', 1) for line in r"""
 8 Point Star|8 点の星
 90 Percent|90 パーセント
 A free, open-source image editor for macOS, modeled on the workflow of Paint.NET.\n\nLicensed under the MIT License.\nNot affiliated with or endorsed by dotPDN LLC. Paint.NET is a trademark of its respective owner.|Paint.NET のワークフローをモデルにした、macOS 用の無料でオープンソースの画像エディタです。\n\nMIT ライセンスで提供されています。\ndotPDN LLC とは提携しておらず、承認も受けていません。Paint.NET は各所有者の商標です。
+A layer for the forest|森のレイヤー
+A layer for the lake|湖のレイヤー
+A layer for the mountains|山のレイヤー
+A layer for the sun|太陽のレイヤー
 A new version of Brushwood is available|Brushwood の新しいバージョンがあります
 A solid line, or one of the dash patterns.|実線、または破線のパターンのいずれか。
 A star on GitHub also helps more people find Brushwood, and it means a lot.|GitHub でスターを付けていただくと、より多くの人が Brushwood を見つけやすくなります。とても励みになります。
@@ -28,6 +32,12 @@ Actual Size|実際のサイズ
 Add (union)|追加（和集合）
 Add New Layer|新規レイヤーを追加
 Add Noise|ノイズを加える
+Add a new layer and name it %@.|新しいレイヤーを追加し、名前を「%@」にします。
+Add a new layer named %@ and click Use These Colors for white. Choose the %@ tool, set the size to 64, click near the top and type %@. Press Return.|新しいレイヤー「%@」を追加し、「これらのカラーを使う」をクリックして白にします。%@ ツールを選び、サイズを 64 にして上の方をクリックし、「%@」と入力します。Return キーを押します。
+Add a new layer named %@, click Use These Colors, and with the %@ tool draw two or three small V shapes in the sky.|新しいレイヤー「%@」を追加し、「これらのカラーを使う」をクリックして、%@ ツールで空に小さな V の形を 2〜3 個描きます。
+Add a title|タイトルを入れる
+Add birds|鳥を描く
+Add stars|星を描く
 Additive|加算
 Adds buttons next to the brush width that go up or down to the next multiple of 5: 1, 5, 10, 15…|ブラシの幅の横に、次の 5 の倍数へ上げ下げするボタンを追加します：1、5、10、15…
 Adjustments|色調補正
@@ -58,13 +68,16 @@ Back to %@|%@ に戻る
 Background|背景
 Backward Diagonal|逆斜線
 Basic|基本
+Before trying an effect, click the camera at the bottom of the History window: you can come back to this image at any time.|エフェクトを試す前に、ヒストリーウインドウ下部のカメラをクリックしましょう。いつでもこの画像に戻れます。
 Best Quality|最高品質
 Bicubic|バイキュービック
 Bilinear|バイリニア
 Bilinear gives smooth results when scaling or rotating; Nearest Neighbor keeps hard pixel edges.|バイリニアは拡大縮小や回転の結果がなめらかになり、ニアレストネイバーはピクセルの縁をくっきり保ちます。
+Birds|鳥
 Bit Depth|ビット深度
 Black and White|白黒
 Blend|ブレンド
+Blend it into the sky|空になじませる
 Blend mode|描画モード
 Blend modes not supported by Paint.NET|Paint.NET で未対応の描画モード
 Blending|ブレンド
@@ -109,9 +122,29 @@ Check for updates automatically|アップデートを自動的に確認
 Check your internet connection and try again.|インターネット接続を確認して、もう一度お試しください。
 Checking for updates…|アップデートを確認中…
 Chevron|シェブロン
+Choose %@ and pick %@ or %@: these formats keep the layers.|%@ を選び、%@ または %@ を選びます。これらの形式はレイヤーを保持します。
+Choose %@, click the %@ layer in the Layers window, then click %@.|%@ を選び、レイヤーウインドウで「%@」レイヤーをクリックしてから %@ をクリックします。
+Choose %@, then %@ with a radius of about 30: the blur spreads the sun into a glow.|%@ を選び、次に %@ を半径 30 くらいで適用します。ぼかしで太陽が光の輪に広がります。
+Choose %@, then with the %@ tool drag the upside-down mountains down until they meet the real ones at the water line. Press Return, then choose %@.|%@ を選び、%@ ツールで逆さまの山を下へドラッグして、水際で本物の山と接するようにします。Return キーを押してから %@ を選びます。
+Choose %@: the copy becomes the reflection of the mountains.|%@ を選びます。コピーが山の映り込みになります。
+Choose the %@ tool and drag a circle about 120 pixels wide above the horizon, on the right; hold Shift to keep it round.|%@ ツールを選び、地平線の上の右側に、幅 120 ピクセルくらいの円をドラッグします。Shift キーを押したままにすると正円になります。
+Choose the %@ tool and drag from the top of the image down to about two thirds of its height. Press Return to finish.|%@ ツールを選び、画像の上端から高さの 3 分の 2 くらいまで下へドラッグします。Return キーを押して確定します。
+Choose the %@ tool and select from the foot of the mountains down to the bottom of the image, across its whole width.|%@ ツールを選び、山のふもとから画像の下端まで、幅いっぱいに選択します。
+Choose the %@ tool, click inside the outline, and press Return.|%@ ツールを選び、輪郭の内側をクリックして Return キーを押します。
+Choose the %@ tool, pick %@ and %@ in the tool bar, then draw a few tall, narrow triangles standing on the shore. Press Return after each.|%@ ツールを選び、ツールバーで %@ と %@ を選んで、岸に立つ細長い三角形をいくつか描きます。1 つ描くごとに Return キーを押します。
+Choose the %@ tool. Start at the left edge, at about two thirds of the height, draw the peaks across to the right edge, then come back along the foot of the mountains to where you started.|%@ ツールを選びます。左端の高さ 3 分の 2 くらいから始めて、右端まで山頂を描き、山のふもとに沿って始点まで戻ります。
 Choose the Brushwood Plus features you want to use.|使う Brushwood Plus の機能を選んでください。
+Choose the sky colors|空のカラーを選ぶ
 Clamp|端を延長
 Clear Menu|メニューを消去
+Click %@ at the bottom of the Layers window, then double-click the new layer and name it %@.|レイヤーウインドウ下部の %@ をクリックし、新しいレイヤーをダブルクリックして名前を「%@」にします。
+Click %@ so the copy goes above the %@ layer, then double-click it and lower its %@ to about 100.|%@ をクリックしてコピーを「%@」レイヤーの上に移し、ダブルクリックして %@ を 100 くらいに下げます。
+Click Use These Colors for a dusky purple, choose %@, then %@.|「これらのカラーを使う」をクリックして夕暮れの紫にし、%@ を選んでから %@ を選びます。
+Click Use These Colors for a golden yellow, then choose %@.|「これらのカラーを使う」をクリックして黄金色にし、%@ を選びます。
+Click Use These Colors for a very dark blue. With the %@ tool, draw around a shore in the bottom-left corner: from the left edge, over a low hill, down to the bottom edge, then back along the edges to where you started.|「これらのカラーを使う」をクリックしてごく暗い青にします。%@ ツールで、左下の隅に岸の輪郭を描きます。左端から低い丘を越えて下端まで行き、端に沿って始点まで戻ります。
+Click Use These Colors to paint in white, choose the %@ tool with a brush width of 3, and click here and there in the top of the sky: about ten stars.|「これらのカラーを使う」をクリックして白で描けるようにし、%@ ツールをブラシの幅 3 で選んで、空の上の方をあちこちクリックします。星は 10 個くらいです。
+Click Use These Colors, then with the %@ tool drag from the top of the selection down to the bottom of the image, and press Return.|「これらのカラーを使う」をクリックし、%@ ツールで選択範囲の上端から画像の下端までドラッグして Return キーを押します。
+Click Use These Colors: the primary color becomes a deep night blue and the secondary a warm orange. You can also click the color squares in the Colors window to pick your own.|「これらのカラーを使う」をクリックすると、プライマリカラーが深い夜空の青に、セカンダリカラーが暖かいオレンジになります。カラーウインドウの四角をクリックして自分で選ぶこともできます。
 Click and drag to draw a gradient from the primary to the secondary color. Right mouse button reverses the colors.|クリック＆ドラッグして、プライマリカラーからセカンダリカラーへのグラデーションを描きます。右ボタンで色が逆になります。
 Click and drag to draw a line. Then drag the handles to bend it into a curve. Press Enter to finish.|クリック＆ドラッグして線を描きます。次にハンドルをドラッグして曲線にします。Return キーで確定します。
 Click and drag to draw a rectangular selection. Hold Shift to constrain to a square. ⌘ adds, ⌥ subtracts, right-click inverts.|クリック＆ドラッグして長方形の選択範囲を作成します。Shift キーで正方形に固定します。⌘で追加、⌥で除外、右クリックで反転します。
@@ -120,6 +153,7 @@ Click and drag to draw an elliptical selection. Hold Shift to constrain to a cir
 Click and drag to draw the outline of a selection area. ⌘ adds, ⌥ subtracts, right-click inverts.|クリック＆ドラッグして選択範囲の輪郭を描きます。⌘で追加、⌥で除外、右クリックで反転します。
 Click and drag to erase a portion of the image.|クリック＆ドラッグして画像の一部を消去します。
 Click and drag to navigate the image.|クリック＆ドラッグして画像内を移動します。
+Click the %@ layer, choose %@, set %@ to %@ and click OK.|「%@」レイヤーをクリックし、%@ を選んで、%@ を %@ にし、OK をクリックします。
 Click to add a point, drag to move it, right-click to remove it.|クリックで点を追加、ドラッグで移動、右クリックで削除します。
 Click to go back to this snapshot. Snapshots are not saved in the file.|クリックするとこのスナップショットに戻ります。スナップショットはファイルに保存されません。
 Click to select a region of similar color. ⌘ adds, ⌥ subtracts, right-click inverts. Shift-click for global selection.|クリックして似た色の領域を選択します。⌘で追加、⌥で除外、右クリックで反転します。Shift＋クリックで画像全体から選択します。
@@ -131,6 +165,7 @@ Close|閉じる
 Close Others|ほかを閉じる
 Cloud|雲
 Clouds|雲模様
+Clouds in the sky|空に雲を
 Coarseness|きめの粗さ
 Color|カラー
 Color Burn|焼き込みカラー
@@ -156,6 +191,7 @@ Copy / paste the selection outline|選択範囲の輪郭をコピー / ペース
 Copy Merged|結合部分をコピー
 Copy Selection|選択範囲をコピー
 Copy part of the image elsewhere, or replace one color with another.|画像の一部を別の場所にコピーしたり、ある色を別の色に置き換えたりします。
+Copy the mountains|山をコピーする
 Could not check for updates|アップデートを確認できませんでした
 Could not open \"%@\"|「%@」を開けませんでした
 Could not save \"%@\"|「%@」を保存できませんでした
@@ -202,10 +238,12 @@ Divot|芝目
 Do not switch tool|ツールを切り替えない
 Don't Save|保存しない
 Done|完了
+Done!|完了！
 Dot|点線
 Dotted Diamond|点線のひし形
 Dotted Grid|点線のグリッド
 Double Arrow|両矢印
+Double-click the %@ layer and set its %@ to %@: the glow now lightens the sky instead of covering it.|「%@」レイヤーをダブルクリックし、%@ を %@ にします。光が空を覆うのではなく明るくするようになります。
 Down Arrow|下矢印
 Down to the previous multiple of 5|前の 5 の倍数に下げる
 Download from GitHub|GitHub からダウンロード
@@ -216,7 +254,9 @@ Draw Filled Shape|塗りつぶし図形
 Draw Filled Shape With Outline|輪郭付き塗りつぶし図形
 Draw Shape Outline|図形の輪郭
 Draw lines and curves, and choose among 31 shapes.|直線や曲線を描き、31 種類の図形から選びます。
+Draw the mountains|山を描く
 Draw the outline, the inside, or both. The primary color draws; with both, the inside takes the secondary color.|輪郭、内側、またはその両方を描きます。プライマリカラーで描き、両方の場合は内側がセカンダリカラーになります。
+Draw the shore|岸を描く
 Drop Shadow|ドロップシャドウ
 Duplicate Layer|レイヤーを複製
 Each Brushwood Plus feature can be turned on or off here, one by one or by category. This window is also in Brushwood Plus › Plus Features…|Brushwood Plus の各機能を、1 つずつまたはカテゴリごとに、ここでオン・オフできます。このウインドウは Brushwood Plus › Plus の機能… にもあります。
@@ -240,6 +280,7 @@ Eraser|消しゴム
 Eraser and Pencil|消しゴムと鉛筆
 Erode|収縮
 Euclidean|ユークリッド
+Evening Lake|夕暮れの湖
 Every change is a step. Click a step to go back to it, and click it again to compare before and after. Undo and Redo are at the bottom.|変更の 1 つ 1 つがステップになります。ステップをクリックするとそこに戻り、もう一度クリックすると前後を比べられます。「取り消す」と「やり直す」は下にあります。
 Everyday commands: new, open, save, cut, copy, paste, undo and redo. The thumbnails are your open images, and the buttons on the right show or hide the floating windows.|よく使うコマンド：新規、開く、保存、カット、コピー、ペースト、取り消し、やり直し。サムネールは開いている画像で、右側のボタンでフローティングウインドウを表示・非表示にします。
 Expand canvas|キャンバスを拡大
@@ -255,6 +296,9 @@ Fill Selection|選択範囲を塗りつぶす
 Fill an area with a color, a pattern or a gradient.|範囲をカラー、パターン、グラデーションで塗りつぶします。
 Fill and Color|塗りつぶしとカラー
 Fill style|塗りのスタイル
+Fill the mountains|山を塗りつぶす
+Fill the shore|岸を塗りつぶす
+Fill the sun|太陽を塗りつぶす
 Fill with the plain color, or with a pattern of the primary and secondary colors.|単色で塗るか、プライマリカラーとセカンダリカラーのパターンで塗ります。
 Fill:|塗り：
 Filled Arrow|塗りつぶし矢印
@@ -273,6 +317,7 @@ Flip Vertical|上下に反転
 Floating Windows|フローティングウインドウ
 Flood mode:|塗りつぶしモード：
 Font:|フォント：
+Forest|森
 Format:|フォーマット：
 Forward Diagonal|斜線
 Fractal Sum|フラクタル和
@@ -296,6 +341,7 @@ Gradient|グラデーション
 Gradient:|グラデーション：
 Green|緑
 Guide|ガイド
+Guided Project|ガイド付きプロジェクト
 Hard Light|ハードライト
 Hardness:|硬さ：
 Heart|ハート
@@ -331,6 +377,8 @@ Image|イメージ
 Image larger than canvas|画像がキャンバスより大きい場合
 Import From File|ファイルから読み込む
 Import From File…|ファイルから読み込む…
+In the Layers window, double-click the Background layer and name it %@.|レイヤーウインドウで「背景」レイヤーをダブルクリックし、名前を「%@」にします。
+In this project you paint an evening lake, layer by layer, with most of the tools. A new 1200 × 800 image has been made for it. Each step says what to do and checks your image: once it is done, a check appears and Next goes on. You can skip any step.|このプロジェクトでは、ほとんどのツールを使って、夕暮れの湖をレイヤーごとに描きます。そのための 1200 × 800 の新しい画像が作られています。各ステップでやることが示され、画像がチェックされます。完了するとチェックマークが表示され、「次へ」で進めます。どのステップも飛ばせます。
 Inches|インチ
 Ink Sketch|インクスケッチ
 Ink outline|インクの輪郭
@@ -347,9 +395,11 @@ Invert Selection|選択範囲を反転
 Italic|斜体
 Joins a stroke released near its start to it, so circles and outlines close cleanly. For the same tools.|始点の近くで離したストロークを始点につなぎ、円や輪郭をきれいに閉じます。同じツールで使えます。
 Julia Fractal|ジュリア集合
+Keep a snapshot|スナップショットを残す
 Keep canvas size|キャンバスサイズを維持
 Keeps copies of the image that you can always go back to, from the History window.|いつでも戻れる画像のコピーをヒストリーウインドウに保存します。
 Keyboard Shortcuts|キーボードショートカット
+Lake|湖
 Lanczos 3|Lanczos 3
 Language|言語
 Large Checker Board|大きな市松模様
@@ -403,6 +453,7 @@ Magnetic closing|始点に吸着
 Magnetic closing disabled|始点に吸着：オフ
 Magnetic closing enabled: a stroke released near its start joins it|始点に吸着：オン（始点の近くで離すとストロークが始点につながります）
 Maintain aspect ratio|縦横比を保持
+Make it glow|光らせる
 Mandelbrot Fractal|マンデルブロ集合
 Manhattan|マンハッタン
 Maximum scatter radius|最大散乱半径
@@ -417,16 +468,19 @@ Moon|月
 More »|詳細を表示 »
 Morphology|モルフォロジー
 Motion Blur|ぼかし（移動）
+Mountains|山
 Move Layer Down|レイヤーを下へ移動
 Move Layer Up|レイヤーを上へ移動
 Move Layer to Bottom|レイヤーを最背面へ移動
 Move Layer to Top|レイヤーを最前面へ移動
 Move Selected Pixels|選択したピクセルを移動
 Move Selection|選択範囲を移動
+Move it into the water|水の中に置く
 Move, scale and rotate a selection or what it contains.|選択範囲またはその中身を移動、拡大縮小、回転します。
 Moving Pixels and Selections|ピクセルと選択範囲の移動
 Multiply|乗算
 NEW|新機能
+Name the sky layer|空のレイヤーに名前を付ける
 Name:|名前：
 Nearest Neighbor|ニアレストネイバー
 Negation|否定
@@ -446,6 +500,7 @@ Noise|ノイズ
 Normal|通常
 Normal, or a fixed ratio or a fixed size, for a selection with exact proportions or dimensions.|通常、または縦横比やサイズを固定して、正確な比率や寸法の選択範囲を作ります。
 Not Now|あとで
+Not done yet|まだ完了していません
 Number of cells|セルの数
 OK|OK
 Object|オブジェクト
@@ -474,6 +529,9 @@ Overlay|オーバーレイ
 Overwrite|上書き
 Paint Bucket|塗りつぶし
 Paint Bucket and Gradient|塗りつぶしとグラデーション
+Paint an evening lake, layer by layer, with most of the tools.|ほとんどのツールを使って、夕暮れの湖をレイヤーごとに描きます。
+Paint the sky|空を塗る
+Paint the water|水を塗る
 Paintbrush|ブラシ
 Painting|描画
 Palette|パレット
@@ -500,6 +558,7 @@ Pixel size|ピクセルサイズ
 Pixelate|モザイク
 Pixels|ピクセル
 Plaid|チェック柄
+Plant pine trees|松の木を植える
 Plus|プラス
 Plus Features|Plus の機能
 Plus Features…|Plus の機能…
@@ -513,6 +572,7 @@ Primary|プライマリ
 Print (⌘P)|プリント (⌘P)
 Print size|プリントサイズ
 Print…|プリント…
+Put the reflection in the water|映り込みを水に入れる
 Quality|画質
 Quality:|画質：
 Quantize|減色
@@ -595,6 +655,7 @@ Save As…|別名で保存…
 Save Configuration — %@|保存オプション — %@
 Save Palette As…|パレットを別名で保存…
 Save changes to \"%@\"?|「%@」への変更内容を保存しますか？
+Save your work|作品を保存する
 Sawtooth Repeat|のこぎり波の繰り返し
 Scale|スケール
 Screen|スクリーン
@@ -603,6 +664,8 @@ Secondary color|セカンダリカラー
 Seed|シード
 Select All|すべてを選択
 Select All / Deselect|すべてを選択 / 選択を解除
+Select a round sun|丸い太陽を選択する
+Select the water|水を選択する
 Selection|選択範囲
 Selection Tools|選択ツール
 Selection clipping|選択範囲でクリッピング
@@ -633,6 +696,8 @@ Shows when each step was made, or how long ago.|各ステップを行った時�
 Single Pixel|1 ピクセル
 Size|サイズ
 Sketch Blur|ぼかし（スケッチ）
+Skip|スキップ
+Sky|空
 Small Checker Board|小さな市松模様
 Small Grid|小さなグリッド
 Smoothing|手ブレ補正
@@ -666,6 +731,7 @@ Strikethrough|取り消し線
 String length:|ひもの長さ：
 Stylize|表現手法
 Subtract|除外
+Sun|太陽
 Supersampling|スーパーサンプリング
 Support Brushwood…|Brushwood を支援…
 Support on Buy Me a Coffee|Buy Me a Coffee で支援
@@ -687,6 +753,7 @@ Thank you for being here.|いつもありがとうございます。
 The Brushwood Window|Brushwood のウインドウ
 The bar under the toolbar shows the settings of the current tool. They change with the tool and are kept for next time.|メインバーの下のバーには、現在のツールの設定が表示されます。設定はツールごとに変わり、次回のために保存されます。
 The brush follows the pointer on a string, which takes out hand tremor. While it is on, the length of the string can be set next to it.|ブラシがひもでつながれたようにポインタを追い、手の震えを取り除きます。オンのときは、横でひもの長さを設定できます。
+The double chevrons next to the brush width jump straight to 5.|ブラシの幅の横にある二重の矢印で、すぐに 5 にできます。
 The downloaded file is damaged. Try again later.|ダウンロードしたファイルが破損しています。しばらくしてからもう一度お試しください。
 The font, its size and its style: bold, italic, underline and strikethrough.|フォント、サイズ、スタイル（太字、斜体、下線、取り消し線）。
 The image being pasted is larger than the canvas size. What would you like to do?|ペーストする画像はキャンバスより大きいです。どうしますか？
@@ -709,6 +776,7 @@ Tile Size|タイルサイズ
 Tiling|タイル状
 Times in the History window|ヒストリーウインドウの時刻
 Tint|色かぶり補正
+Title|タイトル
 Toggle Layer Visibility|レイヤーの表示 / 非表示
 Tolerance|許容値
 Tolerance:|許容値：
@@ -730,6 +798,8 @@ Triangle Repeat|三角波の繰り返し
 Turbulence|乱流
 Turn each Brushwood Plus feature on or off.|Brushwood Plus の各機能をオン・オフします。
 Turn its features on in Plus Features to follow this tour.|このツアーを見るには、Plus の機能でその機能をオンにしてください。
+Turn on Smoothing and Magnetic closing in the tool bar: the line is steadier, and it closes by itself when you come back near its start.|ツールバーで手ブレ補正と始点に吸着をオンにしましょう。線が安定し、始点の近くに戻るとひとりでに閉じます。
+Turn the copy upside down|コピーを上下反転する
 Tutorial|チュートリアル
 Tutorial…|チュートリアル…
 Twist|ねじれ
@@ -744,6 +814,7 @@ Up Arrow|上矢印
 Up to the next multiple of 5|次の 5 の倍数に上げる
 Updates|アップデート
 Use System Setting|システム設定に従う
+Use These Colors|これらのカラーを使う
 Value|値
 Version %@|バージョン %@
 Version %@ is the latest version.|バージョン %@ が最新です。
@@ -767,6 +838,8 @@ Width:|幅：
 Window|ウインドウ
 Wrap|ラップ
 Xor|XOR
+You used layers and their properties, selections, gradients, effects, blend modes and the History window. Try other blend modes or opacities on the layers to change the mood.|レイヤーとそのプロパティ、選択範囲、グラデーション、エフェクト、描画モード、ヒストリーウインドウを使いました。レイヤーの描画モードや不透明度を変えて、雰囲気を変えてみましょう。
+Your evening lake is ready|夕暮れの湖が完成しました
 Zig Zag|ジグザグ
 Zoom|ズーム
 Zoom Amount|ズーム量

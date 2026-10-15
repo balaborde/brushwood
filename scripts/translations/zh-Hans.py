@@ -19,6 +19,10 @@ T = dict(line.split('|', 1) for line in r"""
 8 Point Star|八角星
 90 Percent|90%
 A free, open-source image editor for macOS, modeled on the workflow of Paint.NET.\n\nLicensed under the MIT License.\nNot affiliated with or endorsed by dotPDN LLC. Paint.NET is a trademark of its respective owner.|一款免费、开源的 macOS 图像编辑器，以 Paint.NET 的工作方式为蓝本。\n\n基于 MIT 许可证发布。\n与 dotPDN LLC 无关联，也未获其认可。Paint.NET 是其所有者的商标。
+A layer for the forest|森林图层
+A layer for the lake|湖泊图层
+A layer for the mountains|山峦图层
+A layer for the sun|太阳图层
 A new version of Brushwood is available|Brushwood 有新版本可用
 A solid line, or one of the dash patterns.|实线，或其中一种虚线样式。
 A star on GitHub also helps more people find Brushwood, and it means a lot.|在 GitHub 上点个星标也能帮助更多人发现 Brushwood，这对我们意义重大。
@@ -28,6 +32,12 @@ Actual Size|实际大小
 Add (union)|添加（并集）
 Add New Layer|添加新图层
 Add Noise|添加杂色
+Add a new layer and name it %@.|添加一个新图层，并将其命名为“%@”。
+Add a new layer named %@ and click Use These Colors for white. Choose the %@ tool, set the size to 64, click near the top and type %@. Press Return.|添加一个名为“%@”的新图层，然后点按“使用这些颜色”选用白色。选择“%@”工具，将大小设为 64，在顶部附近点按并输入“%@”。按下 Return 键。
+Add a new layer named %@, click Use These Colors, and with the %@ tool draw two or three small V shapes in the sky.|添加一个名为“%@”的新图层，点按“使用这些颜色”，然后用“%@”工具在天空中画两三个小小的 V 形。
+Add a title|加上标题
+Add birds|添加飞鸟
+Add stars|添加星星
 Additive|相加
 Adds buttons next to the brush width that go up or down to the next multiple of 5: 1, 5, 10, 15…|在画笔宽度旁添加按钮，可增加或减少到下一个 5 的倍数：1、5、10、15…
 Adjustments|调整
@@ -58,13 +68,16 @@ Back to %@|回到 %@
 Background|背景
 Backward Diagonal|反向对角线
 Basic|基本
+Before trying an effect, click the camera at the bottom of the History window: you can come back to this image at any time.|尝试效果之前，先点按历史记录窗口底部的相机按钮：之后随时都能回到这张图像。
 Best Quality|最佳质量
 Bicubic|双三次
 Bilinear|双线性
 Bilinear gives smooth results when scaling or rotating; Nearest Neighbor keeps hard pixel edges.|“双线性”在缩放或旋转时效果平滑；“邻近”保持清晰的像素边缘。
+Birds|飞鸟
 Bit Depth|位深度
 Black and White|黑白
 Blend|混合
+Blend it into the sky|与天空融合
 Blend mode|混合模式
 Blend modes not supported by Paint.NET|Paint.NET 不支持的混合模式
 Blending|混合
@@ -109,9 +122,29 @@ Check for updates automatically|自动检查更新
 Check your internet connection and try again.|请检查你的互联网连接，然后再试一次。
 Checking for updates…|正在检查更新…
 Chevron|V 形
+Choose %@ and pick %@ or %@: these formats keep the layers.|选取 %@，然后选择 %@ 或 %@：这些格式会保留图层。
+Choose %@, click the %@ layer in the Layers window, then click %@.|选取 %@，在图层窗口中点按“%@”图层，然后点按“%@”。
+Choose %@, then %@ with a radius of about 30: the blur spreads the sun into a glow.|选取 %@，然后以约 30 的半径使用 %@：模糊会把太阳扩散成光晕。
+Choose %@, then with the %@ tool drag the upside-down mountains down until they meet the real ones at the water line. Press Return, then choose %@.|选取 %@，然后用“%@”工具把倒置的山峦向下拖，直到它们在水边与真正的山峦相接。按下 Return 键，然后选取 %@。
+Choose %@: the copy becomes the reflection of the mountains.|选取 %@：副本就成了山峦的倒影。
+Choose the %@ tool and drag a circle about 120 pixels wide above the horizon, on the right; hold Shift to keep it round.|选择“%@”工具，在地平线上方右侧拖出一个宽约 120 像素的圆；按住 Shift 键可保持正圆。
+Choose the %@ tool and drag from the top of the image down to about two thirds of its height. Press Return to finish.|选择“%@”工具，从图像顶部向下拖到大约三分之二的高度。按下 Return 键完成。
+Choose the %@ tool and select from the foot of the mountains down to the bottom of the image, across its whole width.|选择“%@”工具，从山脚一直选到图像底部，横跨整个宽度。
+Choose the %@ tool, click inside the outline, and press Return.|选择“%@”工具，在轮廓内点按，然后按下 Return 键。
+Choose the %@ tool, pick %@ and %@ in the tool bar, then draw a few tall, narrow triangles standing on the shore. Press Return after each.|选择“%@”工具，在工具栏中选取“%@”和“%@”，然后画几个立在岸边的又高又窄的三角形。每画完一个按一次 Return 键。
+Choose the %@ tool. Start at the left edge, at about two thirds of the height, draw the peaks across to the right edge, then come back along the foot of the mountains to where you started.|选择“%@”工具。从左边缘约三分之二高度处开始，画出山峰直到右边缘，再沿山脚回到起点。
 Choose the Brushwood Plus features you want to use.|请选择要使用的 Brushwood Plus 功能。
+Choose the sky colors|选择天空的颜色
 Clamp|钳制
 Clear Menu|清除菜单
+Click %@ at the bottom of the Layers window, then double-click the new layer and name it %@.|点按图层窗口底部的“%@”，然后连按新图层，并将其命名为“%@”。
+Click %@ so the copy goes above the %@ layer, then double-click it and lower its %@ to about 100.|点按“%@”让副本移到“%@”图层之上，然后连按它，把“%@”降到约 100。
+Click Use These Colors for a dusky purple, choose %@, then %@.|点按“使用这些颜色”选用暮色紫，选取 %@，然后选取 %@。
+Click Use These Colors for a golden yellow, then choose %@.|点按“使用这些颜色”选用金黄色，然后选取 %@。
+Click Use These Colors for a very dark blue. With the %@ tool, draw around a shore in the bottom-left corner: from the left edge, over a low hill, down to the bottom edge, then back along the edges to where you started.|点按“使用这些颜色”选用很深的蓝色。用“%@”工具在左下角勾出一片岸边：从左边缘越过一座矮丘到底边，再沿着边缘回到起点。
+Click Use These Colors to paint in white, choose the %@ tool with a brush width of 3, and click here and there in the top of the sky: about ten stars.|点按“使用这些颜色”以白色绘画，选择画笔宽度为 3 的“%@”工具，在天空上部四处点按：大约十颗星星。
+Click Use These Colors, then with the %@ tool drag from the top of the selection down to the bottom of the image, and press Return.|点按“使用这些颜色”，然后用“%@”工具从选区顶部拖到图像底部，再按下 Return 键。
+Click Use These Colors: the primary color becomes a deep night blue and the secondary a warm orange. You can also click the color squares in the Colors window to pick your own.|点按“使用这些颜色”：主要颜色变成深邃的夜空蓝，次要颜色变成温暖的橙色。你也可以点按颜色窗口中的色块自己挑选。
 Click and drag to draw a gradient from the primary to the secondary color. Right mouse button reverses the colors.|单击并拖移以绘制从主要颜色到次要颜色的渐变。使用右键会交换颜色。
 Click and drag to draw a line. Then drag the handles to bend it into a curve. Press Enter to finish.|单击并拖移以绘制直线，然后拖移控制点将其弯曲成曲线。按 Return 键完成。
 Click and drag to draw a rectangular selection. Hold Shift to constrain to a square. ⌘ adds, ⌥ subtracts, right-click inverts.|单击并拖移以绘制矩形选区。按住 Shift 键可限制为正方形。⌘ 添加，⌥ 减去，右键反转。
@@ -120,6 +153,7 @@ Click and drag to draw an elliptical selection. Hold Shift to constrain to a cir
 Click and drag to draw the outline of a selection area. ⌘ adds, ⌥ subtracts, right-click inverts.|单击并拖移以绘制选区的轮廓。⌘ 添加，⌥ 减去，右键反转。
 Click and drag to erase a portion of the image.|单击并拖移以擦除图像的一部分。
 Click and drag to navigate the image.|单击并拖移以浏览图像。
+Click the %@ layer, choose %@, set %@ to %@ and click OK.|点按“%@”图层，选取 %@，将“%@”设为“%@”，然后点按“好”。
 Click to add a point, drag to move it, right-click to remove it.|单击以添加点，拖移以移动点，右键单击以删除点。
 Click to go back to this snapshot. Snapshots are not saved in the file.|单击以回到此快照。快照不会存储在文件中。
 Click to select a region of similar color. ⌘ adds, ⌥ subtracts, right-click inverts. Shift-click for global selection.|单击以选择颜色相近的区域。⌘ 添加，⌥ 减去，右键反转。按住 Shift 键单击进行全局选择。
@@ -131,6 +165,7 @@ Close|关闭
 Close Others|关闭其他
 Cloud|云朵
 Clouds|云彩
+Clouds in the sky|天空中的云
 Coarseness|颗粒度
 Color|颜色
 Color Burn|颜色加深
@@ -156,6 +191,7 @@ Copy / paste the selection outline|拷贝 / 粘贴选区轮廓
 Copy Merged|合并拷贝
 Copy Selection|拷贝选区
 Copy part of the image elsewhere, or replace one color with another.|把图像的一部分复制到别处，或把一种颜色换成另一种。
+Copy the mountains|拷贝山峦
 Could not check for updates|无法检查更新
 Could not open \"%@\"|无法打开“%@”
 Could not save \"%@\"|无法存储“%@”
@@ -202,10 +238,12 @@ Divot|草皮
 Do not switch tool|不切换工具
 Don't Save|不存储
 Done|完成
+Done!|完成！
 Dot|点
 Dotted Diamond|点线菱形
 Dotted Grid|点线网格
 Double Arrow|双箭头
+Double-click the %@ layer and set its %@ to %@: the glow now lightens the sky instead of covering it.|连按“%@”图层，将其“%@”设为“%@”：光晕现在会提亮天空，而不是遮住它。
 Down Arrow|下箭头
 Down to the previous multiple of 5|减少到上一个 5 的倍数
 Download from GitHub|从 GitHub 下载
@@ -216,7 +254,9 @@ Draw Filled Shape|填充形状
 Draw Filled Shape With Outline|带轮廓的填充形状
 Draw Shape Outline|形状轮廓
 Draw lines and curves, and choose among 31 shapes.|绘制直线和曲线，并从 31 种形状中选择。
+Draw the mountains|画出山峦
 Draw the outline, the inside, or both. The primary color draws; with both, the inside takes the secondary color.|绘制轮廓、内部或两者。用主要颜色绘制；两者兼有时，内部使用次要颜色。
+Draw the shore|画出岸边
 Drop Shadow|投影
 Duplicate Layer|复制图层
 Each Brushwood Plus feature can be turned on or off here, one by one or by category. This window is also in Brushwood Plus › Plus Features…|可在这里逐个或按类别打开或关闭 Brushwood Plus 的各项功能。此窗口也位于“Brushwood Plus › Plus 功能…”。
@@ -240,6 +280,7 @@ Eraser|橡皮擦
 Eraser and Pencil|橡皮擦与铅笔
 Erode|腐蚀
 Euclidean|欧几里得
+Evening Lake|黄昏的湖
 Every change is a step. Click a step to go back to it, and click it again to compare before and after. Undo and Redo are at the bottom.|每次更改都是一个步骤。点按某个步骤即可回到该步骤，再点按一次可比较前后效果。撤销和重做在底部。
 Everyday commands: new, open, save, cut, copy, paste, undo and redo. The thumbnails are your open images, and the buttons on the right show or hide the floating windows.|常用命令：新建、打开、存储、剪切、拷贝、粘贴、撤销和重做。缩略图是已打开的图像，右侧按钮用于显示或隐藏浮动窗口。
 Expand canvas|扩大画布
@@ -255,6 +296,9 @@ Fill Selection|填充选区
 Fill an area with a color, a pattern or a gradient.|用颜色、图案或渐变填充区域。
 Fill and Color|填充与颜色
 Fill style|填充样式
+Fill the mountains|填充山峦
+Fill the shore|填充岸边
+Fill the sun|填充太阳
 Fill with the plain color, or with a pattern of the primary and secondary colors.|用纯色填充，或用主要颜色和次要颜色组成的图案填充。
 Fill:|填充：
 Filled Arrow|实心箭头
@@ -273,6 +317,7 @@ Flip Vertical|垂直翻转
 Floating Windows|浮动窗口
 Flood mode:|填充模式：
 Font:|字体：
+Forest|森林
 Format:|格式：
 Forward Diagonal|正向对角线
 Fractal Sum|分形和
@@ -296,6 +341,7 @@ Gradient|渐变
 Gradient:|渐变：
 Green|绿
 Guide|指南
+Guided Project|引导式项目
 Hard Light|强光
 Hardness:|硬度：
 Heart|心形
@@ -331,6 +377,8 @@ Image|图像
 Image larger than canvas|图像大于画布
 Import From File|从文件导入
 Import From File…|从文件导入…
+In the Layers window, double-click the Background layer and name it %@.|在图层窗口中连按“背景”图层，并将其命名为“%@”。
+In this project you paint an evening lake, layer by layer, with most of the tools. A new 1200 × 800 image has been made for it. Each step says what to do and checks your image: once it is done, a check appears and Next goes on. You can skip any step.|在这个项目中，你将使用大部分工具，一层一层地画出黄昏的湖。为此已新建一张 1200 × 800 的图像。每一步都会说明要做什么，并检查你的图像：完成后会出现勾号，点按“下一步”继续。任何一步都可以跳过。
 Inches|英寸
 Ink Sketch|墨水素描
 Ink outline|墨水轮廓
@@ -347,9 +395,11 @@ Invert Selection|反选
 Italic|斜体
 Joins a stroke released near its start to it, so circles and outlines close cleanly. For the same tools.|在起点附近松开的笔画会与起点相连，让圆形和轮廓干净地闭合。适用于相同的工具。
 Julia Fractal|朱利亚分形
+Keep a snapshot|保留一个快照
 Keep canvas size|保持画布大小
 Keeps copies of the image that you can always go back to, from the History window.|保留图像的副本，可随时从历史记录窗口回到这些副本。
 Keyboard Shortcuts|键盘快捷键
+Lake|湖泊
 Lanczos 3|Lanczos 3
 Language|语言
 Large Checker Board|大棋盘格
@@ -403,6 +453,7 @@ Magnetic closing|磁性闭合
 Magnetic closing disabled|磁性闭合已关闭
 Magnetic closing enabled: a stroke released near its start joins it|磁性闭合已打开：在起点附近松开时，笔画会与起点相连
 Maintain aspect ratio|保持纵横比
+Make it glow|让它发光
 Mandelbrot Fractal|曼德博分形
 Manhattan|曼哈顿
 Maximum scatter radius|最大散射半径
@@ -417,16 +468,19 @@ Moon|月亮
 More »|更多 »
 Morphology|形态学
 Motion Blur|动感模糊
+Mountains|山峦
 Move Layer Down|下移图层
 Move Layer Up|上移图层
 Move Layer to Bottom|将图层移到底部
 Move Layer to Top|将图层移到顶部
 Move Selected Pixels|移动所选像素
 Move Selection|移动选区
+Move it into the water|放进水中
 Move, scale and rotate a selection or what it contains.|移动、缩放和旋转选区或其中的内容。
 Moving Pixels and Selections|移动像素和选区
 Multiply|正片叠底
 NEW|新功能
+Name the sky layer|为天空图层命名
 Name:|名称：
 Nearest Neighbor|邻近
 Negation|求反
@@ -446,6 +500,7 @@ Noise|杂色
 Normal|正常
 Normal, or a fixed ratio or a fixed size, for a selection with exact proportions or dimensions.|正常，或固定比例、固定大小，用于绘制比例或尺寸精确的选区。
 Not Now|以后再说
+Not done yet|尚未完成
 Number of cells|单元格数量
 OK|好
 Object|对象
@@ -474,6 +529,9 @@ Overlay|叠加
 Overwrite|覆盖
 Paint Bucket|油漆桶
 Paint Bucket and Gradient|油漆桶与渐变
+Paint an evening lake, layer by layer, with most of the tools.|使用大部分工具，一层一层地画出黄昏的湖。
+Paint the sky|画天空
+Paint the water|画湖水
 Paintbrush|画笔
 Painting|绘画
 Palette|调色板
@@ -500,6 +558,7 @@ Pixel size|像素大小
 Pixelate|像素化
 Pixels|像素
 Plaid|格子呢
+Plant pine trees|种上松树
 Plus|加号
 Plus Features|Plus 功能
 Plus Features…|Plus 功能…
@@ -513,6 +572,7 @@ Primary|主要
 Print (⌘P)|打印 (⌘P)
 Print size|打印尺寸
 Print…|打印…
+Put the reflection in the water|把倒影放进水里
 Quality|品质
 Quality:|品质：
 Quantize|量化
@@ -595,6 +655,7 @@ Save As…|存储为…
 Save Configuration — %@|存储选项 — %@
 Save Palette As…|将调色板存储为…
 Save changes to \"%@\"?|要存储对“%@”的更改吗？
+Save your work|存储你的作品
 Sawtooth Repeat|锯齿波重复
 Scale|比例
 Screen|滤色
@@ -603,6 +664,8 @@ Secondary color|次要颜色
 Seed|种子
 Select All|全选
 Select All / Deselect|全选 / 取消选择
+Select a round sun|选出圆形的太阳
+Select the water|选择湖水
 Selection|选区
 Selection Tools|选择工具
 Selection clipping|选区裁剪
@@ -633,6 +696,8 @@ Shows when each step was made, or how long ago.|显示每个步骤的完成时�
 Single Pixel|单个像素
 Size|大小
 Sketch Blur|素描模糊
+Skip|跳过
+Sky|天空
 Small Checker Board|小棋盘格
 Small Grid|小网格
 Smoothing|防抖
@@ -666,6 +731,7 @@ Strikethrough|删除线
 String length:|拉绳长度：
 Stylize|风格化
 Subtract|减去
+Sun|太阳
 Supersampling|超采样
 Support Brushwood…|支持 Brushwood…
 Support on Buy Me a Coffee|在 Buy Me a Coffee 上支持
@@ -687,6 +753,7 @@ Thank you for being here.|感谢有你。
 The Brushwood Window|Brushwood 窗口
 The bar under the toolbar shows the settings of the current tool. They change with the tool and are kept for next time.|主栏下方的栏显示当前工具的设置。设置随工具变化，并会保留到下次使用。
 The brush follows the pointer on a string, which takes out hand tremor. While it is on, the length of the string can be set next to it.|画笔像系着绳子一样跟随指针，可消除手的抖动。打开时，可在旁边设置拉绳的长度。
+The double chevrons next to the brush width jump straight to 5.|画笔宽度旁的双箭头可直接跳到 5。
 The downloaded file is damaged. Try again later.|下载的文件已损坏。请稍后再试。
 The font, its size and its style: bold, italic, underline and strikethrough.|字体、字号和样式：粗体、斜体、下划线和删除线。
 The image being pasted is larger than the canvas size. What would you like to do?|粘贴的图像大于画布。你想怎么做？
@@ -709,6 +776,7 @@ Tile Size|拼贴大小
 Tiling|拼贴
 Times in the History window|历史记录窗口中的时间
 Tint|色调
+Title|标题
 Toggle Layer Visibility|显示/隐藏图层
 Tolerance|容差
 Tolerance:|容差：
@@ -730,6 +798,8 @@ Triangle Repeat|三角波重复
 Turbulence|湍流
 Turn each Brushwood Plus feature on or off.|打开或关闭 Brushwood Plus 的各项功能。
 Turn its features on in Plus Features to follow this tour.|请在“Plus 功能”中打开相关功能以跟随此导览。
+Turn on Smoothing and Magnetic closing in the tool bar: the line is steadier, and it closes by itself when you come back near its start.|在工具栏中打开防抖和磁性闭合：线条更稳定，回到起点附近时还会自动闭合。
+Turn the copy upside down|把副本上下翻转
 Tutorial|教程
 Tutorial…|教程…
 Twist|扭转
@@ -744,6 +814,7 @@ Up Arrow|上箭头
 Up to the next multiple of 5|增加到下一个 5 的倍数
 Updates|更新
 Use System Setting|使用系统设置
+Use These Colors|使用这些颜色
 Value|值
 Version %@|版本 %@
 Version %@ is the latest version.|版本 %@ 是最新版本。
@@ -767,6 +838,8 @@ Width:|宽度：
 Window|窗口
 Wrap|环绕
 Xor|异或
+You used layers and their properties, selections, gradients, effects, blend modes and the History window. Try other blend modes or opacities on the layers to change the mood.|你用到了图层及其属性、选区、渐变、效果、混合模式和历史记录窗口。试试给图层换上其他混合模式或不透明度，改变画面的氛围。
+Your evening lake is ready|你的黄昏之湖完成了
 Zig Zag|之字形
 Zoom|缩放
 Zoom Amount|缩放量

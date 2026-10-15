@@ -218,7 +218,7 @@ private final class StepCard: NSViewController {
 }
 
 /// A ring around the part a tutorial step explains, above every window, softly pulsing; clicks go through it.
-private final class TutorialRing: NSPanel {
+final class TutorialRing: NSPanel {
     init() {
         super.init(contentRect: .zero, styleMask: [.borderless, .nonactivatingPanel], backing: .buffered, defer: true)
         isOpaque = false

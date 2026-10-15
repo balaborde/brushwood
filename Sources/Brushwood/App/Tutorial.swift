@@ -53,15 +53,19 @@ struct TutorialStep {
     }
 }
 
-/// A guided tour of one part of the app.
+/// A guided tour of one part of the app, or a guided project (its steps are then the project's).
 struct TutorialScenario {
     let id: String
     let title: String
     let summary: String
     let steps: [TutorialStep]
+    /// The steps of a guided project, which the user carries out.
+    var project: (() -> [ProjectStep])?
 
     /// The steps whose Plus features are on.
     var availableSteps: [TutorialStep] { steps.filter(\.isAvailable) }
+    /// Whether the tour can be followed (a tour of Plus features needs one of them on).
+    var isAvailable: Bool { project != nil || !availableSteps.isEmpty }
 
     private static let completedKey = "tutorialCompleted"
 
@@ -245,6 +249,11 @@ enum Tutorial {
                     .tool(.zoom),
                     .tool(.pan),
                 ]),
+            ]),
+            TutorialSection(title: L("Guided Project"), scenarios: [
+                TutorialScenario(id: "eveningLake", title: L("Evening Lake"),
+                                 summary: L("Paint an evening lake, layer by layer, with most of the tools."), steps: [],
+                                 project: { EveningLake.steps }),
             ]),
             TutorialSection(title: L("Brushwood Plus"), scenarios: [
                 TutorialScenario(id: "plusFeatures", title: L("Plus Features"),

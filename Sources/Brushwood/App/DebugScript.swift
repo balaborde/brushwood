@@ -132,6 +132,9 @@ enum DebugScript {
             case "tutorial":
                 // tutorial:welcome|menu opens the Tutorial window.
                 (NSApp.delegate as? AppDelegate)?.showTutorial(welcome: arg == "welcome")
+            case "tutorialselect":
+                // tutorialselect:id shows that tour selected in the Tutorial window (scrolled into view).
+                (NSApp.delegate as? AppDelegate)?.showTutorial(welcome: false, selecting: arg)
             case "tutorialstart":
                 if let tour = Tutorial.sections.flatMap(\.scenarios).first(where: { $0.id == arg }) {
                     TutorialGuide.shared.start(tour, host: c)
@@ -162,6 +165,34 @@ enum DebugScript {
                     }
                 }
                 NSApp.windows.filter { $0 is PlusFeaturesWindow }.forEach { $0.close() }
+            case "project":
+                // project:eveningLake starts that guided project.
+                if let tour = Tutorial.sections.flatMap(\.scenarios).first(where: { $0.id == arg }), let steps = tour.project {
+                    ProjectGuide.shared.start(tour, steps: steps(), size: EveningLake.size, host: c)
+                } else { report(false, "no project \(arg)") }
+            case "projectnext": ProjectGuide.shared.next()
+            case "projectskip": ProjectGuide.shared.skip()
+            case "projectback": ProjectGuide.shared.back()
+            case "projectcolors": ProjectGuide.shared.useColors()
+            case "projectend": ProjectGuide.shared.end()
+            case "expectproject":
+                // expectproject:step(from 1),done|waiting — checks the image first, as the project does on each change.
+                let g = ProjectGuide.shared
+                g.evaluate()
+                let got = g.isRunning ? "\(g.index + 1),\(g.isDone ? "done" : "waiting")" : "none"
+                report(got == arg, "project at \(got) (\(g.current?.title ?? "")), expected \(arg)")
+            case "layername":
+                // layername:Name renames the active layer, as its properties do.
+                if let ws = c.active {
+                    var p = ws.document.activeLayer.properties
+                    p.name = arg
+                    ws.setLayerProperties(ws.document.activeLayerIndex, p)
+                }
+            case "saveas":
+                // saveas:path saves the active image there, as Save As does.
+                if let ws = c.active, let type = FileType.forExtension((arg as NSString).pathExtension) {
+                    c.write(ws, to: URL(fileURLWithPath: arg), type: type, completion: nil)
+                }
             case "snapshot": c.historyPanel.takeSnapshot()
             case "gobacktosnapshot":
                 // gobacktosnapshot:i, as clicking the i-th snapshot (from 0) in the History window.

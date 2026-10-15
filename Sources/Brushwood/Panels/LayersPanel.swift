@@ -90,6 +90,14 @@ final class LayersPanel: FloatingPanel, NSTableViewDataSource, NSTableViewDelega
         didSet { for (b, _) in buttons { b.target = host } }
     }
 
+    /// The button that sends `action` (the Brushwood Plus guided project points at it).
+    func button(for action: Selector) -> NSView? {
+        let alias: [Selector: Selector] = [#selector(MainWindowController.moveLayerUp(_:)): #selector(MainWindowController.moveLayerUpOrTop(_:)),
+                                           #selector(MainWindowController.moveLayerDown(_:)): #selector(MainWindowController.moveLayerDownOrBottom(_:))]
+        let sel = alias[action] ?? action
+        return buttons.first { $0.1 == sel }?.0
+    }
+
     func bind(_ ws: DocumentWorkspace?) {
         observers.forEach { NotificationCenter.default.removeObserver($0) }
         observers.removeAll()

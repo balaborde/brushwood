@@ -114,7 +114,7 @@ final class TutorialWindow: NSWindow, NSTableViewDataSource, NSTableViewDelegate
         rows = Tutorial.sections.flatMap { [Row.section($0.title)] + $0.scenarios.map(Row.tour) }
         table.reloadData()
         let tours = rows.enumerated().compactMap { i, r -> (Int, TutorialScenario)? in
-            if case .tour(let s) = r, !s.availableSteps.isEmpty { return (i, s) }
+            if case .tour(let s) = r, s.isAvailable { return (i, s) }
             return nil
         }
         let pick = tours.first { $0.1.id == id } ?? tours.first { !$0.1.isCompleted } ?? tours.first
@@ -127,7 +127,7 @@ final class TutorialWindow: NSWindow, NSTableViewDataSource, NSTableViewDelegate
 
     /// The tour after `id` that can be followed, if any.
     static func tour(after id: String) -> String? {
-        let tours = Tutorial.sections.flatMap(\.scenarios).filter { !$0.availableSteps.isEmpty }
+        let tours = Tutorial.sections.flatMap(\.scenarios).filter(\.isAvailable)
         guard let i = tours.firstIndex(where: { $0.id == id }), i + 1 < tours.count else { return nil }
         return tours[i + 1].id
     }
@@ -138,7 +138,7 @@ final class TutorialWindow: NSWindow, NSTableViewDataSource, NSTableViewDelegate
     }
 
     @objc private func startSelected() {
-        guard let tour = selectedTour, !tour.availableSteps.isEmpty else { return }
+        guard let tour = selectedTour, tour.isAvailable else { return }
         onStart?(tour)
     }
 
@@ -161,7 +161,7 @@ final class TutorialWindow: NSWindow, NSTableViewDataSource, NSTableViewDelegate
     }
 
     func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
-        if case .tour(let s) = rows[row] { return !s.availableSteps.isEmpty }
+        if case .tour(let s) = rows[row] { return s.isAvailable }
         return false
     }
 
@@ -188,12 +188,12 @@ private final class TourCell: NSTableCellView {
 
     /// What the tour shows, or why it cannot be followed.
     static func summary(of tour: TutorialScenario) -> String {
-        tour.availableSteps.isEmpty ? L("Turn its features on in Plus Features to follow this tour.") : tour.summary
+        tour.isAvailable ? tour.summary : L("Turn its features on in Plus Features to follow this tour.")
     }
 
     init(_ tour: TutorialScenario, summaryWidth: CGFloat) {
         super.init(frame: .zero)
-        let available = !tour.availableSteps.isEmpty
+        let available = tour.isAvailable
         let mark = NSImageView(image: NSImage(systemSymbolName: tour.isCompleted ? "checkmark.circle.fill" : "circle",
                                               accessibilityDescription: tour.isCompleted ? L("Done") : nil) ?? NSImage())
         mark.contentTintColor = tour.isCompleted ? .controlAccentColor : .tertiaryLabelColor

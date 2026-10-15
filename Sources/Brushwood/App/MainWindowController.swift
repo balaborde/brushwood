@@ -574,7 +574,7 @@ final class MainWindowController: NSWindowController, NSWindowDelegate, NSMenuIt
         }
     }
 
-    private func write(_ ws: DocumentWorkspace, to url: URL, type: FileType, completion: ((Bool) -> Void)?) {
+    func write(_ ws: DocumentWorkspace, to url: URL, type: FileType, completion: ((Bool) -> Void)?) {
         let proceed = { [weak self] (options: SaveOptions) in
             guard let self else { return }
             do {

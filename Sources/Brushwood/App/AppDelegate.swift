@@ -145,6 +145,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         w.onStart = { [weak self, weak w] tour in
             guard let self, let main = self.main else { return }
             w?.orderOut(nil)
+            if let project = tour.project {
+                ProjectGuide.shared.onFinish = { [weak self] in
+                    self?.showTutorial(welcome: false, selecting: TutorialWindow.tour(after: tour.id))
+                }
+                ProjectGuide.shared.start(tour, steps: project(), size: EveningLake.size, host: main)
+                return
+            }
             TutorialGuide.shared.onFinish = { [weak self] done in
                 self?.showTutorial(welcome: false, selecting: TutorialWindow.tour(after: done.id))
             }

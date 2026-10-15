@@ -19,6 +19,10 @@ T = dict(line.split('|', 1) for line in r"""
 8 Point Star|Stella a 8 punte
 90 Percent|90 percento
 A free, open-source image editor for macOS, modeled on the workflow of Paint.NET.\n\nLicensed under the MIT License.\nNot affiliated with or endorsed by dotPDN LLC. Paint.NET is a trademark of its respective owner.|Un editor di immagini gratuito e open source per macOS, ispirato al flusso di lavoro di Paint.NET.\n\nDistribuito con licenza MIT.\nNon affiliato né approvato da dotPDN LLC. Paint.NET è un marchio del rispettivo proprietario.
+A layer for the forest|Un livello per il bosco
+A layer for the lake|Un livello per il lago
+A layer for the mountains|Un livello per le montagne
+A layer for the sun|Un livello per il sole
 A new version of Brushwood is available|È disponibile una nuova versione di Brushwood
 A solid line, or one of the dash patterns.|Una linea continua o uno dei motivi tratteggiati.
 A star on GitHub also helps more people find Brushwood, and it means a lot.|Una stella su GitHub aiuta anche più persone a scoprire Brushwood, e significa molto.
@@ -28,6 +32,12 @@ Actual Size|Dimensioni reali
 Add (union)|Aggiungi (unione)
 Add New Layer|Aggiungi nuovo livello
 Add Noise|Aggiungi disturbo
+Add a new layer and name it %@.|Aggiungi un nuovo livello e chiamalo %@.
+Add a new layer named %@ and click Use These Colors for white. Choose the %@ tool, set the size to 64, click near the top and type %@. Press Return.|Aggiungi un nuovo livello chiamato %@ e fai clic su Usa questi colori per il bianco. Scegli lo strumento %@, imposta la dimensione a 64, fai clic vicino alla parte alta e scrivi %@. Premi A capo.
+Add a new layer named %@, click Use These Colors, and with the %@ tool draw two or three small V shapes in the sky.|Aggiungi un nuovo livello chiamato %@, fai clic su Usa questi colori e con lo strumento %@ disegna due o tre piccole V nel cielo.
+Add a title|Aggiungere un titolo
+Add birds|Aggiungere gli uccelli
+Add stars|Aggiungere le stelle
 Additive|Additivo
 Adds buttons next to the brush width that go up or down to the next multiple of 5: 1, 5, 10, 15…|Aggiunge accanto alla larghezza del pennello dei pulsanti che salgono o scendono al multiplo di 5 successivo: 1, 5, 10, 15…
 Adjustments|Regolazioni
@@ -58,13 +68,16 @@ Back to %@|Ritorno a %@
 Background|Sfondo
 Backward Diagonal|Diagonale all'indietro
 Basic|Base
+Before trying an effect, click the camera at the bottom of the History window: you can come back to this image at any time.|Prima di provare un effetto, fai clic sulla fotocamera in basso nella finestra Cronologia: potrai tornare a questa immagine in qualsiasi momento.
 Best Quality|Qualità migliore
 Bicubic|Bicubico
 Bilinear|Bilineare
 Bilinear gives smooth results when scaling or rotating; Nearest Neighbor keeps hard pixel edges.|Bilineare dà risultati morbidi quando ridimensioni o ruoti; Vicino più prossimo mantiene netti i bordi dei pixel.
+Birds|Uccelli
 Bit Depth|Profondità di bit
 Black and White|Bianco e nero
 Blend|Fondi
+Blend it into the sky|Fonderlo con il cielo
 Blend mode|Metodo di fusione
 Blend modes not supported by Paint.NET|Metodi di fusione non supportati da Paint.NET
 Blending|Fusione
@@ -109,9 +122,29 @@ Check for updates automatically|Verifica automaticamente gli aggiornamenti
 Check your internet connection and try again.|Controlla la connessione a Internet e riprova.
 Checking for updates…|Verifica degli aggiornamenti…
 Chevron|Gallone
+Choose %@ and pick %@ or %@: these formats keep the layers.|Scegli %@ e prendi %@ o %@: questi formati conservano i livelli.
+Choose %@, click the %@ layer in the Layers window, then click %@.|Scegli %@, fai clic sul livello %@ nella finestra Livelli, poi su %@.
+Choose %@, then %@ with a radius of about 30: the blur spreads the sun into a glow.|Scegli %@, poi %@ con un raggio di circa 30: la sfocatura allarga il sole in un alone.
+Choose %@, then with the %@ tool drag the upside-down mountains down until they meet the real ones at the water line. Press Return, then choose %@.|Scegli %@, poi con lo strumento %@ trascina in basso le montagne capovolte finché non incontrano quelle vere sulla riva. Premi A capo, poi scegli %@.
+Choose %@: the copy becomes the reflection of the mountains.|Scegli %@: la copia diventa il riflesso delle montagne.
+Choose the %@ tool and drag a circle about 120 pixels wide above the horizon, on the right; hold Shift to keep it round.|Scegli lo strumento %@ e traccia un cerchio largo circa 120 pixel sopra l'orizzonte, a destra; tieni premuto Maiusc perché resti rotondo.
+Choose the %@ tool and drag from the top of the image down to about two thirds of its height. Press Return to finish.|Scegli lo strumento %@ e trascina dalla parte alta dell'immagine fino a circa due terzi della sua altezza. Premi A capo per terminare.
+Choose the %@ tool and select from the foot of the mountains down to the bottom of the image, across its whole width.|Scegli lo strumento %@ e seleziona dai piedi delle montagne fino in fondo all'immagine, per tutta la larghezza.
+Choose the %@ tool, click inside the outline, and press Return.|Scegli lo strumento %@, fai clic dentro il contorno e premi A capo.
+Choose the %@ tool, pick %@ and %@ in the tool bar, then draw a few tall, narrow triangles standing on the shore. Press Return after each.|Scegli lo strumento %@, prendi %@ e %@ nella barra degli strumenti, poi disegna alcuni triangoli alti e stretti sulla riva. Premi A capo dopo ognuno.
+Choose the %@ tool. Start at the left edge, at about two thirds of the height, draw the peaks across to the right edge, then come back along the foot of the mountains to where you started.|Scegli lo strumento %@. Parti dal bordo sinistro, a circa due terzi dell'altezza, disegna le cime fino al bordo destro, poi torna lungo i piedi delle montagne fino al punto di partenza.
 Choose the Brushwood Plus features you want to use.|Scegli le funzioni di Brushwood Plus che vuoi usare.
+Choose the sky colors|Scegliere i colori del cielo
 Clamp|Blocca
 Clear Menu|Cancella menu
+Click %@ at the bottom of the Layers window, then double-click the new layer and name it %@.|Fai clic su %@ in basso nella finestra Livelli, poi fai doppio clic sul nuovo livello e chiamalo %@.
+Click %@ so the copy goes above the %@ layer, then double-click it and lower its %@ to about 100.|Fai clic su %@ perché la copia vada sopra il livello %@, poi fai doppio clic su di essa e abbassa la sua %@ a circa 100.
+Click Use These Colors for a dusky purple, choose %@, then %@.|Fai clic su Usa questi colori per un viola crepuscolare, scegli %@, poi %@.
+Click Use These Colors for a golden yellow, then choose %@.|Fai clic su Usa questi colori per un giallo dorato, poi scegli %@.
+Click Use These Colors for a very dark blue. With the %@ tool, draw around a shore in the bottom-left corner: from the left edge, over a low hill, down to the bottom edge, then back along the edges to where you started.|Fai clic su Usa questi colori per un blu molto scuro. Con lo strumento %@, disegna il contorno di una riva nell'angolo in basso a sinistra: dal bordo sinistro, sopra una bassa collina, fino al bordo inferiore, poi torna lungo i bordi fino al punto di partenza.
+Click Use These Colors to paint in white, choose the %@ tool with a brush width of 3, and click here and there in the top of the sky: about ten stars.|Fai clic su Usa questi colori per dipingere in bianco, scegli lo strumento %@ con una larghezza del pennello di 3 e fai clic qua e là nella parte alta del cielo: una decina di stelle.
+Click Use These Colors, then with the %@ tool drag from the top of the selection down to the bottom of the image, and press Return.|Fai clic su Usa questi colori, poi con lo strumento %@ trascina dalla parte alta della selezione fino in fondo all'immagine e premi A capo.
+Click Use These Colors: the primary color becomes a deep night blue and the secondary a warm orange. You can also click the color squares in the Colors window to pick your own.|Fai clic su Usa questi colori: il colore primario diventa un blu notte profondo e il secondario un arancione caldo. Puoi anche fare clic sui quadrati di colore della finestra Colori per scegliere i tuoi.
 Click and drag to draw a gradient from the primary to the secondary color. Right mouse button reverses the colors.|Fai clic e trascina per disegnare una sfumatura dal colore primario al secondario. Il tasto destro inverte i colori.
 Click and drag to draw a line. Then drag the handles to bend it into a curve. Press Enter to finish.|Fai clic e trascina per disegnare una linea, poi trascina le maniglie per curvarla. Premi Invio per terminare.
 Click and drag to draw a rectangular selection. Hold Shift to constrain to a square. ⌘ adds, ⌥ subtracts, right-click inverts.|Fai clic e trascina per disegnare una selezione rettangolare. Tieni premuto Maiusc per vincolarla a un quadrato. ⌘ aggiunge, ⌥ sottrae, il clic destro inverte.
@@ -120,6 +153,7 @@ Click and drag to draw an elliptical selection. Hold Shift to constrain to a cir
 Click and drag to draw the outline of a selection area. ⌘ adds, ⌥ subtracts, right-click inverts.|Fai clic e trascina per tracciare il contorno di un'area di selezione. ⌘ aggiunge, ⌥ sottrae, il clic destro inverte.
 Click and drag to erase a portion of the image.|Fai clic e trascina per cancellare una parte dell'immagine.
 Click and drag to navigate the image.|Fai clic e trascina per spostarti nell'immagine.
+Click the %@ layer, choose %@, set %@ to %@ and click OK.|Fai clic sul livello %@, scegli %@, imposta %@ su %@ e fai clic su OK.
 Click to add a point, drag to move it, right-click to remove it.|Fai clic per aggiungere un punto, trascinalo per spostarlo, clic destro per rimuoverlo.
 Click to go back to this snapshot. Snapshots are not saved in the file.|Fai clic per tornare a questa istantanea. Le istantanee non vengono salvate nel file.
 Click to select a region of similar color. ⌘ adds, ⌥ subtracts, right-click inverts. Shift-click for global selection.|Fai clic per selezionare un'area di colore simile. ⌘ aggiunge, ⌥ sottrae, il clic destro inverte. Maiusc+clic per una selezione globale.
@@ -131,6 +165,7 @@ Close|Chiudi
 Close Others|Chiudi le altre
 Cloud|Nuvola
 Clouds|Nuvole
+Clouds in the sky|Nuvole nel cielo
 Coarseness|Grana
 Color|Colore
 Color Burn|Brucia colore
@@ -156,6 +191,7 @@ Copy / paste the selection outline|Copia / incolla il contorno della selezione
 Copy Merged|Copia unione
 Copy Selection|Copia selezione
 Copy part of the image elsewhere, or replace one color with another.|Copiare una parte dell'immagine altrove, o sostituire un colore con un altro.
+Copy the mountains|Copiare le montagne
 Could not check for updates|Impossibile verificare gli aggiornamenti
 Could not open \"%@\"|Impossibile aprire “%@”
 Could not save \"%@\"|Impossibile salvare “%@”
@@ -202,10 +238,12 @@ Divot|Zolla
 Do not switch tool|Non cambiare strumento
 Don't Save|Non salvare
 Done|Fine
+Done!|Fatto!
 Dot|Punto
 Dotted Diamond|Rombi punteggiati
 Dotted Grid|Griglia punteggiata
 Double Arrow|Freccia doppia
+Double-click the %@ layer and set its %@ to %@: the glow now lightens the sky instead of covering it.|Fai doppio clic sul livello %@ e imposta la sua %@ su %@: l'alone ora schiarisce il cielo invece di coprirlo.
 Down Arrow|Freccia giù
 Down to the previous multiple of 5|Scendi al multiplo di 5 precedente
 Download from GitHub|Scarica da GitHub
@@ -216,7 +254,9 @@ Draw Filled Shape|Forma piena
 Draw Filled Shape With Outline|Forma piena con contorno
 Draw Shape Outline|Contorno della forma
 Draw lines and curves, and choose among 31 shapes.|Disegnare linee e curve, e scegliere tra 31 forme.
+Draw the mountains|Disegnare le montagne
 Draw the outline, the inside, or both. The primary color draws; with both, the inside takes the secondary color.|Disegna il contorno, l'interno o entrambi. Il colore primario disegna; con entrambi, l'interno prende il colore secondario.
+Draw the shore|Disegnare la riva
 Drop Shadow|Ombra esterna
 Duplicate Layer|Duplica livello
 Each Brushwood Plus feature can be turned on or off here, one by one or by category. This window is also in Brushwood Plus › Plus Features…|Qui puoi attivare o disattivare ogni funzione di Brushwood Plus, una per una o per categoria. Questa finestra è anche in Brushwood Plus › Funzioni Plus…
@@ -240,6 +280,7 @@ Eraser|Gomma
 Eraser and Pencil|Gomma e Matita
 Erode|Erosione
 Euclidean|Euclidea
+Evening Lake|Lago al tramonto
 Every change is a step. Click a step to go back to it, and click it again to compare before and after. Undo and Redo are at the bottom.|Ogni modifica è un passaggio. Fai clic su un passaggio per tornarci, e di nuovo per confrontare prima e dopo. Annulla e Ripeti sono in basso.
 Everyday commands: new, open, save, cut, copy, paste, undo and redo. The thumbnails are your open images, and the buttons on the right show or hide the floating windows.|I comandi di tutti i giorni: nuovo, apri, salva, taglia, copia, incolla, annulla e ripeti. Le miniature sono le tue immagini aperte, e i pulsanti a destra mostrano o nascondono le finestre mobili.
 Expand canvas|Espandi la tela
@@ -255,6 +296,9 @@ Fill Selection|Riempi selezione
 Fill an area with a color, a pattern or a gradient.|Riempire un'area con un colore, un motivo o una sfumatura.
 Fill and Color|Riempimento e colore
 Fill style|Stile di riempimento
+Fill the mountains|Riempire le montagne
+Fill the shore|Riempire la riva
+Fill the sun|Riempire il sole
 Fill with the plain color, or with a pattern of the primary and secondary colors.|Riempi con il colore pieno, o con un motivo dei colori primario e secondario.
 Fill:|Riempimento:
 Filled Arrow|Freccia piena
@@ -273,6 +317,7 @@ Flip Vertical|Rifletti verticalmente
 Floating Windows|Finestre mobili
 Flood mode:|Modalità di riempimento:
 Font:|Font:
+Forest|Bosco
 Format:|Formato:
 Forward Diagonal|Diagonale in avanti
 Fractal Sum|Somma frattale
@@ -296,6 +341,7 @@ Gradient|Sfumatura
 Gradient:|Sfumatura:
 Green|Verde
 Guide|Guida
+Guided Project|Progetto guidato
 Hard Light|Luce intensa
 Hardness:|Durezza:
 Heart|Cuore
@@ -331,6 +377,8 @@ Image|Immagine
 Image larger than canvas|Immagine più grande della tela
 Import From File|Importa da file
 Import From File…|Importa da file…
+In the Layers window, double-click the Background layer and name it %@.|Nella finestra Livelli, fai doppio clic sul livello Sfondo e chiamalo %@.
+In this project you paint an evening lake, layer by layer, with most of the tools. A new 1200 × 800 image has been made for it. Each step says what to do and checks your image: once it is done, a check appears and Next goes on. You can skip any step.|In questo progetto dipingi un lago al tramonto, livello per livello, con la maggior parte degli strumenti. Per farlo è stata creata una nuova immagine di 1200 × 800. Ogni passaggio dice cosa fare e controlla l'immagine: quando è fatto compare un segno di spunta e Avanti prosegue. Puoi saltare qualsiasi passaggio.
 Inches|Pollici
 Ink Sketch|Schizzo a china
 Ink outline|Contorno a china
@@ -347,9 +395,11 @@ Invert Selection|Inverti selezione
 Italic|Corsivo
 Joins a stroke released near its start to it, so circles and outlines close cleanly. For the same tools.|Unisce un tratto rilasciato vicino al suo inizio, così cerchi e contorni si chiudono in modo pulito. Per gli stessi strumenti.
 Julia Fractal|Frattale di Julia
+Keep a snapshot|Conservare un'istantanea
 Keep canvas size|Mantieni le dimensioni della tela
 Keeps copies of the image that you can always go back to, from the History window.|Conserva copie dell'immagine a cui puoi sempre tornare dalla finestra Cronologia.
 Keyboard Shortcuts|Abbreviazioni da tastiera
+Lake|Lago
 Lanczos 3|Lanczos 3
 Language|Lingua
 Large Checker Board|Scacchiera grande
@@ -403,6 +453,7 @@ Magnetic closing|Chiusura magnetica
 Magnetic closing disabled|Chiusura magnetica disattivata
 Magnetic closing enabled: a stroke released near its start joins it|Chiusura magnetica attivata: un tratto rilasciato vicino al suo inizio si unisce a esso
 Maintain aspect ratio|Mantieni proporzioni
+Make it glow|Farlo brillare
 Mandelbrot Fractal|Frattale di Mandelbrot
 Manhattan|Manhattan
 Maximum scatter radius|Raggio di dispersione massimo
@@ -417,16 +468,19 @@ Moon|Luna
 More »|Altro »
 Morphology|Morfologia
 Motion Blur|Sfocatura di movimento
+Mountains|Montagne
 Move Layer Down|Sposta livello giù
 Move Layer Up|Sposta livello su
 Move Layer to Bottom|Sposta livello in fondo
 Move Layer to Top|Sposta livello in cima
 Move Selected Pixels|Sposta pixel selezionati
 Move Selection|Sposta selezione
+Move it into the water|Portarlo nell'acqua
 Move, scale and rotate a selection or what it contains.|Spostare, ridimensionare e ruotare una selezione o ciò che contiene.
 Moving Pixels and Selections|Spostare pixel e selezioni
 Multiply|Moltiplica
 NEW|NUOVO
+Name the sky layer|Dare un nome al livello del cielo
 Name:|Nome:
 Nearest Neighbor|Vicino più prossimo
 Negation|Negazione
@@ -446,6 +500,7 @@ Noise|Disturbo
 Normal|Normale
 Normal, or a fixed ratio or a fixed size, for a selection with exact proportions or dimensions.|Normale, oppure proporzioni fisse o dimensioni fisse, per una selezione con proporzioni o misure esatte.
 Not Now|Non ora
+Not done yet|Non ancora fatto
 Number of cells|Numero di celle
 OK|OK
 Object|Oggetto
@@ -474,6 +529,9 @@ Overlay|Sovrapponi
 Overwrite|Sovrascrivi
 Paint Bucket|Secchiello
 Paint Bucket and Gradient|Secchiello e Sfumatura
+Paint an evening lake, layer by layer, with most of the tools.|Dipingere un lago al tramonto, livello per livello, con la maggior parte degli strumenti.
+Paint the sky|Dipingere il cielo
+Paint the water|Dipingere l'acqua
 Paintbrush|Pennello
 Painting|Pittura
 Palette|Tavolozza
@@ -500,6 +558,7 @@ Pixel size|Dimensione pixel
 Pixelate|Pixellizza
 Pixels|Pixel
 Plaid|Scozzese
+Plant pine trees|Piantare gli abeti
 Plus|Più
 Plus Features|Funzioni Plus
 Plus Features…|Funzioni Plus…
@@ -513,6 +572,7 @@ Primary|Primario
 Print (⌘P)|Stampa (⌘P)
 Print size|Dimensioni di stampa
 Print…|Stampa…
+Put the reflection in the water|Mettere il riflesso nell'acqua
 Quality|Qualità
 Quality:|Qualità:
 Quantize|Quantizza
@@ -595,6 +655,7 @@ Save As…|Salva con nome…
 Save Configuration — %@|Opzioni di salvataggio — %@
 Save Palette As…|Salva tavolozza con nome…
 Save changes to \"%@\"?|Salvare le modifiche a “%@”?
+Save your work|Salvare il lavoro
 Sawtooth Repeat|Ripetizione a dente di sega
 Scale|Scala
 Screen|Scolora
@@ -603,6 +664,8 @@ Secondary color|Colore secondario
 Seed|Seme
 Select All|Seleziona tutto
 Select All / Deselect|Seleziona tutto / Deseleziona
+Select a round sun|Selezionare un sole rotondo
+Select the water|Selezionare l'acqua
 Selection|Selezione
 Selection Tools|Strumenti di selezione
 Selection clipping|Ritaglio con la selezione
@@ -633,6 +696,8 @@ Shows when each step was made, or how long ago.|Mostra quando è stato fatto ogn
 Single Pixel|Pixel singolo
 Size|Dimensione
 Sketch Blur|Sfocatura schizzo
+Skip|Salta
+Sky|Cielo
 Small Checker Board|Scacchiera piccola
 Small Grid|Griglia piccola
 Smoothing|Stabilizzazione
@@ -666,6 +731,7 @@ Strikethrough|Barrato
 String length:|Lunghezza corda:
 Stylize|Stilizza
 Subtract|Sottrai
+Sun|Sole
 Supersampling|Supercampionamento
 Support Brushwood…|Sostieni Brushwood…
 Support on Buy Me a Coffee|Sostieni su Buy Me a Coffee
@@ -687,6 +753,7 @@ Thank you for being here.|Grazie di essere qui.
 The Brushwood Window|La finestra di Brushwood
 The bar under the toolbar shows the settings of the current tool. They change with the tool and are kept for next time.|La barra sotto la barra principale mostra le impostazioni dello strumento attuale. Cambiano con lo strumento e vengono conservate per la volta successiva.
 The brush follows the pointer on a string, which takes out hand tremor. While it is on, the length of the string can be set next to it.|Il pennello segue il puntatore legato a una corda, eliminando il tremolio della mano. Quando è attiva, la lunghezza della corda si regola accanto.
+The double chevrons next to the brush width jump straight to 5.|Le doppie frecce accanto alla larghezza del pennello saltano subito a 5.
 The downloaded file is damaged. Try again later.|Il file scaricato è danneggiato. Riprova più tardi.
 The font, its size and its style: bold, italic, underline and strikethrough.|Il font, la sua dimensione e il suo stile: grassetto, corsivo, sottolineato e barrato.
 The image being pasted is larger than the canvas size. What would you like to do?|L'immagine incollata è più grande della tela. Cosa vuoi fare?
@@ -709,6 +776,7 @@ Tile Size|Dimensione tessere
 Tiling|Affiancamento
 Times in the History window|Orari nella finestra Cronologia
 Tint|Tinta
+Title|Titolo
 Toggle Layer Visibility|Mostra/nascondi livello
 Tolerance|Tolleranza
 Tolerance:|Tolleranza:
@@ -730,6 +798,8 @@ Triangle Repeat|Ripetizione a triangolo
 Turbulence|Turbolenza
 Turn each Brushwood Plus feature on or off.|Attivare o disattivare ogni funzione di Brushwood Plus.
 Turn its features on in Plus Features to follow this tour.|Attiva le sue funzioni in Funzioni Plus per seguire questo percorso.
+Turn on Smoothing and Magnetic closing in the tool bar: the line is steadier, and it closes by itself when you come back near its start.|Attiva la stabilizzazione e la chiusura magnetica nella barra degli strumenti: il tratto è più stabile e si chiude da solo quando torni vicino al suo inizio.
+Turn the copy upside down|Capovolgere la copia
 Tutorial|Tutorial
 Tutorial…|Tutorial…
 Twist|Torsione
@@ -744,6 +814,7 @@ Up Arrow|Freccia su
 Up to the next multiple of 5|Sali al multiplo di 5 successivo
 Updates|Aggiornamenti
 Use System Setting|Usa impostazione di sistema
+Use These Colors|Usa questi colori
 Value|Valore
 Version %@|Versione %@
 Version %@ is the latest version.|La versione %@ è la più recente.
@@ -767,6 +838,8 @@ Width:|Larghezza:
 Window|Finestra
 Wrap|Avvolgi
 Xor|Xor
+You used layers and their properties, selections, gradients, effects, blend modes and the History window. Try other blend modes or opacities on the layers to change the mood.|Hai usato i livelli e le loro proprietà, le selezioni, le sfumature, gli effetti, i metodi di fusione e la finestra Cronologia. Prova altri metodi di fusione o opacità sui livelli per cambiare l'atmosfera.
+Your evening lake is ready|Il tuo lago al tramonto è pronto
 Zig Zag|Zigzag
 Zoom|Zoom
 Zoom Amount|Intensità zoom
