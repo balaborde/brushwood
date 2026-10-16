@@ -5,6 +5,20 @@ import BrushwoodCore
 /// Example: `tool:paintbrush; color:FF0000; width:12; drag:50,50,300,200; key:return`
 enum DebugScript {
     private static var lastMark = CFAbsoluteTimeGetCurrent()
+    /// Layers list drag in progress: where the row was grabbed (below its top) and where the pointer is, in the table.
+    private static var layerGrab: (dy: CGFloat, pointer: NSPoint)?
+
+    /// Sends a mouse event to the Layers window, at a point of its list, as the window server would.
+    private static func sendLayersMouse(_ c: MainWindowController, _ type: NSEvent.EventType, _ p: NSPoint, clicks: Int = 1,
+                                        queued: Bool = false) {
+        let panel = c.layersPanel, table = c.layersPanel.table
+        guard let e = NSEvent.mouseEvent(with: type, location: table.convert(p, to: nil), modifierFlags: [],
+                                         timestamp: ProcessInfo.processInfo.systemUptime, windowNumber: panel.windowNumber,
+                                         context: nil, eventNumber: 0, clickCount: clicks, pressure: type == .leftMouseUp ? 0 : 1)
+        else { return }
+        // A queued event waits for whoever reads events next, like NSTableView's own click tracking.
+        if queued { NSApp.postEvent(e, atStart: false) } else { panel.sendEvent(e) }
+    }
 
     static func run(_ script: String, controller c: MainWindowController) {
         for raw in script.components(separatedBy: ";") {
@@ -53,6 +67,26 @@ enum DebugScript {
                     if let e = mouseEvent(c, type, p) { i == 0 ? c.canvas.mouseDown(with: e) : c.canvas.mouseDragged(with: e) }
                 }
                 if !flags.contains("hold"), let last = points.last, let e = mouseEvent(c, .leftMouseUp, last) { c.canvas.mouseUp(with: e) }
+            case "benchdrag" where nums.count >= 4:
+                // benchdrag:x0,y0,x1,y1[,steps] drags like a 120 Hz mouse, letting the window draw between steps as it
+                // does on screen, and prints the average time per step once done (tool work plus drawing).
+                let a = CGPoint(x: nums[0], y: nums[1]), b = CGPoint(x: nums[2], y: nums[3])
+                let steps = nums.count > 4 ? max(1, Int(nums[4])) : 30
+                let right = right, mods = mods
+                send(c, .down, a, right, mods)
+                var i = 0
+                let start = CFAbsoluteTimeGetCurrent()
+                let timer = Timer(timeInterval: 1.0 / 120, repeats: true) { timer in
+                    i += 1
+                    let t = CGFloat(i) / CGFloat(steps)
+                    send(c, .drag, CGPoint(x: a.x + (b.x - a.x) * t, y: a.y + (b.y - a.y) * t), right, mods)
+                    guard i == steps else { return }
+                    timer.invalidate()
+                    print(String(format: "BENCH %@: %.1f ms per step", arg, (CFAbsoluteTimeGetCurrent() - start) * 1000 / Double(steps)))
+                    fflush(stdout)
+                    send(c, .up, b, right, mods)
+                }
+                RunLoop.main.add(timer, forMode: .common)
             case "type":
                 (c.canvas.tool as? TextTool)?.insert(arg.replacingOccurrences(of: "\\n", with: "\n"))
             case "key":
@@ -62,6 +96,8 @@ enum DebugScript {
                     NSApp.sendAction(Selector(arg), to: c, from: nil)
                 } else if let d = NSApp.delegate as? NSObject, d.responds(to: Selector(arg)) {
                     NSApp.sendAction(Selector(arg), to: d, from: nil)
+                } else if let w = c.window, w.responds(to: Selector(arg)) {
+                    NSApp.sendAction(Selector(arg), to: w, from: nil)
                 } else {
                     report(false, "unknown action \(arg)")
                 }
@@ -270,6 +306,71 @@ enum DebugScript {
                     let r = c.canvas.imageRectInView.offsetBy(dx: -clip.bounds.minX, dy: -clip.bounds.minY)
                     let ok = abs(r.minX - nums[0]) <= 2 && abs(r.minY - nums[1]) <= 2
                     report(ok, "image top-left in viewport = (\(Int(r.minX)), \(Int(r.minY))), expected \(arg)")
+                }
+            case "expectselectionvisible":
+                // Some of the selection is in the visible part of the image.
+                let b = c.active?.document.selection?.bounds ?? .null
+                report(!b.isNull && b.intersects(c.canvas.visibleImageRect),
+                       "selection \(b) is visible in \(c.canvas.visibleImageRect)")
+            case "namelayer":
+                if let ws = c.active {
+                    var props = ws.document.activeLayer.properties
+                    props.name = arg
+                    ws.setLayerProperties(ws.document.activeLayerIndex, props)
+                }
+            case "expectlayernames":
+                // Bottom to top.
+                let names = c.active?.document.layers.map(\.name) ?? []
+                report(names == arg.split(separator: ",").map(String.init), "layers (bottom to top) = \(names.joined(separator: ",")), expected \(arg)")
+            case "layerpress" where nums.count >= 3:
+                // layerpress:row,dx,dy presses the mouse in the Layers list, dx, dy from the top left of that row.
+                let r = c.layersPanel.table.rect(ofRow: Int(nums[0]))
+                let p = NSPoint(x: r.minX + nums[1], y: r.minY + nums[2])
+                layerGrab = (CGFloat(nums[2]), p)
+                sendLayersMouse(c, .leftMouseDown, p)
+            case "layerclick" where !nums.isEmpty:
+                // layerclick:row[,clicks] clicks the middle of a row of the Layers list (clicks = 2 for a double-click).
+                let r = c.layersPanel.table.rect(ofRow: Int(nums[0]))
+                let p = NSPoint(x: r.midX, y: r.midY), clicks = nums.count > 1 ? Int(nums[1]) : 1
+                sendLayersMouse(c, .leftMouseUp, p, clicks: clicks, queued: true)
+                sendLayersMouse(c, .leftMouseDown, p, clicks: clicks)
+            case "layerdragto":
+                // layerdragto:row[,extra] drags in small steps until the grabbed row covers that row's place, plus
+                // `extra` points (to stop over the middle of a row, for example).
+                guard let g = layerGrab, let row = nums.first else { break }
+                let goal = c.layersPanel.table.rect(ofRow: Int(row)).minY + g.dy + (nums.count > 1 ? nums[1] : 0)
+                var y = g.pointer.y
+                while abs(goal - y) > 0.01 {
+                    y += max(-6, min(6, goal - y))
+                    sendLayersMouse(c, .leftMouseDragged, NSPoint(x: g.pointer.x, y: y))
+                }
+                layerGrab = (g.dy, NSPoint(x: g.pointer.x, y: y))
+            case "expectlayerlift":
+                // expectlayerlift:target checks the lifted row stays under the pointer where it was grabbed, would land
+                // on `target`, that the other rows made room for it, and that the pointer is a closed hand.
+                let t = c.layersPanel.table
+                guard let g = layerGrab, let s = t.debugLiftState() else {
+                    report(false, "no layer is lifted")
+                    break
+                }
+                let height = t.rect(ofRow: 0).height
+                let expectedTop = min(max(g.pointer.y - g.dy, 0), max(0, t.bounds.height - height))
+                report(abs(s.top - expectedTop) <= 0.5, "lifted row top \(s.top), expected \(expectedTop) (pointer \(g.pointer.y), grabbed \(g.dy) below its top)")
+                report(s.target == Int(nums.first ?? -1), "lifted row lands on row \(s.target), expected \(arg)")
+                report(s.misplacedRows.isEmpty, "rows not where they should have slid to: \(s.misplacedRows)")
+                report(s.closedHand, "pointer is a closed hand while a layer is lifted")
+            case "layerrelease":
+                if let g = layerGrab { sendLayersMouse(c, .leftMouseUp, g.pointer) }
+                layerGrab = nil
+                report(!c.layersPanel.table.isReordering && NSCursor.current !== NSCursor.closedHand,
+                       "layer dropped, pointer no longer a closed hand")
+            case "expectimagecentered":
+                // The image's center is at the center of the viewport (within a point).
+                if let clip = c.canvas.clipView {
+                    let r = c.canvas.imageRectInView
+                    let ok = abs(r.midX - clip.bounds.midX) <= 1 && abs(r.midY - clip.bounds.midY) <= 1
+                    report(ok, "image center (\(Int(r.midX - clip.bounds.minX)), \(Int(r.midY - clip.bounds.minY))) in a "
+                        + "\(Int(clip.bounds.width))×\(Int(clip.bounds.height)) viewport")
                 }
             case "expectfreescroll":
                 report(!c.scrollView.usesPredominantAxisScrolling, "trackpad scrolling is not locked to one axis")

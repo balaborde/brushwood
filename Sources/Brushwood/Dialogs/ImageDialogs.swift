@@ -416,7 +416,11 @@ enum Clipboard {
         return .general
     }
 
-    static func write(_ s: Surface) {
+    /// Where the pixels were copied from ("x y width height"), so Paste can put them back in place like Paint.NET.
+    /// Other apps writing to the clipboard clear it.
+    private static let boundsType = NSPasteboard.PasteboardType("app.brushwood.copied-bounds")
+
+    static func write(_ s: Surface, from origin: IntPoint? = nil) {
         let pb = pasteboard
         pb.clearContents()
         if let png = ImageCodec.pngData(s) { pb.setData(png, forType: .png) }
@@ -424,6 +428,14 @@ enum Clipboard {
             let rep = NSBitmapImageRep(cgImage: cg)
             if let tiff = rep.tiffRepresentation { pb.setData(tiff, forType: .tiff) }
         }
+        if let origin { pb.setString("\(origin.x) \(origin.y) \(s.width) \(s.height)", forType: boundsType) }
+    }
+
+    /// Where an image of this size on the clipboard was copied from in Brushwood, if it was.
+    static func copiedOrigin(for size: IntSize) -> IntPoint? {
+        guard let f = pasteboard.string(forType: boundsType)?.split(separator: " ").compactMap({ Int($0) }), f.count == 4,
+              f[2] == size.width, f[3] == size.height else { return nil }
+        return IntPoint(x: f[0], y: f[1])
     }
 
     static var hasImage: Bool {

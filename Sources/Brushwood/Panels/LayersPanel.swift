@@ -2,14 +2,15 @@ import AppKit
 import BrushwoodCore
 
 final class LayersPanel: FloatingPanel, NSTableViewDataSource, NSTableViewDelegate, NSMenuDelegate {
-    private let table = NSTableView()
+    let table = ReorderableTableView()
     private var workspace: DocumentWorkspace?
     private var observers: [NSObjectProtocol] = []
     private var thumbnails: [ObjectIdentifier: NSImage] = [:]
     private var thumbTimer: Timer?
     private var reloading = false
+    /// A reload asked for while a layer is being dragged, done when it is released.
+    private var reloadAfterDrag = false
     private var buttons: [(ToolbarButton, Selector)] = []
-    private static let dragType = NSPasteboard.PasteboardType("app.brushwood.layer-row")
 
     init() {
         super.init(title: L("Layers"), size: NSSize(width: 230, height: 230), resizable: true)
@@ -28,7 +29,15 @@ final class LayersPanel: FloatingPanel, NSTableViewDataSource, NSTableViewDelega
         table.refusesFirstResponder = true
         table.doubleAction = #selector(doubleClicked)
         table.target = self
-        table.registerForDraggedTypes([LayersPanel.dragType])
+        // Drag a layer to reorder it.
+        table.onMoveRow = { [weak self] fromRow, toRow in
+            guard let self, let doc else { return }
+            host?.moveLayer(from: layerIndex(forRow: fromRow), to: doc.layers.count - 1 - toRow)
+        }
+        table.onEndReorder = { [weak self] in
+            guard let self, reloadAfterDrag else { return }
+            reload()
+        }
         let menu = NSMenu()
         let items: [(String, Selector)] = [
             (L("Add New Layer"), #selector(MainWindowController.addLayer(_:))),
@@ -41,7 +50,6 @@ final class LayersPanel: FloatingPanel, NSTableViewDataSource, NSTableViewDelega
         for (title, sel) in items { menu.addItem(withTitle: title, action: sel, keyEquivalent: "") }
         menu.delegate = self
         table.menu = menu
-        table.draggingDestinationFeedbackStyle = .gap
         let scroll = NSScrollView()
         scroll.documentView = table
         scroll.hasVerticalScroller = true
@@ -139,6 +147,9 @@ final class LayersPanel: FloatingPanel, NSTableViewDataSource, NSTableViewDelega
     private func row(forLayer i: Int) -> Int { (doc?.layers.count ?? 0) - 1 - i }
 
     func reload() {
+        // Reloading resets the rows that are sliding apart around a dragged layer.
+        reloadAfterDrag = table.isReordering
+        guard !table.isReordering else { return }
         reloading = true
         table.reloadData()
         selectActive()
@@ -230,28 +241,6 @@ final class LayersPanel: FloatingPanel, NSTableViewDataSource, NSTableViewDelega
         guard table.clickedRow >= 0 else { return }
         host?.setActiveLayer(layerIndex(forRow: table.clickedRow))
         host?.layerProperties(nil)
-    }
-
-    // Drag to reorder.
-    func tableView(_ tableView: NSTableView, pasteboardWriterForRow row: Int) -> NSPasteboardWriting? {
-        let item = NSPasteboardItem()
-        item.setString("\(row)", forType: LayersPanel.dragType)
-        return item
-    }
-
-    func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int,
-                   proposedDropOperation op: NSTableView.DropOperation) -> NSDragOperation {
-        op == .above ? .move : []
-    }
-
-    func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
-        guard let doc, let s = info.draggingPasteboard.pasteboardItems?.first?.string(forType: LayersPanel.dragType),
-              let fromRow = Int(s) else { return false }
-        let toRow = fromRow < row ? row - 1 : row
-        let from = layerIndex(forRow: fromRow)
-        let to = doc.layers.count - 1 - toRow
-        host?.moveLayer(from: from, to: to)
-        return true
     }
 }
 

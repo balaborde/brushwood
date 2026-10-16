@@ -143,6 +143,13 @@ run project "plusfeature:snapshots=1; plusfeature:smoothing=1; plusfeature:brush
  expectproject:30,waiting; saveas:$OUT/lake.ora; expectproject:30,done; projectnext;
  expectproject:31,done; projectnext; expectproject:none"
 
+# Resizing the window or going full screen keeps the image centered, also over the many small steps of a live
+# resize (scroll positions are rounded to pixels, which must not add up).
+STEPS=""
+for i in $(seq 0 29); do STEPS+="panel:$((900 + i * 13)),$((620 + i * 7)); "; done
+run resize "expectimagecentered; panel:1000,700; expectimagecentered; panel:1400,900; expectimagecentered; zoom:2;
+ panel:1100,760; expectimagecentered; $STEPS expectimagecentered"
+
 # Floating windows follow their corner of the canvas when the main window is resized.
 run panels "showpanels; expectpanels; panel:1400,900; expectpanels; panel:820,560; expectpanels;
  panel:1280,820; expectpanels"
@@ -151,9 +158,38 @@ run panels "showpanels; expectpanels; panel:1400,900; expectpanels; panel:820,56
 run activelayer "menu:addLayer:; menu:addLayer:; menu:selectBottomLayer:; tool:pencil; color:FF0000; drag:10,10,10,30;
  wait:0.6; expectactivelayer:0; menu:selectLayerAbove:; expectactivelayer:1"
 
+# Moving pixels: drawn over the canvas while dragging (single layer), written straight into the layer when another
+# layer is above; both must give the same pixels, moved by whole pixels. Escape during a drag puts everything back.
+run movefast "select:10,10,20,20; color:FF0000; menu:fillSelection:; tool:moveSelectedPixels; drag:20,20,120.6,20.4;
+ expect:110,15,FFFFFF; expect:111,15,FF0000; expect:130,15,FF0000; expect:131,15,FFFFFF; expect:15,15,FF000000;
+ key:return; expecthistory:3;
+ select:200,200,10,10; menu:fillSelection:; tool:moveSelectedPixels; drag:205,205,305,205; key:escape;
+ expect:205,205,FF0000; expect:305,205,FFFFFF"
+run movelayers "menu:addLayer:; menu:selectLayerBelow:; select:10,10,20,20; color:FF0000; menu:fillSelection:;
+ tool:moveSelectedPixels; drag:20,20,120.6,20.4; expect:110,15,FFFFFF; expect:111,15,FF0000; expect:130,15,FF0000;
+ expect:131,15,FFFFFF; expect:15,15,FF000000"
+
+# Pasting puts pixels copied in Brushwood back where they came from (also into a new layer), unless that place is
+# out of view: then at the top-left of the visible area.
+run pasteplace "select:300,200,40,30; color:0000FF; menu:fillSelection:; menu:copy:; menu:deselect:; menu:pasteIntoNewLayer:;
+ expectselection:300,200,40,30; key:return; expectlayers:2; menu:deselect:; zoom:4; select:10,10,20,20; menu:copy:;
+ menu:deselect:; menu:paste:; expectselectionvisible"
+
+# Dragging layers in the Layers window: the grabbed row stays under the pointer where it was grabbed, the other rows
+# make room for it (also with the pointer over the middle of a row), the pointer is a closed hand, and the order is
+# right after the drop. Rows show the top layer first: D, C, B, A.
+run layerdrag "showpanels; menu:addLayer:; menu:addLayer:; menu:addLayer:; menu:selectBottomLayer:; namelayer:A;
+ menu:selectLayerAbove:; namelayer:B; menu:selectLayerAbove:; namelayer:C; menu:selectLayerAbove:; namelayer:D;
+ layerpress:0,60,12; layerdragto:1,20; expectlayerlift:1; layerdragto:2; expectlayerlift:2; layerrelease;
+ expectlayernames:A,D,B,C; expectactivelayer:1;
+ layerpress:3,20,30; layerdragto:0; expectlayerlift:0; layerdragto:-1; expectlayerlift:0; layerrelease;
+ expectlayernames:D,B,C,A; expectactivelayer:3;
+ layerpress:2,60,20; layerdragto:2,8; expectlayerlift:2; layerrelease; expectlayernames:D,B,C,A;
+ layerclick:0; expectactivelayer:3; layerclick:2; expectactivelayer:1; expectlayernames:D,B,C,A"
+
 run move "select:10,10,20,20; color:FF0000; menu:fillSelection:; tool:moveSelectedPixels; drag:20,20,120,20; key:return;
  expect:115,15,FF0000; expect:15,15,FF000000; expectselection:110,10,20,20; menu:copy:; menu:deselect:; menu:paste:;
- key:return; expect:5,5,FF0000; menu:brushwoodUndo:; expect:5,5,FFFFFF; tool:moveSelection; select:200,200,50,50;
+ expectselection:110,10,20,20; key:return; expect:5,5,FFFFFF; expect:115,15,FF0000; menu:brushwoodUndo:; expect:115,15,FF0000; tool:moveSelection; select:200,200,50,50;
  drag:210,210,260,260; expectselection:250,250,50,50"
 
 run vector "tool:shapes; shape:0; drawtype:1; color:0000FF; drag:300,300,400,400; key:return; expect:350,350,0000FF;

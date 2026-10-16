@@ -7,6 +7,10 @@ final class TileRenderer {
     static let tileSize = 256
     let document: Document
     private var tiles: [Int: CGImage] = [:]
+    /// Reduced copies of tiles (half, quarter… size) for drawing zoomed out, so that each redraw resamples about as
+    /// many pixels as the screen shows instead of the whole image.
+    private var reduced: [Int: CGImage] = [:]
+    static let maxLevel = 6
     private let scratch = Surface(width: TileRenderer.tileSize, height: TileRenderer.tileSize)
     /// Live replacement surfaces for layers (effect previews render here instead of touching the layer).
     var overrides: [Int: Surface] = [:] {
@@ -30,6 +34,7 @@ final class TileRenderer {
     func invalidate(_ rect: IntRect?) {
         guard let rect else {
             tiles.removeAll(keepingCapacity: true)
+            reduced.removeAll(keepingCapacity: true)
             return
         }
         let r = rect.intersection(document.bounds)
@@ -38,6 +43,7 @@ final class TileRenderer {
         for ty in (r.top / s)...((r.bottom - 1) / s) {
             for tx in (r.left / s)...((r.right - 1) / s) {
                 tiles.removeValue(forKey: key(tx, ty))
+                for level in 1...TileRenderer.maxLevel { reduced.removeValue(forKey: key(tx, ty) * 8 + level) }
             }
         }
     }
@@ -51,6 +57,24 @@ final class TileRenderer {
         compose(rect: r)
         let img = scratch.makePremultipliedCGImage(rect: IntRect(x: 0, y: 0, width: r.width, height: r.height))
         tiles[k] = img
+        return img
+    }
+
+    /// The tile reduced by 2^level (level 0 is the tile itself).
+    func image(_ tx: Int, _ ty: Int, level: Int) -> CGImage? {
+        guard level > 0 else { return image(tx, ty) }
+        let k = key(tx, ty) * 8 + level
+        if let img = reduced[k] { return img }
+        guard let full = image(tx, ty) else { return nil }
+        let d = 1 << level
+        let w = max(1, (full.width + d - 1) / d), h = max(1, (full.height + d - 1) / d)
+        guard let ctx = CGContext(data: nil, width: w, height: h, bitsPerComponent: 8, bytesPerRow: 0,
+                                  space: full.colorSpace ?? Surface.sRGB, bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue)
+        else { return full }
+        ctx.interpolationQuality = .high
+        ctx.draw(full, in: CGRect(x: 0, y: 0, width: w, height: h))
+        let img = ctx.makeImage()
+        reduced[k] = img
         return img
     }
 
