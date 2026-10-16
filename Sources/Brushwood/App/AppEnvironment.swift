@@ -377,8 +377,9 @@ final class AppEnvironment {
         if let raw = d.object(forKey: "units") as? Int, let u = MeasurementUnit(rawValue: raw) { units = u }
         showRulers = d.bool(forKey: "showRulers")
         showPixelGrid = d.bool(forKey: "showPixelGrid")
-        if let p = d.string(forKey: "primaryColor").flatMap({ ColorBgra(hex: $0) }) { primaryColor = p }
-        if let s = d.string(forKey: "secondaryColor").flatMap({ ColorBgra(hex: $0) }) { secondaryColor = s }
+        // Like Paint.NET, every launch starts with black and white; earlier versions saved the colors.
+        d.removeObject(forKey: "primaryColor")
+        d.removeObject(forKey: "secondaryColor")
     }
 
     func save() {
@@ -388,8 +389,6 @@ final class AppEnvironment {
         d.set(units.rawValue, forKey: "units")
         d.set(showRulers, forKey: "showRulers")
         d.set(showPixelGrid, forKey: "showPixelGrid")
-        d.set(primaryColor.hexString, forKey: "primaryColor")
-        d.set(secondaryColor.hexString, forKey: "secondaryColor")
     }
 
     func setActiveTool(_ t: ToolKind) {
