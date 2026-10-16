@@ -83,7 +83,7 @@ enum HistoryTimeDisplay: Int, CaseIterable {
 }
 
 /// A History row: icon, name and, at the right, when the step was made. Snapshot rows show a thumbnail instead of
-/// the icon, and the last one has a line under it.
+/// the icon.
 private final class HistoryCell: NSTableCellView {
     let icon = NSImageView()
     let name = NSTextField(labelWithString: "")
@@ -92,7 +92,7 @@ private final class HistoryCell: NSTableCellView {
     /// Extra tooltip line.
     var note: String?
 
-    init(iconSize: CGFloat = 16, separator: Bool = false) {
+    init(iconSize: CGFloat = 16) {
         super.init(frame: .zero)
         name.font = .systemFont(ofSize: NSFont.smallSystemFontSize)
         name.lineBreakMode = .byTruncatingTail
@@ -116,17 +116,6 @@ private final class HistoryCell: NSTableCellView {
             time.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -6),
             time.centerYAnchor.constraint(equalTo: centerYAnchor),
         ])
-        if separator {
-            let line = NSBox()
-            line.boxType = .separator
-            line.translatesAutoresizingMaskIntoConstraints = false
-            addSubview(line)
-            NSLayoutConstraint.activate([
-                line.leadingAnchor.constraint(equalTo: leadingAnchor),
-                line.trailingAnchor.constraint(equalTo: trailingAnchor),
-                line.bottomAnchor.constraint(equalTo: bottomAnchor),
-            ])
-        }
     }
 
     required init?(coder: NSCoder) { fatalError() }
@@ -153,6 +142,15 @@ private final class HistoryCell: NSTableCellView {
 
 final class HistoryPanel: FloatingPanel, NSTableViewDataSource, NSTableViewDelegate, NSMenuDelegate {
     private let table = NSTableView()
+    /// Brushwood Plus snapshots, in their own list above the steps so that they stay in view however long the
+    /// history gets.
+    private let snapshotTable = NSTableView()
+    private let snapshotScroll = NSScrollView()
+    private let snapshotLine = NSBox()
+    private var snapshotHeight: NSLayoutConstraint!
+    private static let snapshotRowHeight: CGFloat = 34
+    /// Rows the snapshot list shows before it scrolls; past them, half a row more shows that there are others.
+    private static let snapshotRowsShown = 3
     private var document: Document?
     private var observer: NSObjectProtocol?
     /// Refreshes "… min ago" while times elapsed are shown.
@@ -163,8 +161,7 @@ final class HistoryPanel: FloatingPanel, NSTableViewDataSource, NSTableViewDeleg
     private var forwardButton: ToolbarButton!
     private(set) var snapshotButton: ToolbarButton!
     private var reloading = false
-    /// Snapshots are listed first, then the steps (none while the Plus feature is off; they are kept for when it is
-    /// turned back on).
+    /// Snapshots listed (none while the Plus feature is off; they are kept for when it is turned back on).
     private var snapshotCount: Int { PlusFeature.snapshots.isEnabled ? document?.history.snapshots.count ?? 0 : 0 }
 
     init() {
@@ -193,6 +190,25 @@ final class HistoryPanel: FloatingPanel, NSTableViewDataSource, NSTableViewDeleg
         scroll.autohidesScrollers = true
         scroll.borderType = .noBorder
 
+        snapshotTable.addTableColumn(NSTableColumn(identifier: .init("snapshot")))
+        snapshotTable.headerView = nil
+        snapshotTable.rowHeight = Self.snapshotRowHeight
+        snapshotTable.dataSource = self
+        snapshotTable.delegate = self
+        snapshotTable.target = self
+        snapshotTable.action = #selector(snapshotClicked)
+        snapshotTable.style = .plain
+        snapshotTable.allowsTypeSelect = false
+        snapshotTable.refusesFirstResponder = true
+        let snapshotMenu = NSMenu()
+        snapshotMenu.delegate = self
+        snapshotTable.menu = snapshotMenu
+        snapshotScroll.documentView = snapshotTable
+        snapshotScroll.hasVerticalScroller = true
+        snapshotScroll.autohidesScrollers = true
+        snapshotScroll.borderType = .noBorder
+        snapshotLine.boxType = .separator
+
         rewindButton = ToolbarButton(icon: "sym.backward.end.fill", tooltip: L("Rewind to the beginning"), target: nil, action: nil)
         rewindButton.onAction { [weak self] _ in self?.host?.historyStep(to: 0) }
         undoButton = ToolbarButton(icon: "cmd.undo", tooltip: L("Undo"), target: nil, action: nil)
@@ -209,12 +225,23 @@ final class HistoryPanel: FloatingPanel, NSTableViewDataSource, NSTableViewDeleg
         bar.edgeInsets = NSEdgeInsets(top: 2, left: 4, bottom: 2, right: 4)
 
         let content = NSView()
-        for v in [scroll, bar, snapshotButton] as [NSView] {
+        for v in [snapshotScroll, snapshotLine, scroll, bar, snapshotButton] as [NSView] {
             v.translatesAutoresizingMaskIntoConstraints = false
             content.addSubview(v)
         }
+        // Up to three snapshots and a half, and never more than a third of the window.
+        snapshotHeight = snapshotScroll.heightAnchor.constraint(equalToConstant: 0)
+        snapshotHeight.priority = .defaultHigh
         NSLayoutConstraint.activate([
-            scroll.topAnchor.constraint(equalTo: content.topAnchor),
+            snapshotScroll.topAnchor.constraint(equalTo: content.topAnchor),
+            snapshotScroll.leadingAnchor.constraint(equalTo: content.leadingAnchor),
+            snapshotScroll.trailingAnchor.constraint(equalTo: content.trailingAnchor),
+            snapshotHeight,
+            snapshotScroll.heightAnchor.constraint(lessThanOrEqualTo: content.heightAnchor, multiplier: 1 / 3),
+            snapshotLine.topAnchor.constraint(equalTo: snapshotScroll.bottomAnchor),
+            snapshotLine.leadingAnchor.constraint(equalTo: content.leadingAnchor),
+            snapshotLine.trailingAnchor.constraint(equalTo: content.trailingAnchor),
+            scroll.topAnchor.constraint(equalTo: snapshotLine.bottomAnchor),
             scroll.leadingAnchor.constraint(equalTo: content.leadingAnchor),
             scroll.trailingAnchor.constraint(equalTo: content.trailingAnchor),
             scroll.bottomAnchor.constraint(equalTo: bar.topAnchor),
@@ -249,7 +276,9 @@ final class HistoryPanel: FloatingPanel, NSTableViewDataSource, NSTableViewDeleg
 
     private func refreshTimes() {
         let display = HistoryTimeDisplay.effective, now = Date()
-        table.enumerateAvailableRowViews { row, _ in (row.view(atColumn: 0) as? HistoryCell)?.showTime(display, now: now) }
+        for t in [table, snapshotTable] {
+            t.enumerateAvailableRowViews { row, _ in (row.view(atColumn: 0) as? HistoryCell)?.showTime(display, now: now) }
+        }
     }
 
     func menuNeedsUpdate(_ menu: NSMenu) {
@@ -260,8 +289,8 @@ final class HistoryPanel: FloatingPanel, NSTableViewDataSource, NSTableViewDeleg
             item.isEnabled = document != nil
             menu.addItem(item)
         }
-        let row = table.clickedRow
-        if row >= 0, row < snapshotCount, let s = document?.history.snapshots[row] {
+        let row = snapshotTable.clickedRow
+        if menu === snapshotTable.menu, row >= 0, row < snapshotCount, let s = document?.history.snapshots[row] {
             add(L("Go Back to This Snapshot")) { [weak self] in self?.goBack(to: s) }
             add(L("Rename Snapshot…")) { [weak self] in self?.rename(s) }
             add(L("Delete Snapshot")) { [weak self] in self?.document?.history.removeSnapshot(s) }
@@ -325,12 +354,14 @@ final class HistoryPanel: FloatingPanel, NSTableViewDataSource, NSTableViewDeleg
     }
 
     func reload() {
+        // The snapshot list first: its height decides how much of the steps is in view.
+        reloadSnapshots()
+        contentView?.layoutSubtreeIfNeeded()
         reloading = true
         table.reloadData()
         if let h = document?.history, h.currentIndex >= 0 {
-            let n = snapshotCount
-            table.selectRowIndexes(IndexSet(integer: n + h.currentIndex), byExtendingSelection: false)
-            table.scrollRowToVisible(n + min(h.items.count - 1, h.currentIndex + 1))
+            table.selectRowIndexes(IndexSet(integer: h.currentIndex), byExtendingSelection: false)
+            table.scrollRowToVisible(min(h.items.count - 1, h.currentIndex + 1))
         }
         reloading = false
         let h = document?.history
@@ -342,18 +373,30 @@ final class HistoryPanel: FloatingPanel, NSTableViewDataSource, NSTableViewDeleg
         forwardButton.isEnabled = h?.canRedo ?? false
     }
 
-    func numberOfRows(in tableView: NSTableView) -> Int { snapshotCount + (document?.history.items.count ?? 0) }
+    /// Shows the snapshot list, or hides it when there is no snapshot; a new snapshot is scrolled into view.
+    private func reloadSnapshots() {
+        let shown = snapshotTable.numberOfRows, n = snapshotCount
+        snapshotTable.reloadData()
+        snapshotScroll.isHidden = n == 0
+        snapshotLine.isHidden = n == 0
+        let rows = n > Self.snapshotRowsShown ? CGFloat(Self.snapshotRowsShown) + 0.5 : CGFloat(n)
+        snapshotHeight.constant = rows * Self.snapshotRowHeight
+        if n > shown { snapshotTable.scrollRowToVisible(n - 1) }
+    }
 
-    func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat { row < snapshotCount ? 34 : 20 }
+    func numberOfRows(in tableView: NSTableView) -> Int {
+        tableView === snapshotTable ? snapshotCount : document?.history.items.count ?? 0
+    }
 
     /// Only steps are selected (the current one); clicking a snapshot goes back to it as a new step.
-    func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool { row >= snapshotCount }
+    func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool { tableView === table }
 
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         guard let h = document?.history else { return nil }
-        if row < snapshotCount {
+        if tableView === snapshotTable {
+            guard row < snapshotCount else { return nil }
             let s = h.snapshots[row]
-            let cell = HistoryCell(iconSize: 28, separator: row == snapshotCount - 1)
+            let cell = HistoryCell(iconSize: 28)
             cell.icon.image = HistoryCell.thumbnail(s.thumbnail, side: 28)
             cell.name.stringValue = name(of: s)
             cell.name.textColor = .labelColor
@@ -363,14 +406,13 @@ final class HistoryPanel: FloatingPanel, NSTableViewDataSource, NSTableViewDeleg
             cell.showTime(.effective, now: Date())
             return cell
         }
-        let index = row - snapshotCount
-        guard index < h.items.count else { return nil }
-        let item = h.items[index]
+        guard row < h.items.count else { return nil }
+        let item = h.items[row]
         let cell = HistoryCell()
         cell.icon.image = Icons.image(item.icon, size: 16)
         cell.name.stringValue = item.name
         cell.date = item.date
-        let undone = index > h.currentIndex
+        let undone = row > h.currentIndex
         cell.name.textColor = undone ? .tertiaryLabelColor : .labelColor
         cell.time.textColor = undone ? .tertiaryLabelColor : .secondaryLabelColor
         cell.icon.alphaValue = undone ? 0.4 : 1
@@ -385,17 +427,12 @@ final class HistoryPanel: FloatingPanel, NSTableViewDataSource, NSTableViewDeleg
     /// Clicking the current entry again toggles between it and the previous step (quick before/after comparison).
     @objc private func rowClicked() {
         guard let h = document?.history, table.clickedRow >= 0 else { return }
-        if table.clickedRow < snapshotCount {
-            toggledFrom = nil
-            goBack(to: h.snapshots[table.clickedRow])
-            return
-        }
         if clickChangedSelection {
             clickChangedSelection = false
             toggledFrom = nil
             return
         }
-        let row = table.clickedRow - snapshotCount
+        let row = table.clickedRow
         if row == h.currentIndex, row > 0, toggledFrom == nil {
             toggledFrom = row
             host?.historyStep(to: row - 1)
@@ -407,9 +444,24 @@ final class HistoryPanel: FloatingPanel, NSTableViewDataSource, NSTableViewDeleg
         }
     }
 
+    @objc private func snapshotClicked() {
+        let row = snapshotTable.clickedRow
+        guard let h = document?.history, row >= 0, row < snapshotCount else { return }
+        toggledFrom = nil
+        goBack(to: h.snapshots[row])
+    }
+
     func tableViewSelectionDidChange(_ notification: Notification) {
-        guard !reloading, table.selectedRow >= snapshotCount else { return }
+        guard !reloading, (notification.object as? NSTableView) === table, table.selectedRow >= 0 else { return }
         clickChangedSelection = true
-        host?.historyStep(to: table.selectedRow - snapshotCount)
+        host?.historyStep(to: table.selectedRow)
+    }
+
+    /// For UI tests: the snapshots listed, and whether the list is on screen with its last snapshot in view.
+    var snapshotRowsInView: (count: Int, lastVisible: Bool) {
+        let n = snapshotTable.numberOfRows
+        guard n > 0, !snapshotScroll.isHidden, snapshotScroll.frame.height > 0 else { return (n, false) }
+        let visible = snapshotTable.rows(in: snapshotTable.visibleRect)
+        return (n, visible.contains(n - 1))
     }
 }

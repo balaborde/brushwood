@@ -201,6 +201,13 @@ enum DebugScript {
                 if i < snapshots.count { c.historyPanel.goBack(to: snapshots[i]) } else { report(false, "no snapshot \(i)") }
             case "expectsnapshots": report(c.active?.document.history.snapshots.count == Int(nums.first ?? -1),
                                            "snapshots = \(c.active?.document.history.snapshots.count ?? -1), expected \(arg)")
+            case "expectsnapshotlist":
+                // expectsnapshotlist:n: the History window lists n snapshots, with the newest in view.
+                if !c.historyPanel.isVisible { c.toggleHistoryWindow(nil) }
+                c.historyPanel.contentView?.layoutSubtreeIfNeeded()
+                let list = c.historyPanel.snapshotRowsInView
+                report(list.count == Int(nums.first ?? -1) && (list.count == 0 || list.lastVisible),
+                       "snapshot list = \(list.count) (newest in view: \(list.lastVisible)), expected \(arg)")
             case "log": print("LOG \(arg)")
             case "widthcombo":
                 // widthcombo:select,25 | widthcombo:type,40 | widthcombo:wheel,up|down | widthcombo:blur

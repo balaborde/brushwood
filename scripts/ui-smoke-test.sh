@@ -40,6 +40,13 @@ run snapshots "plusfeature:smoothing=1; plusfeature:magneticClosing=1; plusfeatu
  color:00FF00; drag:400,10,400,50; expecthistory:1; gobacktosnapshot:0; expect:10,10,FF0000; expect:400,30,FF0000;
  expecthistory:2; menu:brushwoodUndo:; expect:10,10,FFFFFF; expect:400,30,00FF00; snapshot; expectsnapshots:2"
 
+# Snapshots stay in view above a long history, in their own list.
+strokes=""; for i in $(seq 1 30); do strokes="$strokes drag:$((i * 20)),300,$((i * 20)),340;"; done
+run snapshotlist "showpanels; plusfeature:snapshots=1; tool:pencil; color:FF0000; expectsnapshotlist:0; snapshot;
+ expectsnapshotlist:1; drag:10,10,10,50; snapshot; drag:30,10,30,50; snapshot; drag:50,10,50,50; snapshot; expectsnapshotlist:4;
+ $strokes expecthistory:33; snapshot; expectsnapshotlist:5; plusfeature:snapshots=0; expectsnapshotlist:0;
+ plusfeature:snapshots=1; expectsnapshotlist:5; gobacktosnapshot:1; expecthistory:34; expect:30,30,FFFFFF; expect:10,30,FF0000"
+
 # Brushwood Plus smoothing: a zigzag drawn without smoothing keeps its corners; with it, the stroke runs straight
 # through the middle and ends at the brush, a string's length before the pointer (no straight tail to it).
 run smoothing "plusfeature:smoothing=1; plusfeature:magneticClosing=1; plusfeature:snapshots=1; tool:paintbrush; color:0000FF; width:6; setting:smoothing=0; path:100,300,110,292,120,308,130,292,140,308,150,292,160,308,170,292,180,308,190,292,200,308,210,292,220,308,230,292,240,308,250,292,260,308,270,292,280,308,290,292,300,308,310,300; expect:120,308,0000FF;
