@@ -42,9 +42,11 @@ run snapshots "plusfeature:smoothing=1; plusfeature:magneticClosing=1; plusfeatu
 
 # Brushwood Plus color history: colors join when a step paints with them (not when picked, nor on undo and redo),
 # newest first and once each, 26 at most; a click brings one back. The bar shows 16, all 26 once the window is expanded.
+# It is not kept between launches: one saved by an earlier version is dropped at launch, and nothing is saved.
+defaults write Brushwood colorHistory -array FF0000 00FF00
 fills=""; for i in $(seq 10 37); do fills="$fills color:${i}${i}${i}; click:$((i * 20)),500;"; done
 kept=$(for i in $(seq 37 -1 12); do printf "%s," "$i$i$i"; done); kept="${kept%,}"
-run colorhistory "showpanels; plusfeature:colorHistory=1; colorhistoryclear; expectcolorhistory:none; color:00FF00;
+run colorhistory "showpanels; plusfeature:colorHistory=1; expectcolorhistory:none; color:00FF00;
  color:FF00FF; expectcolorhistory:none; tool:paintbrush; width:6; color:FF0000; drag:100,100,200,100; expectcolorhistory:FF0000;
  color:0000FF; drag:100,150,200,150; expectcolorhistory:0000FF,FF0000; color:FF0000; tool:pencil; drag:100,200,200,200;
  expectcolorhistory:FF0000,0000FF; menu:brushwoodUndo:; menu:brushwoodUndo:; menu:brushwoodRedo:; expectcolorhistory:FF0000,0000FF;

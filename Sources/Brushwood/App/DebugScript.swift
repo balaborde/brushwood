@@ -165,10 +165,11 @@ enum DebugScript {
                        "color history cells = \(v.visibleCount) (bar \(v.frame.width) in \(width)), expected \(arg)")
             case "expectcolorhistory":
                 // expectcolorhistory:RRGGBB,RRGGBB… (newest first) or none; also that the strip shows while the
-                // Plus feature is on.
+                // Plus feature is on, and that the history is not saved in the settings.
                 let got = ColorHistory.colors.map(\.hexString).joined(separator: ","), shown = !c.colorsPanel.historyView.isHidden
-                report((arg == "none" ? got.isEmpty : got == arg.uppercased()) && shown == PlusFeature.colorHistory.isEnabled,
-                       "color history = \(got.isEmpty ? "none" : got) (shown: \(shown)), expected \(arg)")
+                let saved = UserDefaults.standard.object(forKey: ColorHistory.savedKey) != nil
+                report((arg == "none" ? got.isEmpty : got == arg.uppercased()) && shown == PlusFeature.colorHistory.isEnabled
+                       && !saved, "color history = \(got.isEmpty ? "none" : got) (shown: \(shown), saved: \(saved)), expected \(arg)")
             case "plusfeature":
                 // plusfeature:id=0|1 turns a Brushwood Plus feature off or on.
                 let kv = arg.split(separator: "=").map(String.init)

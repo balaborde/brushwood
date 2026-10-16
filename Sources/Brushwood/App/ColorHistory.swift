@@ -5,16 +5,21 @@ extension Notification.Name {
     static let colorHistoryChanged = Notification.Name("BrushwoodColorHistoryChanged")
 }
 
-/// Brushwood Plus: the last colors painted with, newest first, shown under the palette of the Colors window and kept
-/// between launches. A color joins once a step painted with it is in the History window, so colors only tried in
-/// the color wheel, or dragged through, stay out.
+/// Brushwood Plus: the last colors painted with, newest first, shown under the palette of the Colors window until the
+/// app quits. A color joins once a step painted with it is in the History window, so colors only tried in the color
+/// wheel, or dragged through, stay out.
 enum ColorHistory {
     /// As many as the expanded Colors window shows; the compact one shows the first 16.
     static let limit = 26
-    private static let key = "colorHistory"
+    /// Where 1.0.3-plus.2 and 1.0.4-plus.1 saved the history.
+    static let savedKey = "colorHistory"
 
-    private(set) static var colors: [ColorBgra] =
-        UserDefaults.standard.stringArray(forKey: key)?.compactMap { ColorBgra(hex: $0) } ?? []
+    /// Like the primary and secondary colors, every launch starts with an empty history: the one saved by earlier
+    /// versions is removed from the settings (the Colors window reads the history at launch).
+    private(set) static var colors: [ColorBgra] = {
+        UserDefaults.standard.removeObject(forKey: savedKey)
+        return []
+    }()
 
     /// Colors read by the current tool since the last step (the last one of each slot), and since when.
     private static var pending: [(secondary: Bool, color: ColorBgra)] = []
@@ -51,7 +56,6 @@ enum ColorHistory {
     private static func set(_ list: [ColorBgra]) {
         guard list != colors else { return }
         colors = list
-        UserDefaults.standard.set(list.map(\.hexString), forKey: key)
         NotificationCenter.default.post(name: .colorHistoryChanged, object: nil)
     }
 }
