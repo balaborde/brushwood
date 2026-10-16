@@ -60,9 +60,15 @@ run movelayers "menu:addLayer:; menu:selectLayerBelow:; select:10,10,20,20; colo
  tool:moveSelectedPixels; drag:20,20,120.6,20.4; expect:110,15,FFFFFF; expect:111,15,FF0000; expect:130,15,FF0000;
  expect:131,15,FFFFFF; expect:15,15,FF000000"
 
+# Pasting puts pixels copied in Brushwood back where they came from (also into a new layer), unless that place is
+# out of view: then at the top-left of the visible area.
+run pasteplace "select:300,200,40,30; color:0000FF; menu:fillSelection:; menu:copy:; menu:deselect:; menu:pasteIntoNewLayer:;
+ expectselection:300,200,40,30; key:return; expectlayers:2; menu:deselect:; zoom:4; select:10,10,20,20; menu:copy:;
+ menu:deselect:; menu:paste:; expectselectionvisible"
+
 run move "select:10,10,20,20; color:FF0000; menu:fillSelection:; tool:moveSelectedPixels; drag:20,20,120,20; key:return;
  expect:115,15,FF0000; expect:15,15,FF000000; expectselection:110,10,20,20; menu:copy:; menu:deselect:; menu:paste:;
- key:return; expect:5,5,FF0000; menu:brushwoodUndo:; expect:5,5,FFFFFF; tool:moveSelection; select:200,200,50,50;
+ expectselection:110,10,20,20; key:return; expect:5,5,FFFFFF; expect:115,15,FF0000; menu:brushwoodUndo:; expect:115,15,FF0000; tool:moveSelection; select:200,200,50,50;
  drag:210,210,260,260; expectselection:250,250,50,50"
 
 run vector "tool:shapes; shape:0; drawtype:1; color:0000FF; drag:300,300,400,400; key:return; expect:350,350,0000FF;

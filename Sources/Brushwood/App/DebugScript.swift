@@ -163,6 +163,11 @@ enum DebugScript {
                     let ok = abs(r.minX - nums[0]) <= 2 && abs(r.minY - nums[1]) <= 2
                     report(ok, "image top-left in viewport = (\(Int(r.minX)), \(Int(r.minY))), expected \(arg)")
                 }
+            case "expectselectionvisible":
+                // Some of the selection is in the visible part of the image.
+                let b = c.active?.document.selection?.bounds ?? .null
+                report(!b.isNull && b.intersects(c.canvas.visibleImageRect),
+                       "selection \(b) is visible in \(c.canvas.visibleImageRect)")
             case "expectimagecentered":
                 // The image's center is at the center of the viewport (within a point).
                 if let clip = c.canvas.clipView {

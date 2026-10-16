@@ -818,8 +818,8 @@ final class MainWindowController: NSWindowController, NSWindowDelegate, NSMenuIt
     @objc func cut(_ sender: Any?) {
         guard let ws = active else { return }
         commitPendingTool()
-        guard let (pixels, _) = ws.selectedPixels(merged: false) else { return }
-        Clipboard.write(pixels)
+        guard let (pixels, rect) = ws.selectedPixels(merged: false) else { return }
+        Clipboard.write(pixels, from: IntPoint(x: rect.x, y: rect.y))
         ws.eraseSelection()
         mainToolbar.validate()
     }
@@ -827,14 +827,14 @@ final class MainWindowController: NSWindowController, NSWindowDelegate, NSMenuIt
     @objc func copy(_ sender: Any?) {
         guard let ws = active else { return }
         commitPendingTool()
-        if let (pixels, _) = ws.selectedPixels(merged: false) { Clipboard.write(pixels) }
+        if let (pixels, rect) = ws.selectedPixels(merged: false) { Clipboard.write(pixels, from: IntPoint(x: rect.x, y: rect.y)) }
         mainToolbar.validate()
     }
 
     @objc func copyMerged(_ sender: Any?) {
         guard let ws = active else { return }
         commitPendingTool()
-        if let (pixels, _) = ws.selectedPixels(merged: true) { Clipboard.write(pixels) }
+        if let (pixels, rect) = ws.selectedPixels(merged: true) { Clipboard.write(pixels, from: IntPoint(x: rect.x, y: rect.y)) }
         mainToolbar.validate()
     }
 
@@ -860,11 +860,17 @@ final class MainWindowController: NSWindowController, NSWindowDelegate, NSMenuIt
     }
 
     private func beginPaste(_ img: Surface, in ws: DocumentWorkspace) {
-        // Paste at the top-left of the visible area, like Paint.NET.
+        // Like Paint.NET: pixels copied in Brushwood go back where they were copied from, if any of that place is
+        // visible; otherwise (or for images from other apps) at the top-left of the visible area.
         let vis = canvas.visibleImageRect
-        let origin = IntPoint(x: max(0, Int(vis.minX.rounded(.up))), y: max(0, Int(vis.minY.rounded(.up))))
+        var origin = IntPoint(x: max(0, Int(vis.minX.rounded(.up))), y: max(0, Int(vis.minY.rounded(.up))))
+        if origin.x + img.width > ws.document.width { origin = IntPoint(x: 0, y: 0) }
+        if let copied = Clipboard.copiedOrigin(for: img.size),
+           CGRect(x: copied.x, y: copied.y, width: img.width, height: img.height).intersects(vis) {
+            origin = copied
+        }
         selectTool(.moveSelectedPixels)
-        (tool as? MoveSelectedPixelsTool)?.beginPaste(img, at: origin.x + img.width <= ws.document.width ? origin : IntPoint(x: 0, y: 0))
+        (tool as? MoveSelectedPixelsTool)?.beginPaste(img, at: origin)
     }
 
     @objc func pasteIntoNewLayer(_ sender: Any?) {
