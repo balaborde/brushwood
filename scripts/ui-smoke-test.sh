@@ -49,6 +49,17 @@ run panels "showpanels; expectpanels; panel:1400,900; expectpanels; panel:820,56
 run activelayer "menu:addLayer:; menu:addLayer:; menu:selectBottomLayer:; tool:pencil; color:FF0000; drag:10,10,10,30;
  wait:0.6; expectactivelayer:0; menu:selectLayerAbove:; expectactivelayer:1"
 
+# Moving pixels: drawn over the canvas while dragging (single layer), written straight into the layer when another
+# layer is above; both must give the same pixels, moved by whole pixels. Escape during a drag puts everything back.
+run movefast "select:10,10,20,20; color:FF0000; menu:fillSelection:; tool:moveSelectedPixels; drag:20,20,120.6,20.4;
+ expect:110,15,FFFFFF; expect:111,15,FF0000; expect:130,15,FF0000; expect:131,15,FFFFFF; expect:15,15,FF000000;
+ key:return; expecthistory:3;
+ select:200,200,10,10; menu:fillSelection:; tool:moveSelectedPixels; drag:205,205,305,205; key:escape;
+ expect:205,205,FF0000; expect:305,205,FFFFFF"
+run movelayers "menu:addLayer:; menu:selectLayerBelow:; select:10,10,20,20; color:FF0000; menu:fillSelection:;
+ tool:moveSelectedPixels; drag:20,20,120.6,20.4; expect:110,15,FFFFFF; expect:111,15,FF0000; expect:130,15,FF0000;
+ expect:131,15,FFFFFF; expect:15,15,FF000000"
+
 run move "select:10,10,20,20; color:FF0000; menu:fillSelection:; tool:moveSelectedPixels; drag:20,20,120,20; key:return;
  expect:115,15,FF0000; expect:15,15,FF000000; expectselection:110,10,20,20; menu:copy:; menu:deselect:; menu:paste:;
  key:return; expect:5,5,FF0000; menu:brushwoodUndo:; expect:5,5,FFFFFF; tool:moveSelection; select:200,200,50,50;

@@ -44,6 +44,26 @@ enum DebugScript {
                     send(c, .drag, CGPoint(x: a.x + (b.x - a.x) * t, y: a.y + (b.y - a.y) * t), right, mods)
                 }
                 send(c, .up, b, right, mods)
+            case "benchdrag" where nums.count >= 4:
+                // benchdrag:x0,y0,x1,y1[,steps] drags like a 120 Hz mouse, letting the window draw between steps as it
+                // does on screen, and prints the average time per step once done (tool work plus drawing).
+                let a = CGPoint(x: nums[0], y: nums[1]), b = CGPoint(x: nums[2], y: nums[3])
+                let steps = nums.count > 4 ? max(1, Int(nums[4])) : 30
+                let right = right, mods = mods
+                send(c, .down, a, right, mods)
+                var i = 0
+                let start = CFAbsoluteTimeGetCurrent()
+                let timer = Timer(timeInterval: 1.0 / 120, repeats: true) { timer in
+                    i += 1
+                    let t = CGFloat(i) / CGFloat(steps)
+                    send(c, .drag, CGPoint(x: a.x + (b.x - a.x) * t, y: a.y + (b.y - a.y) * t), right, mods)
+                    guard i == steps else { return }
+                    timer.invalidate()
+                    print(String(format: "BENCH %@: %.1f ms per step", arg, (CFAbsoluteTimeGetCurrent() - start) * 1000 / Double(steps)))
+                    fflush(stdout)
+                    send(c, .up, b, right, mods)
+                }
+                RunLoop.main.add(timer, forMode: .common)
             case "type":
                 (c.canvas.tool as? TextTool)?.insert(arg.replacingOccurrences(of: "\\n", with: "\n"))
             case "key":

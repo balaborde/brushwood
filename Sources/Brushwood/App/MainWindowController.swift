@@ -29,6 +29,10 @@ final class MainWindowController: NSWindowController, NSWindowDelegate, NSMenuIt
         let window = DropWindow(contentRect: NSRect(x: 0, y: 0, width: 1280, height: 820),
                               styleMask: [.titled, .closable, .miniaturizable, .resizable], backing: .buffered, defer: false)
         window.minSize = NSSize(width: 760, height: 480)
+        // The image is drawn as sRGB tiles. With an sRGB backing store they are copied as they are, and the window
+        // server converts the window to the display's colors on the GPU; otherwise CoreGraphics color-matches every
+        // tile on every redraw, which made dragging over large images slow.
+        window.colorSpace = .sRGB
         window.title = "Brushwood"
         window.setFrameAutosaveName("BrushwoodMainWindow")
         window.tabbingMode = .disallowed

@@ -42,6 +42,9 @@ class Tool {
     func keyUp(_ e: NSEvent) -> Bool { false }
     func flagsChanged(_ flags: NSEvent.ModifierFlags) {}
     func drawOverlay(_ ctx: CGContext) {}
+    /// Pixels drawn over the image and under the selection outline, in view coordinates and clipped to the image
+    /// (e.g. pixels being moved).
+    func drawContent(_ ctx: CGContext) {}
     func settingsChanged() {}
     func colorsChanged() {}
 

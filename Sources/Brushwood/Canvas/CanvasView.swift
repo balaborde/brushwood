@@ -124,8 +124,10 @@ final class CanvasView: NSView {
             self.needsDisplay = true
         })
         docObservers.append(nc.addObserver(forName: .documentSelectionChanged, object: doc, queue: .main) { [weak self] _ in
-            self?.selectionViewPath = nil
-            self?.needsDisplay = true
+            guard let self else { return }
+            selectionViewPath = nil
+            // A tool that moves the selection itself redraws only the area it changes.
+            if !redrawsSelectionChangesItself { needsDisplay = true }
         })
         zoom = ws.zoom
         updateFrame()
@@ -146,6 +148,12 @@ final class CanvasView: NSView {
 
     /// Amount of image that always stays visible when it is pushed against a window edge.
     let keepVisible: CGFloat = 48
+    /// Set by a tool that invalidates the canvas itself when it changes the selection (see the selection observer).
+    var redrawsSelectionChangesItself = false
+    /// Set by tools while they redraw the canvas continuously (see `draw`); a full redraw follows when it is cleared.
+    var isInteracting = false {
+        didSet { if oldValue && !isInteracting { needsDisplay = true } }
+    }
     /// Viewport size at the last `updateFrame`, to keep the same image point centered when the window is resized.
     private var lastVisibleSize: NSSize?
     /// Image point last kept at the viewport center, with the scroll position and zoom it was set for.
@@ -322,9 +330,15 @@ final class CanvasView: NSView {
         Checkerboard.patternColor.setFill()
         visible.fill()
 
-        // Tiles.
-        ctx.interpolationQuality = zoom >= 1 ? .none : .high
+        // Tiles. Zoomed out, high-quality reduction is redone on every redraw: while a tool redraws continuously
+        // (dragging pixels), the cheaper bilinear reduction is used, and the next redraw is high quality again.
+        ctx.interpolationQuality = zoom >= 1 ? .none : (isInteracting ? .medium : .high)
         ctx.setShouldAntialias(false)
+        // Zoomed out, tiles come from reduced copies at least as detailed as the screen (one level less detailed
+        // while a tool redraws continuously).
+        let device = zoom * (window?.backingScaleFactor ?? 2)
+        let exact = device >= 1 ? 0 : log2(1 / device)
+        let level = min(TileRenderer.maxLevel, max(0, Int(isInteracting ? ceil(exact - 0.1) : floor(exact))))
         let ts = CGFloat(TileRenderer.tileSize)
         let a = toImage(visible.origin), b = toImage(CGPoint(x: visible.maxX, y: visible.maxY))
         let tx0 = max(0, Int(floor(a.x / ts))), ty0 = max(0, Int(floor(a.y / ts)))
@@ -333,7 +347,7 @@ final class CanvasView: NSView {
         if tx1 >= tx0 && ty1 >= ty0 {
             for ty in ty0...ty1 {
                 for tx in tx0...tx1 {
-                    guard let img = renderer.image(tx, ty) else { continue }
+                    guard let img = renderer.image(tx, ty, level: level) else { continue }
                     var dest = toView(renderer.tileRect(tx, ty).cgRect)
                     dest = CGRect(x: round(dest.minX), y: round(dest.minY), width: round(dest.maxX) - round(dest.minX),
                                   height: round(dest.maxY) - round(dest.minY))
@@ -346,6 +360,12 @@ final class CanvasView: NSView {
             }
         }
         ctx.restoreGState()
+        if let tool {
+            ctx.saveGState()
+            ctx.clip(to: visible)
+            tool.drawContent(ctx)
+            ctx.restoreGState()
+        }
 
         if env.showPixelGrid && zoom >= 2 { drawPixelGrid(ctx, visible) }
         drawOverlays(ctx, dirtyRect)
