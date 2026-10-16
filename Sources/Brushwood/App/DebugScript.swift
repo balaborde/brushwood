@@ -5,6 +5,20 @@ import BrushwoodCore
 /// Example: `tool:paintbrush; color:FF0000; width:12; drag:50,50,300,200; key:return`
 enum DebugScript {
     private static var lastMark = CFAbsoluteTimeGetCurrent()
+    /// Layers list drag in progress: where the row was grabbed (below its top) and where the pointer is, in the table.
+    private static var layerGrab: (dy: CGFloat, pointer: NSPoint)?
+
+    /// Sends a mouse event to the Layers window, at a point of its list, as the window server would.
+    private static func sendLayersMouse(_ c: MainWindowController, _ type: NSEvent.EventType, _ p: NSPoint, clicks: Int = 1,
+                                        queued: Bool = false) {
+        let panel = c.layersPanel, table = c.layersPanel.table
+        guard let e = NSEvent.mouseEvent(with: type, location: table.convert(p, to: nil), modifierFlags: [],
+                                         timestamp: ProcessInfo.processInfo.systemUptime, windowNumber: panel.windowNumber,
+                                         context: nil, eventNumber: 0, clickCount: clicks, pressure: type == .leftMouseUp ? 0 : 1)
+        else { return }
+        // A queued event waits for whoever reads events next, like NSTableView's own click tracking.
+        if queued { NSApp.postEvent(e, atStart: false) } else { panel.sendEvent(e) }
+    }
 
     static func run(_ script: String, controller c: MainWindowController) {
         for raw in script.components(separatedBy: ";") {
@@ -168,6 +182,58 @@ enum DebugScript {
                 let b = c.active?.document.selection?.bounds ?? .null
                 report(!b.isNull && b.intersects(c.canvas.visibleImageRect),
                        "selection \(b) is visible in \(c.canvas.visibleImageRect)")
+            case "namelayer":
+                if let ws = c.active {
+                    var props = ws.document.activeLayer.properties
+                    props.name = arg
+                    ws.setLayerProperties(ws.document.activeLayerIndex, props)
+                }
+            case "expectlayernames":
+                // Bottom to top.
+                let names = c.active?.document.layers.map(\.name) ?? []
+                report(names == arg.split(separator: ",").map(String.init), "layers (bottom to top) = \(names.joined(separator: ",")), expected \(arg)")
+            case "layerpress" where nums.count >= 3:
+                // layerpress:row,dx,dy presses the mouse in the Layers list, dx, dy from the top left of that row.
+                let r = c.layersPanel.table.rect(ofRow: Int(nums[0]))
+                let p = NSPoint(x: r.minX + nums[1], y: r.minY + nums[2])
+                layerGrab = (CGFloat(nums[2]), p)
+                sendLayersMouse(c, .leftMouseDown, p)
+            case "layerclick" where !nums.isEmpty:
+                // layerclick:row[,clicks] clicks the middle of a row of the Layers list (clicks = 2 for a double-click).
+                let r = c.layersPanel.table.rect(ofRow: Int(nums[0]))
+                let p = NSPoint(x: r.midX, y: r.midY), clicks = nums.count > 1 ? Int(nums[1]) : 1
+                sendLayersMouse(c, .leftMouseUp, p, clicks: clicks, queued: true)
+                sendLayersMouse(c, .leftMouseDown, p, clicks: clicks)
+            case "layerdragto":
+                // layerdragto:row[,extra] drags in small steps until the grabbed row covers that row's place, plus
+                // `extra` points (to stop over the middle of a row, for example).
+                guard let g = layerGrab, let row = nums.first else { break }
+                let goal = c.layersPanel.table.rect(ofRow: Int(row)).minY + g.dy + (nums.count > 1 ? nums[1] : 0)
+                var y = g.pointer.y
+                while abs(goal - y) > 0.01 {
+                    y += max(-6, min(6, goal - y))
+                    sendLayersMouse(c, .leftMouseDragged, NSPoint(x: g.pointer.x, y: y))
+                }
+                layerGrab = (g.dy, NSPoint(x: g.pointer.x, y: y))
+            case "expectlayerlift":
+                // expectlayerlift:target checks the lifted row stays under the pointer where it was grabbed, would land
+                // on `target`, that the other rows made room for it, and that the pointer is a closed hand.
+                let t = c.layersPanel.table
+                guard let g = layerGrab, let s = t.debugLiftState() else {
+                    report(false, "no layer is lifted")
+                    break
+                }
+                let height = t.rect(ofRow: 0).height
+                let expectedTop = min(max(g.pointer.y - g.dy, 0), max(0, t.bounds.height - height))
+                report(abs(s.top - expectedTop) <= 0.5, "lifted row top \(s.top), expected \(expectedTop) (pointer \(g.pointer.y), grabbed \(g.dy) below its top)")
+                report(s.target == Int(nums.first ?? -1), "lifted row lands on row \(s.target), expected \(arg)")
+                report(s.misplacedRows.isEmpty, "rows not where they should have slid to: \(s.misplacedRows)")
+                report(s.closedHand, "pointer is a closed hand while a layer is lifted")
+            case "layerrelease":
+                if let g = layerGrab { sendLayersMouse(c, .leftMouseUp, g.pointer) }
+                layerGrab = nil
+                report(!c.layersPanel.table.isReordering && NSCursor.current !== NSCursor.closedHand,
+                       "layer dropped, pointer no longer a closed hand")
             case "expectimagecentered":
                 // The image's center is at the center of the viewport (within a point).
                 if let clip = c.canvas.clipView {

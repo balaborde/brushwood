@@ -66,6 +66,18 @@ run pasteplace "select:300,200,40,30; color:0000FF; menu:fillSelection:; menu:co
  expectselection:300,200,40,30; key:return; expectlayers:2; menu:deselect:; zoom:4; select:10,10,20,20; menu:copy:;
  menu:deselect:; menu:paste:; expectselectionvisible"
 
+# Dragging layers in the Layers window: the grabbed row stays under the pointer where it was grabbed, the other rows
+# make room for it (also with the pointer over the middle of a row), the pointer is a closed hand, and the order is
+# right after the drop. Rows show the top layer first: D, C, B, A.
+run layerdrag "showpanels; menu:addLayer:; menu:addLayer:; menu:addLayer:; menu:selectBottomLayer:; namelayer:A;
+ menu:selectLayerAbove:; namelayer:B; menu:selectLayerAbove:; namelayer:C; menu:selectLayerAbove:; namelayer:D;
+ layerpress:0,60,12; layerdragto:1,20; expectlayerlift:1; layerdragto:2; expectlayerlift:2; layerrelease;
+ expectlayernames:A,D,B,C; expectactivelayer:1;
+ layerpress:3,20,30; layerdragto:0; expectlayerlift:0; layerdragto:-1; expectlayerlift:0; layerrelease;
+ expectlayernames:D,B,C,A; expectactivelayer:3;
+ layerpress:2,60,20; layerdragto:2,8; expectlayerlift:2; layerrelease; expectlayernames:D,B,C,A;
+ layerclick:0; expectactivelayer:3; layerclick:2; expectactivelayer:1; expectlayernames:D,B,C,A"
+
 run move "select:10,10,20,20; color:FF0000; menu:fillSelection:; tool:moveSelectedPixels; drag:20,20,120,20; key:return;
  expect:115,15,FF0000; expect:15,15,FF000000; expectselection:110,10,20,20; menu:copy:; menu:deselect:; menu:paste:;
  expectselection:110,10,20,20; key:return; expect:5,5,FFFFFF; expect:115,15,FF0000; menu:brushwoodUndo:; expect:115,15,FF0000; tool:moveSelection; select:200,200,50,50;
