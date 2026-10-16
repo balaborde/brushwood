@@ -33,7 +33,7 @@ Add (union)|添加（并集）
 Add New Layer|添加新图层
 Add Noise|添加杂色
 Add a new layer and name it %@.|添加一个新图层，并将其命名为“%@”。
-Add a new layer named %@ and click Use These Colors for white. Choose the %@ tool, set the size to 64, click near the top and type %@. Press Return.|添加一个名为“%@”的新图层，然后点按“使用这些颜色”选用白色。选择“%@”工具，将大小设为 64，在顶部附近点按并输入“%@”。按下 Return 键。
+Add a new layer named %@ and click Use These Colors for white. Choose the %@ tool, set the size to 64, click near the top and type %@. Click Finish in the tool bar or press ⌘Return (Return alone starts a new line).|添加一个名为“%@”的新图层，然后点按“使用这些颜色”选用白色。选择“%@”工具，将大小设为 64，在顶部附近点按并输入“%@”。点按工具栏中的“完成”，或按下 ⌘Return（只按 Return 键会换行）。
 Add a new layer named %@, click Use These Colors, and with the %@ tool draw two or three small V shapes in the sky.|添加一个名为“%@”的新图层，点按“使用这些颜色”，然后用“%@”工具在天空中画两三个小小的 V 形。
 Add a title|加上标题
 Add birds|添加飞鸟
@@ -68,7 +68,6 @@ Back to %@|回到 %@
 Background|背景
 Backward Diagonal|反向对角线
 Basic|基本
-Before trying an effect, click the camera at the bottom of the History window: you can come back to this image at any time.|尝试效果之前，先点按历史记录窗口底部的相机按钮：之后随时都能回到这张图像。
 Best Quality|最佳质量
 Bicubic|双三次
 Bilinear|双线性
@@ -130,7 +129,7 @@ Choose %@: the copy becomes the reflection of the mountains.|选取 %@：副本�
 Choose the %@ tool and drag a circle about 120 pixels wide above the horizon, on the right; hold Shift to keep it round.|选择“%@”工具，在地平线上方右侧拖出一个宽约 120 像素的圆；按住 Shift 键可保持正圆。
 Choose the %@ tool and drag from the top of the image down to about two thirds of its height. Press Return to finish.|选择“%@”工具，从图像顶部向下拖到大约三分之二的高度。按下 Return 键完成。
 Choose the %@ tool and select from the foot of the mountains down to the bottom of the image, across its whole width.|选择“%@”工具，从山脚一直选到图像底部，横跨整个宽度。
-Choose the %@ tool, click inside the outline, and press Return.|选择“%@”工具，在轮廓内点按，然后按下 Return 键。
+Choose the %@ tool, click under the line, and press Return.|选择“%@”工具，在线条下方点按，然后按下 Return 键。
 Choose the %@ tool, pick %@ and %@ in the tool bar, then draw a few tall, narrow triangles standing on the shore. Press Return after each.|选择“%@”工具，在工具栏中选取“%@”和“%@”，然后画几个立在岸边的又高又窄的三角形。每画完一个按一次 Return 键。
 Choose the %@ tool. Start at the left edge, at about two thirds of the height, draw the peaks across to the right edge, then come back along the foot of the mountains to where you started.|选择“%@”工具。从左边缘约三分之二高度处开始，画出山峰直到右边缘，再沿山脚回到起点。
 Choose the Brushwood Plus features you want to use.|请选择要使用的 Brushwood Plus 功能。
@@ -138,10 +137,10 @@ Choose the sky colors|选择天空的颜色
 Clamp|钳制
 Clear Menu|清除菜单
 Click %@ at the bottom of the Layers window, then double-click the new layer and name it %@.|点按图层窗口底部的“%@”，然后连按新图层，并将其命名为“%@”。
-Click %@ so the copy goes above the %@ layer, then double-click it and lower its %@ to about 100.|点按“%@”让副本移到“%@”图层之上，然后连按它，把“%@”降到约 100。
+Click %@ so the copy goes above the %@ layer: the reflection now shows on the water.|点按“%@”让副本移到“%@”图层之上：倒影就会出现在水面上。
 Click Use These Colors for a dusky purple, choose %@, then %@.|点按“使用这些颜色”选用暮色紫，选取 %@，然后选取 %@。
 Click Use These Colors for a golden yellow, then choose %@.|点按“使用这些颜色”选用金黄色，然后选取 %@。
-Click Use These Colors for a very dark blue. With the %@ tool, draw around a shore in the bottom-left corner: from the left edge, over a low hill, down to the bottom edge, then back along the edges to where you started.|点按“使用这些颜色”选用很深的蓝色。用“%@”工具在左下角勾出一片岸边：从左边缘越过一座矮丘到底边，再沿着边缘回到起点。
+Click Use These Colors for a very dark blue. With the %@ tool, draw the line of a low hill in the bottom-left corner, from the left edge down to the bottom edge.|点按“使用这些颜色”选用很深的蓝色。用“%@”工具在左下角画一条矮丘的线，从左边缘一直画到底边。
 Click Use These Colors to paint in white, choose the %@ tool with a brush width of 3, and click here and there in the top of the sky: about ten stars.|点按“使用这些颜色”以白色绘画，选择画笔宽度为 3 的“%@”工具，在天空上部四处点按：大约十颗星星。
 Click Use These Colors, then with the %@ tool drag from the top of the selection down to the bottom of the image, and press Return.|点按“使用这些颜色”，然后用“%@”工具从选区顶部拖到图像底部，再按下 Return 键。
 Click Use These Colors: the primary color becomes a deep night blue and the secondary a warm orange. You can also click the color squares in the Colors window to pick your own.|点按“使用这些颜色”：主要颜色变成深邃的夜空蓝，次要颜色变成温暖的橙色。你也可以点按颜色窗口中的色块自己挑选。
@@ -244,6 +243,7 @@ Dotted Diamond|点线菱形
 Dotted Grid|点线网格
 Double Arrow|双箭头
 Double-click the %@ layer and set its %@ to %@: the glow now lightens the sky instead of covering it.|连按“%@”图层，将其“%@”设为“%@”：光晕现在会提亮天空，而不是遮住它。
+Double-click the copy in the Layers window and lower its %@ to about 100.|在图层窗口中连按副本，把“%@”降到约 100。
 Down Arrow|下箭头
 Down to the previous multiple of 5|减少到上一个 5 的倍数
 Download from GitHub|从 GitHub 下载
@@ -378,7 +378,7 @@ Image larger than canvas|图像大于画布
 Import From File|从文件导入
 Import From File…|从文件导入…
 In the Layers window, double-click the Background layer and name it %@.|在图层窗口中连按“背景”图层，并将其命名为“%@”。
-In this project you paint an evening lake, layer by layer, with most of the tools. A new 1200 × 800 image has been made for it. Each step says what to do and checks your image: once it is done, a check appears and Next goes on. You can skip any step.|在这个项目中，你将使用大部分工具，一层一层地画出黄昏的湖。为此已新建一张 1200 × 800 的图像。每一步都会说明要做什么，并检查你的图像：完成后会出现勾号，点按“下一步”继续。任何一步都可以跳过。
+In this project you paint this evening lake, layer by layer, with most of the tools. A new 1200 × 800 image has been made for it. Each step says what to do and checks your image: once it is done, a check appears and Next goes on. You can skip any step.|在这个项目中，你将使用大部分工具，一层一层地画出这幅黄昏的湖。为此已新建一张 1200 × 800 的图像。每一步都会说明要做什么，并检查你的图像：完成后会出现勾号，点按“下一步”继续。任何一步都可以跳过。
 Inches|英寸
 Ink Sketch|墨水素描
 Ink outline|墨水轮廓
@@ -454,6 +454,7 @@ Magnetic closing disabled|磁性闭合已关闭
 Magnetic closing enabled: a stroke released near its start joins it|磁性闭合已打开：在起点附近松开时，笔画会与起点相连
 Maintain aspect ratio|保持纵横比
 Make it glow|让它发光
+Make the reflection fainter|让倒影淡一些
 Mandelbrot Fractal|曼德博分形
 Manhattan|曼哈顿
 Maximum scatter radius|最大散射半径
@@ -762,6 +763,7 @@ The left mouse button paints with the primary color, the right one with the seco
 The paintbrush and all its settings.|画笔及其全部设置。
 The shape of the gradient: linear, reflected, diamond, radial, conical or spiral.|渐变的形状：线性、反射、菱形、径向、锥形或螺旋。
 The size of the brush, in pixels. The mouse wheel over the field and the [ and ] keys change it too.|画笔的大小，单位为像素。在栏位上滚动鼠标滚轮或按 [ 和 ] 键也能更改。
+The text stays editable until you click Finish or press ⌘Return; Return alone starts a new line.|在点按“完成”或按下 ⌘Return 之前，文本都可以编辑；只按 Return 键会换行。
 The toolbar, the tool options and the status bar.|主栏、工具选项和状态栏。
 The update could not be installed|无法安装更新
 These blend modes will be saved as Normal in the .pdn file: %@. Save as OpenRaster (.ora) to keep them.|这些混合模式在 .pdn 文件中将存储为“正常”：%@。若要保留它们，请存储为 OpenRaster (.ora)。
@@ -798,7 +800,7 @@ Triangle Repeat|三角波重复
 Turbulence|湍流
 Turn each Brushwood Plus feature on or off.|打开或关闭 Brushwood Plus 的各项功能。
 Turn its features on in Plus Features to follow this tour.|请在“Plus 功能”中打开相关功能以跟随此导览。
-Turn on Smoothing and Magnetic closing in the tool bar: the line is steadier, and it closes by itself when you come back near its start.|在工具栏中打开防抖和磁性闭合：线条更稳定，回到起点附近时还会自动闭合。
+Turn on Smoothing in the tool bar for a steadier line.|在工具栏中打开防抖，线条会更稳定。
 Turn the copy upside down|把副本上下翻转
 Tutorial|教程
 Tutorial…|教程…
@@ -840,6 +842,7 @@ Wrap|环绕
 Xor|异或
 You used layers and their properties, selections, gradients, effects, blend modes and the History window. Try other blend modes or opacities on the layers to change the mood.|你用到了图层及其属性、选区、渐变、效果、混合模式和历史记录窗口。试试给图层换上其他混合模式或不透明度，改变画面的氛围。
 Your evening lake is ready|你的黄昏之湖完成了
+Your sky is done: click the camera at the bottom of the History window to keep a snapshot of the image. Take one whenever you like before trying something: you can always come back to it.|天空完成了：点按历史记录窗口底部的相机按钮，保留图像的快照。在尝试新东西之前，随时都可以拍一张：之后总能回到那里。
 Zig Zag|之字形
 Zoom|缩放
 Zoom Amount|缩放量

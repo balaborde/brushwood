@@ -26,6 +26,9 @@ cp Resources/Info.plist "$APP/Contents/Info.plist"
 for lproj in Resources/*.lproj; do
     [ -d "$lproj" ] && cp -R "$lproj" "$APP/Contents/Resources/"
 done
+for picture in Resources/*.png; do
+    [ -f "$picture" ] && cp "$picture" "$APP/Contents/Resources/"
+done
 ICONSET="$(mktemp -d)/AppIcon.iconset"
 "$BIN" --render-icon "$ICONSET"
 iconutil -c icns "$ICONSET" -o "$APP/Contents/Resources/AppIcon.icns"

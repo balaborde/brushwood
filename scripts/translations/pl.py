@@ -33,7 +33,7 @@ Add (union)|Dodaj (suma)
 Add New Layer|Dodaj nową warstwę
 Add Noise|Dodaj szum
 Add a new layer and name it %@.|Dodaj nową warstwę i nazwij ją %@.
-Add a new layer named %@ and click Use These Colors for white. Choose the %@ tool, set the size to 64, click near the top and type %@. Press Return.|Dodaj nową warstwę o nazwie %@ i kliknij Użyj tych kolorów, aby wybrać biel. Wybierz narzędzie %@, ustaw rozmiar 64, kliknij blisko góry i wpisz %@. Naciśnij Return.
+Add a new layer named %@ and click Use These Colors for white. Choose the %@ tool, set the size to 64, click near the top and type %@. Click Finish in the tool bar or press ⌘Return (Return alone starts a new line).|Dodaj nową warstwę o nazwie %@ i kliknij Użyj tych kolorów, aby wybrać biel. Wybierz narzędzie %@, ustaw rozmiar 64, kliknij blisko góry i wpisz %@. Kliknij Zakończ na pasku narzędzi lub naciśnij ⌘Return (sam Return zaczyna nowy wiersz).
 Add a new layer named %@, click Use These Colors, and with the %@ tool draw two or three small V shapes in the sky.|Dodaj nową warstwę o nazwie %@, kliknij Użyj tych kolorów i narzędziem %@ narysuj na niebie dwa lub trzy małe kształty litery V.
 Add a title|Dodaj tytuł
 Add birds|Dodaj ptaki
@@ -68,7 +68,6 @@ Back to %@|Powrót do: %@
 Background|Tło
 Backward Diagonal|Ukośnie wstecz
 Basic|Podstawowe
-Before trying an effect, click the camera at the bottom of the History window: you can come back to this image at any time.|Zanim wypróbujesz efekt, kliknij aparat na dole okna Historia: w każdej chwili wrócisz do tego obrazu.
 Best Quality|Najlepsza jakość
 Bicubic|Dwusześcienna
 Bilinear|Dwuliniowa
@@ -130,7 +129,7 @@ Choose %@: the copy becomes the reflection of the mountains.|Wybierz %@: kopia s
 Choose the %@ tool and drag a circle about 120 pixels wide above the horizon, on the right; hold Shift to keep it round.|Wybierz narzędzie %@ i przeciągnij koło szerokie na około 120 pikseli nad horyzontem, po prawej; przytrzymaj Shift, aby było okrągłe.
 Choose the %@ tool and drag from the top of the image down to about two thirds of its height. Press Return to finish.|Wybierz narzędzie %@ i przeciągnij od góry obrazu do około dwóch trzecich jego wysokości. Naciśnij Return, aby zakończyć.
 Choose the %@ tool and select from the foot of the mountains down to the bottom of the image, across its whole width.|Wybierz narzędzie %@ i zaznacz obszar od podnóża gór do dołu obrazu, na całej jego szerokości.
-Choose the %@ tool, click inside the outline, and press Return.|Wybierz narzędzie %@, kliknij wewnątrz konturu i naciśnij Return.
+Choose the %@ tool, click under the line, and press Return.|Wybierz narzędzie %@, kliknij pod linią i naciśnij Return.
 Choose the %@ tool, pick %@ and %@ in the tool bar, then draw a few tall, narrow triangles standing on the shore. Press Return after each.|Wybierz narzędzie %@, ustaw na pasku narzędzi %@ i %@, a potem narysuj kilka wysokich, wąskich trójkątów stojących na brzegu. Po każdym naciśnij Return.
 Choose the %@ tool. Start at the left edge, at about two thirds of the height, draw the peaks across to the right edge, then come back along the foot of the mountains to where you started.|Wybierz narzędzie %@. Zacznij przy lewej krawędzi, na około dwóch trzecich wysokości, narysuj szczyty aż do prawej krawędzi, a potem wróć wzdłuż podnóża gór do punktu startu.
 Choose the Brushwood Plus features you want to use.|Wybierz funkcje Brushwood Plus, których chcesz używać.
@@ -138,10 +137,10 @@ Choose the sky colors|Wybierz kolory nieba
 Clamp|Ogranicz
 Clear Menu|Wymaż menu
 Click %@ at the bottom of the Layers window, then double-click the new layer and name it %@.|Kliknij %@ na dole okna Warstwy, a potem kliknij dwukrotnie nową warstwę i nazwij ją %@.
-Click %@ so the copy goes above the %@ layer, then double-click it and lower its %@ to about 100.|Kliknij %@, aby kopia znalazła się nad warstwą %@, a potem kliknij ją dwukrotnie i zmniejsz %@ do około 100.
+Click %@ so the copy goes above the %@ layer: the reflection now shows on the water.|Kliknij %@, aby kopia znalazła się nad warstwą %@: odbicie pojawia się teraz na wodzie.
 Click Use These Colors for a dusky purple, choose %@, then %@.|Kliknij Użyj tych kolorów, aby wybrać zmierzchowy fiolet, wybierz %@, a potem %@.
 Click Use These Colors for a golden yellow, then choose %@.|Kliknij Użyj tych kolorów, aby wybrać złocistą żółć, a potem wybierz %@.
-Click Use These Colors for a very dark blue. With the %@ tool, draw around a shore in the bottom-left corner: from the left edge, over a low hill, down to the bottom edge, then back along the edges to where you started.|Kliknij Użyj tych kolorów, aby wybrać bardzo ciemny niebieski. Narzędziem %@ obrysuj brzeg w lewym dolnym rogu: od lewej krawędzi, przez niskie wzgórze, do dolnej krawędzi, a potem wzdłuż krawędzi z powrotem do punktu startu.
+Click Use These Colors for a very dark blue. With the %@ tool, draw the line of a low hill in the bottom-left corner, from the left edge down to the bottom edge.|Kliknij Użyj tych kolorów, aby wybrać bardzo ciemny niebieski. Narzędziem %@ narysuj linię niskiego wzgórza w lewym dolnym rogu, od lewej krawędzi do dolnej.
 Click Use These Colors to paint in white, choose the %@ tool with a brush width of 3, and click here and there in the top of the sky: about ten stars.|Kliknij Użyj tych kolorów, aby malować na biało, wybierz narzędzie %@ z szerokością pędzla 3 i klikaj tu i tam w górnej części nieba: około dziesięciu gwiazd.
 Click Use These Colors, then with the %@ tool drag from the top of the selection down to the bottom of the image, and press Return.|Kliknij Użyj tych kolorów, a potem narzędziem %@ przeciągnij od góry zaznaczenia do dołu obrazu i naciśnij Return.
 Click Use These Colors: the primary color becomes a deep night blue and the secondary a warm orange. You can also click the color squares in the Colors window to pick your own.|Kliknij Użyj tych kolorów: kolor główny staje się głębokim granatem nocy, a dodatkowy ciepłym pomarańczem. Możesz też kliknąć kwadraty kolorów w oknie Kolory, aby wybrać własne.
@@ -244,6 +243,7 @@ Dotted Diamond|Romby kropkowane
 Dotted Grid|Siatka kropkowana
 Double Arrow|Podwójna strzałka
 Double-click the %@ layer and set its %@ to %@: the glow now lightens the sky instead of covering it.|Kliknij dwukrotnie warstwę %@ i ustaw %@ na %@: poświata rozjaśnia teraz niebo, zamiast je zakrywać.
+Double-click the copy in the Layers window and lower its %@ to about 100.|Kliknij dwukrotnie kopię w oknie Warstwy i zmniejsz %@ do około 100.
 Down Arrow|Strzałka w dół
 Down to the previous multiple of 5|W dół do poprzedniej wielokrotności 5
 Download from GitHub|Pobierz z GitHuba
@@ -378,7 +378,7 @@ Image larger than canvas|Obraz większy niż płótno
 Import From File|Importuj z pliku
 Import From File…|Importuj z pliku…
 In the Layers window, double-click the Background layer and name it %@.|W oknie Warstwy kliknij dwukrotnie warstwę Tło i nazwij ją %@.
-In this project you paint an evening lake, layer by layer, with most of the tools. A new 1200 × 800 image has been made for it. Each step says what to do and checks your image: once it is done, a check appears and Next goes on. You can skip any step.|W tym projekcie malujesz jezioro o zmierzchu, warstwa po warstwie, większością narzędzi. Utworzono do tego nowy obraz 1200 × 800. Każdy krok mówi, co zrobić, i sprawdza obraz: gdy krok jest gotowy, pojawia się znacznik, a Dalej przechodzi dalej. Każdy krok możesz pominąć.
+In this project you paint this evening lake, layer by layer, with most of the tools. A new 1200 × 800 image has been made for it. Each step says what to do and checks your image: once it is done, a check appears and Next goes on. You can skip any step.|W tym projekcie malujesz to jezioro o zmierzchu, warstwa po warstwie, większością narzędzi. Utworzono do tego nowy obraz 1200 × 800. Każdy krok mówi, co zrobić, i sprawdza obraz: gdy krok jest gotowy, pojawia się znacznik, a Dalej przechodzi dalej. Każdy krok możesz pominąć.
 Inches|Cale
 Ink Sketch|Szkic tuszem
 Ink outline|Kontur tuszem
@@ -454,6 +454,7 @@ Magnetic closing disabled|Domykanie magnetyczne wyłączone
 Magnetic closing enabled: a stroke released near its start joins it|Domykanie magnetyczne włączone: pociągnięcie zwolnione blisko początku łączy się z nim
 Maintain aspect ratio|Zachowaj proporcje
 Make it glow|Rozświetl je
+Make the reflection fainter|Osłab odbicie
 Mandelbrot Fractal|Fraktal Mandelbrota
 Manhattan|Manhattan
 Maximum scatter radius|Maksymalny promień rozproszenia
@@ -762,6 +763,7 @@ The left mouse button paints with the primary color, the right one with the seco
 The paintbrush and all its settings.|Pędzel i wszystkie jego ustawienia.
 The shape of the gradient: linear, reflected, diamond, radial, conical or spiral.|Kształt gradientu: liniowy, odbity, rombowy, promienisty, stożkowy lub spiralny.
 The size of the brush, in pixels. The mouse wheel over the field and the [ and ] keys change it too.|Rozmiar pędzla w pikselach. Zmienia go też kółko myszy nad polem oraz klawisze [ i ].
+The text stays editable until you click Finish or press ⌘Return; Return alone starts a new line.|Tekst można edytować, dopóki nie klikniesz Zakończ lub nie naciśniesz ⌘Return; sam Return zaczyna nowy wiersz.
 The toolbar, the tool options and the status bar.|Pasek główny, opcje narzędzia i pasek stanu.
 The update could not be installed|Nie można zainstalować uaktualnienia
 These blend modes will be saved as Normal in the .pdn file: %@. Save as OpenRaster (.ora) to keep them.|Te tryby mieszania zostaną zapisane w pliku .pdn jako Normalny: %@. Użyj formatu OpenRaster (.ora), aby ich nie utracić.
@@ -798,7 +800,7 @@ Triangle Repeat|Powtarzanie trójkątne
 Turbulence|Turbulencja
 Turn each Brushwood Plus feature on or off.|Włączać i wyłączać każdą funkcję Brushwood Plus.
 Turn its features on in Plus Features to follow this tour.|Włącz jego funkcje w Funkcjach Plus, aby przejść ten przewodnik.
-Turn on Smoothing and Magnetic closing in the tool bar: the line is steadier, and it closes by itself when you come back near its start.|Włącz na pasku narzędzi stabilizację i domykanie magnetyczne: linia jest pewniejsza i domyka się sama, gdy wrócisz blisko jej początku.
+Turn on Smoothing in the tool bar for a steadier line.|Włącz stabilizację na pasku narzędzi, aby linia była pewniejsza.
 Turn the copy upside down|Odwróć kopię
 Tutorial|Samouczek
 Tutorial…|Samouczek…
@@ -840,6 +842,7 @@ Wrap|Zawijanie
 Xor|Xor
 You used layers and their properties, selections, gradients, effects, blend modes and the History window. Try other blend modes or opacities on the layers to change the mood.|W tym projekcie wykorzystano warstwy i ich właściwości, zaznaczenia, gradienty, efekty, tryby mieszania i okno Historia. Wypróbuj inne tryby mieszania lub krycie warstw, aby zmienić nastrój.
 Your evening lake is ready|Twoje jezioro o zmierzchu jest gotowe
+Your sky is done: click the camera at the bottom of the History window to keep a snapshot of the image. Take one whenever you like before trying something: you can always come back to it.|Niebo jest gotowe: kliknij aparat na dole okna Historia, aby zachować migawkę obrazu. Rób je, kiedy chcesz, zanim coś wypróbujesz: zawsze możesz do nich wrócić.
 Zig Zag|Zygzak
 Zoom|Powiększenie
 Zoom Amount|Siła powiększenia

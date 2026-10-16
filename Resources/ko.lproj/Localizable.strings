@@ -32,7 +32,7 @@
 "Add New Layer" = "새 레이어 추가";
 "Add Noise" = "노이즈 추가";
 "Add a new layer and name it %@." = "새 레이어를 추가하고 이름을 %@(으)로 지정하십시오.";
-"Add a new layer named %@ and click Use These Colors for white. Choose the %@ tool, set the size to 64, click near the top and type %@. Press Return." = "%@ 레이어를 새로 추가하고 이 색상 사용을 클릭해 흰색으로 하십시오. %@ 도구를 선택하고 크기를 64로 설정한 다음 위쪽 근처를 클릭하고 %@을(를) 입력하십시오. Return 키를 누르십시오.";
+"Add a new layer named %@ and click Use These Colors for white. Choose the %@ tool, set the size to 64, click near the top and type %@. Click Finish in the tool bar or press ⌘Return (Return alone starts a new line)." = "%@ 레이어를 새로 추가하고 이 색상 사용을 클릭해 흰색으로 하십시오. %@ 도구를 선택하고 크기를 64로 설정한 다음 위쪽 근처를 클릭하고 %@을(를) 입력하십시오. 도구 막대에서 완료를 클릭하거나 ⌘Return을 누르십시오(Return 키만 누르면 줄이 바뀝니다).";
 "Add a new layer named %@, click Use These Colors, and with the %@ tool draw two or three small V shapes in the sky." = "%@ 레이어를 새로 추가하고 이 색상 사용을 클릭한 다음 %@ 도구로 하늘에 작은 V자 모양을 두세 개 그리십시오.";
 "Add a title" = "제목 넣기";
 "Add birds" = "새 그리기";
@@ -67,7 +67,6 @@
 "Background" = "배경";
 "Backward Diagonal" = "역방향 대각선";
 "Basic" = "기본";
-"Before trying an effect, click the camera at the bottom of the History window: you can come back to this image at any time." = "효과를 시험하기 전에 기록 창 아래의 카메라를 클릭하십시오. 언제든 이 이미지로 돌아올 수 있습니다.";
 "Best Quality" = "최고 품질";
 "Bicubic" = "바이큐빅";
 "Bilinear" = "바이리니어";
@@ -129,7 +128,7 @@
 "Choose the %@ tool and drag a circle about 120 pixels wide above the horizon, on the right; hold Shift to keep it round." = "%@ 도구를 선택하고 지평선 위 오른쪽에 너비 120픽셀 정도의 원을 끄십시오. Shift 키를 누르고 있으면 둥근 모양이 유지됩니다.";
 "Choose the %@ tool and drag from the top of the image down to about two thirds of its height. Press Return to finish." = "%@ 도구를 선택하고 이미지 위쪽에서 높이의 3분의 2 정도까지 아래로 끄십시오. Return 키를 눌러 마무리하십시오.";
 "Choose the %@ tool and select from the foot of the mountains down to the bottom of the image, across its whole width." = "%@ 도구를 선택하고 산기슭부터 이미지 아래쪽까지 전체 너비로 선택하십시오.";
-"Choose the %@ tool, click inside the outline, and press Return." = "%@ 도구를 선택하고 윤곽선 안쪽을 클릭한 다음 Return 키를 누르십시오.";
+"Choose the %@ tool, click under the line, and press Return." = "%@ 도구를 선택하고 선 아래를 클릭한 다음 Return 키를 누르십시오.";
 "Choose the %@ tool, pick %@ and %@ in the tool bar, then draw a few tall, narrow triangles standing on the shore. Press Return after each." = "%@ 도구를 선택하고 도구 막대에서 %@와(과) %@을(를) 고른 다음 물가에 선 높고 좁은 삼각형을 몇 개 그리십시오. 하나 그릴 때마다 Return 키를 누르십시오.";
 "Choose the %@ tool. Start at the left edge, at about two thirds of the height, draw the peaks across to the right edge, then come back along the foot of the mountains to where you started." = "%@ 도구를 선택하십시오. 높이의 3분의 2 정도인 왼쪽 가장자리에서 시작해 오른쪽 가장자리까지 봉우리를 그린 다음 산기슭을 따라 시작점으로 돌아오십시오.";
 "Choose the Brushwood Plus features you want to use." = "사용할 Brushwood Plus 기능을 선택하십시오.";
@@ -137,10 +136,10 @@
 "Clamp" = "고정";
 "Clear Menu" = "메뉴 지우기";
 "Click %@ at the bottom of the Layers window, then double-click the new layer and name it %@." = "레이어 창 아래의 %@을(를) 클릭한 다음 새 레이어를 이중 클릭하고 이름을 %@(으)로 지정하십시오.";
-"Click %@ so the copy goes above the %@ layer, then double-click it and lower its %@ to about 100." = "%@을(를) 클릭해 사본을 %@ 레이어 위로 올린 다음 이중 클릭하고 %@을(를) 100 정도로 낮추십시오.";
+"Click %@ so the copy goes above the %@ layer: the reflection now shows on the water." = "%@을(를) 클릭해 사본을 %@ 레이어 위로 올리십시오. 이제 물 위에 반영이 나타납니다.";
 "Click Use These Colors for a dusky purple, choose %@, then %@." = "이 색상 사용을 클릭해 어스름한 보라색으로 하고 %@을(를) 선택한 다음 %@을(를) 선택하십시오.";
 "Click Use These Colors for a golden yellow, then choose %@." = "이 색상 사용을 클릭해 금빛 노란색으로 한 다음 %@을(를) 선택하십시오.";
-"Click Use These Colors for a very dark blue. With the %@ tool, draw around a shore in the bottom-left corner: from the left edge, over a low hill, down to the bottom edge, then back along the edges to where you started." = "이 색상 사용을 클릭해 아주 어두운 파란색으로 하십시오. %@ 도구로 왼쪽 아래 구석에 물가의 윤곽을 그리십시오. 왼쪽 가장자리에서 낮은 언덕을 넘어 아래쪽 가장자리까지 간 다음 가장자리를 따라 시작점으로 돌아오십시오.";
+"Click Use These Colors for a very dark blue. With the %@ tool, draw the line of a low hill in the bottom-left corner, from the left edge down to the bottom edge." = "이 색상 사용을 클릭해 아주 어두운 파란색으로 하십시오. %@ 도구로 왼쪽 아래 구석에 낮은 언덕의 선을 왼쪽 가장자리에서 아래쪽 가장자리까지 그리십시오.";
 "Click Use These Colors to paint in white, choose the %@ tool with a brush width of 3, and click here and there in the top of the sky: about ten stars." = "이 색상 사용을 클릭해 흰색으로 칠하고, 브러시 너비 3으로 %@ 도구를 선택한 다음 하늘 위쪽 여기저기를 클릭하십시오. 별은 열 개 정도입니다.";
 "Click Use These Colors, then with the %@ tool drag from the top of the selection down to the bottom of the image, and press Return." = "이 색상 사용을 클릭한 다음 %@ 도구로 선택 영역의 위쪽에서 이미지 아래쪽까지 끌고 Return 키를 누르십시오.";
 "Click Use These Colors: the primary color becomes a deep night blue and the secondary a warm orange. You can also click the color squares in the Colors window to pick your own." = "이 색상 사용을 클릭하면 기본 색상은 깊은 밤하늘 파란색, 보조 색상은 따뜻한 주황색이 됩니다. 색상 창의 색상 칸을 클릭해 직접 고를 수도 있습니다.";
@@ -243,6 +242,7 @@
 "Dotted Grid" = "점선 격자";
 "Double Arrow" = "양방향 화살표";
 "Double-click the %@ layer and set its %@ to %@: the glow now lightens the sky instead of covering it." = "%@ 레이어를 이중 클릭하고 %@을(를) %@(으)로 설정하십시오. 이제 빛이 하늘을 덮지 않고 밝게 만듭니다.";
+"Double-click the copy in the Layers window and lower its %@ to about 100." = "레이어 창에서 사본을 이중 클릭하고 %@을(를) 100 정도로 낮추십시오.";
 "Down Arrow" = "아래쪽 화살표";
 "Down to the previous multiple of 5" = "이전 5의 배수로 내리기";
 "Download from GitHub" = "GitHub에서 다운로드";
@@ -377,7 +377,7 @@
 "Import From File" = "파일에서 가져오기";
 "Import From File…" = "파일에서 가져오기…";
 "In the Layers window, double-click the Background layer and name it %@." = "레이어 창에서 배경 레이어를 이중 클릭하고 이름을 %@(으)로 지정하십시오.";
-"In this project you paint an evening lake, layer by layer, with most of the tools. A new 1200 × 800 image has been made for it. Each step says what to do and checks your image: once it is done, a check appears and Next goes on. You can skip any step." = "이 프로젝트에서는 대부분의 도구를 사용해 저녁 호수를 레이어별로 그립니다. 이를 위해 1200 × 800 크기의 새 이미지가 만들어졌습니다. 각 단계에서 할 일을 알려 주고 이미지를 확인합니다. 단계를 마치면 체크 표시가 나타나고 다음으로 넘어갈 수 있습니다. 어떤 단계든 건너뛸 수 있습니다.";
+"In this project you paint this evening lake, layer by layer, with most of the tools. A new 1200 × 800 image has been made for it. Each step says what to do and checks your image: once it is done, a check appears and Next goes on. You can skip any step." = "이 프로젝트에서는 대부분의 도구를 사용해 이 저녁 호수를 레이어별로 그립니다. 이를 위해 1200 × 800 크기의 새 이미지가 만들어졌습니다. 각 단계에서 할 일을 알려 주고 이미지를 확인합니다. 단계를 마치면 체크 표시가 나타나고 다음으로 넘어갈 수 있습니다. 어떤 단계든 건너뛸 수 있습니다.";
 "Inches" = "인치";
 "Ink Sketch" = "잉크 스케치";
 "Ink outline" = "잉크 윤곽";
@@ -453,6 +453,7 @@
 "Magnetic closing enabled: a stroke released near its start joins it" = "자석 닫기 켬: 시작점 근처에서 놓으면 획이 시작점에 이어집니다";
 "Maintain aspect ratio" = "가로세로 비율 유지";
 "Make it glow" = "빛나게 하기";
+"Make the reflection fainter" = "반영 흐리게 하기";
 "Mandelbrot Fractal" = "망델브로 프랙탈";
 "Manhattan" = "맨해튼";
 "Maximum scatter radius" = "최대 분산 반경";
@@ -761,6 +762,7 @@
 "The paintbrush and all its settings." = "페인트 브러시와 모든 설정.";
 "The shape of the gradient: linear, reflected, diamond, radial, conical or spiral." = "그라디언트의 모양: 선형, 반사, 다이아몬드, 방사형, 원뿔형, 나선형.";
 "The size of the brush, in pixels. The mouse wheel over the field and the [ and ] keys change it too." = "브러시 크기(픽셀)입니다. 필드 위에서 마우스 휠을 굴리거나 [ 및 ] 키를 눌러도 바뀝니다.";
+"The text stays editable until you click Finish or press ⌘Return; Return alone starts a new line." = "텍스트는 완료를 클릭하거나 ⌘Return을 누를 때까지 편집할 수 있습니다. Return 키만 누르면 줄이 바뀝니다.";
 "The toolbar, the tool options and the status bar." = "기본 막대, 도구 옵션, 상태 막대.";
 "The update could not be installed" = "업데이트를 설치할 수 없음";
 "These blend modes will be saved as Normal in the .pdn file: %@. Save as OpenRaster (.ora) to keep them." = "다음 혼합 모드는 .pdn 파일에 표준으로 저장됩니다: %@. 유지하려면 OpenRaster(.ora)로 저장하십시오.";
@@ -797,7 +799,7 @@
 "Turbulence" = "난류";
 "Turn each Brushwood Plus feature on or off." = "Brushwood Plus의 각 기능을 켜거나 끕니다.";
 "Turn its features on in Plus Features to follow this tour." = "이 투어를 보려면 Plus 기능에서 해당 기능을 켜십시오.";
-"Turn on Smoothing and Magnetic closing in the tool bar: the line is steadier, and it closes by itself when you come back near its start." = "도구 막대에서 손떨림 보정과 자석 닫기를 켜십시오. 선이 안정되고 시작점 근처로 돌아오면 저절로 닫힙니다.";
+"Turn on Smoothing in the tool bar for a steadier line." = "도구 막대에서 손떨림 보정을 켜면 선이 더 안정됩니다.";
 "Turn the copy upside down" = "사본 뒤집기";
 "Tutorial" = "튜토리얼";
 "Tutorial…" = "튜토리얼…";
@@ -839,6 +841,7 @@
 "Xor" = "Xor";
 "You used layers and their properties, selections, gradients, effects, blend modes and the History window. Try other blend modes or opacities on the layers to change the mood." = "레이어와 속성, 선택 영역, 그라디언트, 효과, 혼합 모드, 기록 창을 사용했습니다. 레이어의 혼합 모드나 불투명도를 바꿔 분위기를 바꿔 보십시오.";
 "Your evening lake is ready" = "저녁 호수가 완성되었습니다";
+"Your sky is done: click the camera at the bottom of the History window to keep a snapshot of the image. Take one whenever you like before trying something: you can always come back to it." = "하늘이 완성되었습니다. 기록 창 아래의 카메라를 클릭해 이미지의 스냅샷을 남기십시오. 무언가를 시험하기 전에 언제든 남겨 두면 언제나 그 상태로 돌아올 수 있습니다.";
 "Zig Zag" = "지그재그";
 "Zoom" = "확대/축소";
 "Zoom Amount" = "확대/축소 양";

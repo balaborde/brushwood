@@ -32,7 +32,7 @@
 "Add New Layer" = "新規レイヤーを追加";
 "Add Noise" = "ノイズを加える";
 "Add a new layer and name it %@." = "新しいレイヤーを追加し、名前を「%@」にします。";
-"Add a new layer named %@ and click Use These Colors for white. Choose the %@ tool, set the size to 64, click near the top and type %@. Press Return." = "新しいレイヤー「%@」を追加し、「これらのカラーを使う」をクリックして白にします。%@ ツールを選び、サイズを 64 にして上の方をクリックし、「%@」と入力します。Return キーを押します。";
+"Add a new layer named %@ and click Use These Colors for white. Choose the %@ tool, set the size to 64, click near the top and type %@. Click Finish in the tool bar or press ⌘Return (Return alone starts a new line)." = "新しいレイヤー「%@」を追加し、「これらのカラーを使う」をクリックして白にします。%@ ツールを選び、サイズを 64 にして上の方をクリックし、「%@」と入力します。ツールバーの「確定」をクリックするか ⌘Return を押します（Return キーだけでは改行になります）。";
 "Add a new layer named %@, click Use These Colors, and with the %@ tool draw two or three small V shapes in the sky." = "新しいレイヤー「%@」を追加し、「これらのカラーを使う」をクリックして、%@ ツールで空に小さな V の形を 2〜3 個描きます。";
 "Add a title" = "タイトルを入れる";
 "Add birds" = "鳥を描く";
@@ -67,7 +67,6 @@
 "Background" = "背景";
 "Backward Diagonal" = "逆斜線";
 "Basic" = "基本";
-"Before trying an effect, click the camera at the bottom of the History window: you can come back to this image at any time." = "エフェクトを試す前に、ヒストリーウインドウ下部のカメラをクリックしましょう。いつでもこの画像に戻れます。";
 "Best Quality" = "最高品質";
 "Bicubic" = "バイキュービック";
 "Bilinear" = "バイリニア";
@@ -129,7 +128,7 @@
 "Choose the %@ tool and drag a circle about 120 pixels wide above the horizon, on the right; hold Shift to keep it round." = "%@ ツールを選び、地平線の上の右側に、幅 120 ピクセルくらいの円をドラッグします。Shift キーを押したままにすると正円になります。";
 "Choose the %@ tool and drag from the top of the image down to about two thirds of its height. Press Return to finish." = "%@ ツールを選び、画像の上端から高さの 3 分の 2 くらいまで下へドラッグします。Return キーを押して確定します。";
 "Choose the %@ tool and select from the foot of the mountains down to the bottom of the image, across its whole width." = "%@ ツールを選び、山のふもとから画像の下端まで、幅いっぱいに選択します。";
-"Choose the %@ tool, click inside the outline, and press Return." = "%@ ツールを選び、輪郭の内側をクリックして Return キーを押します。";
+"Choose the %@ tool, click under the line, and press Return." = "%@ ツールを選び、線の下をクリックして Return キーを押します。";
 "Choose the %@ tool, pick %@ and %@ in the tool bar, then draw a few tall, narrow triangles standing on the shore. Press Return after each." = "%@ ツールを選び、ツールバーで %@ と %@ を選んで、岸に立つ細長い三角形をいくつか描きます。1 つ描くごとに Return キーを押します。";
 "Choose the %@ tool. Start at the left edge, at about two thirds of the height, draw the peaks across to the right edge, then come back along the foot of the mountains to where you started." = "%@ ツールを選びます。左端の高さ 3 分の 2 くらいから始めて、右端まで山頂を描き、山のふもとに沿って始点まで戻ります。";
 "Choose the Brushwood Plus features you want to use." = "使う Brushwood Plus の機能を選んでください。";
@@ -137,10 +136,10 @@
 "Clamp" = "端を延長";
 "Clear Menu" = "メニューを消去";
 "Click %@ at the bottom of the Layers window, then double-click the new layer and name it %@." = "レイヤーウインドウ下部の %@ をクリックし、新しいレイヤーをダブルクリックして名前を「%@」にします。";
-"Click %@ so the copy goes above the %@ layer, then double-click it and lower its %@ to about 100." = "%@ をクリックしてコピーを「%@」レイヤーの上に移し、ダブルクリックして %@ を 100 くらいに下げます。";
+"Click %@ so the copy goes above the %@ layer: the reflection now shows on the water." = "%@ をクリックしてコピーを「%@」レイヤーの上に移します。水面に映り込みが現れます。";
 "Click Use These Colors for a dusky purple, choose %@, then %@." = "「これらのカラーを使う」をクリックして夕暮れの紫にし、%@ を選んでから %@ を選びます。";
 "Click Use These Colors for a golden yellow, then choose %@." = "「これらのカラーを使う」をクリックして黄金色にし、%@ を選びます。";
-"Click Use These Colors for a very dark blue. With the %@ tool, draw around a shore in the bottom-left corner: from the left edge, over a low hill, down to the bottom edge, then back along the edges to where you started." = "「これらのカラーを使う」をクリックしてごく暗い青にします。%@ ツールで、左下の隅に岸の輪郭を描きます。左端から低い丘を越えて下端まで行き、端に沿って始点まで戻ります。";
+"Click Use These Colors for a very dark blue. With the %@ tool, draw the line of a low hill in the bottom-left corner, from the left edge down to the bottom edge." = "「これらのカラーを使う」をクリックしてごく暗い青にします。%@ ツールで、左下の隅に低い丘の線を、左端から下端まで描きます。";
 "Click Use These Colors to paint in white, choose the %@ tool with a brush width of 3, and click here and there in the top of the sky: about ten stars." = "「これらのカラーを使う」をクリックして白で描けるようにし、%@ ツールをブラシの幅 3 で選んで、空の上の方をあちこちクリックします。星は 10 個くらいです。";
 "Click Use These Colors, then with the %@ tool drag from the top of the selection down to the bottom of the image, and press Return." = "「これらのカラーを使う」をクリックし、%@ ツールで選択範囲の上端から画像の下端までドラッグして Return キーを押します。";
 "Click Use These Colors: the primary color becomes a deep night blue and the secondary a warm orange. You can also click the color squares in the Colors window to pick your own." = "「これらのカラーを使う」をクリックすると、プライマリカラーが深い夜空の青に、セカンダリカラーが暖かいオレンジになります。カラーウインドウの四角をクリックして自分で選ぶこともできます。";
@@ -243,6 +242,7 @@
 "Dotted Grid" = "点線のグリッド";
 "Double Arrow" = "両矢印";
 "Double-click the %@ layer and set its %@ to %@: the glow now lightens the sky instead of covering it." = "「%@」レイヤーをダブルクリックし、%@ を %@ にします。光が空を覆うのではなく明るくするようになります。";
+"Double-click the copy in the Layers window and lower its %@ to about 100." = "レイヤーウインドウでコピーをダブルクリックし、%@ を 100 くらいに下げます。";
 "Down Arrow" = "下矢印";
 "Down to the previous multiple of 5" = "前の 5 の倍数に下げる";
 "Download from GitHub" = "GitHub からダウンロード";
@@ -377,7 +377,7 @@
 "Import From File" = "ファイルから読み込む";
 "Import From File…" = "ファイルから読み込む…";
 "In the Layers window, double-click the Background layer and name it %@." = "レイヤーウインドウで「背景」レイヤーをダブルクリックし、名前を「%@」にします。";
-"In this project you paint an evening lake, layer by layer, with most of the tools. A new 1200 × 800 image has been made for it. Each step says what to do and checks your image: once it is done, a check appears and Next goes on. You can skip any step." = "このプロジェクトでは、ほとんどのツールを使って、夕暮れの湖をレイヤーごとに描きます。そのための 1200 × 800 の新しい画像が作られています。各ステップでやることが示され、画像がチェックされます。完了するとチェックマークが表示され、「次へ」で進めます。どのステップも飛ばせます。";
+"In this project you paint this evening lake, layer by layer, with most of the tools. A new 1200 × 800 image has been made for it. Each step says what to do and checks your image: once it is done, a check appears and Next goes on. You can skip any step." = "このプロジェクトでは、ほとんどのツールを使って、この夕暮れの湖をレイヤーごとに描きます。そのための 1200 × 800 の新しい画像が作られています。各ステップでやることが示され、画像がチェックされます。完了するとチェックマークが表示され、「次へ」で進めます。どのステップも飛ばせます。";
 "Inches" = "インチ";
 "Ink Sketch" = "インクスケッチ";
 "Ink outline" = "インクの輪郭";
@@ -453,6 +453,7 @@
 "Magnetic closing enabled: a stroke released near its start joins it" = "始点に吸着：オン（始点の近くで離すとストロークが始点につながります）";
 "Maintain aspect ratio" = "縦横比を保持";
 "Make it glow" = "光らせる";
+"Make the reflection fainter" = "映り込みを薄くする";
 "Mandelbrot Fractal" = "マンデルブロ集合";
 "Manhattan" = "マンハッタン";
 "Maximum scatter radius" = "最大散乱半径";
@@ -761,6 +762,7 @@
 "The paintbrush and all its settings." = "ブラシとそのすべての設定。";
 "The shape of the gradient: linear, reflected, diamond, radial, conical or spiral." = "グラデーションの形：線形、反射、ダイヤモンド、円形、円錐形、らせん。";
 "The size of the brush, in pixels. The mouse wheel over the field and the [ and ] keys change it too." = "ブラシのサイズ（ピクセル）。フィールド上のマウスホイールや [ と ] キーでも変えられます。";
+"The text stays editable until you click Finish or press ⌘Return; Return alone starts a new line." = "テキストは「確定」をクリックするか ⌘Return を押すまで編集できます。Return キーだけでは改行になります。";
 "The toolbar, the tool options and the status bar." = "メインバー、ツールのオプション、ステータスバー。";
 "The update could not be installed" = "アップデートをインストールできませんでした";
 "These blend modes will be saved as Normal in the .pdn file: %@. Save as OpenRaster (.ora) to keep them." = "これらの描画モードは .pdn ファイルでは「通常」として保存されます：%@。保持するには OpenRaster（.ora）で保存してください。";
@@ -797,7 +799,7 @@
 "Turbulence" = "乱流";
 "Turn each Brushwood Plus feature on or off." = "Brushwood Plus の各機能をオン・オフします。";
 "Turn its features on in Plus Features to follow this tour." = "このツアーを見るには、Plus の機能でその機能をオンにしてください。";
-"Turn on Smoothing and Magnetic closing in the tool bar: the line is steadier, and it closes by itself when you come back near its start." = "ツールバーで手ブレ補正と始点に吸着をオンにしましょう。線が安定し、始点の近くに戻るとひとりでに閉じます。";
+"Turn on Smoothing in the tool bar for a steadier line." = "ツールバーで手ブレ補正をオンにすると、線が安定します。";
 "Turn the copy upside down" = "コピーを上下反転する";
 "Tutorial" = "チュートリアル";
 "Tutorial…" = "チュートリアル…";
@@ -839,6 +841,7 @@
 "Xor" = "XOR";
 "You used layers and their properties, selections, gradients, effects, blend modes and the History window. Try other blend modes or opacities on the layers to change the mood." = "レイヤーとそのプロパティ、選択範囲、グラデーション、エフェクト、描画モード、ヒストリーウインドウを使いました。レイヤーの描画モードや不透明度を変えて、雰囲気を変えてみましょう。";
 "Your evening lake is ready" = "夕暮れの湖が完成しました";
+"Your sky is done: click the camera at the bottom of the History window to keep a snapshot of the image. Take one whenever you like before trying something: you can always come back to it." = "空が完成しました。ヒストリーウインドウ下部のカメラをクリックして、画像のスナップショットを残しましょう。何かを試す前に、いつでも撮っておけます。いつでもそこに戻れます。";
 "Zig Zag" = "ジグザグ";
 "Zoom" = "ズーム";
 "Zoom Amount" = "ズーム量";

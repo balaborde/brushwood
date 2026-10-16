@@ -280,9 +280,9 @@ enum DebugScript {
                 if f.contains("cmd") { flags.insert(.command) }
                 if f.contains("shift") { flags.insert(.shift) }
                 if f.contains("opt") { flags.insert(.option) }
-                let key = f[0] == "delete" ? "\u{8}" : f[0]
+                let key = f[0] == "delete" ? "\u{8}" : f[0] == "return" ? "\r" : f[0]
                 let codes: [String: UInt16] = ["z": 6, "y": 16, "a": 0, "d": 2, "\u{8}": 51, "=": 24, "+": 24, "-": 27, "n": 45,
-                                               "i": 34, "s": 1, "c": 8, "v": 9, "x": 7, "f": 3, "b": 11, "l": 37]
+                                               "i": 34, "s": 1, "c": 8, "v": 9, "x": 7, "f": 3, "b": 11, "l": 37, "\r": 36]
                 for type in [NSEvent.EventType.keyDown, .keyUp] {
                     if let e = NSEvent.keyEvent(with: type, location: .zero, modifierFlags: flags, timestamp: ProcessInfo.processInfo.systemUptime,
                                                 windowNumber: c.window?.windowNumber ?? 0, context: nil,

@@ -32,7 +32,7 @@
 "Add New Layer" = "Добавить новый слой";
 "Add Noise" = "Добавить шум";
 "Add a new layer and name it %@." = "Добавьте новый слой и назовите его «%@».";
-"Add a new layer named %@ and click Use These Colors for white. Choose the %@ tool, set the size to 64, click near the top and type %@. Press Return." = "Добавьте новый слой «%@» и нажмите «Использовать эти цвета», чтобы выбрать белый. Выберите инструмент «%@», задайте размер 64, щёлкните у верхнего края и введите «%@». Нажмите Return.";
+"Add a new layer named %@ and click Use These Colors for white. Choose the %@ tool, set the size to 64, click near the top and type %@. Click Finish in the tool bar or press ⌘Return (Return alone starts a new line)." = "Добавьте новый слой «%@» и нажмите «Использовать эти цвета», чтобы выбрать белый. Выберите инструмент «%@», задайте размер 64, щёлкните у верхнего края и введите «%@». Нажмите «Завершить» на панели инструментов или ⌘Return (одна клавиша Return начинает новую строку).";
 "Add a new layer named %@, click Use These Colors, and with the %@ tool draw two or three small V shapes in the sky." = "Добавьте новый слой «%@», нажмите «Использовать эти цвета» и инструментом «%@» нарисуйте в небе две-три маленькие галочки.";
 "Add a title" = "Добавить заголовок";
 "Add birds" = "Добавить птиц";
@@ -67,7 +67,6 @@
 "Background" = "Фон";
 "Backward Diagonal" = "Обратная диагональ";
 "Basic" = "Основные";
-"Before trying an effect, click the camera at the bottom of the History window: you can come back to this image at any time." = "Прежде чем пробовать эффект, нажмите кнопку с камерой внизу окна журнала: к этому изображению можно будет вернуться в любой момент.";
 "Best Quality" = "Наилучшее качество";
 "Bicubic" = "Бикубическая";
 "Bilinear" = "Билинейная";
@@ -129,7 +128,7 @@
 "Choose the %@ tool and drag a circle about 120 pixels wide above the horizon, on the right; hold Shift to keep it round." = "Выберите инструмент «%@» и нарисуйте круг шириной около 120 пикселей над горизонтом, справа; удерживайте Shift, чтобы он остался круглым.";
 "Choose the %@ tool and drag from the top of the image down to about two thirds of its height. Press Return to finish." = "Выберите инструмент «%@» и протяните от верхнего края изображения примерно до двух третей его высоты. Нажмите Return, чтобы завершить.";
 "Choose the %@ tool and select from the foot of the mountains down to the bottom of the image, across its whole width." = "Выберите инструмент «%@» и выделите область от подножия гор до нижнего края изображения по всей ширине.";
-"Choose the %@ tool, click inside the outline, and press Return." = "Выберите инструмент «%@», щёлкните внутри контура и нажмите Return.";
+"Choose the %@ tool, click under the line, and press Return." = "Выберите инструмент «%@», щёлкните под линией и нажмите Return.";
 "Choose the %@ tool, pick %@ and %@ in the tool bar, then draw a few tall, narrow triangles standing on the shore. Press Return after each." = "Выберите инструмент «%@», задайте на панели инструментов «%@» и «%@» и нарисуйте несколько высоких узких треугольников, стоящих на берегу. После каждого нажимайте Return.";
 "Choose the %@ tool. Start at the left edge, at about two thirds of the height, draw the peaks across to the right edge, then come back along the foot of the mountains to where you started." = "Выберите инструмент «%@». Начните у левого края примерно на двух третях высоты, нарисуйте вершины до правого края, затем вернитесь вдоль подножия гор к начальной точке.";
 "Choose the Brushwood Plus features you want to use." = "Выберите функции Brushwood Plus, которыми хотите пользоваться.";
@@ -137,10 +136,10 @@
 "Clamp" = "Ограничить";
 "Clear Menu" = "Очистить меню";
 "Click %@ at the bottom of the Layers window, then double-click the new layer and name it %@." = "Нажмите «%@» внизу окна слоёв, затем дважды щёлкните новый слой и назовите его «%@».";
-"Click %@ so the copy goes above the %@ layer, then double-click it and lower its %@ to about 100." = "Нажмите «%@», чтобы копия оказалась над слоем «%@», затем дважды щёлкните её и уменьшите параметр «%@» примерно до 100.";
+"Click %@ so the copy goes above the %@ layer: the reflection now shows on the water." = "Нажмите «%@», чтобы копия оказалась над слоем «%@»: теперь отражение видно на воде.";
 "Click Use These Colors for a dusky purple, choose %@, then %@." = "Нажмите «Использовать эти цвета», чтобы выбрать сумеречный фиолетовый, выберите %@, затем %@.";
 "Click Use These Colors for a golden yellow, then choose %@." = "Нажмите «Использовать эти цвета», чтобы выбрать золотисто-жёлтый, затем выберите %@.";
-"Click Use These Colors for a very dark blue. With the %@ tool, draw around a shore in the bottom-left corner: from the left edge, over a low hill, down to the bottom edge, then back along the edges to where you started." = "Нажмите «Использовать эти цвета», чтобы выбрать очень тёмный синий. Инструментом «%@» обведите берег в левом нижнем углу: от левого края через невысокий холм до нижнего края, затем вдоль краёв обратно к начальной точке.";
+"Click Use These Colors for a very dark blue. With the %@ tool, draw the line of a low hill in the bottom-left corner, from the left edge down to the bottom edge." = "Нажмите «Использовать эти цвета», чтобы выбрать очень тёмный синий. Инструментом «%@» нарисуйте линию невысокого холма в левом нижнем углу — от левого края до нижнего.";
 "Click Use These Colors to paint in white, choose the %@ tool with a brush width of 3, and click here and there in the top of the sky: about ten stars." = "Нажмите «Использовать эти цвета», чтобы рисовать белым, выберите инструмент «%@» с шириной кисти 3 и пощёлкайте тут и там в верхней части неба: около десяти звёзд.";
 "Click Use These Colors, then with the %@ tool drag from the top of the selection down to the bottom of the image, and press Return." = "Нажмите «Использовать эти цвета», затем инструментом «%@» протяните от верхнего края выделения до нижнего края изображения и нажмите Return.";
 "Click Use These Colors: the primary color becomes a deep night blue and the secondary a warm orange. You can also click the color squares in the Colors window to pick your own." = "Нажмите «Использовать эти цвета»: основной цвет станет глубоким ночным синим, а вторичный — тёплым оранжевым. Можно также щёлкнуть квадраты цветов в окне цветов и выбрать свои.";
@@ -243,6 +242,7 @@
 "Dotted Grid" = "Точечная сетка";
 "Double Arrow" = "Двойная стрелка";
 "Double-click the %@ layer and set its %@ to %@: the glow now lightens the sky instead of covering it." = "Дважды щёлкните слой «%@» и задайте параметру «%@» значение «%@»: теперь сияние осветляет небо, а не закрывает его.";
+"Double-click the copy in the Layers window and lower its %@ to about 100." = "Дважды щёлкните копию в окне слоёв и уменьшите параметр «%@» примерно до 100.";
 "Down Arrow" = "Стрелка вниз";
 "Down to the previous multiple of 5" = "Уменьшить до предыдущего кратного 5";
 "Download from GitHub" = "Загрузить с GitHub";
@@ -377,7 +377,7 @@
 "Import From File" = "Импорт из файла";
 "Import From File…" = "Импорт из файла…";
 "In the Layers window, double-click the Background layer and name it %@." = "В окне слоёв дважды щёлкните слой «Фон» и назовите его «%@».";
-"In this project you paint an evening lake, layer by layer, with most of the tools. A new 1200 × 800 image has been made for it. Each step says what to do and checks your image: once it is done, a check appears and Next goes on. You can skip any step." = "В этом проекте вы рисуете озеро на закате, слой за слоем, используя большинство инструментов. Для него создано новое изображение 1200 × 800. Каждый шаг говорит, что делать, и проверяет изображение: когда шаг выполнен, появляется галочка, и кнопка «Далее» ведёт дальше. Любой шаг можно пропустить.";
+"In this project you paint this evening lake, layer by layer, with most of the tools. A new 1200 × 800 image has been made for it. Each step says what to do and checks your image: once it is done, a check appears and Next goes on. You can skip any step." = "В этом проекте вы рисуете это озеро на закате, слой за слоем, используя большинство инструментов. Для него создано новое изображение 1200 × 800. Каждый шаг говорит, что делать, и проверяет изображение: когда шаг выполнен, появляется галочка, и кнопка «Далее» ведёт дальше. Любой шаг можно пропустить.";
 "Inches" = "Дюймы";
 "Ink Sketch" = "Набросок тушью";
 "Ink outline" = "Контур тушью";
@@ -453,6 +453,7 @@
 "Magnetic closing enabled: a stroke released near its start joins it" = "Магнитное замыкание включено: штрих, отпущенный рядом с началом, соединяется с ним";
 "Maintain aspect ratio" = "Сохранять пропорции";
 "Make it glow" = "Заставить сиять";
+"Make the reflection fainter" = "Сделать отражение бледнее";
 "Mandelbrot Fractal" = "Фрактал Мандельброта";
 "Manhattan" = "Манхэттенская";
 "Maximum scatter radius" = "Максимальный радиус рассеивания";
@@ -761,6 +762,7 @@
 "The paintbrush and all its settings." = "Кисть и все её настройки.";
 "The shape of the gradient: linear, reflected, diamond, radial, conical or spiral." = "Форма градиента: линейный, отражённый, ромбовидный, радиальный, конический или спиральный.";
 "The size of the brush, in pixels. The mouse wheel over the field and the [ and ] keys change it too." = "Размер кисти в пикселях. Его также меняют колесо мыши над полем и клавиши [ и ].";
+"The text stays editable until you click Finish or press ⌘Return; Return alone starts a new line." = "Текст можно изменять, пока вы не нажмёте «Завершить» или ⌘Return; одна клавиша Return начинает новую строку.";
 "The toolbar, the tool options and the status bar." = "Главная панель, параметры инструмента и строка состояния.";
 "The update could not be installed" = "Не удалось установить обновление";
 "These blend modes will be saved as Normal in the .pdn file: %@. Save as OpenRaster (.ora) to keep them." = "Эти режимы наложения будут сохранены в файле .pdn как обычные: %@. Сохраните в формате OpenRaster (.ora), чтобы они не потерялись.";
@@ -797,7 +799,7 @@
 "Turbulence" = "Турбулентность";
 "Turn each Brushwood Plus feature on or off." = "Включить или выключить каждую функцию Brushwood Plus.";
 "Turn its features on in Plus Features to follow this tour." = "Включите его функции в окне «Функции Plus», чтобы пройти этот урок.";
-"Turn on Smoothing and Magnetic closing in the tool bar: the line is steadier, and it closes by itself when you come back near its start." = "Включите на панели инструментов стабилизацию и магнитное замыкание: линия будет ровнее и замкнётся сама, когда вы вернётесь к её началу.";
+"Turn on Smoothing in the tool bar for a steadier line." = "Включите на панели инструментов стабилизацию, чтобы линия была ровнее.";
 "Turn the copy upside down" = "Перевернуть копию";
 "Tutorial" = "Обучение";
 "Tutorial…" = "Обучение…";
@@ -839,6 +841,7 @@
 "Xor" = "Xor";
 "You used layers and their properties, selections, gradients, effects, blend modes and the History window. Try other blend modes or opacities on the layers to change the mood." = "В этом проекте использованы слои и их свойства, выделения, градиенты, эффекты, режимы наложения и окно журнала. Попробуйте другие режимы наложения или непрозрачность слоёв, чтобы изменить настроение.";
 "Your evening lake is ready" = "Ваше озеро на закате готово";
+"Your sky is done: click the camera at the bottom of the History window to keep a snapshot of the image. Take one whenever you like before trying something: you can always come back to it." = "Небо готово: нажмите кнопку с камерой внизу окна журнала, чтобы сохранить снимок изображения. Делайте снимок когда угодно, прежде чем что-то пробовать: к нему всегда можно вернуться.";
 "Zig Zag" = "Зигзаг";
 "Zoom" = "Масштаб";
 "Zoom Amount" = "Сила масштабирования";

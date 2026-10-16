@@ -227,7 +227,8 @@ enum Tutorial {
                             text: L("The font, its size and its style: bold, italic, underline and strikethrough.")),
                     .option(.alignment, of: .text, title: L("Alignment"),
                             text: L("Lines of text line up on the left, in the center or on the right.")),
-                    .option(.finish, of: .text, title: L("Finish"), text: finishText),
+                    .option(.finish, of: .text, title: L("Finish"),
+                            text: L("The text stays editable until you click Finish or press ⌘Return; Return alone starts a new line.")),
                 ]),
                 TutorialScenario(id: "shapes", title: L("Lines and Shapes"),
                                  summary: L("Draw lines and curves, and choose among 31 shapes."), steps: [

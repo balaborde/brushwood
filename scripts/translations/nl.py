@@ -33,7 +33,7 @@ Add (union)|Toevoegen (vereniging)
 Add New Layer|Nieuwe laag toevoegen
 Add Noise|Ruis toevoegen
 Add a new layer and name it %@.|Voeg een nieuwe laag toe en noem hem %@.
-Add a new layer named %@ and click Use These Colors for white. Choose the %@ tool, set the size to 64, click near the top and type %@. Press Return.|Voeg een nieuwe laag toe met de naam %@ en klik op Gebruik deze kleuren voor wit. Kies het gereedschap %@, zet de grootte op 64, klik vlak bij de bovenkant en typ %@. Druk op Return.
+Add a new layer named %@ and click Use These Colors for white. Choose the %@ tool, set the size to 64, click near the top and type %@. Click Finish in the tool bar or press ⌘Return (Return alone starts a new line).|Voeg een nieuwe laag toe met de naam %@ en klik op Gebruik deze kleuren voor wit. Kies het gereedschap %@, zet de grootte op 64, klik vlak bij de bovenkant en typ %@. Klik op Voltooi in de gereedschapsbalk of druk op ⌘Return (Return alleen begint een nieuwe regel).
 Add a new layer named %@, click Use These Colors, and with the %@ tool draw two or three small V shapes in the sky.|Voeg een nieuwe laag toe met de naam %@, klik op Gebruik deze kleuren en teken met het gereedschap %@ twee of drie kleine V-vormen in de lucht.
 Add a title|Een titel toevoegen
 Add birds|Vogels toevoegen
@@ -68,7 +68,6 @@ Back to %@|Terug naar %@
 Background|Achtergrond
 Backward Diagonal|Diagonaal achteruit
 Basic|Basis
-Before trying an effect, click the camera at the bottom of the History window: you can come back to this image at any time.|Klik, voordat je een effect probeert, op de camera onderaan het venster Geschiedenis: zo kun je altijd naar deze afbeelding terug.
 Best Quality|Beste kwaliteit
 Bicubic|Bicubisch
 Bilinear|Bilineair
@@ -130,7 +129,7 @@ Choose %@: the copy becomes the reflection of the mountains.|Kies %@: de kopie w
 Choose the %@ tool and drag a circle about 120 pixels wide above the horizon, on the right; hold Shift to keep it round.|Kies het gereedschap %@ en trek rechts boven de horizon een cirkel van ongeveer 120 pixels breed; houd Shift ingedrukt om hem rond te houden.
 Choose the %@ tool and drag from the top of the image down to about two thirds of its height. Press Return to finish.|Kies het gereedschap %@ en sleep van de bovenkant van de afbeelding tot ongeveer twee derde van de hoogte. Druk op Return om af te ronden.
 Choose the %@ tool and select from the foot of the mountains down to the bottom of the image, across its whole width.|Kies het gereedschap %@ en selecteer van de voet van de bergen tot de onderkant van de afbeelding, over de hele breedte.
-Choose the %@ tool, click inside the outline, and press Return.|Kies het gereedschap %@, klik binnen de omtrek en druk op Return.
+Choose the %@ tool, click under the line, and press Return.|Kies het gereedschap %@, klik onder de lijn en druk op Return.
 Choose the %@ tool, pick %@ and %@ in the tool bar, then draw a few tall, narrow triangles standing on the shore. Press Return after each.|Kies het gereedschap %@, neem %@ en %@ in de gereedschapsbalk en teken een paar hoge, smalle driehoeken die op de oever staan. Druk na elke driehoek op Return.
 Choose the %@ tool. Start at the left edge, at about two thirds of the height, draw the peaks across to the right edge, then come back along the foot of the mountains to where you started.|Kies het gereedschap %@. Begin aan de linkerrand op ongeveer twee derde van de hoogte, teken de toppen tot de rechterrand en kom dan langs de voet van de bergen terug naar het beginpunt.
 Choose the Brushwood Plus features you want to use.|Kies de functies van Brushwood Plus die je wilt gebruiken.
@@ -138,10 +137,10 @@ Choose the sky colors|De kleuren van de lucht kiezen
 Clamp|Begrenzen
 Clear Menu|Wis menu
 Click %@ at the bottom of the Layers window, then double-click the new layer and name it %@.|Klik op %@ onderaan het venster Lagen, dubbelklik dan op de nieuwe laag en noem hem %@.
-Click %@ so the copy goes above the %@ layer, then double-click it and lower its %@ to about 100.|Klik op %@ zodat de kopie boven de laag %@ komt, dubbelklik er dan op en zet de %@ op ongeveer 100.
+Click %@ so the copy goes above the %@ layer: the reflection now shows on the water.|Klik op %@ zodat de kopie boven de laag %@ komt: de weerspiegeling verschijnt nu op het water.
 Click Use These Colors for a dusky purple, choose %@, then %@.|Klik op Gebruik deze kleuren voor een schemerig paars, kies %@ en dan %@.
 Click Use These Colors for a golden yellow, then choose %@.|Klik op Gebruik deze kleuren voor een goudgeel en kies dan %@.
-Click Use These Colors for a very dark blue. With the %@ tool, draw around a shore in the bottom-left corner: from the left edge, over a low hill, down to the bottom edge, then back along the edges to where you started.|Klik op Gebruik deze kleuren voor heel donkerblauw. Teken met het gereedschap %@ de omtrek van een oever in de linkerbenedenhoek: van de linkerrand over een lage heuvel naar de onderrand, en dan langs de randen terug naar het beginpunt.
+Click Use These Colors for a very dark blue. With the %@ tool, draw the line of a low hill in the bottom-left corner, from the left edge down to the bottom edge.|Klik op Gebruik deze kleuren voor heel donkerblauw. Teken met het gereedschap %@ de lijn van een lage heuvel in de linkerbenedenhoek, van de linkerrand tot de onderrand.
 Click Use These Colors to paint in white, choose the %@ tool with a brush width of 3, and click here and there in the top of the sky: about ten stars.|Klik op Gebruik deze kleuren om in wit te schilderen, kies het gereedschap %@ met een penseelbreedte van 3 en klik hier en daar bovenin de lucht: een stuk of tien sterren.
 Click Use These Colors, then with the %@ tool drag from the top of the selection down to the bottom of the image, and press Return.|Klik op Gebruik deze kleuren, sleep dan met het gereedschap %@ van de bovenkant van de selectie naar de onderkant van de afbeelding en druk op Return.
 Click Use These Colors: the primary color becomes a deep night blue and the secondary a warm orange. You can also click the color squares in the Colors window to pick your own.|Klik op Gebruik deze kleuren: de primaire kleur wordt diep nachtblauw en de secundaire warm oranje. Je kunt ook op de kleurvlakken in het venster Kleuren klikken om je eigen kleuren te kiezen.
@@ -244,6 +243,7 @@ Dotted Diamond|Gestippelde ruiten
 Dotted Grid|Gestippeld raster
 Double Arrow|Dubbele pijl
 Double-click the %@ layer and set its %@ to %@: the glow now lightens the sky instead of covering it.|Dubbelklik op de laag %@ en zet de %@ op %@: de gloed maakt de lucht nu lichter in plaats van hem te bedekken.
+Double-click the copy in the Layers window and lower its %@ to about 100.|Dubbelklik op de kopie in het venster Lagen en zet de %@ op ongeveer 100.
 Down Arrow|Pijl omlaag
 Down to the previous multiple of 5|Omlaag naar het vorige veelvoud van 5
 Download from GitHub|Download van GitHub
@@ -378,7 +378,7 @@ Image larger than canvas|Afbeelding groter dan canvas
 Import From File|Importeer uit bestand
 Import From File…|Importeer uit bestand…
 In the Layers window, double-click the Background layer and name it %@.|Dubbelklik in het venster Lagen op de laag Achtergrond en noem hem %@.
-In this project you paint an evening lake, layer by layer, with most of the tools. A new 1200 × 800 image has been made for it. Each step says what to do and checks your image: once it is done, a check appears and Next goes on. You can skip any step.|In dit project schilder je een meer in de avond, laag voor laag, met de meeste gereedschappen. Er is een nieuwe afbeelding van 1200 × 800 voor gemaakt. Elke stap zegt wat je moet doen en controleert je afbeelding: is hij klaar, dan verschijnt een vinkje en ga je met Volgende verder. Je kunt elke stap overslaan.
+In this project you paint this evening lake, layer by layer, with most of the tools. A new 1200 × 800 image has been made for it. Each step says what to do and checks your image: once it is done, a check appears and Next goes on. You can skip any step.|In dit project schilder je dit meer in de avond, laag voor laag, met de meeste gereedschappen. Er is een nieuwe afbeelding van 1200 × 800 voor gemaakt. Elke stap zegt wat je moet doen en controleert je afbeelding: is hij klaar, dan verschijnt een vinkje en ga je met Volgende verder. Je kunt elke stap overslaan.
 Inches|Inch
 Ink Sketch|Inktschets
 Ink outline|Inktomtrek
@@ -454,6 +454,7 @@ Magnetic closing disabled|Magnetisch sluiten uit
 Magnetic closing enabled: a stroke released near its start joins it|Magnetisch sluiten aan: een streek die bij zijn begin wordt losgelaten, sluit daarop aan
 Maintain aspect ratio|Beeldverhouding behouden
 Make it glow|Laten gloeien
+Make the reflection fainter|De weerspiegeling zwakker maken
 Mandelbrot Fractal|Mandelbrot-fractal
 Manhattan|Manhattan
 Maximum scatter radius|Maximale spreidingsstraal
@@ -762,6 +763,7 @@ The left mouse button paints with the primary color, the right one with the seco
 The paintbrush and all its settings.|Het penseel en al zijn instellingen.
 The shape of the gradient: linear, reflected, diamond, radial, conical or spiral.|De vorm van het kleurverloop: lineair, gespiegeld, ruit, radiaal, conisch of spiraal.
 The size of the brush, in pixels. The mouse wheel over the field and the [ and ] keys change it too.|De grootte van het penseel in pixels. Het muiswiel boven het veld en de toetsen [ en ] veranderen hem ook.
+The text stays editable until you click Finish or press ⌘Return; Return alone starts a new line.|De tekst blijft bewerkbaar tot je op Voltooi klikt of op ⌘Return drukt; Return alleen begint een nieuwe regel.
 The toolbar, the tool options and the status bar.|De hoofdbalk, de gereedschapsopties en de statusbalk.
 The update could not be installed|De update kan niet worden geïnstalleerd
 These blend modes will be saved as Normal in the .pdn file: %@. Save as OpenRaster (.ora) to keep them.|Deze overvloeimodi worden in het .pdn-bestand als Normaal bewaard: %@. Bewaar als OpenRaster (.ora) om ze te behouden.
@@ -798,7 +800,7 @@ Triangle Repeat|Driehoekherhaling
 Turbulence|Turbulentie
 Turn each Brushwood Plus feature on or off.|Zet elke functie van Brushwood Plus aan of uit.
 Turn its features on in Plus Features to follow this tour.|Zet de functies ervan aan in Plus-functies om deze rondleiding te volgen.
-Turn on Smoothing and Magnetic closing in the tool bar: the line is steadier, and it closes by itself when you come back near its start.|Zet in de gereedschapsbalk Stabilisatie en Magnetisch sluiten aan: de lijn wordt vaster en sluit vanzelf als je dicht bij het begin terugkomt.
+Turn on Smoothing in the tool bar for a steadier line.|Zet Stabilisatie aan in de gereedschapsbalk voor een vastere lijn.
 Turn the copy upside down|De kopie omdraaien
 Tutorial|Tutorial
 Tutorial…|Tutorial…
@@ -840,6 +842,7 @@ Wrap|Doorlopend
 Xor|Xor
 You used layers and their properties, selections, gradients, effects, blend modes and the History window. Try other blend modes or opacities on the layers to change the mood.|Je hebt lagen en hun eigenschappen, selecties, kleurverlopen, effecten, overvloeimodi en het venster Geschiedenis gebruikt. Probeer andere overvloeimodi of dekkingen op de lagen om de sfeer te veranderen.
 Your evening lake is ready|Je avondmeer is klaar
+Your sky is done: click the camera at the bottom of the History window to keep a snapshot of the image. Take one whenever you like before trying something: you can always come back to it.|Je lucht is klaar: klik op de camera onderaan het venster Geschiedenis om een momentopname van de afbeelding te bewaren. Maak er een wanneer je wilt voordat je iets probeert: je kunt er altijd naar terug.
 Zig Zag|Zigzag
 Zoom|Zoom
 Zoom Amount|Zoomsterkte

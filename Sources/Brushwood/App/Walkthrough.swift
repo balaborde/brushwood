@@ -5,6 +5,8 @@ import BrushwoodCore
 struct ProjectStep {
     let title: String
     let text: String
+    /// Shows the finished picture, the goal of the project.
+    var showsGoal = false
     /// Colors that "Use These Colors" makes the primary and secondary colors.
     var colors: (primary: ColorBgra, secondary: ColorBgra)?
     /// A Brushwood Plus tip, shown while its feature is on.
@@ -119,6 +121,25 @@ extension ColorBgra {
 enum EveningLake {
     static let size = IntSize(width: 1200, height: 800)
 
+    /// The finished picture (Resources/EveningLake.png, made by scripts/make-project-image.sh) with its title in the
+    /// interface language; nil when the app runs outside its bundle.
+    static let goalImage: NSImage? = {
+        guard let url = Bundle.main.url(forResource: "EveningLake", withExtension: "png"),
+              let picture = NSImage(contentsOf: url) else { return nil }
+        return NSImage(size: picture.size, flipped: false) { r in
+            picture.draw(in: r)
+            let shadow = NSShadow()
+            shadow.shadowColor = NSColor.black.withAlphaComponent(0.5)
+            shadow.shadowBlurRadius = 6
+            let title = NSAttributedString(string: L("Evening Lake"), attributes: [
+                .font: NSFont.systemFont(ofSize: r.height * 0.09, weight: .bold), .foregroundColor: NSColor.white, .shadow: shadow,
+            ])
+            let size = title.size()
+            title.draw(at: NSPoint(x: (r.width - size.width) / 2, y: r.height * 0.93 - size.height))
+            return true
+        }
+    }()
+
     private static func menu(_ parts: String...) -> String { parts.joined(separator: " › ") }
     private static func label(_ s: String) -> String { s.trimmingCharacters(in: CharacterSet(charactersIn: ":：").union(.whitespaces)) }
     private static func tool(_ kind: ToolKind) -> (MainWindowController) -> NSView? {
@@ -147,6 +168,17 @@ enum EveningLake {
 
     private static let dark: (ColorBgra) -> Bool = { $0.isOpaque && $0.luminance < 0.3 }
 
+    /// Whether the layer has a vertical gradient between rows `top` and `bottom`: opaque, and clearly different at
+    /// the two rows in most columns (whatever the colors and the direction it was drawn in).
+    private static func verticalGradient(_ layer: BitmapLayer?, top: Int, bottom: Int) -> Bool {
+        guard let s = layer?.surface else { return false }
+        let columns = [size.width / 4, size.width / 2, size.width * 3 / 4]
+        return columns.filter { x in
+            let a = s[x, top], b = s[x, bottom]
+            return a.isOpaque && b.isOpaque && !a.near(b, 80)
+        }.count >= 2
+    }
+
     /// Dark pixels above the shore, where the pine trees go.
     private static func treeArea(_ ctx: ProjectContext) -> Int {
         ctx.count(ctx.layer("forest"), IntRect(x: 0, y: size.height / 4, width: size.width * 6 / 10, height: size.height / 2), dark)
@@ -157,7 +189,7 @@ enum EveningLake {
         let edit = L("Edit"), deselect = menu(edit, L("Deselect"))
         return [
             ProjectStep(title: L("Evening Lake"),
-                        text: L("In this project you paint an evening lake, layer by layer, with most of the tools. A new 1200 × 800 image has been made for it. Each step says what to do and checks your image: once it is done, a check appears and Next goes on. You can skip any step.")),
+                        text: L("In this project you paint this evening lake, layer by layer, with most of the tools. A new 1200 × 800 image has been made for it. Each step says what to do and checks your image: once it is done, a check appears and Next goes on. You can skip any step."), showsGoal: true),
 
             // The sky.
             ProjectStep(title: L("Name the sky layer"),
@@ -179,12 +211,7 @@ enum EveningLake {
             ProjectStep(title: L("Paint the sky"),
                         text: LF("Choose the %@ tool and drag from the top of the image down to about two thirds of its height. Press Return to finish.", ToolKind.gradient.nameWithShortcut),
                         target: tool(.gradient),
-                        check: { ctx in
-                            guard let sky = ctx.layer("sky")?.surface else { return false }
-                            let top = sky[W / 2, 6], low = sky[W / 2, H * 13 / 20]
-                            return ctx.currentHistoryName == ToolKind.gradient.name && top.isOpaque && top.luminance < 0.35
-                                && low.luminance > top.luminance + 0.2
-                        }),
+                        check: { verticalGradient($0.layer("sky"), top: 6, bottom: H * 13 / 20) }),
             ProjectStep(title: L("Add stars"),
                         text: LF("Click Use These Colors to paint in white, choose the %@ tool with a brush width of 3, and click here and there in the top of the sky: about ten stars.", ToolKind.paintbrush.nameWithShortcut),
                         colors: (ColorBgra(rgb: 0xFFFFFF), ColorBgra(rgb: 0xEE7E5C)), target: tool(.paintbrush),
@@ -193,6 +220,15 @@ enum EveningLake {
                                 $0.isOpaque && min($0.r, $0.g, $0.b) > 200
                             } >= 6
                         }),
+
+            ProjectStep(title: L("Keep a snapshot"),
+                        text: L("Your sky is done: click the camera at the bottom of the History window to keep a snapshot of the image. Take one whenever you like before trying something: you can always come back to it."),
+                        requires: .snapshots,
+                        target: { c in
+                            if !c.historyPanel.isVisible { c.toggleHistoryWindow(nil) }
+                            return c.historyPanel.snapshotButton
+                        },
+                        check: { $0.doc.history.snapshots.count > $0.project.baselineSnapshots }),
 
             // The sun.
             ProjectStep(title: L("A layer for the sun"),
@@ -262,10 +298,7 @@ enum EveningLake {
                         text: LF("Click Use These Colors, then with the %@ tool drag from the top of the selection down to the bottom of the image, and press Return.", ToolKind.gradient.nameWithShortcut),
                         colors: (ColorBgra(rgb: 0xE58A78), ColorBgra(rgb: 0x1F2350)), target: tool(.gradient),
                         check: { ctx in
-                            guard let lake = ctx.layer("lake")?.surface, let b = ctx.project.areas["lake"] else { return false }
-                            let top = lake[W / 2, b.top + 4], bottom = lake[W / 2, H - 4]
-                            return ctx.currentHistoryName == ToolKind.gradient.name && top.isOpaque && bottom.isOpaque
-                                && top.luminance > bottom.luminance + 0.15
+                            verticalGradient(ctx.layer("lake"), top: (ctx.project.areas["lake"]?.top ?? H * 7 / 10) + 6, bottom: H - 6)
                         }),
 
             // The reflection.
@@ -286,28 +319,31 @@ enum EveningLake {
                                 && ctx.count(ctx.layer("reflection"), IntRect(x: 0, y: top, width: W, height: H - top)) { $0.isOpaque } >= 300
                         }),
             ProjectStep(title: L("Put the reflection in the water"),
-                        text: LF("Click %@ so the copy goes above the %@ layer, then double-click it and lower its %@ to about 100.", L("Move Layer Up"), L("Lake"), label(L("Opacity:"))),
+                        text: LF("Click %@ so the copy goes above the %@ layer: the reflection now shows on the water.", L("Move Layer Up"), L("Lake")),
                         target: layerButton(#selector(MainWindowController.moveLayerUp(_:))),
                         check: { ctx in
                             guard let r = ctx.layer("reflection"), let lake = ctx.layer("lake"),
                                   let ri = ctx.doc.layers.firstIndex(where: { $0 === r }),
                                   let li = ctx.doc.layers.firstIndex(where: { $0 === lake }) else { return false }
-                            return ri > li && r.opacity <= 180
+                            return ri > li
                         }),
+            ProjectStep(title: L("Make the reflection fainter"),
+                        text: LF("Double-click the copy in the Layers window and lower its %@ to about 100.", label(L("Opacity:"))),
+                        target: layersWindow, check: { ($0.layer("reflection")?.opacity ?? 255) <= 200 }),
 
             // The forest.
             newNamedLayer(L("A layer for the forest"), L("Forest"), role: "forest"),
             ProjectStep(title: L("Draw the shore"),
-                        text: LF("Click Use These Colors for a very dark blue. With the %@ tool, draw around a shore in the bottom-left corner: from the left edge, over a low hill, down to the bottom edge, then back along the edges to where you started.", ToolKind.paintbrush.nameWithShortcut),
+                        text: LF("Click Use These Colors for a very dark blue. With the %@ tool, draw the line of a low hill in the bottom-left corner, from the left edge down to the bottom edge.", ToolKind.paintbrush.nameWithShortcut),
                         colors: (ColorBgra(rgb: 0x16142C), ColorBgra(rgb: 0x110F24)),
-                        plusTip: (.magneticClosing, L("Turn on Smoothing and Magnetic closing in the tool bar: the line is steadier, and it closes by itself when you come back near its start.")),
+                        plusTip: (.smoothing, L("Turn on Smoothing in the tool bar for a steadier line.")),
                         target: tool(.paintbrush),
                         check: { ctx in
                             ctx.count(ctx.layer("forest"), IntRect(x: 0, y: H * 13 / 20, width: W / 2, height: H * 7 / 20), step: 2,
                                       dark) >= 40
                         }),
             ProjectStep(title: L("Fill the shore"),
-                        text: LF("Choose the %@ tool, click inside the outline, and press Return.", ToolKind.paintBucket.nameWithShortcut),
+                        text: LF("Choose the %@ tool, click under the line, and press Return.", ToolKind.paintBucket.nameWithShortcut),
                         target: tool(.paintBucket),
                         check: { ctx in
                             ctx.count(ctx.layer("forest"), IntRect(x: 0, y: H * 7 / 10, width: W / 2, height: H * 3 / 10), dark) >= 800
@@ -330,19 +366,11 @@ enum EveningLake {
                                     $0.isOpaque && $0.luminance < 0.35
                                 } >= 15
                         }),
-            ProjectStep(title: L("Keep a snapshot"),
-                        text: L("Before trying an effect, click the camera at the bottom of the History window: you can come back to this image at any time."),
-                        requires: .snapshots,
-                        target: { c in
-                            if !c.historyPanel.isVisible { c.toggleHistoryWindow(nil) }
-                            return c.historyPanel.snapshotButton
-                        },
-                        check: { $0.doc.history.snapshots.count > $0.project.baselineSnapshots }),
             ProjectStep(title: L("Clouds in the sky"),
                         text: LF("Click the %@ layer, choose %@, set %@ to %@ and click OK.", L("Sky"), menu(L("Effects"), L("Render"), L("Clouds")), L("Blend mode"), L("Soft Light")),
                         check: { $0.newHistoryNames.contains(L("Clouds")) }),
             ProjectStep(title: L("Add a title"),
-                        text: LF("Add a new layer named %@ and click Use These Colors for white. Choose the %@ tool, set the size to 64, click near the top and type %@. Press Return.", L("Title"), ToolKind.text.nameWithShortcut, L("Evening Lake")),
+                        text: LF("Add a new layer named %@ and click Use These Colors for white. Choose the %@ tool, set the size to 64, click near the top and type %@. Click Finish in the tool bar or press ⌘Return (Return alone starts a new line).", L("Title"), ToolKind.text.nameWithShortcut, L("Evening Lake")),
                         colors: (ColorBgra(rgb: 0xFFFFFF), ColorBgra(rgb: 0x141C45)), target: tool(.text),
                         check: { ctx in
                             ctx.renamed(ctx.newLayer) && ctx.currentHistoryName == ToolKind.text.name
@@ -354,7 +382,7 @@ enum EveningLake {
                         text: LF("Choose %@ and pick %@ or %@: these formats keep the layers.", menu(L("File"), L("Save As…")), FileType.openRaster.name, FileType.paintDotNet.name),
                         check: { ["ora", "pdn"].contains($0.workspace.fileURL?.pathExtension.lowercased() ?? "") }),
             ProjectStep(title: L("Your evening lake is ready"),
-                        text: L("You used layers and their properties, selections, gradients, effects, blend modes and the History window. Try other blend modes or opacities on the layers to change the mood.")),
+                        text: L("You used layers and their properties, selections, gradients, effects, blend modes and the History window. Try other blend modes or opacities on the layers to change the mood."), showsGoal: true),
         ]
     }
 }

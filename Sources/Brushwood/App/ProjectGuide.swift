@@ -172,6 +172,8 @@ final class ProjectPanel: NSPanel, NSWindowDelegate {
     private let progress = NSTextField(labelWithString: "")
     private let plusTag = TagPill("PLUS")
     private let titleLabel = NSTextField(wrappingLabelWithString: "")
+    /// The finished picture, on the steps that show the goal.
+    private let goalView = NSImageView()
     private let textLabel = NSTextField(wrappingLabelWithString: "")
     private let tipLabel = NSTextField(wrappingLabelWithString: "")
     private let tipRow = NSStackView()
@@ -180,6 +182,7 @@ final class ProjectPanel: NSPanel, NSWindowDelegate {
     private let colorsButton = NSButton(title: L("Use These Colors"), target: nil, action: nil)
     private let colorsRow = NSStackView()
     private let statusIcon = NSImageView()
+    private var statusRow: NSView?
     private let statusLabel = NSTextField(labelWithString: "")
     private let skipButton = NSButton(title: L("Skip"), target: nil, action: nil)
     private let backButton = NSButton(title: L("Back"), target: nil, action: nil)
@@ -227,10 +230,19 @@ final class ProjectPanel: NSPanel, NSWindowDelegate {
         header.spacing = 6
         let status = NSStackView(views: [statusIcon, statusLabel])
         status.spacing = 5
+        statusRow = status
         let buttons = NSStackView(views: [skipButton, NSView(), backButton, nextButton])
         buttons.spacing = 8
         buttons.distribution = .fill
-        let stack = NSStackView(views: [header, titleLabel, textLabel, tipRow, colorsRow, status, buttons])
+        goalView.image = EveningLake.goalImage
+        goalView.imageScaling = .scaleProportionallyUpOrDown
+        goalView.wantsLayer = true
+        goalView.layer?.cornerRadius = 6
+        goalView.layer?.masksToBounds = true
+        goalView.translatesAutoresizingMaskIntoConstraints = false
+        goalView.widthAnchor.constraint(equalToConstant: textWidth).isActive = true
+        goalView.heightAnchor.constraint(equalToConstant: textWidth * 2 / 3).isActive = true
+        let stack = NSStackView(views: [header, titleLabel, goalView, textLabel, tipRow, colorsRow, status, buttons])
         stack.orientation = .vertical
         stack.alignment = .leading
         stack.spacing = 8
@@ -262,6 +274,9 @@ final class ProjectPanel: NSPanel, NSWindowDelegate {
         progress.stringValue = LF("%d of %d", number, count)
         titleLabel.stringValue = step.title
         textLabel.stringValue = step.text
+        goalView.isHidden = !step.showsGoal || goalView.image == nil
+        // The first and last steps only present the project: nothing to check.
+        statusRow?.isHidden = step.showsGoal
         let tip = step.activePlusTip
         tipLabel.stringValue = tip ?? ""
         tipRow.isHidden = tip == nil

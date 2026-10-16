@@ -32,7 +32,7 @@
 "Add New Layer" = "Neue Ebene hinzufügen";
 "Add Noise" = "Rauschen hinzufügen";
 "Add a new layer and name it %@." = "Fügen Sie eine neue Ebene hinzu und nennen Sie sie %@.";
-"Add a new layer named %@ and click Use These Colors for white. Choose the %@ tool, set the size to 64, click near the top and type %@. Press Return." = "Fügen Sie eine neue Ebene namens %@ hinzu und klicken Sie für Weiß auf Diese Farben verwenden. Wählen Sie das Werkzeug %@, stellen Sie die Größe auf 64, klicken Sie oben ins Bild und tippen Sie %@. Drücken Sie die Eingabetaste.";
+"Add a new layer named %@ and click Use These Colors for white. Choose the %@ tool, set the size to 64, click near the top and type %@. Click Finish in the tool bar or press ⌘Return (Return alone starts a new line)." = "Fügen Sie eine neue Ebene namens %@ hinzu und klicken Sie für Weiß auf Diese Farben verwenden. Wählen Sie das Werkzeug %@, stellen Sie die Größe auf 64, klicken Sie oben ins Bild und tippen Sie %@. Klicken Sie in der Werkzeugleiste auf Fertigstellen oder drücken Sie ⌘-Eingabetaste (die Eingabetaste allein beginnt eine neue Zeile).";
 "Add a new layer named %@, click Use These Colors, and with the %@ tool draw two or three small V shapes in the sky." = "Fügen Sie eine neue Ebene namens %@ hinzu, klicken Sie auf Diese Farben verwenden und zeichnen Sie mit dem Werkzeug %@ zwei oder drei kleine V-Formen in den Himmel.";
 "Add a title" = "Einen Titel hinzufügen";
 "Add birds" = "Vögel hinzufügen";
@@ -67,7 +67,6 @@
 "Background" = "Hintergrund";
 "Backward Diagonal" = "Diagonal rückwärts";
 "Basic" = "Einfach";
-"Before trying an effect, click the camera at the bottom of the History window: you can come back to this image at any time." = "Bevor Sie einen Effekt ausprobieren, klicken Sie unten im Verlaufsfenster auf die Kamera: So können Sie jederzeit zu diesem Bild zurückkehren.";
 "Best Quality" = "Beste Qualität";
 "Bicubic" = "Bikubisch";
 "Bilinear" = "Bilinear";
@@ -129,7 +128,7 @@
 "Choose the %@ tool and drag a circle about 120 pixels wide above the horizon, on the right; hold Shift to keep it round." = "Wählen Sie das Werkzeug %@ und ziehen Sie über dem Horizont, rechts, einen Kreis von etwa 120 Pixeln Breite auf; halten Sie die Umschalttaste gedrückt, damit er rund bleibt.";
 "Choose the %@ tool and drag from the top of the image down to about two thirds of its height. Press Return to finish." = "Wählen Sie das Werkzeug %@ und ziehen Sie vom oberen Bildrand bis etwa zwei Drittel der Höhe nach unten. Drücken Sie zum Abschluss die Eingabetaste.";
 "Choose the %@ tool and select from the foot of the mountains down to the bottom of the image, across its whole width." = "Wählen Sie das Werkzeug %@ und wählen Sie vom Fuß der Berge bis zum unteren Bildrand über die ganze Breite aus.";
-"Choose the %@ tool, click inside the outline, and press Return." = "Wählen Sie das Werkzeug %@, klicken Sie in den Umriss und drücken Sie die Eingabetaste.";
+"Choose the %@ tool, click under the line, and press Return." = "Wählen Sie das Werkzeug %@, klicken Sie unter die Linie und drücken Sie die Eingabetaste.";
 "Choose the %@ tool, pick %@ and %@ in the tool bar, then draw a few tall, narrow triangles standing on the shore. Press Return after each." = "Wählen Sie das Werkzeug %@, nehmen Sie in der Werkzeugleiste %@ und %@ und zeichnen Sie einige hohe, schmale Dreiecke, die am Ufer stehen. Drücken Sie nach jedem die Eingabetaste.";
 "Choose the %@ tool. Start at the left edge, at about two thirds of the height, draw the peaks across to the right edge, then come back along the foot of the mountains to where you started." = "Wählen Sie das Werkzeug %@. Beginnen Sie am linken Rand auf etwa zwei Dritteln der Höhe, zeichnen Sie die Gipfel bis zum rechten Rand und kehren Sie dann am Fuß der Berge entlang zum Ausgangspunkt zurück.";
 "Choose the Brushwood Plus features you want to use." = "Wählen Sie die Funktionen von Brushwood Plus aus, die Sie verwenden möchten.";
@@ -137,10 +136,10 @@
 "Clamp" = "Begrenzen";
 "Clear Menu" = "Menü löschen";
 "Click %@ at the bottom of the Layers window, then double-click the new layer and name it %@." = "Klicken Sie unten im Ebenenfenster auf %@, doppelklicken Sie dann auf die neue Ebene und nennen Sie sie %@.";
-"Click %@ so the copy goes above the %@ layer, then double-click it and lower its %@ to about 100." = "Klicken Sie auf %@, damit die Kopie über die Ebene %@ kommt, doppelklicken Sie sie dann und setzen Sie %@ auf etwa 100.";
+"Click %@ so the copy goes above the %@ layer: the reflection now shows on the water." = "Klicken Sie auf %@, damit die Kopie über die Ebene %@ kommt: Das Spiegelbild erscheint nun auf dem Wasser.";
 "Click Use These Colors for a dusky purple, choose %@, then %@." = "Klicken Sie für ein dämmriges Violett auf Diese Farben verwenden, wählen Sie %@ und dann %@.";
 "Click Use These Colors for a golden yellow, then choose %@." = "Klicken Sie für ein goldenes Gelb auf Diese Farben verwenden und wählen Sie dann %@.";
-"Click Use These Colors for a very dark blue. With the %@ tool, draw around a shore in the bottom-left corner: from the left edge, over a low hill, down to the bottom edge, then back along the edges to where you started." = "Klicken Sie für ein sehr dunkles Blau auf Diese Farben verwenden. Zeichnen Sie mit dem Werkzeug %@ den Umriss eines Ufers in der unteren linken Ecke: vom linken Rand über einen flachen Hügel bis zum unteren Rand und dann an den Rändern entlang zurück zum Ausgangspunkt.";
+"Click Use These Colors for a very dark blue. With the %@ tool, draw the line of a low hill in the bottom-left corner, from the left edge down to the bottom edge." = "Klicken Sie für ein sehr dunkles Blau auf Diese Farben verwenden. Zeichnen Sie mit dem Werkzeug %@ die Linie eines flachen Hügels in der unteren linken Ecke, vom linken Rand bis zum unteren Rand.";
 "Click Use These Colors to paint in white, choose the %@ tool with a brush width of 3, and click here and there in the top of the sky: about ten stars." = "Klicken Sie auf Diese Farben verwenden, um in Weiß zu malen, wählen Sie das Werkzeug %@ mit einer Pinselbreite von 3 und klicken Sie hier und da oben in den Himmel: etwa zehn Sterne.";
 "Click Use These Colors, then with the %@ tool drag from the top of the selection down to the bottom of the image, and press Return." = "Klicken Sie auf Diese Farben verwenden, ziehen Sie dann mit dem Werkzeug %@ vom oberen Rand der Auswahl bis zum unteren Bildrand und drücken Sie die Eingabetaste.";
 "Click Use These Colors: the primary color becomes a deep night blue and the secondary a warm orange. You can also click the color squares in the Colors window to pick your own." = "Klicken Sie auf Diese Farben verwenden: Die Primärfarbe wird ein tiefes Nachtblau, die Sekundärfarbe ein warmes Orange. Sie können auch auf die Farbfelder im Farbenfenster klicken, um eigene zu wählen.";
@@ -243,6 +242,7 @@
 "Dotted Grid" = "Gepunktetes Raster";
 "Double Arrow" = "Doppelpfeil";
 "Double-click the %@ layer and set its %@ to %@: the glow now lightens the sky instead of covering it." = "Doppelklicken Sie auf die Ebene %@ und setzen Sie %@ auf %@: Der Schein hellt den Himmel jetzt auf, statt ihn zu verdecken.";
+"Double-click the copy in the Layers window and lower its %@ to about 100." = "Doppelklicken Sie im Ebenenfenster auf die Kopie und setzen Sie %@ auf etwa 100.";
 "Down Arrow" = "Pfeil nach unten";
 "Down to the previous multiple of 5" = "Runter zum vorigen Vielfachen von 5";
 "Download from GitHub" = "Von GitHub laden";
@@ -377,7 +377,7 @@
 "Import From File" = "Aus Datei importieren";
 "Import From File…" = "Aus Datei importieren…";
 "In the Layers window, double-click the Background layer and name it %@." = "Doppelklicken Sie im Ebenenfenster auf die Ebene Hintergrund und nennen Sie sie %@.";
-"In this project you paint an evening lake, layer by layer, with most of the tools. A new 1200 × 800 image has been made for it. Each step says what to do and checks your image: once it is done, a check appears and Next goes on. You can skip any step." = "In diesem Projekt malen Sie einen See am Abend, Ebene für Ebene, mit den meisten Werkzeugen. Dafür wurde ein neues Bild mit 1200 × 800 angelegt. Jeder Schritt sagt, was zu tun ist, und prüft Ihr Bild: Ist er erledigt, erscheint ein Häkchen und Weiter geht voran. Sie können jeden Schritt überspringen.";
+"In this project you paint this evening lake, layer by layer, with most of the tools. A new 1200 × 800 image has been made for it. Each step says what to do and checks your image: once it is done, a check appears and Next goes on. You can skip any step." = "In diesem Projekt malen Sie diesen See am Abend, Ebene für Ebene, mit den meisten Werkzeugen. Dafür wurde ein neues Bild mit 1200 × 800 angelegt. Jeder Schritt sagt, was zu tun ist, und prüft Ihr Bild: Ist er erledigt, erscheint ein Häkchen und Weiter geht voran. Sie können jeden Schritt überspringen.";
 "Inches" = "Zoll";
 "Ink Sketch" = "Tuscheskizze";
 "Ink outline" = "Tuschekontur";
@@ -453,6 +453,7 @@
 "Magnetic closing enabled: a stroke released near its start joins it" = "Magnetisches Schließen ein: Ein nahe seinem Anfang losgelassener Strich wird mit ihm verbunden";
 "Maintain aspect ratio" = "Seitenverhältnis beibehalten";
 "Make it glow" = "Zum Leuchten bringen";
+"Make the reflection fainter" = "Das Spiegelbild abschwächen";
 "Mandelbrot Fractal" = "Mandelbrot-Fraktal";
 "Manhattan" = "Manhattan";
 "Maximum scatter radius" = "Maximaler Streuradius";
@@ -761,6 +762,7 @@
 "The paintbrush and all its settings." = "Der Pinsel und alle seine Einstellungen.";
 "The shape of the gradient: linear, reflected, diamond, radial, conical or spiral." = "Die Form des Farbverlaufs: linear, gespiegelt, Raute, radial, konisch oder spiralförmig.";
 "The size of the brush, in pixels. The mouse wheel over the field and the [ and ] keys change it too." = "Die Größe des Pinsels in Pixeln. Das Mausrad über dem Feld und die Tasten [ und ] ändern sie ebenfalls.";
+"The text stays editable until you click Finish or press ⌘Return; Return alone starts a new line." = "Der Text bleibt bearbeitbar, bis Sie auf Fertigstellen klicken oder ⌘-Eingabetaste drücken; die Eingabetaste allein beginnt eine neue Zeile.";
 "The toolbar, the tool options and the status bar." = "Die Hauptleiste, die Werkzeugoptionen und die Statusleiste.";
 "The update could not be installed" = "Das Update konnte nicht installiert werden";
 "These blend modes will be saved as Normal in the .pdn file: %@. Save as OpenRaster (.ora) to keep them." = "Diese Mischmodi werden in der .pdn-Datei als Normal gesichert: %@. Sichern Sie im OpenRaster-Format (.ora), um sie zu erhalten.";
@@ -797,7 +799,7 @@
 "Turbulence" = "Turbulenz";
 "Turn each Brushwood Plus feature on or off." = "Jede Funktion von Brushwood Plus ein- oder ausschalten.";
 "Turn its features on in Plus Features to follow this tour." = "Schalten Sie ihre Funktionen unter Plus-Funktionen ein, um dieser Tour zu folgen.";
-"Turn on Smoothing and Magnetic closing in the tool bar: the line is steadier, and it closes by itself when you come back near its start." = "Schalten Sie in der Werkzeugleiste Stabilisierung und magnetisches Schließen ein: Der Strich wird ruhiger und schließt sich von selbst, wenn Sie nahe an seinen Anfang zurückkehren.";
+"Turn on Smoothing in the tool bar for a steadier line." = "Schalten Sie in der Werkzeugleiste die Stabilisierung ein, um eine ruhigere Linie zu erhalten.";
 "Turn the copy upside down" = "Die Kopie umdrehen";
 "Tutorial" = "Tutorial";
 "Tutorial…" = "Tutorial…";
@@ -839,6 +841,7 @@
 "Xor" = "Xor";
 "You used layers and their properties, selections, gradients, effects, blend modes and the History window. Try other blend modes or opacities on the layers to change the mood." = "Sie haben Ebenen und ihre Eigenschaften, Auswahlen, Farbverläufe, Effekte, Mischmodi und das Verlaufsfenster verwendet. Probieren Sie andere Mischmodi oder Deckkraftwerte auf den Ebenen aus, um die Stimmung zu ändern.";
 "Your evening lake is ready" = "Ihr Abendsee ist fertig";
+"Your sky is done: click the camera at the bottom of the History window to keep a snapshot of the image. Take one whenever you like before trying something: you can always come back to it." = "Ihr Himmel ist fertig: Klicken Sie unten im Verlaufsfenster auf die Kamera, um einen Schnappschuss des Bilds zu behalten. Machen Sie jederzeit einen, bevor Sie etwas ausprobieren: Sie können immer dorthin zurückkehren.";
 "Zig Zag" = "Zickzack";
 "Zoom" = "Zoomen";
 "Zoom Amount" = "Zoomstärke";
