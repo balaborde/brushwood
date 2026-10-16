@@ -134,6 +134,7 @@
 "Choose the Brushwood Plus features you want to use." = "Escolha os recursos do Brushwood Plus que você quer usar.";
 "Choose the sky colors" = "Escolher as cores do céu";
 "Clamp" = "Limitar";
+"Clear Color History" = "Limpar histórico de cores";
 "Clear Menu" = "Limpar menu";
 "Click %@ at the bottom of the Layers window, then double-click the new layer and name it %@." = "Clique em %@ embaixo da janela Camadas, depois clique duas vezes na nova camada e dê a ela o nome %@.";
 "Click %@ so the copy goes above the %@ layer: the reflection now shows on the water." = "Clique em %@ para a cópia ficar acima da camada %@: o reflexo agora aparece na água.";
@@ -168,10 +169,12 @@
 "Color" = "Cor";
 "Color Burn" = "Subexposição de cores";
 "Color Dodge" = "Superexposição de cores";
+"Color History: the last colors you painted with. Click one for the primary color, right-click it for the secondary color." = "Histórico de cores: as últimas cores com que você pintou. Clique em uma para a cor primária, ou com o botão direito para a secundária.";
 "Color Mode" = "Modo de cor";
 "Color Picker" = "Seletor de cores";
 "Color Saturation" = "Saturação de cor";
 "Color count" = "Número de cores";
+"Color history" = "Histórico de cores";
 "Color mode goes from the primary to the secondary color. Transparency mode fades the layer out instead." = "O modo de cor vai da cor primária à secundária. O modo de transparência, em vez disso, faz a camada sumir aos poucos.";
 "Color or transparency" = "Cor ou transparência";
 "Color range" = "Intervalo de cores";
@@ -397,6 +400,7 @@
 "Keep a snapshot" = "Guardar um instantâneo";
 "Keep canvas size" = "Manter o tamanho da tela";
 "Keeps copies of the image that you can always go back to, from the History window." = "Guarda cópias da imagem às quais você sempre pode voltar pela janela Histórico.";
+"Keeps the last colors you painted with under the palette of the Colors window, to pick them again in one click." = "Guarda as últimas cores com que você pintou sob a paleta da janela Cores, para escolhê-las de novo com um clique.";
 "Keyboard Shortcuts" = "Atalhos de teclado";
 "Lake" = "Lago";
 "Lanczos 3" = "Lanczos 3";
@@ -753,6 +757,7 @@
 "The Brushwood Window" = "A janela do Brushwood";
 "The bar under the toolbar shows the settings of the current tool. They change with the tool and are kept for next time." = "A barra sob a barra principal mostra os ajustes da ferramenta atual. Eles mudam com a ferramenta e ficam guardados para a próxima vez.";
 "The brush follows the pointer on a string, which takes out hand tremor. While it is on, the length of the string can be set next to it." = "O pincel segue o ponteiro preso a um cordão, o que elimina o tremor da mão. Enquanto ela estiver ativada, o comprimento do cordão se ajusta ao lado.";
+"The colors you paint with line up here, the newest at the left. Click one to paint with it again, or right-click it for the secondary color." = "As cores com que você pinta se alinham aqui, a mais recente à esquerda. Clique em uma para pintar com ela de novo, ou com o botão direito para a cor secundária.";
 "The double chevrons next to the brush width jump straight to 5." = "As setas duplas ao lado da largura do pincel pulam direto para 5.";
 "The downloaded file is damaged. Try again later." = "O arquivo baixado está danificado. Tente novamente mais tarde.";
 "The font, its size and its style: bold, italic, underline and strikethrough." = "A fonte, o tamanho e o estilo: negrito, itálico, sublinhado e tachado.";

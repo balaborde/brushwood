@@ -179,6 +179,7 @@ final class MainWindowController: NSWindowController, NSWindowDelegate, NSMenuIt
         let nc = NotificationCenter.default
         let doc = ws.document
         docObservers.append(nc.addObserver(forName: .documentHistoryChanged, object: doc, queue: .main) { [weak self] _ in
+            ColorHistory.historyChanged(doc.history)
             self?.documentDidChange()
         })
         docObservers.append(nc.addObserver(forName: .documentSelectionChanged, object: doc, queue: .main) { [weak self] _ in
@@ -916,6 +917,7 @@ final class MainWindowController: NSWindowController, NSWindowDelegate, NSMenuIt
 
     @objc func fillSelection(_ sender: Any?) {
         commitPendingTool()
+        ColorHistory.noteUse(env.primaryColor, secondary: false)
         active?.fillSelection(with: env.primaryColor)
     }
 

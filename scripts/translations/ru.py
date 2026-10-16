@@ -135,6 +135,7 @@ Choose the %@ tool. Start at the left edge, at about two thirds of the height, d
 Choose the Brushwood Plus features you want to use.|Выберите функции Brushwood Plus, которыми хотите пользоваться.
 Choose the sky colors|Выбрать цвета неба
 Clamp|Ограничить
+Clear Color History|Очистить недавние цвета
 Clear Menu|Очистить меню
 Click %@ at the bottom of the Layers window, then double-click the new layer and name it %@.|Нажмите «%@» внизу окна слоёв, затем дважды щёлкните новый слой и назовите его «%@».
 Click %@ so the copy goes above the %@ layer: the reflection now shows on the water.|Нажмите «%@», чтобы копия оказалась над слоем «%@»: теперь отражение видно на воде.
@@ -169,10 +170,12 @@ Coarseness|Зернистость
 Color|Цвет
 Color Burn|Затемнение основы
 Color Dodge|Осветление основы
+Color History: the last colors you painted with. Click one for the primary color, right-click it for the secondary color.|Недавние цвета: последние цвета, которыми вы рисовали. Щёлкните цвет, чтобы сделать его основным, или щёлкните правой кнопкой, чтобы сделать вторичным.
 Color Mode|Цветовой режим
 Color Picker|Пипетка
 Color Saturation|Насыщенность цвета
 Color count|Число цветов
+Color history|Недавние цвета
 Color mode goes from the primary to the secondary color. Transparency mode fades the layer out instead.|Цветовой режим идёт от основного цвета к вторичному. Режим прозрачности вместо этого постепенно делает слой прозрачным.
 Color or transparency|Цвет или прозрачность
 Color range|Диапазон цветов
@@ -398,6 +401,7 @@ Julia Fractal|Фрактал Жюлиа
 Keep a snapshot|Сохранить снимок
 Keep canvas size|Сохранить размер холста
 Keeps copies of the image that you can always go back to, from the History window.|Хранит копии изображения, к которым всегда можно вернуться из окна журнала.
+Keeps the last colors you painted with under the palette of the Colors window, to pick them again in one click.|Хранит под палитрой окна «Цвета» последние цвета, которыми вы рисовали, чтобы снова выбрать их одним щелчком.
 Keyboard Shortcuts|Сочетания клавиш
 Lake|Озеро
 Lanczos 3|Lanczos 3
@@ -754,6 +758,7 @@ Thank you for being here.|Спасибо, что вы с нами.
 The Brushwood Window|Окно Brushwood
 The bar under the toolbar shows the settings of the current tool. They change with the tool and are kept for next time.|Панель под главной панелью показывает настройки текущего инструмента. Они меняются вместе с инструментом и сохраняются до следующего раза.
 The brush follows the pointer on a string, which takes out hand tremor. While it is on, the length of the string can be set next to it.|Кисть следует за указателем на нити, что убирает дрожание руки. Когда стабилизация включена, длину нити можно задать рядом.
+The colors you paint with line up here, the newest at the left. Click one to paint with it again, or right-click it for the secondary color.|Цвета, которыми вы рисуете, выстраиваются здесь, самый новый слева. Щёлкните цвет, чтобы снова рисовать им, или щёлкните правой кнопкой, чтобы задать вторичный цвет.
 The double chevrons next to the brush width jump straight to 5.|Двойные стрелки рядом с шириной кисти сразу переходят к 5.
 The downloaded file is damaged. Try again later.|Загруженный файл поврежден. Повторите попытку позже.
 The font, its size and its style: bold, italic, underline and strikethrough.|Шрифт, его размер и начертание: жирный, курсив, подчёркнутый и зачёркнутый.

@@ -135,6 +135,7 @@ Choose the %@ tool. Start at the left edge, at about two thirds of the height, d
 Choose the Brushwood Plus features you want to use.|Wybierz funkcje Brushwood Plus, których chcesz używać.
 Choose the sky colors|Wybierz kolory nieba
 Clamp|Ogranicz
+Clear Color History|Wyczyść historię kolorów
 Clear Menu|Wymaż menu
 Click %@ at the bottom of the Layers window, then double-click the new layer and name it %@.|Kliknij %@ na dole okna Warstwy, a potem kliknij dwukrotnie nową warstwę i nazwij ją %@.
 Click %@ so the copy goes above the %@ layer: the reflection now shows on the water.|Kliknij %@, aby kopia znalazła się nad warstwą %@: odbicie pojawia się teraz na wodzie.
@@ -169,10 +170,12 @@ Coarseness|Gruboziarnistość
 Color|Kolor
 Color Burn|Ściemnianie koloru
 Color Dodge|Rozjaśnianie koloru
+Color History: the last colors you painted with. Click one for the primary color, right-click it for the secondary color.|Historia kolorów: ostatnie kolory, którymi malowano. Kliknij kolor, aby ustawić go jako główny, prawym przyciskiem – jako dodatkowy.
 Color Mode|Tryb koloru
 Color Picker|Próbnik kolorów
 Color Saturation|Nasycenie kolorów
 Color count|Liczba kolorów
+Color history|Historia kolorów
 Color mode goes from the primary to the secondary color. Transparency mode fades the layer out instead.|Tryb koloru przechodzi od koloru głównego do dodatkowego. Tryb przezroczystości zamiast tego stopniowo wygasza warstwę.
 Color or transparency|Kolor czy przezroczystość
 Color range|Zakres kolorów
@@ -398,6 +401,7 @@ Julia Fractal|Fraktal Julii
 Keep a snapshot|Zachowaj migawkę
 Keep canvas size|Zachowaj rozmiar płótna
 Keeps copies of the image that you can always go back to, from the History window.|Przechowuje kopie obrazu, do których zawsze można wrócić z okna Historia.
+Keeps the last colors you painted with under the palette of the Colors window, to pick them again in one click.|Zachowuje pod paletą okna Kolory ostatnie kolory, którymi malowano, aby można je było wybrać ponownie jednym kliknięciem.
 Keyboard Shortcuts|Skróty klawiszowe
 Lake|Jezioro
 Lanczos 3|Lanczos 3
@@ -754,6 +758,7 @@ Thank you for being here.|Dziękuję, że tu jesteś.
 The Brushwood Window|Okno Brushwood
 The bar under the toolbar shows the settings of the current tool. They change with the tool and are kept for next time.|Pasek pod paskiem głównym pokazuje ustawienia bieżącego narzędzia. Zmieniają się wraz z narzędziem i są zachowywane na następny raz.
 The brush follows the pointer on a string, which takes out hand tremor. While it is on, the length of the string can be set next to it.|Pędzel podąża za wskaźnikiem na sznurku, co usuwa drżenie ręki. Gdy stabilizacja jest włączona, długość sznurka ustawisz obok.
+The colors you paint with line up here, the newest at the left. Click one to paint with it again, or right-click it for the secondary color.|Kolory, którymi malujesz, układają się tutaj, najnowszy po lewej. Kliknij kolor, aby znowu nim malować, albo kliknij prawym przyciskiem, aby ustawić kolor dodatkowy.
 The double chevrons next to the brush width jump straight to 5.|Podwójne strzałki obok szerokości pędzla przeskakują od razu do 5.
 The downloaded file is damaged. Try again later.|Pobrany plik jest uszkodzony. Spróbuj ponownie później.
 The font, its size and its style: bold, italic, underline and strikethrough.|Czcionka, jej rozmiar i styl: pogrubienie, kursywa, podkreślenie i przekreślenie.

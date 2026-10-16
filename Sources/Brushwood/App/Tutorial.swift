@@ -135,6 +135,9 @@ enum Tutorial {
                     .part(L("Colors"), L("The left mouse button paints with the primary color, the right one with the secondary color. Click a color of the palette to pick it, or right-click it for the secondary color."),
                           side: .right, show: { if !$0.colorsPanel.isVisible { $0.toggleColorsWindow(nil) } },
                           view: { $0.colorsPanel.contentView }),
+                    .part(L("Color history"), L("The colors you paint with line up here, the newest at the left. Click one to paint with it again, or right-click it for the secondary color."),
+                          side: .right, show: { if !$0.colorsPanel.isVisible { $0.toggleColorsWindow(nil) } },
+                          requires: .colorHistory, view: { $0.colorsPanel.historyView }),
                 ]),
             ]),
             TutorialSection(title: L("Selection"), scenarios: [

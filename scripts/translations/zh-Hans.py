@@ -135,6 +135,7 @@ Choose the %@ tool. Start at the left edge, at about two thirds of the height, d
 Choose the Brushwood Plus features you want to use.|请选择要使用的 Brushwood Plus 功能。
 Choose the sky colors|选择天空的颜色
 Clamp|钳制
+Clear Color History|清除颜色历史记录
 Clear Menu|清除菜单
 Click %@ at the bottom of the Layers window, then double-click the new layer and name it %@.|点按图层窗口底部的“%@”，然后连按新图层，并将其命名为“%@”。
 Click %@ so the copy goes above the %@ layer: the reflection now shows on the water.|点按“%@”让副本移到“%@”图层之上：倒影就会出现在水面上。
@@ -169,10 +170,12 @@ Coarseness|颗粒度
 Color|颜色
 Color Burn|颜色加深
 Color Dodge|颜色减淡
+Color History: the last colors you painted with. Click one for the primary color, right-click it for the secondary color.|颜色历史记录：你最近用来绘画的颜色。点按一个颜色设为主要颜色，右键点按设为次要颜色。
 Color Mode|颜色模式
 Color Picker|颜色选择器
 Color Saturation|色彩饱和度
 Color count|颜色数
+Color history|颜色历史记录
 Color mode goes from the primary to the secondary color. Transparency mode fades the layer out instead.|颜色模式从主要颜色过渡到次要颜色。透明模式则让图层逐渐变透明。
 Color or transparency|颜色或透明
 Color range|颜色范围
@@ -398,6 +401,7 @@ Julia Fractal|朱利亚分形
 Keep a snapshot|保留一个快照
 Keep canvas size|保持画布大小
 Keeps copies of the image that you can always go back to, from the History window.|保留图像的副本，可随时从历史记录窗口回到这些副本。
+Keeps the last colors you painted with under the palette of the Colors window, to pick them again in one click.|在颜色窗口的调色板下方保留你最近用来绘画的颜色，点按一下即可再次选择。
 Keyboard Shortcuts|键盘快捷键
 Lake|湖泊
 Lanczos 3|Lanczos 3
@@ -754,6 +758,7 @@ Thank you for being here.|感谢有你。
 The Brushwood Window|Brushwood 窗口
 The bar under the toolbar shows the settings of the current tool. They change with the tool and are kept for next time.|主栏下方的栏显示当前工具的设置。设置随工具变化，并会保留到下次使用。
 The brush follows the pointer on a string, which takes out hand tremor. While it is on, the length of the string can be set next to it.|画笔像系着绳子一样跟随指针，可消除手的抖动。打开时，可在旁边设置拉绳的长度。
+The colors you paint with line up here, the newest at the left. Click one to paint with it again, or right-click it for the secondary color.|你用来绘画的颜色会排列在这里，最新的在最左边。点按一个颜色即可再次用它绘画，右键点按则设为次要颜色。
 The double chevrons next to the brush width jump straight to 5.|画笔宽度旁的双箭头可直接跳到 5。
 The downloaded file is damaged. Try again later.|下载的文件已损坏。请稍后再试。
 The font, its size and its style: bold, italic, underline and strikethrough.|字体、字号和样式：粗体、斜体、下划线和删除线。

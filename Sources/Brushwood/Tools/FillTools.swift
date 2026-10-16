@@ -195,6 +195,11 @@ final class GradientTool: Tool {
         var c0 = env.primaryColor, c1 = env.secondaryColor
         if button == .right { swap(&c0, &c1) }
         let transparency = settings.gradientTransparencyMode
+        // Both colors join the color history; in transparency mode only their opacity is used, so neither does.
+        if !transparency {
+            ColorHistory.noteUse(c0, secondary: button == .right)
+            ColorHistory.noteUse(c1, secondary: button == .left)
+        }
         let mode = settings.blendMode
         let clip = self.clip
         let type = settings.gradientType, repeatMode = settings.gradientRepeat

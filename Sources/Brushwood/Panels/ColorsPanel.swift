@@ -3,7 +3,7 @@ import BrushwoodCore
 import UniformTypeIdentifiers
 
 /// Paint.NET-style Colors window: primary/secondary selector, HSV color wheel, 96-color palette and,
-/// when expanded ("More"), hex/RGB/HSV/alpha controls.
+/// when expanded ("More"), hex/RGB/HSV/alpha controls. Brushwood Plus adds the color history along the bottom.
 final class ColorsPanel: FloatingPanel {
     private let content = FlippedView()
     private let targetPopup = NSPopUpButton(frame: .zero, pullsDown: false)
@@ -13,6 +13,9 @@ final class ColorsPanel: FloatingPanel {
     private let paletteView = PaletteView()
     private let moreButton = NSButton(title: "", target: nil, action: nil)
     private let paletteMenuButton = NSPopUpButton(frame: .zero, pullsDown: true)
+    let historyView = ColorHistoryView(frame: .zero)
+    private let clearHistoryItem = NSMenuItem(title: L("Clear Color History"), action: nil, keyEquivalent: "")
+    private let historySeparator = NSMenuItem.separator()
     private let expanded = FlippedView()
     private let hexField = NSTextField()
     private var sliders: [(ColorComponentSlider, NSTextField)] = []
@@ -38,6 +41,13 @@ final class ColorsPanel: FloatingPanel {
         observers.append(nc.addObserver(forName: .paletteChanged, object: nil, queue: .main) { [weak self] _ in
             self?.paletteView.needsDisplay = true
         })
+        observers.append(nc.addObserver(forName: .plusFeaturesChanged, object: nil, queue: .main) { [weak self] _ in
+            self?.layoutHistory()
+        })
+        observers.append(nc.addObserver(forName: .colorHistoryChanged, object: nil, queue: .main) { [weak self] _ in
+            self?.clearHistoryItem.isEnabled = !ColorHistory.colors.isEmpty
+        })
+        layoutHistory()
         sync()
     }
 
@@ -134,9 +144,21 @@ final class ColorsPanel: FloatingPanel {
         paletteMenuButton.menu?.addItem(save)
         paletteMenuButton.menu?.addItem(.separator())
         paletteMenuButton.menu?.addItem(reset)
+        clearHistoryItem.onAction { _ in ColorHistory.clear() }
+        clearHistoryItem.isEnabled = !ColorHistory.colors.isEmpty
+        paletteMenuButton.menu?.autoenablesItems = false
+        paletteMenuButton.menu?.addItem(historySeparator)
+        paletteMenuButton.menu?.addItem(clearHistoryItem)
         paletteMenuButton.frame = NSRect(x: 272, y: 168, width: 137, height: 20)
         paletteMenuButton.toolTip = L("Left-click a swatch to set the primary color, right-click for the secondary color. Shift-click stores the current color.")
         content.addSubview(paletteMenuButton)
+
+        historyView.onPick = { [weak self] color, inactive in
+            guard let self else { return }
+            let secondary = inactive ? !self.editingSecondary : self.editingSecondary
+            if secondary { self.env.secondaryColor = color } else { self.env.primaryColor = color }
+        }
+        content.addSubview(historyView)
 
         buildExpanded()
     }
@@ -216,14 +238,31 @@ final class ColorsPanel: FloatingPanel {
     private func toggleExpanded() {
         isExpanded.toggle()
         expanded.isHidden = !isExpanded
-        var f = frame
-        let newWidth = isExpanded ? expandedWidth : compactWidth
-        let contentRect = contentRect(forFrameRect: f)
-        let newContent = NSRect(x: contentRect.minX, y: contentRect.minY, width: newWidth, height: contentRect.height)
-        f = frameRect(forContentRect: newContent)
-        setFrame(f, display: true, animate: false)
+        layoutHistory()
         layoutPalette()
         sync()
+    }
+
+    /// The color history, along the bottom while its Plus feature is on, across the whole window: more colors show
+    /// when it is expanded.
+    private func layoutHistory() {
+        let shown = PlusFeature.colorHistory.isEnabled
+        historyView.isHidden = !shown
+        historySeparator.isHidden = !shown
+        clearHistoryItem.isHidden = !shown
+        historyView.frame = NSRect(x: 0, y: height - 4, width: isExpanded ? expandedWidth : compactWidth,
+                                   height: ColorHistoryView.height)
+        resize()
+    }
+
+    /// Fits the window to the expanded controls and the color history, then back at the corner it is attached to.
+    private func resize() {
+        let size = NSSize(width: isExpanded ? expandedWidth : compactWidth,
+                          height: height + (historyView.isHidden ? 0 : ColorHistoryView.height - 4))
+        let old = contentRect(forFrameRect: frame)
+        guard old.size != size else { return }
+        setFrame(frameRect(forContentRect: NSRect(origin: old.origin, size: size)), display: true, animate: false)
+        host?.panelLayout?.apply()
     }
 
     private func sync() {

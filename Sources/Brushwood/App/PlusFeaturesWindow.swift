@@ -45,7 +45,7 @@ final class PlusFeaturesWindow: NSWindow {
         headerText.alignment = .leading
         headerText.spacing = 4
 
-        // The list scrolls once there are many features.
+        // The list scrolls once there are more features than the screen has room for.
         let list = NSStackView()
         list.orientation = .vertical
         list.alignment = .leading
@@ -119,7 +119,9 @@ final class PlusFeaturesWindow: NSWindow {
             content.addSubview(v)
         }
         document.layoutSubtreeIfNeeded()
-        let listHeight = min(420, list.fittingSize.height + 28)
+        // Room left on the screen once the header, the bottom bar and the title bar are counted.
+        let room = max(300, (NSScreen.main?.visibleFrame.height ?? 800) - 260)
+        let listHeight = min(room, list.fittingSize.height + 28)
         NSLayoutConstraint.activate([
             content.widthAnchor.constraint(equalToConstant: Self.width),
             icon.topAnchor.constraint(equalTo: content.topAnchor, constant: margin),

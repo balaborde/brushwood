@@ -310,6 +310,7 @@ final class ShapesTool: Tool {
                             strokeColor: c1, width: width, dash: dash, cap: .butt, antialias: settings.antialiasing,
                             mode: settings.blendMode)
         case .filledWithOutline:
+            ColorHistory.noteUse(c2, secondary: button == .left)
             renderer.render(doc: doc, fill: path, fillColor: c2, fillStyle: settings.fillStyle, fillBackground: c1, stroke: path,
                             strokeColor: c1, width: width, dash: dash, cap: .butt, antialias: settings.antialiasing,
                             mode: settings.blendMode)

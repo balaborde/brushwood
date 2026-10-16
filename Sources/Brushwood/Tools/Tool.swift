@@ -49,8 +49,11 @@ class Tool {
 
     // MARK: Helpers
 
+    /// The color painted with: it joins the color history (Brushwood Plus) with the step.
     func color(for button: ToolEvent.Button) -> ColorBgra {
-        button == .left ? env.primaryColor : env.secondaryColor
+        let c = button == .left ? env.primaryColor : env.secondaryColor
+        ColorHistory.noteUse(c, secondary: button != .left)
+        return c
     }
 
     func otherColor(for button: ToolEvent.Button) -> ColorBgra {

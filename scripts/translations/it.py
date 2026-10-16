@@ -135,6 +135,7 @@ Choose the %@ tool. Start at the left edge, at about two thirds of the height, d
 Choose the Brushwood Plus features you want to use.|Scegli le funzioni di Brushwood Plus che vuoi usare.
 Choose the sky colors|Scegliere i colori del cielo
 Clamp|Blocca
+Clear Color History|Cancella cronologia dei colori
 Clear Menu|Cancella menu
 Click %@ at the bottom of the Layers window, then double-click the new layer and name it %@.|Fai clic su %@ in basso nella finestra Livelli, poi fai doppio clic sul nuovo livello e chiamalo %@.
 Click %@ so the copy goes above the %@ layer: the reflection now shows on the water.|Fai clic su %@ perché la copia vada sopra il livello %@: ora il riflesso appare sull'acqua.
@@ -169,10 +170,12 @@ Coarseness|Grana
 Color|Colore
 Color Burn|Brucia colore
 Color Dodge|Scherma colore
+Color History: the last colors you painted with. Click one for the primary color, right-click it for the secondary color.|Cronologia dei colori: gli ultimi colori con cui hai dipinto. Fai clic su uno per il colore primario, con il tasto destro per il secondario.
 Color Mode|Modalità colore
 Color Picker|Contagocce
 Color Saturation|Saturazione colore
 Color count|Numero di colori
+Color history|Cronologia dei colori
 Color mode goes from the primary to the secondary color. Transparency mode fades the layer out instead.|La modalità colore va dal colore primario al secondario. La modalità trasparenza invece fa sfumare il livello.
 Color or transparency|Colore o trasparenza
 Color range|Intervallo di colori
@@ -398,6 +401,7 @@ Julia Fractal|Frattale di Julia
 Keep a snapshot|Conservare un'istantanea
 Keep canvas size|Mantieni le dimensioni della tela
 Keeps copies of the image that you can always go back to, from the History window.|Conserva copie dell'immagine a cui puoi sempre tornare dalla finestra Cronologia.
+Keeps the last colors you painted with under the palette of the Colors window, to pick them again in one click.|Conserva gli ultimi colori con cui hai dipinto sotto la tavolozza della finestra Colori, per sceglierli di nuovo con un clic.
 Keyboard Shortcuts|Abbreviazioni da tastiera
 Lake|Lago
 Lanczos 3|Lanczos 3
@@ -754,6 +758,7 @@ Thank you for being here.|Grazie di essere qui.
 The Brushwood Window|La finestra di Brushwood
 The bar under the toolbar shows the settings of the current tool. They change with the tool and are kept for next time.|La barra sotto la barra principale mostra le impostazioni dello strumento attuale. Cambiano con lo strumento e vengono conservate per la volta successiva.
 The brush follows the pointer on a string, which takes out hand tremor. While it is on, the length of the string can be set next to it.|Il pennello segue il puntatore legato a una corda, eliminando il tremolio della mano. Quando è attiva, la lunghezza della corda si regola accanto.
+The colors you paint with line up here, the newest at the left. Click one to paint with it again, or right-click it for the secondary color.|I colori con cui dipingi si allineano qui, il più recente a sinistra. Fai clic su uno per dipingere di nuovo con esso, o con il tasto destro per il colore secondario.
 The double chevrons next to the brush width jump straight to 5.|Le doppie frecce accanto alla larghezza del pennello saltano subito a 5.
 The downloaded file is damaged. Try again later.|Il file scaricato è danneggiato. Riprova più tardi.
 The font, its size and its style: bold, italic, underline and strikethrough.|Il font, la sua dimensione e il suo stile: grassetto, corsivo, sottolineato e barrato.

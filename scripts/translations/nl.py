@@ -135,6 +135,7 @@ Choose the %@ tool. Start at the left edge, at about two thirds of the height, d
 Choose the Brushwood Plus features you want to use.|Kies de functies van Brushwood Plus die je wilt gebruiken.
 Choose the sky colors|De kleuren van de lucht kiezen
 Clamp|Begrenzen
+Clear Color History|Kleurgeschiedenis wissen
 Clear Menu|Wis menu
 Click %@ at the bottom of the Layers window, then double-click the new layer and name it %@.|Klik op %@ onderaan het venster Lagen, dubbelklik dan op de nieuwe laag en noem hem %@.
 Click %@ so the copy goes above the %@ layer: the reflection now shows on the water.|Klik op %@ zodat de kopie boven de laag %@ komt: de weerspiegeling verschijnt nu op het water.
@@ -169,10 +170,12 @@ Coarseness|Grofheid
 Color|Kleur
 Color Burn|Kleur doordrukken
 Color Dodge|Kleur tegenhouden
+Color History: the last colors you painted with. Click one for the primary color, right-click it for the secondary color.|Kleurgeschiedenis: de laatste kleuren waarmee je hebt geschilderd. Klik op een kleur voor de primaire kleur, of klik er met de rechtermuisknop op voor de secundaire kleur.
 Color Mode|Kleurmodus
 Color Picker|Pipet
 Color Saturation|Kleurverzadiging
 Color count|Aantal kleuren
+Color history|Kleurgeschiedenis
 Color mode goes from the primary to the secondary color. Transparency mode fades the layer out instead.|Kleurmodus gaat van de primaire naar de secundaire kleur. Transparantiemodus laat de laag in plaats daarvan vervagen.
 Color or transparency|Kleur of transparantie
 Color range|Kleurbereik
@@ -398,6 +401,7 @@ Julia Fractal|Julia-fractal
 Keep a snapshot|Een momentopname bewaren
 Keep canvas size|Canvasgrootte behouden
 Keeps copies of the image that you can always go back to, from the History window.|Bewaart kopieën van de afbeelding waar je vanuit het venster Geschiedenis altijd naar terug kunt.
+Keeps the last colors you painted with under the palette of the Colors window, to pick them again in one click.|Bewaart de laatste kleuren waarmee je hebt geschilderd onder het palet van het venster Kleuren, om ze met één klik weer te kiezen.
 Keyboard Shortcuts|Toetscombinaties
 Lake|Meer
 Lanczos 3|Lanczos 3
@@ -754,6 +758,7 @@ Thank you for being here.|Bedankt dat je er bent.
 The Brushwood Window|Het venster van Brushwood
 The bar under the toolbar shows the settings of the current tool. They change with the tool and are kept for next time.|De balk onder de hoofdbalk toont de instellingen van het huidige gereedschap. Ze veranderen mee met het gereedschap en blijven bewaard voor de volgende keer.
 The brush follows the pointer on a string, which takes out hand tremor. While it is on, the length of the string can be set next to it.|Het penseel volgt de aanwijzer aan een touwtje, wat het trillen van je hand wegneemt. Staat de stabilisatie aan, dan stel je ernaast de lengte van het touwtje in.
+The colors you paint with line up here, the newest at the left. Click one to paint with it again, or right-click it for the secondary color.|De kleuren waarmee je schildert komen hier op een rij, de nieuwste links. Klik op een kleur om er weer mee te schilderen, of klik er met de rechtermuisknop op voor de secundaire kleur.
 The double chevrons next to the brush width jump straight to 5.|De dubbele pijlen naast de penseelbreedte springen meteen naar 5.
 The downloaded file is damaged. Try again later.|Het gedownloade bestand is beschadigd. Probeer het later opnieuw.
 The font, its size and its style: bold, italic, underline and strikethrough.|Het lettertype, de grootte en de stijl: vet, cursief, onderstreept en doorgehaald.

@@ -40,6 +40,25 @@ run snapshots "plusfeature:smoothing=1; plusfeature:magneticClosing=1; plusfeatu
  color:00FF00; drag:400,10,400,50; expecthistory:1; gobacktosnapshot:0; expect:10,10,FF0000; expect:400,30,FF0000;
  expecthistory:2; menu:brushwoodUndo:; expect:10,10,FFFFFF; expect:400,30,00FF00; snapshot; expectsnapshots:2"
 
+# Brushwood Plus color history: colors join when a step paints with them (not when picked, nor on undo and redo),
+# newest first and once each, 26 at most; a click brings one back. The bar shows 16, all 26 once the window is expanded.
+fills=""; for i in $(seq 10 37); do fills="$fills color:${i}${i}${i}; click:$((i * 20)),500;"; done
+kept=$(for i in $(seq 37 -1 12); do printf "%s," "$i$i$i"; done); kept="${kept%,}"
+run colorhistory "showpanels; plusfeature:colorHistory=1; colorhistoryclear; expectcolorhistory:none; color:00FF00;
+ color:FF00FF; expectcolorhistory:none; tool:paintbrush; width:6; color:FF0000; drag:100,100,200,100; expectcolorhistory:FF0000;
+ color:0000FF; drag:100,150,200,150; expectcolorhistory:0000FF,FF0000; color:FF0000; tool:pencil; drag:100,200,200,200;
+ expectcolorhistory:FF0000,0000FF; menu:brushwoodUndo:; menu:brushwoodUndo:; menu:brushwoodRedo:; expectcolorhistory:FF0000,0000FF;
+ color:00FF00,secondary; drag:100,250,200,250,right; expectcolorhistory:00FF00,FF0000,0000FF;
+ tool:gradient; setting:transparency=0; color:FFFF00; color:FF00FF,secondary; drag:0,300,800,300; key:return;
+ expectcolorhistory:FFFF00,FF00FF,00FF00,FF0000,0000FF; colorhistoryclick:4; expectcolor:primary,0000FF;
+ colorhistoryclick:3,right; expectcolor:secondary,FF0000; expectcolor:primary,0000FF; expectcolorhistory:FFFF00,FF00FF,00FF00,FF0000,0000FF;
+ color:888888; menu:selectAll:; menu:fillSelection:; menu:deselect:; expectcolorhistory:888888,FFFF00,FF00FF,00FF00,FF0000,0000FF;
+ plusfeature:colorHistory=0; tool:paintbrush; color:123456; drag:100,350,200,350; expectcolorhistory:888888,FFFF00,FF00FF,00FF00,FF0000,0000FF;
+ plusfeature:colorHistory=1; expectcolorhistory:888888,FFFF00,FF00FF,00FF00,FF0000,0000FF; tool:paintBucket; $fills
+ expectcolorhistory:$kept; expectcolorhistorycells:16; colorhistoryclick:20; expectcolor:primary,373737; colorsmore;
+ expectcolorhistorycells:26; colorhistoryclick:20; expectcolor:primary,171717; colorsmore; expectcolorhistorycells:16;
+ colorhistoryclear; expectcolorhistory:none"
+
 # Snapshots stay in view above a long history, in their own list.
 strokes=""; for i in $(seq 1 30); do strokes="$strokes drag:$((i * 20)),300,$((i * 20)),340;"; done
 run snapshotlist "showpanels; plusfeature:snapshots=1; tool:pencil; color:FF0000; expectsnapshotlist:0; snapshot;
@@ -77,15 +96,15 @@ run widthsnap "plusfeature:brushWidthSteps=1; tool:paintbrush; width:1; widthsna
 
 # Brushwood Plus tutorial: every step of every tour points at a part on screen; a tour goes forward and back and ends.
 # Plus features are steps of the tours they belong to (tagged Plus), skipped while they are off.
-run tutorial "showpanels; plusfeature:historyTimes=1; plusfeature:snapshots=1; plusfeature:smoothing=1;
+run tutorial "showpanels; plusfeature:historyTimes=1; plusfeature:snapshots=1; plusfeature:smoothing=1; plusfeature:colorHistory=1;
  plusfeature:magneticClosing=1; plusfeature:brushWidthSteps=1; tutorialcheck; tutorialstart:paintbrush;
  expecttutorial:paintbrush,1; expecttutorialsteps:9; expecttutorialplus:0; tutorialnext; tutorialnext;
  expecttutorial:paintbrush,3; expecttutorialplus:1; expecttool:paintbrush; tutorialback; tutorialback;
  expecttutorial:paintbrush,1; tutorialend; expecttutorial:none; plusfeature:smoothing=0; plusfeature:magneticClosing=0;
  plusfeature:brushWidthSteps=0; tutorialstart:paintbrush; expecttutorialsteps:6; tutorialend; plusfeature:historyTimes=0;
- plusfeature:snapshots=0; tutorialstart:floating; expecttutorialsteps:4; tutorialend; plusfeature:historyTimes=1; plusfeature:snapshots=1; plusfeature:smoothing=1;
- plusfeature:magneticClosing=1; plusfeature:brushWidthSteps=1; tutorialstart:floating;
- expecttutorialsteps:6; tutorialnext; tutorialnext; expecttutorial:floating,3; expecttutorialplus:1; tutorialend;
+ plusfeature:snapshots=0; plusfeature:colorHistory=0; tutorialstart:floating; expecttutorialsteps:4; tutorialend; plusfeature:historyTimes=1;
+ plusfeature:snapshots=1; plusfeature:smoothing=1; plusfeature:magneticClosing=1; plusfeature:brushWidthSteps=1; plusfeature:colorHistory=1;
+ tutorialstart:floating; expecttutorialsteps:7; tutorialnext; tutorialnext; expecttutorial:floating,3; expecttutorialplus:1; tutorialend;
  tutorialstart:shapes; tutorialnext; tutorialnext; tutorialnext; expecttutorial:shapes,4; expecttool:shapes; tutorialnext;
  tutorialnext; tutorialnext; expecttutorial:shapes,7; tutorialnext; expecttutorial:none"
 

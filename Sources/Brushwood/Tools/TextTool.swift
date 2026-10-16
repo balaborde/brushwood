@@ -135,7 +135,7 @@ final class TextTool: Tool {
                 ctx.restoreGState()
             }
         }
-        Compositor.apply(color: env.primaryColor, mask: mask, rect: newDirty, src: session.original, dst: session.layer.surface,
+        Compositor.apply(color: color(for: .left), mask: mask, rect: newDirty, src: session.original, dst: session.layer.surface,
                          mode: settings.blendMode, clip: clip)
         session.touch(dirty)
         lastDirty = newDirty

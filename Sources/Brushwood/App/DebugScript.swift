@@ -110,6 +110,29 @@ enum DebugScript {
                     report(b == IntRect(x: Int(nums[0]), y: Int(nums[1]), width: Int(nums[2]), height: Int(nums[3])),
                            "selection = \(b.map { "\($0)" } ?? "none"), expected \(arg)")
                 }
+            case "colorhistoryclick":
+                // colorhistoryclick:i[,right] clicks the i-th color (from 0) of the color history in the Colors window.
+                if !c.colorsPanel.isVisible { c.toggleColorsWindow(nil) }
+                let p = c.colorsPanel
+                p.contentView?.layoutSubtreeIfNeeded()
+                let at = p.historyView.debugPoint(of: Int(nums.first ?? 0))
+                for type in right ? [NSEvent.EventType.rightMouseDown, .rightMouseUp] : [.leftMouseDown, .leftMouseUp] {
+                    if let e = NSEvent.mouseEvent(with: type, location: at, modifierFlags: [], timestamp: 0,
+                                                  windowNumber: p.windowNumber, context: nil, eventNumber: 0, clickCount: 1,
+                                                  pressure: 1) { p.sendEvent(e) }
+                }
+            case "colorhistoryclear": ColorHistory.clear()
+            case "expectcolorhistorycells":
+                // expectcolorhistorycells:n: the color history shows n colors and stays inside the Colors window.
+                let v = c.colorsPanel.historyView, width = c.colorsPanel.contentView?.bounds.width ?? 0
+                report(v.visibleCount == Int(nums.first ?? -1) && v.frame.maxX <= width + 0.5,
+                       "color history cells = \(v.visibleCount) (bar \(v.frame.width) in \(width)), expected \(arg)")
+            case "expectcolorhistory":
+                // expectcolorhistory:RRGGBB,RRGGBB… (newest first) or none; also that the strip shows while the
+                // Plus feature is on.
+                let got = ColorHistory.colors.map(\.hexString).joined(separator: ","), shown = !c.colorsPanel.historyView.isHidden
+                report((arg == "none" ? got.isEmpty : got == arg.uppercased()) && shown == PlusFeature.colorHistory.isEnabled,
+                       "color history = \(got.isEmpty ? "none" : got) (shown: \(shown)), expected \(arg)")
             case "plusfeature":
                 // plusfeature:id=0|1 turns a Brushwood Plus feature off or on.
                 let kv = arg.split(separator: "=").map(String.init)

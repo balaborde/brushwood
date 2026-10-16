@@ -135,6 +135,7 @@ Choose the %@ tool. Start at the left edge, at about two thirds of the height, d
 Choose the Brushwood Plus features you want to use.|使う Brushwood Plus の機能を選んでください。
 Choose the sky colors|空のカラーを選ぶ
 Clamp|端を延長
+Clear Color History|カラーヒストリーを消去
 Clear Menu|メニューを消去
 Click %@ at the bottom of the Layers window, then double-click the new layer and name it %@.|レイヤーウインドウ下部の %@ をクリックし、新しいレイヤーをダブルクリックして名前を「%@」にします。
 Click %@ so the copy goes above the %@ layer: the reflection now shows on the water.|%@ をクリックしてコピーを「%@」レイヤーの上に移します。水面に映り込みが現れます。
@@ -169,10 +170,12 @@ Coarseness|きめの粗さ
 Color|カラー
 Color Burn|焼き込みカラー
 Color Dodge|覆い焼きカラー
+Color History: the last colors you painted with. Click one for the primary color, right-click it for the secondary color.|カラーヒストリー：最近描画に使った色です。クリックするとプライマリカラー、右クリックするとセカンダリカラーになります。
 Color Mode|カラーモード
 Color Picker|カラーピッカー
 Color Saturation|色の彩度
 Color count|色数
+Color history|カラーヒストリー
 Color mode goes from the primary to the secondary color. Transparency mode fades the layer out instead.|カラーモードはプライマリカラーからセカンダリカラーへ変化します。透明モードは代わりにレイヤーを徐々に透明にします。
 Color or transparency|カラーか透明か
 Color range|色の範囲
@@ -398,6 +401,7 @@ Julia Fractal|ジュリア集合
 Keep a snapshot|スナップショットを残す
 Keep canvas size|キャンバスサイズを維持
 Keeps copies of the image that you can always go back to, from the History window.|いつでも戻れる画像のコピーをヒストリーウインドウに保存します。
+Keeps the last colors you painted with under the palette of the Colors window, to pick them again in one click.|最近描画に使った色をカラーウインドウのパレットの下に残し、ワンクリックで再び選べるようにします。
 Keyboard Shortcuts|キーボードショートカット
 Lake|湖
 Lanczos 3|Lanczos 3
@@ -754,6 +758,7 @@ Thank you for being here.|いつもありがとうございます。
 The Brushwood Window|Brushwood のウインドウ
 The bar under the toolbar shows the settings of the current tool. They change with the tool and are kept for next time.|メインバーの下のバーには、現在のツールの設定が表示されます。設定はツールごとに変わり、次回のために保存されます。
 The brush follows the pointer on a string, which takes out hand tremor. While it is on, the length of the string can be set next to it.|ブラシがひもでつながれたようにポインタを追い、手の震えを取り除きます。オンのときは、横でひもの長さを設定できます。
+The colors you paint with line up here, the newest at the left. Click one to paint with it again, or right-click it for the secondary color.|描画に使った色がここに並び、新しい色ほど左になります。クリックするとその色で再び描け、右クリックするとセカンダリカラーになります。
 The double chevrons next to the brush width jump straight to 5.|ブラシの幅の横にある二重の矢印で、すぐに 5 にできます。
 The downloaded file is damaged. Try again later.|ダウンロードしたファイルが破損しています。しばらくしてからもう一度お試しください。
 The font, its size and its style: bold, italic, underline and strikethrough.|フォント、サイズ、スタイル（太字、斜体、下線、取り消し線）。

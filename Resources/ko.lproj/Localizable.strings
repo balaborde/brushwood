@@ -134,6 +134,7 @@
 "Choose the Brushwood Plus features you want to use." = "사용할 Brushwood Plus 기능을 선택하십시오.";
 "Choose the sky colors" = "하늘 색상 고르기";
 "Clamp" = "고정";
+"Clear Color History" = "색상 기록 지우기";
 "Clear Menu" = "메뉴 지우기";
 "Click %@ at the bottom of the Layers window, then double-click the new layer and name it %@." = "레이어 창 아래의 %@을(를) 클릭한 다음 새 레이어를 이중 클릭하고 이름을 %@(으)로 지정하십시오.";
 "Click %@ so the copy goes above the %@ layer: the reflection now shows on the water." = "%@을(를) 클릭해 사본을 %@ 레이어 위로 올리십시오. 이제 물 위에 반영이 나타납니다.";
@@ -168,10 +169,12 @@
 "Color" = "색상";
 "Color Burn" = "색상 번";
 "Color Dodge" = "색상 닷지";
+"Color History: the last colors you painted with. Click one for the primary color, right-click it for the secondary color." = "색상 기록: 최근에 칠한 색상입니다. 클릭하면 기본 색상, 오른쪽 클릭하면 보조 색상이 됩니다.";
 "Color Mode" = "색상 모드";
 "Color Picker" = "색상 선택";
 "Color Saturation" = "색 채도";
 "Color count" = "색상 수";
+"Color history" = "색상 기록";
 "Color mode goes from the primary to the secondary color. Transparency mode fades the layer out instead." = "색상 모드는 기본 색상에서 보조 색상으로 바뀝니다. 투명도 모드는 대신 레이어를 점점 투명하게 만듭니다.";
 "Color or transparency" = "색상 또는 투명도";
 "Color range" = "색상 범위";
@@ -397,6 +400,7 @@
 "Keep a snapshot" = "스냅샷 남기기";
 "Keep canvas size" = "캔버스 크기 유지";
 "Keeps copies of the image that you can always go back to, from the History window." = "기록 창에서 언제든 되돌아갈 수 있는 이미지 사본을 보관합니다.";
+"Keeps the last colors you painted with under the palette of the Colors window, to pick them again in one click." = "최근에 칠한 색상을 색상 창의 팔레트 아래에 보관하여 한 번의 클릭으로 다시 선택할 수 있습니다.";
 "Keyboard Shortcuts" = "키보드 단축키";
 "Lake" = "호수";
 "Lanczos 3" = "Lanczos 3";
@@ -753,6 +757,7 @@
 "The Brushwood Window" = "Brushwood 창";
 "The bar under the toolbar shows the settings of the current tool. They change with the tool and are kept for next time." = "기본 막대 아래의 막대에는 현재 도구의 설정이 표시됩니다. 설정은 도구에 따라 바뀌며 다음을 위해 유지됩니다.";
 "The brush follows the pointer on a string, which takes out hand tremor. While it is on, the length of the string can be set next to it." = "브러시가 끈에 매달린 것처럼 포인터를 따라가 손떨림을 없애 줍니다. 켜져 있을 때는 옆에서 끈의 길이를 설정할 수 있습니다.";
+"The colors you paint with line up here, the newest at the left. Click one to paint with it again, or right-click it for the secondary color." = "칠한 색상이 여기에 차례로 놓이며, 가장 최근 색상이 왼쪽에 있습니다. 클릭하면 그 색상으로 다시 칠하고, 오른쪽 클릭하면 보조 색상이 됩니다.";
 "The double chevrons next to the brush width jump straight to 5." = "브러시 너비 옆의 이중 화살표로 바로 5가 됩니다.";
 "The downloaded file is damaged. Try again later." = "다운로드한 파일이 손상되었습니다. 나중에 다시 시도하십시오.";
 "The font, its size and its style: bold, italic, underline and strikethrough." = "글꼴, 크기와 스타일: 굵게, 기울임꼴, 밑줄, 취소선.";
